@@ -56,10 +56,10 @@ static intmax_t convert( const char * str , void* errorLabel) {            // co
     char *endptr;
     errno = 0;                                            // reset
     intmax_t val = strtoll(str, &endptr, 10);            // attempt conversion
-   if (errno == ERANGE) goto errorLabel;
+   if (errno == ERANGE) goto *errorLabel;
    if (endptr == str ||                                // conversion failed, no characters generated
         *endptr != '\0')
-       goto errorLabel;
+       goto *errorLabel;
     return val;
 
 }
@@ -68,27 +68,27 @@ int main( int argc, char * argv[] ) {
 	intmax_t times = 100000000, seed = getpid();		// default values
 	struct cmd_error {};
 
-    void* ErrorLabel = &&ERROR;                     // Store error label
+    void* errorLabel = &&ERROR;                     // Store error label
     switch ( argc ) {
       case 4: if ( strcmp( argv[3], "d" ) != 0 ) {	// default ?
-        seed = convert( argv[3], ErrorLabel );
-       if ( seed <= 0 ) goto ErrorLabel;
+        seed = convert( argv[3], errorLabel );
+       if ( seed <= 0 ) goto errorLabel;
           }
       case 3: if ( strcmp( argv[2], "d" ) != 0 ) {	// default ?
-        eperiod = convert( argv[2], ErrorLabel );
-       if ( eperiod <= 0 ) goto ErrorLabel;
+        eperiod = convert( argv[2], errorLabel );
+       if ( eperiod <= 0 ) goto errorLabel;
       }
       case 2: if ( strcmp( argv[1], "d" ) != 0 ) {	// default ?
-        times = convert( argv[1],ErrorLabel  );
-       if ( times <= 0 ) goto ErrorLabel;
+        times = convert( argv[1], errorLabel  );
+       if ( times <= 0 ) goto errorLabel;
       }
       case 1: break; 					          	// use all defaults
-      default: goto ErrorLabel;
+      default: goto errorLabel;
     } // switch
 
     goto DEFAULT;
     ERROR:
-    cerr << "Usage: " << argv[0] << " [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]" << endl;
+    fprintf(stderr, "Usage: %s [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]", argv[0])
     exit( EXIT_FAILURE );
 
     DEFAULT:
