@@ -32,7 +32,7 @@ EXEC1 = returnglobal				# 1st executable name
 
 OBJECTS = ${OBJECTS1} ${OBJECTS2} #${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
 DEPENDS = ${OBJECTS:.o=.d}
-EXECS = ${EXEC1} ${EXEC2} #${EXEC3} ${EXEC4} ${EXEC5}
+EXECS = ${EXEC01} ${EXEC1} ${EXEC2} #${EXEC3} ${EXEC4} ${EXEC5}
 
 #############################################################
 
