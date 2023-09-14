@@ -2,13 +2,14 @@
 #include <string.h>										// access: strcmp
 #include <unistd.h>										// access: getpid
 #include <stdio.h>
+#include <stdint.h>
 
 union RtnResult {
     double normalReturn;
     short int rtn1ex;
     int rtn2ex;
     long rtn3ex;
-}
+};
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
@@ -86,7 +87,7 @@ int main( int argc, char * argv[] ) {
     break DEFAULT;
     ERROR:
     cerr << "Usage: " << argv[0] << " [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]" << endl;
-    exit( EXIT_FAILURE )
+    exit( EXIT_FAILURE );
 
     DEFAULT:
 
