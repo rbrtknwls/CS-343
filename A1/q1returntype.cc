@@ -3,7 +3,7 @@
 #include <cstring>										// access: strcmp
 using namespace std;
 #include <unistd.h>										// access: getpid
-#include <varient>
+#include <variant>
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
