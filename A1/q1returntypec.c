@@ -1,5 +1,5 @@
-#include <stdlib>										// access: rand, srand
-#include <cstring>										// access: strcmp
+#include <stdlib.h>										// access: rand, srand
+#include <cstring.h>										// access: strcmp
 using namespace std;
 #include <unistd.h>										// access: getpid
 #include <stdio.h>
