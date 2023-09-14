@@ -21,7 +21,7 @@ variant< double, short int, int>  rtn2( double i ) {
     if ( holds_alternative<short int>(ret1variant) ) {
         return get<short int>(ret1variant);
     } else {
-        return get<double>(rtnresult1) + Rand();
+        return get<double>(ret1variant) + Rand();
     }
 }
 
