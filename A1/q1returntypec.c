@@ -11,6 +11,7 @@ union RtnResult () {
     long rtn3ex;
 }
 
+
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
@@ -80,14 +81,17 @@ int main( int argc, char * argv[] ) {
         times = convert( argv[1] );
        if ( times <= 0 ) break ERROR;
       }
-      case 1: break DEFAULT;								// use all defaults
+      case 1: break						// use all defaults
       default: throw cmd_error();
     } // switch
 
+    break DEFAULT;
     ERROR:
     cerr << "Usage: " << argv[0] << " [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]" << endl;
-    exit( EXIT_FAILURE );
+    exit( EXIT_FAILURE )
+
     DEFAULT:
+
 	srand( seed );
 
 	double rv = 0.0;
