@@ -15,7 +15,7 @@ variant< double, short int> rtn1( double i ) {
 }
 
 variant< double, short int, int>  rtn2( double i ) {
-    if ( Rand() % eperiod == 0 ) { flag2 = true; return (int)Rand(); }
+    if ( Rand() % eperiod == 0 ) { return (int)Rand(); }
     variant<double, short int> ret1variant = rtn1(i);
 
     if ( holds_alternative<short int>(ret1variant) ) {
@@ -26,7 +26,7 @@ variant< double, short int, int>  rtn2( double i ) {
 }
 
 variant< double, short int, int, long int>  rtn3( double i ) {
-    if ( Rand() % eperiod == 0 ) { flag3 = true; return (long int)Rand(); }
+    if ( Rand() % eperiod == 0 ) { return (long int)Rand(); }
 
     variant< double, short int, int> ret2variant = rtn2(i);
 
@@ -86,7 +86,7 @@ int main( int argc, char * argv[] ) {
         } else {
             rv += get<double>(ret3variant); rc += 1;
         }
-        
+
 	} // for
 	cout << "randcnt " << randcnt << endl;
 	cout << "normal result " << rv << " exception results " << ev1 << ' ' << ev2 << ' ' << ev3 << endl;
