@@ -5,20 +5,20 @@
 #include <stdint.h>
 #include <errno.h>
 
-union RtnResult {
+typedef union RtnResult {
     double normalReturn;
     short int rtn1ex;
     int rtn2ex;
     long rtn3ex;
-};
+} RtnResult;
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
 
-union rtnResult rtn1( double i ) {
+RtnResult rtn1( double i ) {
 
-    union RtnResult rtnResult;
+    RtnResult rtnResult;
     rtnResult.rtn1ex = 0;
     rtnResult.rtn2ex = 0;
     rtnResult.rtn3ex = 0;
@@ -30,9 +30,9 @@ union rtnResult rtn1( double i ) {
 	return rtnResult;
 }
 
-union rtnResult rtn2( double i ) {
+RtnResult rtn2( double i ) {
 
-    union RtnResult rtn1Result = rtn1(i);
+    RtnResult rtn1Result = rtn1(i);
 
     if ( Rand() % eperiod == 0 ) { rtn1Result.rtn2ex = (int)Rand(); }
     else if ( rtn1Result.rtn1ex == 0 ) { rtn1Result.normalReturn = i + Rand(); }
@@ -41,8 +41,8 @@ union rtnResult rtn2( double i ) {
 
 }
 
-union rtnResult rtn3( double i ) {
-    union RtnResult rtn2Result = rtn2(i);
+RtnResult rtn3( double i ) {
+    RtnResult rtn2Result = rtn2(i);
 
     if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
     else if ( rtn1Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
@@ -56,10 +56,10 @@ static intmax_t convert( const char * str ) {            // convert C string to 
     char *endptr;
     errno = 0;                                            // reset
     intmax_t val = strtoll(str, &endptr, 10);            // attempt conversion
-   if (errno == ERANGE) goto  ERROR;
+   if (errno == ERANGE) goto ERROR;
    if (endptr == str ||                                // conversion failed, no characters generated
         *endptr != '\0')
-       goto  ERROR;
+       goto ERROR;
     return val;
 
 }
@@ -75,7 +75,7 @@ int main( int argc, char * argv[] ) {
           }
       case 3: if ( strcmp( argv[2], "d" ) != 0 ) {	// default ?
         eperiod = convert( argv[2] );
-       if ( eperiod <= 0 ) goto  ERROR;
+       if ( eperiod <= 0 ) goto ERROR;
       }
       case 2: if ( strcmp( argv[1], "d" ) != 0 ) {	// default ?
         times = convert( argv[1] );
@@ -99,7 +99,7 @@ int main( int argc, char * argv[] ) {
 	int rc = 0, ec1 = 0, ec2 = 0, ec3 = 0;
 
 	for ( int i = 0; i < times; i += 1 ) {
-        union RtnResult rtn3Result = rtn3( i );
+        RtnResult rtn3Result = rtn3( i );
 
         if ( rtn3Result.rtn1ex != 0 ) {
             ev1 += rtn3Result.rtn1ex; ec1 += 1;
@@ -113,6 +113,6 @@ int main( int argc, char * argv[] ) {
 
 	} // for
 	printf("randcnt %d", randcnt);
-	printf("normal result %d exception results %d %d %d", rv, ev1, ev2, ev3);
+	printf("normal result %f exception results %d %d %d", rv, ev1, ev2, ev3);
 	printf("calls %d exceptions %d %d %d", rc, ec1, ec2, ec3);
 }
