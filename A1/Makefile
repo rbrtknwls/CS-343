@@ -18,8 +18,8 @@ EXEC1 = returnglobal				# 1st executable name
 OBJECTS2 = q1returntype.o			# 2nd executable object files
 EXEC2 = returntype				# 2nd executable name
 
-#OBJECTS3 = q1returntypec.o			# 3rd executable object files
-#EXEC3 = returntypec				# 3rd executable name
+OBJECTS3 = q1returntypec.o			# 3rd executable object files
+EXEC3 = returntypec				# 3rd executable name
 
 #OBJECTS02 = q2throwcatch.o			# optional build of given program
 #EXEC02 = throwcatch				# given executable name
