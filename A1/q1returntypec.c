@@ -3,13 +3,12 @@
 #include <unistd.h>										// access: getpid
 #include <stdio.h>
 
-union RtnResult () {
+union RtnResult {
     double normalReturn;
     short int rtn1ex;
     int rtn2ex;
     long rtn3ex;
 }
-
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
