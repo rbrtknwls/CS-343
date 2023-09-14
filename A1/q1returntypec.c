@@ -3,6 +3,7 @@
 #include <unistd.h>										// access: getpid
 #include <stdio.h>
 #include <stdint.h>
+#include <errno.h>
 
 union RtnResult {
     double normalReturn;
@@ -24,7 +25,7 @@ rtnResult rtn1( double i ) {
     rtnResult.normalReturn = 0;
 
     if ( Rand() % eperiod == 0 ) { rtnResult.rtn1ex = (short int)Rand(); }
-    else { rtnResult.normalReturn = i + Rand() }
+    else { rtnResult.normalReturn = i + Rand(); }
 
 	return rtnResult;
 }
@@ -43,7 +44,7 @@ rtnResult rtn2( double i ) {
 rtnResult rtn3( double i ) {
     union RtnResult rtn2Result = rtn2(i);
 
-    if ( Rand() % eperiod == 0 ) { rtn1Result.rtn3ex = (long int)Rand(); }
+    if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
     else if ( rtn1Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
         rtn1Result.normalReturn = i + Rand();
     }
@@ -55,10 +56,10 @@ static intmax_t convert( const char * str ) {            // convert C string to 
     char *endptr;
     errno = 0;                                            // reset
     intmax_t val = strtoll(str, &endptr, 10);            // attempt conversion
-   if (errno == ERANGE) break ERROR;
+   if (errno == ERANGE) goto  ERROR;
    if (endptr == str ||                                // conversion failed, no characters generated
         *endptr != '\0')
-       break ERROR;
+       goto  ERROR;
     return val;
 
 }
@@ -70,21 +71,21 @@ int main( int argc, char * argv[] ) {
     switch ( argc ) {
       case 4: if ( strcmp( argv[3], "d" ) != 0 ) {	// default ?
         seed = convert( argv[3] );
-       if ( seed <= 0 ) break ERROR;
+       if ( seed <= 0 ) goto  ERROR;
           }
       case 3: if ( strcmp( argv[2], "d" ) != 0 ) {	// default ?
         eperiod = convert( argv[2] );
-       if ( eperiod <= 0 ) break ERROR;
+       if ( eperiod <= 0 ) goto  ERROR;
       }
       case 2: if ( strcmp( argv[1], "d" ) != 0 ) {	// default ?
         times = convert( argv[1] );
-       if ( times <= 0 ) break ERROR;
+       if ( times <= 0 ) goto ERROR;
       }
       case 1: break						// use all defaults
       default: throw cmd_error();
     } // switch
 
-    break DEFAULT;
+    goto  DEFAULT;
     ERROR:
     cerr << "Usage: " << argv[0] << " [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]" << endl;
     exit( EXIT_FAILURE );
