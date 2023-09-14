@@ -1,8 +1,8 @@
-#include <iostream>
 #include <cstdlib>										// access: rand, srand
 #include <cstring>										// access: strcmp
 using namespace std;
 #include <unistd.h>										// access: getpid
+#include <stdio.h>
 
 union RtnResult () {
     double normalReturn;
