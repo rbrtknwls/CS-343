@@ -30,9 +30,9 @@ EXEC3 = returntypec				# 3rd executable name
 #OBJECTS5 = # object files forming 5th executable with prefix "q3"
 #EXEC5 = floatconstant					# 5th executable name
 
-OBJECTS = ${OBJECTS1} ${OBJECTS2} #${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
+OBJECTS = ${OBJECTS1} ${OBJECTS2} ${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
 DEPENDS = ${OBJECTS:.o=.d}
-EXECS = ${EXEC01} ${EXEC1} ${EXEC2} #${EXEC3} ${EXEC4} ${EXEC5}
+EXECS = ${EXEC01} ${EXEC1} ${EXEC2} ${EXEC3} ${EXEC4} ${EXEC5}
 
 #############################################################
 
