@@ -75,14 +75,14 @@ int main( int argc, char * argv[] ) {
 
 	for ( int i = 0; i < times; i += 1 ) {
 
-        variant< double, short int, int, long int> ret3variant = rtn3( i );
+        variant< double, (short int), int, (long int)> ret3variant = rtn3( i );
 
         if ( holds_alternative<short int>(ret3variant) ) {
             ev1 += get<short int>(ret3variant); ec1 += 1;
         } else if ( holds_alternative<int>(ret3variant) ){
-            ev2 += get<short int>(ret3variant); ec2 += 1;
+            ev2 += get<int>(ret3variant); ec2 += 1;
         } else if ( holds_alternative<long int>(ret3variant) ){
-            ev3 += get<short int>(ret3variant); ec3 += 1;
+            ev3 += get<long int>(ret3variant); ec3 += 1;
         } else {
             rv += get<double>(ret3variant); rc += 1;
         }
