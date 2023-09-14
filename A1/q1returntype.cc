@@ -10,9 +10,10 @@ int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
 
 variant< double, short int> rtn1( double i ) {
-    if ( Rand() % eperiod == 0 ) { return (short int)Rand(); } }
+    if ( Rand() % eperiod == 0 ) { return (short int)Rand(); }
 	return i + Rand();
 }
+
 variant< double, short int, int>  rtn2( double i ) {
     if ( Rand() % eperiod == 0 ) { flag2 = true; return (int)Rand(); }
     variant<double, short int> ret1variant = rtn1(i);
@@ -31,7 +32,7 @@ variant< double, short int, int, long int>  rtn3( double i ) {
 
     if ( holds_alternative<short int>(ret2variant) ) {
         return get<short int>(ret2variant);
-    } else if (holds_alternative<int>(ret2variant)){
+    } else if (holds_alternative<int>(ret2variant) ){
         return get<int>(ret2variant);
     } else {
         return get<double>(ret2variant) + Rand();
@@ -76,15 +77,16 @@ int main( int argc, char * argv[] ) {
 
         variant< double, short int, int, long int> ret3variant = rtn3( i );
 
-        if (holds_alternative<short int>(ret3variant) ) {
+        if ( holds_alternative<short int>(ret3variant) ) {
             ev1 += get<short int>(ret3variant); ec1 += 1;
-        } else if (holds_alternative<int>(ret3variant)){
+        } else if ( holds_alternative<int>(ret3variant) ){
             ev2 += get<short int>(ret3variant); ec2 += 1;
-        } else if (holds_alternative<long int>(ret3variant){
+        } else if ( holds_alternative<long int>(ret3variant) ){
             ev3 += get<short int>(ret3variant); ec3 += 1;
         } else {
             rv += get<double>(ret3variant); rc += 1;
         }
+        
 	} // for
 	cout << "randcnt " << randcnt << endl;
 	cout << "normal result " << rv << " exception results " << ev1 << ' ' << ev2 << ' ' << ev3 << endl;
