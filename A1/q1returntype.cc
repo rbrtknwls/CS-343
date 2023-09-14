@@ -3,29 +3,50 @@
 #include <cstring>										// access: strcmp
 using namespace std;
 #include <unistd.h>										// access: getpid
-
-struct Ex1 { short int code; };
-struct Ex2 { int code; };
-struct Ex3 { long int code; };
+#include <varient>
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
 
-double rtn1( double i ) {
-  if ( Rand() % eperiod == 0 ) { throw Ex1{ (short int)Rand() }; } // replace
+variant< double, short int> rtn1( double i ) {
+    if ( Rand() % eperiod == 0 ) { return (short int)Rand(); } }
 	return i + Rand();
 }
-double rtn2( double i ) {
-  if ( Rand() % eperiod == 0 ) { throw Ex2{ Rand() }; } // replace
-	return rtn1( i ) + Rand();
-}
-double rtn3( double i ) {
-  if ( Rand() % eperiod == 0 ) { throw Ex3{ Rand() }; }	// replace
-	return rtn2( i ) + Rand();
+variant< double, short int, int>  rtn2( double i ) {
+    if ( Rand() % eperiod == 0 ) { flag2 = true; return (int)Rand(); }
+    variant<double, short int> ret1variant = rtn1(i);
+
+    if ( holds_alternative<short int>(ret1variant) ) {
+        return get<short int>(ret1variant);
+    } else {
+        return get<double>(rtnresult1) + Rand();
+    }
 }
 
-//static intmax_t convert( const char * str );			// copy from https://student.cs.uwaterloo.ca/~cs343/examples/convert.h
+variant< double, short int, int, long int>  rtn3( double i ) {
+    if ( Rand() % eperiod == 0 ) { flag3 = true; return (long int)Rand(); }
+
+    variant< double, short int, int> ret2variant = rtn2(i);
+
+    if ( holds_alternative<short int>(ret2variant) ) {
+        return get<short int>(ret2variant);
+    } else if (holds_alternative<int>(ret2variant)){
+        return get<int>(ret2variant);
+    } else {
+        return get<double>(ret2variant) + Rand();
+    }
+}
+
+static intmax_t convert( const char * str ) {			// convert C string to integer
+    char * endptr;
+    errno = 0;											// reset
+    intmax_t val = strtoll( str, &endptr, 10 );			// attempt conversion
+    if ( errno == ERANGE ) throw std::out_of_range("");
+    if ( endptr == str ||								// conversion failed, no characters generated
+         *endptr != '\0' ) throw std::invalid_argument(""); // not at end of str ?
+    return val;
+}
 
 int main( int argc, char * argv[] ) {
 	intmax_t times = 100000000, seed = getpid();		// default values
@@ -52,11 +73,18 @@ int main( int argc, char * argv[] ) {
 	int rc = 0, ec1 = 0, ec2 = 0, ec3 = 0;
 
 	for ( int i = 0; i < times; i += 1 ) {
-		try { rv += rtn3( i ); rc += 1; }				// replace
-		// analyse exception
-		catch( Ex1 ev ) { ev1 += ev.code; ec1 += 1; }	// replace
-		catch( Ex2 ev ) { ev2 += ev.code; ec2 += 1; }	// replace
-		catch( Ex3 ev ) { ev3 += ev.code; ec3 += 1; }	// replace
+
+        variant< double, short int, int, long int> ret3variant = rtn3( i );
+
+        if (holds_alternative<short int>(ret3variant) ) {
+            ev1 += get<short int>(ret3variant); ec1 += 1;
+        } else if (holds_alternative<int>(ret3variant)){
+            ev2 += get<short int>(ret3variant); ec2 += 1;
+        } else if (holds_alternative<long int>(ret3variant){
+            ev3 += get<short int>(ret3variant); ec3 += 1;
+        } else {
+            rv += get<double>(ret3variant); rc += 1;
+        }
 	} // for
 	cout << "randcnt " << randcnt << endl;
 	cout << "normal result " << rv << " exception results " << ev1 << ' ' << ev2 << ' ' << ev3 << endl;
