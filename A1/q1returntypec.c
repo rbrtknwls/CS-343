@@ -16,7 +16,7 @@ intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
 
-rtnResult rtn1( double i ) {
+union rtnResult rtn1( double i ) {
 
     union RtnResult rtnResult;
     rtnResult.rtn1ex = 0;
@@ -30,7 +30,7 @@ rtnResult rtn1( double i ) {
 	return rtnResult;
 }
 
-rtnResult rtn2( double i ) {
+union rtnResult rtn2( double i ) {
 
     union RtnResult rtn1Result = rtn1(i);
 
@@ -41,7 +41,7 @@ rtnResult rtn2( double i ) {
 
 }
 
-rtnResult rtn3( double i ) {
+union rtnResult rtn3( double i ) {
     union RtnResult rtn2Result = rtn2(i);
 
     if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
@@ -85,7 +85,7 @@ int main( int argc, char * argv[] ) {
       default: throw cmd_error();
     } // switch
 
-    goto  DEFAULT;
+    goto DEFAULT;
     ERROR:
     cerr << "Usage: " << argv[0] << " [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]" << endl;
     exit( EXIT_FAILURE );
@@ -99,7 +99,7 @@ int main( int argc, char * argv[] ) {
 	int rc = 0, ec1 = 0, ec2 = 0, ec3 = 0;
 
 	for ( int i = 0; i < times; i += 1 ) {
-        RtnResult rtn3Result = rtn3( i );
+        union RtnResult rtn3Result = rtn3( i );
 
         if ( rtn3Result.rtn1ex != 0 ) {
             ev1 += rtn3Result.rtn1ex; ec1 += 1;
@@ -112,7 +112,7 @@ int main( int argc, char * argv[] ) {
         }
 
 	} // for
-	cout << "randcnt " << randcnt << endl;
-	cout << "normal result " << rv << " exception results " << ev1 << ' ' << ev2 << ' ' << ev3 << endl;
-	cout << "calls "  << rc << " exceptions " << ec1 << ' ' << ec2 << ' ' << ec3 << endl;
+	printf("randcnt %d", randcnt);
+	printf("normal result %d exception results %d %d %d", rv, ev1, ev2, ev3);
+	printf("calls %d exceptions %d %d %d", rc, ec1, ec2, ec3);
 }
