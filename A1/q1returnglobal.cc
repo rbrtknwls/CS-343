@@ -14,16 +14,26 @@ int randcnt = 0;
 int Rand() { randcnt += 1; return rand(); }
 
 double rtn1( double i ) {
-    if ( Rand() % eperiod == 0 ) { flag1 = true; }
+    if ( Rand() % eperiod == 0 ) { flag1 = true; return 0; }
 	return i + Rand();
 }
 double rtn2( double i ) {
-    if ( Rand() % eperiod == 0 ) { flag2 = true; }
-	return rtn1( i ) + Rand();
+    if ( Rand() % eperiod == 0 ) { flag2 = true; return 0; }
+    rtnresult1 = rtn1(i);
+    if ( flag1 ) {
+        return 0
+    } else {
+        return rtnresult1 + Rand();
+    }
 }
 double rtn3( double i ) {
-    if ( Rand() % eperiod == 0 ) { flag3 = true; }
-	return rtn2( i ) + Rand();
+    if ( Rand() % eperiod == 0 ) { flag3 = true; return 0; }
+    rtnresult2 = rtn2(i);
+    if ( flag1 || flag2 ) {
+        return 0
+    } else {
+        return rtnresult2 + Rand();
+    }
 }
 
 static intmax_t convert( const char * str ) {			// convert C string to integer
@@ -65,16 +75,18 @@ int main( int argc, char * argv[] ) {
         flag2 = false;                                  // Reset Flag2
         flag3 = false;                                  // Reset Flag3
 
-		rv += rtn3( i ); rc += 1;
+		rv += rtn3( i );
 
         if ( flag1 ) {
             ev1 += (short int) Rand(); ec1 += 1;                   // Increase ev1 if flag1 raised
         }
-        if ( flag2 ) {
+        else if ( flag2 ) {
             ev2 += (int) Rand(); ec2 += 1;                         // Increase ev2 if flag2 raised
         }
-        if ( flag3 ) {
+        else if ( flag3 ) {
             ev3 += (long int) Rand(); ec3 += 1;                    // Increase ev3 if flag3 raised
+        } else {
+            rc += 1;
         }
 
 	} // for

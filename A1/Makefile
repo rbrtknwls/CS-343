@@ -15,24 +15,24 @@ EXEC01 = exception				# given executable name
 OBJECTS1 = q1returnglobal.o			# 1st executable object files
 EXEC1 = returnglobal				# 1st executable name
 
-OBJECTS2 = q1returntype.o			# 2nd executable object files
-EXEC2 = returntype				# 2nd executable name
+#OBJECTS2 = q1returntype.o			# 2nd executable object files
+#EXEC2 = returntype				# 2nd executable name
 
-OBJECTS3 = q1returntypec.o			# 3rd executable object files
-EXEC3 = returntypec				# 3rd executable name
+#OBJECTS3 = q1returntypec.o			# 3rd executable object files
+#EXEC3 = returntypec				# 3rd executable name
 
-OBJECTS02 = q2throwcatch.o			# optional build of given program
-EXEC02 = throwcatch				# given executable name
+#OBJECTS02 = q2throwcatch.o			# optional build of given program
+#EXEC02 = throwcatch				# given executable name
 
-OBJECTS4 = q2longjmp.o				# 4th executable object files
-EXEC4 = longjmp					# 4th executable name
+#OBJECTS4 = q2longjmp.o				# 4th executable object files
+#EXEC4 = longjmp					# 4th executable name
 
-OBJECTS5 = # object files forming 5th executable with prefix "q3"
-EXEC5 = floatconstant					# 5th executable name
+#OBJECTS5 = # object files forming 5th executable with prefix "q3"
+#EXEC5 = floatconstant					# 5th executable name
 
-OBJECTS = ${OBJECTS1} ${OBJECTS2} ${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
+OBJECTS = ${OBJECTS1} ${OBJECTS2} #${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
 DEPENDS = ${OBJECTS:.o=.d}
-EXECS = ${EXEC1} ${EXEC2} ${EXEC3} ${EXEC4} ${EXEC5}
+EXECS = ${EXEC1} ${EXEC2} #${EXEC3} ${EXEC4} ${EXEC5}
 
 #############################################################
 
