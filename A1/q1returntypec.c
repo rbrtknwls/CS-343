@@ -52,14 +52,14 @@ RtnResult rtn3( double i ) {
     return rtn2Result;
 }
 
-static intmax_t convert( const char * str ) {            // convert C string to integer
+static intmax_t convert( const char * str , void* errorLabel) {            // convert C string to integer
     char *endptr;
     errno = 0;                                            // reset
     intmax_t val = strtoll(str, &endptr, 10);            // attempt conversion
-   if (errno == ERANGE) goto ERROR;
+   if (errno == ERANGE) goto errorLabel;
    if (endptr == str ||                                // conversion failed, no characters generated
         *endptr != '\0')
-       goto ERROR;
+       goto errorLabel;
     return val;
 
 }
@@ -68,21 +68,22 @@ int main( int argc, char * argv[] ) {
 	intmax_t times = 100000000, seed = getpid();		// default values
 	struct cmd_error {};
 
+    void* ErrorLabel = &&ERROR;                     // Store error label
     switch ( argc ) {
       case 4: if ( strcmp( argv[3], "d" ) != 0 ) {	// default ?
-        seed = convert( argv[3] );
-       if ( seed <= 0 ) goto  ERROR;
+        seed = convert( argv[3], ErrorLabel );
+       if ( seed <= 0 ) goto ErrorLabel;
           }
       case 3: if ( strcmp( argv[2], "d" ) != 0 ) {	// default ?
-        eperiod = convert( argv[2] );
-       if ( eperiod <= 0 ) goto ERROR;
+        eperiod = convert( argv[2], ErrorLabel );
+       if ( eperiod <= 0 ) goto ErrorLabel;
       }
       case 2: if ( strcmp( argv[1], "d" ) != 0 ) {	// default ?
-        times = convert( argv[1] );
-       if ( times <= 0 ) goto ERROR;
+        times = convert( argv[1],ErrorLabel  );
+       if ( times <= 0 ) goto ErrorLabel;
       }
-      case 1: break						// use all defaults
-      default: throw cmd_error();
+      case 1: break; 					          	// use all defaults
+      default: goto ErrorLabel;
     } // switch
 
     goto DEFAULT;
