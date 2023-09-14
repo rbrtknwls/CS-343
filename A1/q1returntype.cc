@@ -75,7 +75,7 @@ int main( int argc, char * argv[] ) {
 
 	for ( int i = 0; i < times; i += 1 ) {
 
-        variant< double, (short int), int, (long int)> ret3variant = rtn3( i );
+        variant< double, short int, int, long int> ret3variant = rtn3( i );
 
         if ( holds_alternative<short int>(ret3variant) ) {
             ev1 += get<short int>(ret3variant); ec1 += 1;
