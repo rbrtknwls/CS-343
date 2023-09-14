@@ -19,18 +19,18 @@ double rtn1( double i ) {
 }
 double rtn2( double i ) {
     if ( Rand() % eperiod == 0 ) { flag2 = true; return 0; }
-    rtnresult1 = rtn1(i);
+    double rtnresult1 = rtn1(i);
     if ( flag1 ) {
-        return 0
+        return 0;
     } else {
         return rtnresult1 + Rand();
     }
 }
 double rtn3( double i ) {
     if ( Rand() % eperiod == 0 ) { flag3 = true; return 0; }
-    rtnresult2 = rtn2(i);
+    double rtnresult2 = rtn2(i);
     if ( flag1 || flag2 ) {
-        return 0
+        return 0;
     } else {
         return rtnresult2 + Rand();
     }
