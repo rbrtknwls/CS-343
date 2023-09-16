@@ -34,6 +34,7 @@ RtnResult rtn1( double i ) {
 RtnResult rtn2( double i ) {
 
     RtnResult rtn1Result = rtn1(i);
+    printf("2: %f %d %d %ld \n", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex);
 
     if ( Rand() % eperiod == 0 ) { rtn1Result.rtn2ex = (int)Rand(); }
     else if ( rtn1Result.rtn1ex == 0 ) { rtn1Result.normalReturn = i + Rand(); }
@@ -44,6 +45,7 @@ RtnResult rtn2( double i ) {
 
 RtnResult rtn3( double i ) {
     RtnResult rtn2Result = rtn2(i);
+    printf("3: %f %d %d %ld \n", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex);
 
     if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
     else if ( rtn2Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
@@ -103,7 +105,7 @@ int main( int argc, char * argv[] ) {
 
 	for ( int i = 0; i < times; i += 1 ) {
         RtnResult rtn3Result = rtn3( i );
-        printf("%f %d %d %ld", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex);
+        printf("OUT: %f %d %d %ld \n", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex);
 
         if ( rtn3Result.rtn1ex != 0 ) {
             ev1 += rtn3Result.rtn1ex; ec1 += 1;
