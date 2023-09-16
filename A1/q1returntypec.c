@@ -103,6 +103,7 @@ int main( int argc, char * argv[] ) {
 
 	for ( int i = 0; i < times; i += 1 ) {
         RtnResult rtn3Result = rtn3( i );
+        printf("%d %d %d %d", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex)
 
         if ( rtn3Result.rtn1ex != 0 ) {
             ev1 += rtn3Result.rtn1ex; ec1 += 1;
