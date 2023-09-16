@@ -14,6 +14,7 @@ typedef union RtnResult {
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
+
 int Rand() { randcnt += 1; return rand(); }
 
 RtnResult rtn1( double i ) {
@@ -45,7 +46,7 @@ RtnResult rtn3( double i ) {
     RtnResult rtn2Result = rtn2(i);
 
     if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
-    else if ( rtn1Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
+    else if ( rtn2Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
         rtn1Result.normalReturn = i + Rand();
     }
 
@@ -88,7 +89,7 @@ int main( int argc, char * argv[] ) {
 
     goto DEFAULT;
     ERROR:
-    fprintf(stderr, "Usage: %s [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]", argv[0])
+    fprintf(stderr, "Usage: %s [ times > 0 | d [ eperiod > 0 | d [ seed > 0 | d ] ] ]", argv[0]);
     exit( EXIT_FAILURE );
 
     DEFAULT:
