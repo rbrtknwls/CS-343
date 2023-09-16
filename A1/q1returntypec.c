@@ -5,12 +5,16 @@
 #include <stdint.h>
 #include <errno.h>
 
-typedef union RtnResult {
-    double normalReturn;
-    short int rtn1ex;
-    int rtn2ex;
-    long rtn3ex;
-} RtnResult;
+enum RtnType {Normal, Ex1, Ex2, Ex3};
+struct RtnResult {
+    RtnType rtnType;
+    typedef union {
+        double normalReturn;
+        short int rtn1ex;
+        int rtn2ex;
+        long rtn3ex;
+    } rtnVal;
+};
 
 intmax_t eperiod = 10000;								// exception period
 int randcnt = 0;
@@ -19,37 +23,43 @@ int Rand() { randcnt += 1; return rand(); }
 
 RtnResult rtn1( double i ) {
 
-    RtnResult rtnResult;
-    rtnResult.rtn1ex = 0;
-    rtnResult.rtn2ex = 0;
-    rtnResult.rtn3ex = 0;
-    rtnResult.normalReturn = 0;
+    static RtnResult rtnResult = {Normal, {0, 0, 0, 0}};
 
-    if ( Rand() % eperiod == 0 ) { rtnResult.rtn1ex = (short int)Rand(); }
-    else { rtnResult.normalReturn = i + Rand(); }
+    if ( Rand() % eperiod == 0 ) {
+        rtnResult.rtnVal.rtn1ex = (short int)Rand();
+        rtnResult.rtnType = Ex1;
+    } else {
+        rtnResult.rtnVal.normalReturn = i + Rand();
+    }
 
 	return rtnResult;
 }
 
 RtnResult rtn2( double i ) {
 
-    RtnResult rtn1Result = rtn1(i);
-    printf("2: %f %d %d %ld \n", rtn1Result.normalReturn, rtn1Result.rtn1ex, rtn1Result.rtn2ex, rtn1Result.rtn3ex);
+    static RtnResult rtn1Result = rtn1(i);
 
-    if ( Rand() % eperiod == 0 ) { rtn1Result.rtn2ex = (int)Rand(); }
-    else if ( rtn1Result.rtn1ex == 0 ) { rtn1Result.normalReturn = i + Rand(); }
+    if ( Rand() % eperiod == 0 ) {
+        rtn1Result.rtnVal.rtn2ex = (int)Rand();
+        rtn1Result.rtnType = Ex2;
+    }
+    else if ( rtn1Result.rtnType == Ex1 ) {
+        rtn1Result.rtnVal.normalReturn = i + Rand();
+    }
 
     return rtn1Result;
 
 }
 
 RtnResult rtn3( double i ) {
-    RtnResult rtn2Result = rtn2(i);
-    printf("3: %f %d %d %ld \n", rtn2Result.normalReturn, rtn2Result.rtn1ex, rtn2Result.rtn2ex, rtn2Result.rtn3ex);
+    static RtnResult rtn2Result = rtn2(i);
 
-    if ( Rand() % eperiod == 0 ) { rtn2Result.rtn3ex = (long int)Rand(); }
-    else if ( rtn2Result.rtn1ex == 0 && rtn2Result.rtn2ex == 0 ) {
-        rtn2Result.normalReturn = i + Rand();
+    if ( Rand() % eperiod == 0 ) {
+        rtn2Result.rtnVal.rtn3ex = (long int)Rand();
+        rtn2Result.rtnType = Ex3;
+    }
+    else if ( rtn2Result.rtnType == Ex1 || rtn2Result.rtnType == Ex2 ) {
+        rtn2Result.rtnVal.normalReturn = i + Rand();
     }
 
     return rtn2Result;
@@ -105,20 +115,21 @@ int main( int argc, char * argv[] ) {
 
 	for ( int i = 0; i < times; i += 1 ) {
         RtnResult rtn3Result = rtn3( i );
-        printf("OUT: %f %d %d %ld \n", rtn3Result.normalReturn, rtn3Result.rtn1ex, rtn3Result.rtn2ex, rtn3Result.rtn3ex);
 
-        if ( rtn3Result.rtn1ex != 0 ) {
-            ev1 += rtn3Result.rtn1ex; ec1 += 1;
-        } else if ( rtn3Result.rtn2ex != 0 ) {
-            ev2 += rtn3Result.rtn2ex; ec2 += 1;
-        } else if ( rtn3Result.rtn3ex != 0 ) {
-            ev3 += rtn3Result.rtn3ex; ec3 += 1;
+        if ( rtn3Result.rtnType == Ex1 ) {
+            ev1 += rtn3Result.rtnVal.rtn1ex; ec1 += 1;
+        } else if ( rtn3Result.rtnType == Ex2 ) {
+            ev2 += rtn3Result.rtnVal.rtn2ex; ec2 += 1;
+        } else if ( rtn3Result.rtnType == Ex3 ) {
+            ev3 += rtn3Result.rtnVal.rtn3ex; ec3 += 1;
         } else {
-            rv += rtn3Result.normalReturn; rc += 1;
-        }
+            rv += rtn3Result.rtnVal.normalReturn; rc += 1;
+        } // if
 
 	} // for
+
 	printf("randcnt %d\n", randcnt);
 	printf("normal result %f exception results %d %d %d\n", rv, ev1, ev2, ev3);
 	printf("calls %d exceptions %d %d %d\n", rc, ec1, ec2, ec3);
+
 }
