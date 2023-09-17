@@ -55,7 +55,7 @@ long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_b
             }
 
         } else {
-            Ackermann( m - 1, Ackermann( m, n - 1, depth + 1, &new_jump_buffer ), depth + 1, &new_jump_buffer );
+            return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1, &new_jump_buffer ), depth + 1, &new_jump_buffer );
         }
 
 		PRINT( cout << " E2X " << m << " " << n << endl );
