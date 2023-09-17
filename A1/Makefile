@@ -2,7 +2,7 @@ OUTPUT = OUTPUT
 GVERSION = -11
 CXX = u++					# uC++ compiler
 #CXX = /u/cs343/cfa-cc/bin/cfa			# CFA compiler
-CXXFLAGS = -g -Wall -Wextra -MMD -Wno-implicit-fallthrough -O2# compiler flags
+CXXFLAGS = -g -Wall -Wextra -MMD -Wno-implicit-fallthrough -DNO${OUTPUT} -O2# compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}# makefile name
 
 .SUFFIXES : .cfa				# CFA default rules
@@ -41,34 +41,34 @@ EXECS = ${EXEC01} ${EXEC02} ${EXEC1} ${EXEC2} ${EXEC3} ${EXEC4} ${EXEC5}
 all : ${EXECS}					# build all executables
 
 ${EXEC01} : ${OBJECTS01}			# optional build of given program
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 q1%.o : q1%.cc					# change compiler 1st executable, ADJUST SUFFIX (for .C/.cpp)
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} -std=c++17 -c $< -o $@
+	g++${GVERSION} ${CXXFLAGS} -std=c++17 -c $< -o $@
 
 ${EXEC1} : ${OBJECTS1}				# compile and link 1st executable
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 ${EXEC2} : ${OBJECTS2}				# compile and link 2nd executable
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 q1%.o : q1%.c					# change compiler 2nd executable
-	gcc${GVERSION} ${CXXFLAGS} -D${OUTPUT} -c $< -o $@
+	gcc${GVERSION} ${CXXFLAGS} -c $< -o $@
 
 ${EXEC02} : ${OBJECTS02}			# optional build of given program
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} -DNOOUTPUT $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 ${EXEC3} : ${OBJECTS3}				# compile and link 3rd executable
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 q2%.o : q2%.cc					# change compiler 4th executable, ADJUST SUFFIX (for .C/.cpp)
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} -c $< -o $@
+	g++${GVERSION} ${CXXFLAGS} -c $< -o $@
 
 ${EXEC4} : ${OBJECTS4}				# compile and link 4th executable
-	g++${GVERSION} ${CXXFLAGS} -DNOOUTPUT $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} $^ -o $@
 
 ${EXEC5} : ${OBJECTS5}				# compile and link 5th executable
-	${CXX} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
+	${CXX} ${CXXFLAGS} $^ -o $@
 
 #############################################################
 
