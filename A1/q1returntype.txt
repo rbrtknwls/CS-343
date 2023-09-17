@@ -1,0 +1,10 @@
+1bi) We get the following output for the different programs:
+
+Throw Catch     (with compiler optimization):
+Throw Catch  (without compiler optimization):
+Status Flags    (with compiler optimization):
+Status Flags (without compiler optimization):
+Variants        (with compiler optimization):
+Variants     (without compiler optimization):
+Tagged Union    (with compiler optimization):
+Tagged Union (without compiler optimization):

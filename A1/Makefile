@@ -1,5 +1,5 @@
 OUTPUT = OUTPUT
-GVERSION = -12
+GVERSION = -11
 CXX = u++					# uC++ compiler
 #CXX = /u/cs343/cfa-cc/bin/cfa			# CFA compiler
 CXXFLAGS = -g -Wall -Wextra -MMD -Wno-implicit-fallthrough -D${OUTPUT} # compiler flags

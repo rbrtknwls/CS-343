@@ -6,9 +6,10 @@
 #include <errno.h>
 
 enum RtnType {Normal, Ex1, Ex2, Ex3};
+
 struct RtnResult {
-    RtnType rtnType;
-    typedef union {
+    enum RtnType rtnType;
+    union RtnVal{
         double normalReturn;
         short int rtn1ex;
         int rtn2ex;
@@ -21,49 +22,49 @@ int randcnt = 0;
 
 int Rand() { randcnt += 1; return rand(); }
 
-RtnResult rtn1( double i ) {
-
-    static RtnResult rtnResult = {Normal, {0, 0, 0, 0}};
+void rtn1( double i, struct RtnResult* rtnResult ) {
 
     if ( Rand() % eperiod == 0 ) {
-        rtnResult.rtnVal.rtn1ex = (short int)Rand();
-        rtnResult.rtnType = Ex1;
+        rtnResult->rtnVal.rtn1ex = (short int)Rand();
+        rtnResult->rtnType = Ex1;
     } else {
-        rtnResult.rtnVal.normalReturn = i + Rand();
+        rtnResult->rtnVal.normalReturn = i + Rand();
     }
-
-	return rtnResult;
 }
 
-RtnResult rtn2( double i ) {
-
-    static RtnResult rtn1Result = rtn1(i);
+void rtn2( double i, struct RtnResult* rtnResult ) {
 
     if ( Rand() % eperiod == 0 ) {
-        rtn1Result.rtnVal.rtn2ex = (int)Rand();
-        rtn1Result.rtnType = Ex2;
-    }
-    else if ( rtn1Result.rtnType == Ex1 ) {
-        rtn1Result.rtnVal.normalReturn = i + Rand();
-    }
+        rtnResult->rtnVal.rtn2ex = (int)Rand();
+        rtnResult->rtnType = Ex2;
+    } else {
 
-    return rtn1Result;
+        rtn1( i, rtnResult );
+
+        if (rtnResult->rtnType == Normal ) {
+            rtnResult->rtnVal.normalReturn += i + Rand();
+        } // if
+
+    } // if
 
 }
 
-RtnResult rtn3( double i ) {
-    static RtnResult rtn2Result = rtn2(i);
-
+void rtn3( double i, struct RtnResult* rtnResult ) {
     if ( Rand() % eperiod == 0 ) {
-        rtn2Result.rtnVal.rtn3ex = (long int)Rand();
-        rtn2Result.rtnType = Ex3;
-    }
-    else if ( rtn2Result.rtnType == Ex1 || rtn2Result.rtnType == Ex2 ) {
-        rtn2Result.rtnVal.normalReturn = i + Rand();
-    }
+        rtnResult->rtnVal.rtn3ex = (long int)Rand();
+        rtnResult->rtnType = Ex3;
+    } else {
 
-    return rtn2Result;
+        rtn2(i, rtnResult);
+
+        if (rtnResult->rtnType == Normal) {
+            rtnResult->rtnVal.normalReturn += i + Rand();
+        } // if
+
+    } // if
+
 }
+
 
 static intmax_t convert( const char * str , void* errorLabel) {            // convert C string to integer
     char *endptr;
@@ -114,7 +115,9 @@ int main( int argc, char * argv[] ) {
 	int rc = 0, ec1 = 0, ec2 = 0, ec3 = 0;
 
 	for ( int i = 0; i < times; i += 1 ) {
-        RtnResult rtn3Result = rtn3( i );
+        struct RtnResult rtn3Result = {Normal, { 0 }};
+
+        rtn3( i, &rtn3Result );
 
         if ( rtn3Result.rtnType == Ex1 ) {
             ev1 += rtn3Result.rtnVal.rtn1ex; ec1 += 1;
