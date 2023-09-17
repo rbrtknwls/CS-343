@@ -21,11 +21,11 @@ EXEC2 = returntype				# 2nd executable name
 OBJECTS3 = q1returntypec.o			# 3rd executable object files
 EXEC3 = returntypec				# 3rd executable name
 
-#OBJECTS02 = q2throwcatch.o			# optional build of given program
-#EXEC02 = throwcatch				# given executable name
+OBJECTS02 = q2throwcatch.o			# optional build of given program
+XEC02 = throwcatch				# given executable name
 
-#OBJECTS4 = q2longjmp.o				# 4th executable object files
-#EXEC4 = longjmp					# 4th executable name
+OBJECTS4 = q2longjmp.o				# 4th executable object files
+EXEC4 = longjmp					# 4th executable name
 
 #OBJECTS5 = # object files forming 5th executable with prefix "q3"
 #EXEC5 = floatconstant					# 5th executable name

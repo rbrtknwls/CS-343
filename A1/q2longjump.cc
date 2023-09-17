@@ -1,4 +1,5 @@
 #include <iostream>
+#include <csetjmp>
 #include <cstdlib>										// access: rand, srand
 #include <cstring>										// access: strcmp
 using namespace std;
@@ -37,7 +38,15 @@ long int Ackermann( long int m, long int n, long int depth ) {
 	return 0;											// recover by returning 0
 }
 
-static intmax_t convert( const char * str );			// copy from https://student.cs.uwaterloo.ca/~cs343/examples/convert.h
+static intmax_t convert( const char * str ) {			// convert C string to integer
+    char * endptr;
+    errno = 0;											// reset
+    intmax_t val = strtoll( str, &endptr, 10 );			// attempt conversion
+    if ( errno == ERANGE ) throw std::out_of_range("");
+    if ( endptr == str ||								// conversion failed, no characters generated
+         *endptr != '\0' ) throw std::invalid_argument(""); // not at end of str ?
+    return val;
+}
 
 int main( int argc, char * argv[] ) {
 	volatile intmax_t m = 4, n = 6, seed = getpid();	// default values (volatile needed for longjmp)
@@ -62,13 +71,21 @@ int main( int argc, char * argv[] ) {
 		exit( EXIT_FAILURE );
 	} // try
 
-	srand( seed );										// seed random number
-	try {												// replace
-		PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
-		long int val = Ackermann( m, n, 0 );
-		PRINT( cout << "Ackermann " << val << endl );
-	} catch( E ) {										// replace
-		PRINT( cout << "E3" << endl );
-	} // try
-	cout << "calls " << calls << " exceptions " << excepts << " destructors " << dtors << endl;
+	srand( seed );
+
+    std::jmp_buf my_jump_buffer;
+
+    if (setjmp(my_jump_buffer) != -1) {
+        cout << "end" << endl;
+    }
+
+    cout << "hi" << endl;
+    /*void* errorLabel = &&ERROR;
+    PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
+    long int val = Ackermann( m, n, 0 );
+    PRINT( cout << "Ackermann " << val << endl );
+    ERROR:
+    PRINT( cout << "E3" << endl );
+
+	cout << "calls " << calls << " exceptions " << excepts << " destructors " << dtors << endl;*/
 }
