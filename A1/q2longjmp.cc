@@ -17,17 +17,22 @@ PRINT( struct T { ~T() { dtors += 1; } }; )
 
 long int Ackermann( long int m, long int n, long int depth ) {
 	calls += 1;
+
 	if ( m == 0 ) {
 		if ( rand() % eperiod <= 2 ) { PRINT( T t; ) excepts += 1; throw E(); } // replace
 		return n + 1;
+
 	} else if ( n == 0 ) {
+
 		try { return Ackermann( m - 1, 1, depth + 1 );	// replace
 		} catch( E ) {									// replace
 			PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
 			if ( rand() % eperiod <= 3 ) { PRINT( T t; ) excepts += 1; throw E(); } // replace
 		} // try
 		PRINT( cout << " E1X " << m << " " << n << endl );
+
 	} else {
+
 		try { return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 ); // replace
 		} catch( E ) {									// replace
 			PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
@@ -35,6 +40,7 @@ long int Ackermann( long int m, long int n, long int depth ) {
 		} // try
 		PRINT( cout << " E2X " << m << " " << n << endl );
 	} // if
+
 	return 0;											// recover by returning 0
 }
 
@@ -75,17 +81,16 @@ int main( int argc, char * argv[] ) {
 
     std::jmp_buf my_jump_buffer;
 
+    PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
     if (setjmp(my_jump_buffer) == -1) {
         cout << "end" << endl;
+        PRINT( cout << "E3" << endl );
+    } else {
+        //long int val = Ackermann( m, n, 0 );
+        long int val = 4;
+        PRINT( cout << "Ackermann " << val << endl );
     }
 
-    cout << "hi" << endl;
-    /*void* errorLabel = &&ERROR;
-    PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
-    long int val = Ackermann( m, n, 0 );
-    PRINT( cout << "Ackermann " << val << endl );
-    ERROR:
-    PRINT( cout << "E3" << endl );
+	cout << "calls " << calls << " exceptions " << excepts << " destructors " << dtors << endl;
 
-	cout << "calls " << calls << " exceptions " << excepts << " destructors " << dtors << endl;*/
 }
