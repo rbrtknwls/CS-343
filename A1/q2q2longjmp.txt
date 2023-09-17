@@ -1,11 +1,14 @@
-1bi) We get the following output for the different programs
-(Running the function /usr/bin/time -f "%Uu %Ss %E" ./abx 500000000 10000 1003):
+1bi) The output is different between both as in the original we have constructors, and in the new version we don't.
+This is because when we make a jump back we interfere with the print function.
+
+1bii) This is the output we get when running the following
+(Running the function /usr/bin/time -f "%Uu %Ss %E" ./abx 12 12 103 28):
 
 Throw Catch     (with compiler optimization): 22.42u
 Throw Catch  (without compiler optimization): 42.49u
 
-Status Flags    (with compiler optimization): 18.91u
-Status Flags (without compiler optimization): 22.74u
+Long Jump       (with compiler optimization): 18.91u
+Long Jump    (without compiler optimization): 22.74u
 
 Variants        (with compiler optimization): 30.26u
 Variants     (without compiler optimization): 87.35u

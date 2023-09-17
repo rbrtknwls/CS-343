@@ -49,6 +49,7 @@ long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_b
         if (setjmp(new_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
+
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
                 longjmp(*prev_jump_buffer, -1);
@@ -101,9 +102,13 @@ int main( int argc, char * argv[] ) {
 
     jmp_buf jump_buffer;
     PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
+
     if (setjmp(jump_buffer) == -1) {
+
         PRINT( cout << "E3" << endl );
+
     } else {
+
         long int val = Ackermann( m, n, 0, &jump_buffer );
         PRINT( cout << "Ackermann " << val << endl );
     }
