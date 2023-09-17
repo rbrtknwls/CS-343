@@ -7,14 +7,8 @@ This is because when we make a jump back we interfere with the print function.
 Throw Catch     (with compiler optimization): 22.42u
 Throw Catch  (without compiler optimization): 56.66u
 
-Long Jump       (with compiler optimization): 18.91u
+Long Jump       (with compiler optimization): 12.08u
 Long Jump    (without compiler optimization): 11.58u
-
-Variants        (with compiler optimization): 30.26u
-Variants     (without compiler optimization): 87.35u
-
-Tagged Union    (with compiler optimization): 18.94u
-Tagged Union (without compiler optimization): 23.78u
 
 1bii) The global status flags preform better than the original program. This is due to the fact that flags can be
 modified and checked in O(1) time, exceptions require a bit more processing time.
