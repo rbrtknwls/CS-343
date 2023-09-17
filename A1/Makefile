@@ -41,7 +41,7 @@ EXECS = ${EXEC01} ${EXEC02} ${EXEC1} ${EXEC2} ${EXEC3} ${EXEC4} ${EXEC5}
 all : ${EXECS}					# build all executables
 
 ${EXEC01} : ${OBJECTS01}			# optional build of given program
-	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} it $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} $^ -o $@
 
 q1%.o : q1%.cc					# change compiler 1st executable, ADJUST SUFFIX (for .C/.cpp)
 	g++${GVERSION} ${CXXFLAGS} -D${OUTPUT} -std=c++17 -c $< -o $@
