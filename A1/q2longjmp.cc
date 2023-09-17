@@ -22,7 +22,7 @@ long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_b
 
 		if ( rand() % eperiod <= 2 ) {
             PRINT( T t; ) excepts += 1;
-            long_jmp(*prev_jump_buffer, -1);
+            longjmp(*prev_jump_buffer, -1);
         }
 		return n + 1;
 
@@ -34,7 +34,7 @@ long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_b
             PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
             if ( rand() % eperiod <= 3 ) {
                 PRINT( T t; ) excepts += 1;
-                long_jmp(*prev_jump_buffer, -1);
+                longjmp(*prev_jump_buffer, -1);
             }
 
         } else {
@@ -51,11 +51,11 @@ long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_b
             PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
-                long_jmp(*prev_jump_buffer, -1);
+                longjmp(*prev_jump_buffer, -1);
             }
 
         } else {
-            Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1, &new_jump_buffer );
+            Ackermann( m - 1, Ackermann( m, n - 1, depth + 1, &new_jump_buffer ), depth + 1, &new_jump_buffer );
         }
 
 		PRINT( cout << " E2X " << m << " " << n << endl );
