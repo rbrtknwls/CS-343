@@ -56,7 +56,7 @@ q1%.o : q1%.c					# change compiler 2nd executable
 	gcc${GVERSION} ${CXXFLAGS} -c $< -o $@
 
 ${EXEC02} : ${OBJECTS02}			# optional build of given program
-	g++${GVERSION} ${CXXFLAGS} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} -DNOOUTPUT $^ -o $@
 
 ${EXEC3} : ${OBJECTS3}				# compile and link 3rd executable
 	g++${GVERSION} ${CXXFLAGS} $^ -o $@
@@ -65,7 +65,7 @@ q2%.o : q2%.cc					# change compiler 4th executable, ADJUST SUFFIX (for .C/.cpp)
 	g++${GVERSION} ${CXXFLAGS} -c $< -o $@
 
 ${EXEC4} : ${OBJECTS4}				# compile and link 4th executable
-	g++${GVERSION} ${CXXFLAGS} $^ -o $@
+	g++${GVERSION} ${CXXFLAGS} -DNOOUTPUT $^ -o $@
 
 ${EXEC5} : ${OBJECTS5}				# compile and link 5th executable
 	${CXX} ${CXXFLAGS} $^ -o $@
