@@ -75,7 +75,7 @@ int main( int argc, char * argv[] ) {
 
     std::jmp_buf my_jump_buffer;
 
-    if (setjmp(my_jump_buffer) != -1) {
+    if (setjmp(my_jump_buffer) == -1) {
         cout << "end" << endl;
     }
 
