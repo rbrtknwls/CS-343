@@ -19,24 +19,36 @@ long int Ackermann( long int m, long int n, long int depth ) {
 	calls += 1;
 
 	if ( m == 0 ) {
-		if ( rand() % eperiod <= 2 ) { PRINT( T t; ) excepts += 1; throw E(); } // replace
+		if ( rand() % eperiod <= 2 ) {
+            PRINT( T t; ) excepts += 1;
+            throw E();
+        } // replace
 		return n + 1;
 
 	} else if ( n == 0 ) {
 
-		try { return Ackermann( m - 1, 1, depth + 1 );	// replace
+		try {
+            return Ackermann( m - 1, 1, depth + 1 );
 		} catch( E ) {									// replace
 			PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
-			if ( rand() % eperiod <= 3 ) { PRINT( T t; ) excepts += 1; throw E(); } // replace
+			if ( rand() % eperiod <= 3 ) {
+                PRINT( T t; ) excepts += 1;
+                throw E();
+            }
+
 		} // try
 		PRINT( cout << " E1X " << m << " " << n << endl );
 
 	} else {
 
-		try { return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 ); // replace
+		try {
+            return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 ); // replace
 		} catch( E ) {									// replace
 			PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
-			if ( rand() % eperiod == 0 ) { PRINT( T t; ) excepts += 1; throw E(); } // replace
+			if ( rand() % eperiod == 0 ) {
+                PRINT( T t; ) excepts += 1;
+                throw E();
+            } // replace
 		} // try
 		PRINT( cout << " E2X " << m << " " << n << endl );
 	} // if
@@ -88,6 +100,7 @@ int main( int argc, char * argv[] ) {
     } else {
         //long int val = Ackermann( m, n, 0 );
         long int val = 4;
+        longjmp(my_jump_buffer, -1);
         PRINT( cout << "Ackermann " << val << endl );
     }
 
