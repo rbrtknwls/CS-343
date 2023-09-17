@@ -4,51 +4,16 @@ This is because when we make a jump back we interfere with the print function.
 1bii) This is the output we get when running the following
 (Running the function /usr/bin/time -f "%Uu %Ss %E" ./abx 13 13 103 28):
 
-Throw Catch     (with compiler optimization): 22.42u
+Throw Catch     (with compiler optimization): 54.45u
 Throw Catch  (without compiler optimization): 56.66u
 
 Long Jump       (with compiler optimization): 12.08u
 Long Jump    (without compiler optimization): 11.58u
 
-1bii) The global status flags preform better than the original program. This is due to the fact that flags can be
-modified and checked in O(1) time, exceptions require a bit more processing time.
+1biii) The original program preforms far worse then long jmp. This is because setjmp() is much faster then a try block
+and catch is much slower then a longjmp(). Moreover since we explicitly know where we are jumping too each time we can
+do it in O(1) time wheres a catch will need to propagate for about O(n) time.
 
-The variants perform worse than the original program. This could be due to the fact that checking variants
-can take alot of time, and we do it at each level, so exceptions can run faster.
-
-The tagged union preforms better than the original program. This is because since its passed to each function and only
-created once, we can change and access values very quickly so its preforms better then exceptions.
-
-1biii) The global status flags preform better than the original program with compiler optimization. This is due to the
-fact that flags can be modified and checked in O(1) time, exceptions require a bit more processing time, although the
-difference is alot smaller.
-
-The variants perform worse than the original program with compiler optimization. This could be due to the fact that
-checking variants can take alot of time, and we do it at each level, so exceptions can run faster but not by much.
-
-The tagged union preforms better than the original program with compiler optimization. This is because since its
-passed to each function and only created once, we can change and access values very quickly so its preforms
-better than exceptions but not by as much as before.
-
-1ci) We get the following timings for exception periods:
-
-Throw Catch      (1000): 46.18u
-Throw Catch       (100): 70.55u
-Throw Catch        (50): 96.73u
-
-Status Flags     (1000): 41.76u
-Status Flags      (100): 41.70u
-Status Flags       (50): 40.53u
-
-Variants         (1000): 58.49u
-Variants          (100): 58.16u
-Variants           (50): 57.40u
-
-Tagged Union     (1000): 42.28u
-Tagged Union      (100): 41.83u
-Tagged Union       (50): 41.11u
-
-1cii) As the exception period decreases (more exceptions occur) we note that the amount of time the
-original program takes increase by a large margin. However since exceptions have a very small impact
-on performance on all of our other modified programs the exception period does not really impact the
-amount of time required to execute.
+1biiii) Since have so many exceptions and catches all of which occur at different states on the stack (as we catch
+at each layer of recursion) it means that the compiler cant optimize well and so turning on compiler optimization makes
+very little difference. We still see that long jump preforms very well in comparison to throw catch.
