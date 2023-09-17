@@ -22,7 +22,7 @@ OBJECTS3 = q1returntypec.o			# 3rd executable object files
 EXEC3 = returntypec				# 3rd executable name
 
 OBJECTS02 = q2throwcatch.o			# optional build of given program
-XEC02 = throwcatch				# given executable name
+EXEC02 = throwcatch				# given executable name
 
 OBJECTS4 = q2longjmp.o				# 4th executable object files
 EXEC4 = longjmp					# 4th executable name
