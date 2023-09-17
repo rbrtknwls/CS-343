@@ -1,10 +1,13 @@
 1bi) We get the following output for the different programs:
 
 Throw Catch     (with compiler optimization):
-Throw Catch  (without compiler optimization):
+Throw Catch  (without compiler optimization): 42.49u
+
 Status Flags    (with compiler optimization):
-Status Flags (without compiler optimization):
-Variants        (with compiler optimization):
-Variants     (without compiler optimization):
-Tagged Union    (with compiler optimization):
-Tagged Union (without compiler optimization):
+Status Flags (without compiler optimization): 22.74u
+
+Variants        (with compiler optimization): 
+Variants     (without compiler optimization): 87.35u
+
+Tagged Union    (with compiler optimization): 23.39u
+Tagged Union (without compiler optimization): 23.78u
