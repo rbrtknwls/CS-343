@@ -3,6 +3,11 @@
 using namespace std;
 
 void FloatConstant::main() {
+
+    // Process Sign (if it exists)
+    if (ch == '+') { suspend(); }
+    if (ch == '-') { isPositive = false; suspend(); }
+    
     cout << "Silly Billy" << endl;
 
 }

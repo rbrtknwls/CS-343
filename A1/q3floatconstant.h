@@ -3,6 +3,7 @@
 
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
+    bool isPositive = true;                             // assume float is positive
     void main();
 
   public:
