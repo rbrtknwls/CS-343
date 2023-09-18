@@ -18,7 +18,11 @@ intmax_t eperiod = 100, excepts = 0, calls = 0, dtors = 0, depth = 0; // counter
 PRINT( struct T { ~T() { dtors += 1; } }; )
 
 long int Ackermann( long int m, long int n, long int depth) {
+
 	calls += 1;
+
+    jmp_buf old_jump_buffer;
+    memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
 
 	if ( m == 0 ) {
 
@@ -30,28 +34,24 @@ long int Ackermann( long int m, long int n, long int depth) {
 
 	} else if ( n == 0 ) {
 
-        jmp_buf old_jump_buffer;
-        memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
-
         if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
             if ( rand() % eperiod <= 3 ) {
                 PRINT( T t; ) excepts += 1;
-                longjmp(old_jump_buffer, -1);
+                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
+                longjmp(global_jump_buffer, -1);
             }
-            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
 
         } else {
-            return Ackermann( m - 1, 1, depth + 1);
+            int val = Ackermann( m - 1, 1, depth + 1);
+            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
+            return val;
         }
 
 		PRINT( cout << " E1X " << m << " " << n << endl );
 
 	} else {
-
-        jmp_buf old_jump_buffer;
-        memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
 
         if (setjmp(global_jump_buffer) == -1) {
 
@@ -59,12 +59,14 @@ long int Ackermann( long int m, long int n, long int depth) {
 
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
-                longjmp(old_jump_buffer, -1);
+                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
+                longjmp(global_jump_buffer, -1);
             }
-            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
 
         } else {
-            return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 );
+            int val = Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 );
+            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
+            return val;
         }
 
 		PRINT( cout << " E2X " << m << " " << n << endl );
