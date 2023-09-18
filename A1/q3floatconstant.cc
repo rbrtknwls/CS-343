@@ -1,5 +1,5 @@
 #include <iostream>
-#include "/u/r2knowle/CS-343/A1/include.h"
+#include "/u/r2knowles/CS-343/A1/include.h"
 
 using namespace std;
 
