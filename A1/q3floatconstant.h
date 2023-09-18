@@ -3,7 +3,16 @@
 
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
-    bool isPositive = true;                             // assume float is positive
+    bool isFloatPositive;                               // bool for if the float is positive
+    int mantissa;                                       // holds the mantissa of the float
+    int characteristic;                                 // holds the characteristic of the float
+    int exponent;                                       // holds the exponent of the float
+
+    int numberOfDigits;                                 /* stores how many digits have currently been read into
+                                                        * the current component of the float, to add a new digit
+                                                        * we just do component += (digit)*(10^numdigits)
+                                                        */
+
     void main();
 
   public:
