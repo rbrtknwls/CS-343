@@ -16,6 +16,7 @@ int flipInt( int valToFlip ) {
         val        = 10*val + valToFlip%10;
         valToFlip /= 10;
     }
+
     return val;
 }
 
@@ -36,7 +37,7 @@ void FloatConstant::main() {
     }
 
     if (ch == 'E' || ch == 'e' || ch == '.')
-    cout << characteristic << endl;
+    cout << flipInt(characteristic) << endl;
 
 }
 
