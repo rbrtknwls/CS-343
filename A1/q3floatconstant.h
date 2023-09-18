@@ -12,8 +12,5 @@ _Coroutine FloatConstant {
 
 	_Event Error {};									// last character invalid
 
-	void next( char c ) {
-		ch = c;											// communication input
-		resume();										// activate
-	}
+	void next( char c );
 };

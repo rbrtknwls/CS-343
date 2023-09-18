@@ -1,5 +1,6 @@
-1bi) The output is different between both as in the original we have constructors, and in the new version we don't.
-This is because when we make a jump back we interfere with the print function.
+1bi) The output is different between both as in the original we call destructors, and in the new version we don't.
+This is because when throw leaves a scope it will automatically call all destructors and we dont do this with
+jumps.
 
 1bii) This is the output we get when running the following
 (Running the function /usr/bin/time -f "%Uu %Ss %E" ./abx 13 13 103 28):
@@ -7,7 +8,7 @@ This is because when we make a jump back we interfere with the print function.
 Throw Catch     (with compiler optimization): 54.45u
 Throw Catch  (without compiler optimization): 56.66u
 
-Long Jump       (with compiler optimization): 12.08u
+Long Jump       (with compiler optimization): 11.01u
 Long Jump    (without compiler optimization): 11.58u
 
 1biii) The original program preforms far worse then long jmp. This is because setjmp() is much faster then a try block
