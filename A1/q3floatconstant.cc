@@ -87,6 +87,15 @@ void FloatConstant::main() {
 
     } // if
 
+
+    if (ch == FSL || ch == FSU ) {
+        suspend();
+    } // if
+
+    if (ch == LSL || Lh == FSU ) {
+        suspend();
+    } // if
+
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
         throw Match(totalFloat);
@@ -94,9 +103,6 @@ void FloatConstant::main() {
 
     // no valid possible match left, therefore throw an error
     throw Error;
-
-    cout << totalFloat << endl;
-
 }
 
 void FloatConstant::next(char c) {
