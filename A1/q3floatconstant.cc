@@ -22,7 +22,7 @@ void FloatConstant::main() {
         characteristic += chatToInt(ch);
         suspend();
     }
-    cout << "Silly Billy" << endl;
+    cout << characteristic << endl;
 
 }
 
