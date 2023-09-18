@@ -30,7 +30,7 @@ int flipInt( int valToFlip ) {
 
 void FloatConstant::main() {
 
-    // Process Sign (if it exists)
+    // Process sign (if it exists)
     if (ch == '+') { suspend(); }
     if (ch == '-') { isFloatPositive = false; suspend(); }
 
@@ -50,9 +50,13 @@ void FloatConstant::main() {
          ch != FSL && ch != FSU && ch != LSL && ch != LSU ) {
         throw Error();
     } // if
-    totalFloat += flipInt(characteristic);                                           // characteristic done so add it
+    totalFloat += flipInt(characteristic);                                        // characteristic done so add it
     numberOfDigits = 0;                                                           // reset number of digits
 
+    /*
+     * If we run into a '.' we can assume that the next series of digits we will be reading
+     * in belong to the mantissa, therefore we will keep reading them in
+     */
     if ( ch == DOT ) {
         suspend();                                                                // read in the separator
 
@@ -61,9 +65,34 @@ void FloatConstant::main() {
             suspend();
         } // while
 
+        if ( mantissa == 0 ) { throw Error(); }                                   // Mantissa is all zeros
+        totalFloat += mantissa;
+
     } // if
 
-    totalFloat += mantissa;
+    /*
+     * If we run into a (e/E) then it means all the other digits we will read in belong to the
+     * exponent. Therefore, we will keep reading in values until we run out of digits.
+     */
+    if ( ch == EXL || ch == EXU ) {
+        suspend();
+
+        // Process exponent sign (if it exists)
+        if (ch == '+') { suspend(); }
+        if (ch == '-') { isExponentPositive = false; suspend(); }
+
+        while ( isdigit(ch) ) {
+            exponent += charToInt(ch) * pow(10, numberOfDigits++);
+            suspend();
+        } // while
+
+        if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
+        exponent = flipInt(exponent);
+        totalFloat *= pow(10, exponent);
+
+    } // if
+
+
 
     cout << totalFloat << endl;
 
