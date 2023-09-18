@@ -32,15 +32,15 @@ long int Ackermann( long int m, long int n, long int depth) {
 
         jmp_buf old_jump_buffer;
         memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
-        
+
         if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
             if ( rand() % eperiod <= 3 ) {
                 PRINT( T t; ) excepts += 1;
-                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
-                longjmp(global_jump_buffer, -1);
+                longjmp(old_jump_buffer, -1);
             }
+            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
 
         } else {
             return Ackermann( m - 1, 1, depth + 1);
@@ -52,15 +52,16 @@ long int Ackermann( long int m, long int n, long int depth) {
 
         jmp_buf old_jump_buffer;
         memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
+
         if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
 
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
-                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
-                longjmp(global_jump_buffer, -1);
+                longjmp(old_jump_buffer, -1);
             }
+            memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
 
         } else {
             return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 );
