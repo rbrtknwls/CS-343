@@ -23,7 +23,7 @@ int flipInt( int valToFlip ) {
     while ( valToFlip > 0 ) {
         val        = 10*val + valToFlip%10;
         valToFlip /= 10;
-    }
+    } // while
 
     return val;
 }
@@ -92,7 +92,7 @@ void FloatConstant::main() {
         suspend();
     } // if
 
-    if (ch == LSL || Lh == FSU ) {
+    if (ch == LSL || ch == FSU ) {
         suspend();
     } // if
 
