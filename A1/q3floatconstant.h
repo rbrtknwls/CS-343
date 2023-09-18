@@ -1,6 +1,9 @@
+#ifndef __FLOC_H__
+#define __FLOC_H__ 1
+
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
-    virtual void main();
+    void main();
 
   public:
 	enum { EOT = '\003' };								// end of text
@@ -11,5 +14,7 @@ _Coroutine FloatConstant {
 	};
 
 	_Event Error {};									// last character invalid
-	virtual void next( char c );
+    void next( char c );
 };
+
+#endif
