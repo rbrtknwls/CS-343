@@ -50,7 +50,7 @@ void FloatConstant::main() {
          ch != FSL && ch != FSU && ch != LSL && ch != LSU ) {
         throw Error();
     } // if
-    totalFloat += flip(characteristic);                                           // characteristic done so add it
+    totalFloat += flipInt(characteristic);                                           // characteristic done so add it
     numberOfDigits = 0;                                                           // reset number of digits
 
     if ( ch == DOT ) {
