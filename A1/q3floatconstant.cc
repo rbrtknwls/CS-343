@@ -3,7 +3,6 @@
 using namespace std;
 
 void FloatConstant::main() {
-
     cout << "Silly Billy" << endl;
 }
 
@@ -13,5 +12,6 @@ void FloatConstant::next(char c) {
 }
 
 int main() {
+    FloatConstant floatConstant;
     std::cout << "pls work" << std::endl;
 }
