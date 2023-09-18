@@ -112,5 +112,7 @@ int main() {
     floatConstant.next('5');
     floatConstant.next('6');
     floatConstant.next('e');
+    floatConstant.next('8');
+    floatConstant.next('3');
     std::cout << "pls work" << std::endl;
 }
