@@ -30,13 +30,15 @@ long int Ackermann( long int m, long int n, long int depth) {
 
 	} else if ( n == 0 ) {
 
-        jmp_buf old_jump_buffer = global_jump_buffer;
+        jmp_buf old_jump_buffer;
+        memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
+        
         if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
             if ( rand() % eperiod <= 3 ) {
                 PRINT( T t; ) excepts += 1;
-                global_jump_buffer = old_jump_buffer
+                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
                 longjmp(global_jump_buffer, -1);
             }
 
@@ -48,14 +50,15 @@ long int Ackermann( long int m, long int n, long int depth) {
 
 	} else {
 
-        jmp_buf old_jump_buffer = global_jump_buffer;
+        jmp_buf old_jump_buffer;
+        memcpy(old_jump_buffer, global_jump_buffer, sizeof(global_jump_buffer));
         if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
 
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
-                global_jump_buffer = old_jump_buffer
+                memcpy(global_jump_buffer, old_jump_buffer, sizeof(old_jump_buffer));
                 longjmp(global_jump_buffer, -1);
             }
 
@@ -103,7 +106,7 @@ int main( int argc, char * argv[] ) {
 	} // try
 
 	srand( seed );
-    
+
     PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
 
     if (setjmp(global_jump_buffer) == -1) {
