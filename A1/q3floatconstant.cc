@@ -45,11 +45,6 @@ void FloatConstant::main() {
     } // while
 
 
-    // At this point we want to check if the non digit we have is valid
-    if ( ch != EOT && ch != EXL && ch != EXU && ch != DOT &&
-         ch != FSL && ch != FSU && ch != LSL && ch != LSU ) {
-        throw Error();
-    } // if
     totalFloat += flipInt(characteristic);                                        // characteristic done so add it
     numberOfDigits = 0;                                                           // reset number of digits
 
@@ -92,7 +87,13 @@ void FloatConstant::main() {
 
     } // if
 
+    // if we only have EOT left then we parsed successfully
+    if ( ch == EOT ) {
+        throw Match(totalFloat);
+    } // if
 
+    // no valid possible match left, therefore throw an error
+    throw Error;
 
     cout << totalFloat << endl;
 
