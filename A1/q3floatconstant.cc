@@ -13,5 +13,6 @@ void FloatConstant::next(char c) {
 
 int main() {
     FloatConstant floatConstant;
+    floatConstant.next('e');
     std::cout << "pls work" << std::endl;
 }
