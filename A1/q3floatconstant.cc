@@ -61,7 +61,7 @@ void FloatConstant::main() {
             suspend();
         } // while
 
-    }/ // if
+    } // if
 
     totalFloat += mantissa;
 
