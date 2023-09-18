@@ -102,7 +102,7 @@ void FloatConstant::main() {
     } // if
 
     // no valid possible match left, therefore throw an error
-    throw Error;
+    throw Error();
 }
 
 void FloatConstant::next(char c) {
