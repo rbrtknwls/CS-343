@@ -20,6 +20,7 @@ void FloatConstant::main() {
     */
     while (isdigit(ch)) {
         characteristic += chatToInt(ch);
+        suspend();
     }
     cout << "Silly Billy" << endl;
 
