@@ -9,6 +9,15 @@ using namespace std;
 
 int charToInt( char c ) { return (c - '0'); }
 
+int flipInt( int valToFlip ) {
+    int val = 0;
+
+    while ( valToFlip > 0 ) {
+        val        = 10*val + valToFlip%10;
+        valToFlip /= 10;
+    }
+    return val;
+}
 
 void FloatConstant::main() {
 
