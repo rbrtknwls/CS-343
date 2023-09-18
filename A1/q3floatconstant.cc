@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <ctype.h>
+#include <math.h>
 
 #include "/u/r2knowles/CS-343/A1/q3floatconstant.h"
 
@@ -19,7 +20,7 @@ void FloatConstant::main() {
      * Until we run into a (./e/E) we can assume that we are reading in the characteristic.
     */
     while (isdigit(ch)) {
-        characteristic += chatToInt(ch);
+        characteristic += chatToInt(ch) * pow(10, numberOfDigits++);
         suspend();
     }
     cout << characteristic << endl;
