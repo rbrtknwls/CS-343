@@ -16,7 +16,16 @@ _Coroutine FloatConstant {
     void main();
 
   public:
-	enum { EOT = '\003' };								// end of text
+	enum {
+        EOT = '\003',                                   // end of text
+        EXL = 'e',                                      // lowercase exponent
+        EXU = 'E',                                      // uppercase exponent
+        DOT = '.',                                      // separator between points
+        FSL = 'f',                                      // lowercase float suffix
+        FSU = 'F',                                      // uppercase float suffix
+        LSL = 'l',                                      // lowercase long suffix
+        LSU = 'L'                                       // uppercase long suffix
+    };
 	_Event Match {										// last character match
 	  public:
 		double value;									// floating-point value

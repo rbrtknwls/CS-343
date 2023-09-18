@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int chatToInt( char c ) { return (c - '0'); }
+int charToInt( char c ) { return (c - '0'); }
 
 
 void FloatConstant::main() {
@@ -18,11 +18,15 @@ void FloatConstant::main() {
 
     /*
      * Until we run into a (./e/E) we can assume that we are reading in the characteristic.
+     * Note that these are in the wrong order, so after we are done reading in values we will
+     * need to flip them.
     */
     while (isdigit(ch)) {
-        characteristic += chatToInt(ch) * pow(10, numberOfDigits++);
-        suspend();
+        characteristic += charToInt(ch) * pow(10, numberOfDigits++);
+        suspend();                                                               // Wait to read in the next value
     }
+
+    if (ch == 'E' || ch == 'e' || ch == '.')
     cout << characteristic << endl;
 
 }
