@@ -1,6 +1,7 @@
+#ifndef _FloatConstant_h_
+#define _FloatConstant_h_
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
-
 	void main();										// coroutine main
   public:
 	enum { EOT = '\003' };								// end of text
@@ -16,3 +17,5 @@ _Coroutine FloatConstant {
 		resume();										// activate
 	}
 };
+
+#endif // _FloatConstant_h_
