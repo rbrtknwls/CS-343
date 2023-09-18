@@ -59,9 +59,11 @@ void FloatConstant::main() {
         while ( isdigit(ch) ) {
             mantissa += charToInt(ch) / pow(10, 1 + numberOfDigits++);
             suspend();
-        }
+        } // while
 
-    } // if
+    }/ // if
+
+    totalFloat += mantissa;
 
     cout << totalFloat << endl;
 
