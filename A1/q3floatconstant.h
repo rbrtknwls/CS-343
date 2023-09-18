@@ -4,9 +4,10 @@
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
     bool isFloatPositive;                               // bool for if the float is positive
-    int mantissa;                                       // holds the mantissa of the float
+    double mantissa;                                    // holds the mantissa of the float
     int characteristic;                                 // holds the characteristic of the float
     int exponent;                                       // holds the exponent of the float
+    double totalFloat;                                  // holds the summation of our value to return
 
     int numberOfDigits;                                 /* stores how many digits have currently been read into
                                                         * the current component of the float, to add a new digit
