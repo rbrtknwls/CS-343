@@ -11,3 +11,7 @@ void FloatConstant::next(char c) {
 
     cout <<  c << "hi" << endl;
 }
+
+int main() {
+    std::cout << "pls work" << std::endl;
+}
