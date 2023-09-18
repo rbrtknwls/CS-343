@@ -4,11 +4,12 @@ using namespace std;
 
 void FloatConstant::main() {
     cout << "Silly Billy" << endl;
+
 }
 
 void FloatConstant::next(char c) {
-
     cout <<  c << "hi" << endl;
+    resume();
 }
 
 int main() {
