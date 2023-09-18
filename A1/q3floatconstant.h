@@ -1,6 +1,6 @@
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
-	// YOU ADD MEMBERS HERE
+
 	void main();										// coroutine main
   public:
 	enum { EOT = '\003' };								// end of text

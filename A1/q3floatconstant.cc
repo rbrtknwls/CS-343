@@ -1,10 +1,12 @@
 #include <iostream>
+#include "/u/r2knowle/CS-343/A1/include.h"
+
 using namespace std;
 
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
 	void main() {
-
+        suspend();
         cout << "Silly Billy" << endl;
 
     }
