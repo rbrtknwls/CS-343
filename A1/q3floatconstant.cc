@@ -13,7 +13,7 @@ void FloatConstant::main() {
 
     // Process Sign (if it exists)
     if (ch == '+') { suspend(); }
-    if (ch == '-') { isPositive = false; suspend(); }
+    if (ch == '-') { isFloatPositive = false; suspend(); }
 
     /*
      * Until we run into a (./e/E) we can assume that we are reading in the characteristic.
@@ -26,12 +26,17 @@ void FloatConstant::main() {
 }
 
 void FloatConstant::next(char c) {
-    cout <<  c << "hi" << endl;
+    ch = c; // Read in the character;
     resume();
 }
 
 int main() {
     FloatConstant floatConstant;
-    floatConstant.next('e');
+    floatConstant.next('+');
+    floatConstant.next('1');
+    floatConstant.next('2');
+    floatConstant.next('.');
+    floatConstant.next('5');
+    floatConstant.next('6');
     std::cout << "pls work" << std::endl;
 }
