@@ -3,11 +3,11 @@
 using namespace std;
 
 void FloatConstant::main() {
-    gi
+
     cout << "Silly Billy" << endl;
 }
 
 void FloatConstant::next(char c) {
 
-    cout << "more" << endl;
+    cout <<  c << "hi" << endl;
 }
