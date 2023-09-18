@@ -11,52 +11,56 @@ using namespace std;
 #define PRINT( stmt ) stmt
 #endif // NOOUTPUT
 
+jmp_buf global_jump_buffer;
+
 struct E {};											// exception type
 intmax_t eperiod = 100, excepts = 0, calls = 0, dtors = 0, depth = 0; // counters
 PRINT( struct T { ~T() { dtors += 1; } }; )
 
-long int Ackermann( long int m, long int n, long int depth, jmp_buf* prev_jump_buffer ) {
+long int Ackermann( long int m, long int n, long int depth) {
 	calls += 1;
 
 	if ( m == 0 ) {
 
 		if ( rand() % eperiod <= 2 ) {
             PRINT( T t; ) excepts += 1;
-            longjmp(*prev_jump_buffer, -1);
+            longjmp(global_jump_buffer, -1);
         }
 		return n + 1;
 
 	} else if ( n == 0 ) {
 
-        jmp_buf new_jump_buffer;
-        if (setjmp(new_jump_buffer) == -1) {
+        jmp_buf old_jump_buffer = global_jump_buffer;
+        if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E1 " << m << " " << n << " |" );
             if ( rand() % eperiod <= 3 ) {
                 PRINT( T t; ) excepts += 1;
-                longjmp(*prev_jump_buffer, -1);
+                global_jump_buffer = old_jump_buffer
+                longjmp(global_jump_buffer, -1);
             }
 
         } else {
-            return Ackermann( m - 1, 1, depth + 1, &new_jump_buffer );
+            return Ackermann( m - 1, 1, depth + 1);
         }
 
 		PRINT( cout << " E1X " << m << " " << n << endl );
 
 	} else {
 
-        jmp_buf new_jump_buffer;
-        if (setjmp(new_jump_buffer) == -1) {
+        jmp_buf old_jump_buffer = global_jump_buffer;
+        if (setjmp(global_jump_buffer) == -1) {
 
             PRINT( cout << " depth " << depth << " E2 " << m << " " << n << " |" );
 
             if ( rand() % eperiod == 0 ) {
                 PRINT( T t; ) excepts += 1;
-                longjmp(*prev_jump_buffer, -1);
+                global_jump_buffer = old_jump_buffer
+                longjmp(global_jump_buffer, -1);
             }
 
         } else {
-            return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1, &new_jump_buffer ), depth + 1, &new_jump_buffer );
+            return Ackermann( m - 1, Ackermann( m, n - 1, depth + 1 ), depth + 1 );
         }
 
 		PRINT( cout << " E2X " << m << " " << n << endl );
@@ -99,17 +103,16 @@ int main( int argc, char * argv[] ) {
 	} // try
 
 	srand( seed );
-
-    jmp_buf jump_buffer;
+    
     PRINT( cout << "Arguments " << m << " " << n << " " << seed << " " << eperiod << endl );
 
-    if (setjmp(jump_buffer) == -1) {
+    if (setjmp(global_jump_buffer) == -1) {
 
         PRINT( cout << "E3" << endl );
 
     } else {
 
-        long int val = Ackermann( m, n, 0, &jump_buffer );
+        long int val = Ackermann( m, n, 0);
         PRINT( cout << "Ackermann " << val << endl );
     }
 

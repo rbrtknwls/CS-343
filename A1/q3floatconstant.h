@@ -1,8 +1,7 @@
 _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
-	void main() {
-        std::cout << "hi" << std::endl;
-    }
+	void main();
+
   public:
 	enum { EOT = '\003' };								// end of text
 	_Event Match {										// last character match
@@ -10,6 +9,7 @@ _Coroutine FloatConstant {
 		double value;									// floating-point value
 		Match( double value ) : value( value ) {}
 	};
+
 	_Event Error {};									// last character invalid
 
 	void next( char c ) {
