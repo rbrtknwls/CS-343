@@ -114,5 +114,7 @@ int main() {
     floatConstant.next('e');
     floatConstant.next('8');
     floatConstant.next('3');
+    floatConstant.next('\003');
+
     std::cout << "pls work" << std::endl;
 }
