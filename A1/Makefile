@@ -27,7 +27,7 @@ EXEC02 = throwcatch				# given executable name
 OBJECTS4 = q2longjmp.o				# 4th executable object files
 EXEC4 = longjmp					# 4th executable name
 
-OBJECTS5 = # object files forming 5th executable with prefix "q3"
+OBJECTS5 = q3floatconstant.o         # object files forming 5th executable with prefix "q3"
 EXEC5 = floatconstant					# 5th executable name
 
 OBJECTS = ${OBJECTS01} ${OBJECTS02} ${OBJECTS1} ${OBJECTS2} ${OBJECTS3} ${OBJECTS4} ${OBJECTS5}
