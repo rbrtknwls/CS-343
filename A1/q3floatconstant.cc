@@ -17,6 +17,14 @@ using namespace std;
  */
 int charToInt( char c ) { return (c - '0'); }
 
+/*
+ * Helper Function #2 (printEmptyLine)
+ * Will print the expected output for if the line is empty
+ */
+void printEmptyLine() {
+    cout << "\"\" : Warning! Blank line." << endl;
+}
+
 void FloatConstant::main() {
 
     // Process sign (if it exists)
@@ -71,7 +79,7 @@ void FloatConstant::main() {
 
         // if we didnt see a . or E/e we can terminate because this is an error
     } else {
-        if (numberOfDigits == 0) { _Throw Error(); }
+        if (numberOfDigits == 0) { _Resume Error() _At resumer(); }
     } // if
 
 
@@ -85,17 +93,19 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        _Throw Match(totalFloat);
+        _Resume Match() _At resumer();
     } // if
 
     // no valid possible match left, therefore throw an error
-    _Throw Error();
+    _Resume Error() _At resumer();
 }
 
 void FloatConstant::next(char c) {
     ch = c; // Read in the character;
     resume();
 }
+
+
 
 int main( int argc, char * argv[] ) {
 
@@ -126,43 +136,40 @@ int main( int argc, char * argv[] ) {
 
     char ch;
     for ( ;; ) { // Loop through every line in the file
+
+        // If line starts with new line, its empty so read it in and skip
+        if ( infile->peek() == "\n") {
+            printEmptyLine();
+            infile->get(ch);                             // Clear the character from the stream
+            continue;
+        } // if
+
         if ( infile->fail() ) { break; }
 
         FloatConstant floatConstant;
 
-        bool isOnlyChar = true;                          // Check if line is only '\n'
         std::string numberSoFar = "";
         for ( ;; ) {                                     // Loop through each character on each line
 
+
             infile->get(ch);
+            if (ch == '\n') { ch = FloatConstant::EOF }  // Replace new line with new constant
 
-            if ( infile->fail() ) { break; }
 
+            numberSoFar += ch;
             try {
-
-                if (ch == '\n') {                            // End of Line
-
-                    if (isOnlyChar) {
-                        cout << "\"" << numberSoFar << "\"" << ": Warning! Blank line." << endl;
-                        break;
-                    } else {
-                        floatConstant.next(FloatConstant::EOT);
-                    }
-                    break;
-                } // if
-
-                isOnlyChar = false;
-                numberSoFar += ch;
-                floatConstant.next(ch);
+                _Enable {
+                    floatConstant.next(ch);
+                } // Enable
 
             } catch ( FloatConstant::Match & match ) {
                 std::cout << "match" << std::endl;
+                break;
 
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
-            } catch ( ... ) {
-                std::exception_ptr p = std::current_exception();
-                std::clog <<(p ? p.__cxa_exception_type()->name() : "null") << std::endl;
+
+                
             }
 
         } // for
