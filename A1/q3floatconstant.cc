@@ -131,6 +131,8 @@ int main( int argc, char * argv[] ) {
         //FloatConstant floatConstant;
 
         bool isOnlyChar = true;                          // Check if line is only '\n'
+        std::string numberSoFar = "";
+        char ch;
         for ( ;; ) {                                     // Loop through each character on each line
 
             if ( infile->fail() ) { break; }
@@ -139,7 +141,8 @@ int main( int argc, char * argv[] ) {
 
             if (ch == '\n') {                            // End of Line
                 if (isOnlyChar) {
-                    cout << "Warning! Blank line." << endl;
+                    cout << "\"" << numberSoFar << "\"" << ": Warning! Blank line." << endl;
+                    break;
                 } else {
                     std::cout << " OVER\n";
                 }
@@ -148,6 +151,7 @@ int main( int argc, char * argv[] ) {
 
             isOnlyChar = false;
             std::cout << ch;
+            numberSoFar += ch;
 
         } // for
     } // for
