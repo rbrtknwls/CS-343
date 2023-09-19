@@ -130,22 +130,23 @@ int main( int argc, char * argv[] ) {
 
         //FloatConstant floatConstant;
 
-
+        bool isOnlyChar = true;                          // Check if line is only '\n'
         for ( ;; ) {                                     // Loop through each character on each line
 
             if ( infile->fail() ) { break; }
 
             infile->get(ch);
-            bool isOnlyChar = true;                      // Check if line is only '\n'
 
             if (ch == '\n') {                            // End of Line
                 if (isOnlyChar) {
                     cout << "Warning! Blank line." << endl;
+                } else {
+                    std::cout << " OVER\n";
                 }
-                std::cout << " OVER\n";
                 break;
             } // if
 
+            isOnlyChar = false;
             std::cout << ch;
 
         } // for
