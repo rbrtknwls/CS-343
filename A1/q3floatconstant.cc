@@ -155,7 +155,7 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Match & match ) {
                 std::cout << "match" << std::endl;
 
-            } catch ( ... ) {
+            } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
             }
 
