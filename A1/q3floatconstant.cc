@@ -89,9 +89,9 @@ void FloatConstant::next(char c) {
     ch = c; // Read in the character;
     try {
         resume();
-    } catch ( Match &mc ) {
+    } catch ( FloatConstant::Match &mc ) {
         cout << "MATCH" << endl;
-    } catch ( Error &er ) {
+    } catch ( FloatConstant::Error &er ) {
         cout << "ERROR" << endl;
     }
 }
