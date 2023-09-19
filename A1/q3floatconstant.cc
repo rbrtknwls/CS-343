@@ -138,7 +138,7 @@ int main( int argc, char * argv[] ) {
             infile->get(ch);
 
             if (ch == '\n') { // End of Line
-                std::cout << " OVER";
+                std::cout << " OVER\n";
                 break;
             } // if
 
