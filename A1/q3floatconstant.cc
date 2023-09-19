@@ -33,7 +33,7 @@ void FloatConstant::main() {
      * If we run into a '.' we can assume that the next series of digits we will be reading
      * in belong to the mantissa, therefore we will keep reading them in
      */
-    if ( ch == DOT ) {
+    if ( ch == '.' ) {
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
@@ -50,7 +50,7 @@ void FloatConstant::main() {
      * If we run into a (e/E) then it means all the other digits we will read in belong to the
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
-    if ( ch == EXL || ch == EXU ) {
+    if ( ch == 'e' || ch == 'E' ) {
         suspend();
 
         // Process exponent sign (if it exists)
@@ -65,14 +65,17 @@ void FloatConstant::main() {
         if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
         totalFloat *= pow(10, exponent);
 
+        // if we didnt see a . or E/e we can terminate because this is an error
+    } else {
+        if (numberOfDigits == 0) { _Throw Error(); }
     } // if
 
 
-    if (ch == FSL || ch == FSU ) {
+    if (ch == 'f' || ch == 'F' ) {
         suspend();
     } // if
 
-    if (ch == LSL || ch == FSU ) {
+    if (ch == 'l' || ch == 'L' ) {
         suspend();
     } // if
 
@@ -87,18 +90,7 @@ void FloatConstant::main() {
 
 void FloatConstant::next(char c) {
     ch = c; // Read in the character;
-    try {
-        resume();
-    } _CatchResume ( Match &mc ) {
-        cout << "MATCH" << endl;
-    } _CatchResume ( Error &er ) {
-        cout << "ERROR" << endl;
-    } catch ( Match &mc ) {
-        cout << "MATCH" << endl;
-    } catch ( Error &er ) {
-        cout << "ERROR" << endl;
-    }
-
+    resume();
 }
 
 int main( int argc, char * argv[] ) {
@@ -132,7 +124,7 @@ int main( int argc, char * argv[] ) {
     for ( ;; ) { // Loop through every line in the file
         if ( infile->fail() ) { break; }
 
-        //FloatConstant floatConstant;
+        FloatConstant floatConstant;
 
         bool isOnlyChar = true;                          // Check if line is only '\n'
         std::string numberSoFar = "";
@@ -142,34 +134,33 @@ int main( int argc, char * argv[] ) {
 
             if ( infile->fail() ) { break; }
 
-            if (ch == '\n') {                            // End of Line
+            try {
 
-                if (isOnlyChar) {
-                    cout << "\"" << numberSoFar << "\"" << ": Warning! Blank line." << endl;
+                if (ch == '\n') {                            // End of Line
+
+                    if (isOnlyChar) {
+                        cout << "\"" << numberSoFar << "\"" << ": Warning! Blank line." << endl;
+                        break;
+                    } else {
+                        floatConstant.next(FloatConstant::EOT);
+                    }
                     break;
-                } else {
-                    std::cout << " OVER\n";
-                }
-                break;
-            } // if
+                } // if
 
-            isOnlyChar = false;
-            std::cout << ch;
-            numberSoFar += ch;
+                isOnlyChar = false;
+                numberSoFar += ch;
+                floatConstant.next(ch);
+
+            } catch ( FloatConstant::Match & match ) {
+                std::cout << "match" << std::endl;
+
+            } catch ( FloatConstant::Error & error ) {
+                std::cout << "ERROR" << std::endl;
+
+            }
 
         } // for
     } // for
-
-    FloatConstant floatConstant;
-    floatConstant.next('+');
-    floatConstant.next('1');
-    floatConstant.next('2');
-    floatConstant.next('.');
-    floatConstant.next('5');
-    floatConstant.next('6');
-    floatConstant.next('e');
-    floatConstant.next('1');
-    floatConstant.next('\003');
 
     if ( infile != &cin ) delete infile;
 }
