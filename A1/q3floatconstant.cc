@@ -145,5 +145,5 @@ int main( int argc, char * argv[] ) {
     floatConstant.next('1');
     floatConstant.next('\003');*/
 
-    std::cout << "pls work" << std::endl;
+    if ( infile != &cin ) delete infile;
 }
