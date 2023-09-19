@@ -31,9 +31,9 @@ void printEmptyLine() {
  * print out the error output formatted to show the
  */
 void printError(string *str, int i ) {
-    std::cout << "\"" << *str << "\" : " << str.substr(0, i) << " no";                     // Print re values we have already read in
+    cout << "\"" << *str << "\" : " << str.substr(0, i) << " no";                     // Print re values we have already read in
     if (i < *str->length() - 1) {
-        std::cout << " -- extraneous characters \"" << str.substr(i, string::npos) << "\"";
+        cout << " -- extraneous characters \"" << str.substr(i, string::npos) << "\"";
     }
     std::cout <<
 
