@@ -77,10 +77,7 @@ void FloatConstant::main() {
         if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
         totalFloat *= pow(10, exponent);
 
-        // if we didnt see a . or E/e we can terminate because this is an error
-    } else {
-        if (numberOfDigits == 0) { _Resume Error() _At resumer(); }
-    } // if
+    }
 
 
     if (ch == 'f' || ch == 'F' ) {
@@ -93,7 +90,7 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        _Resume Match() _At resumer();
+        _Resume Match(totalFloat) _At resumer();
     } // if
 
     // no valid possible match left, therefore throw an error
@@ -153,7 +150,7 @@ int main( int argc, char * argv[] ) {
 
 
             infile->get(ch);
-            if (ch == '\n') { ch = FloatConstant::EOF }  // Replace new line with new constant
+            if (ch == '\n') { ch = FloatConstant::EOF; }  // Replace new line with new constant
 
 
             numberSoFar += ch;
@@ -169,7 +166,7 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
 
-                
+
             }
 
         } // for
