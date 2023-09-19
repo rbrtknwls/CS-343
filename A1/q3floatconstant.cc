@@ -125,19 +125,27 @@ int main( int argc, char * argv[] ) {
 
     char ch;
     string line;
-    for ( ;; ) { // Loop through file
+    for ( ;; ) { // Loop through every line in the file
         if ( infile->fail() ) { break; }
 
-        infile->get(ch);
+        //FloatConstant floatConstant;
 
 
-        if (ch == '\n') {
-            std::cout << "oh?";
-        }
+        for ( ;; ) { // Loop through each character on each line
 
-        std::cout << ch;
+            if ( infile->fail() ) { break; }
 
-    }
+            infile->get(ch);
+
+            if (ch == '\n') { // End of Line
+                std::cout << " OVER";
+                break;
+            } // if
+
+            std::cout << ch;
+
+        } // for
+    } // for
 
     /*FloatConstant floatConstant;
     floatConstant.next('+');
