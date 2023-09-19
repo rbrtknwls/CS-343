@@ -59,6 +59,7 @@ void FloatConstant::main() {
      * in belong to the mantissa, therefore we will keep reading them in
      */
     if ( ch == '.' ) {
+        notseenExpoOrFloat = false;
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
@@ -76,6 +77,7 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
+        notseenExpoOrFloat = false;
         suspend();
 
         // Process exponent sign (if it exists)
@@ -92,17 +94,13 @@ void FloatConstant::main() {
 
     }
 
-
-    if (ch == 'f' || ch == 'F' ) {
-        suspend();
-    } // if
-
-    if (ch == 'l' || ch == 'L' ) {
+    if (ch == 'f' || ch == 'F' || ch == 'l' || ch == 'L') {
         suspend();
     } // if
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
+        if (!notseenExpoOrFloat) { _Resume Error() _At resumer(); }
         _Resume Match(totalFloat) _At resumer();
     } // if
 

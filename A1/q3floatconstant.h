@@ -5,6 +5,8 @@ _Coroutine FloatConstant {
 	char ch;											// character passed by cocaller
     bool isFloatPositive;                               // bool for if the float is positive
     bool isExponentPositive;                            // bool for if the exponent is positive
+    bool notseenExpoOrFloat;                            // bool for if we have been seen mantissa or exponent
+
     double mantissa;                                    // holds the mantissa of the float
     int characteristic;                                 // holds the characteristic of the float
     int exponent;                                       // holds the exponent of the float
