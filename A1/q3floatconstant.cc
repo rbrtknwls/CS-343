@@ -166,8 +166,11 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
                 // read left of characters
+
                 for ( ;; ) {
-                    std::cout << infile->get(ch) << std::endl;
+                    if (ch == '\n' || ch == FloatConstant::EOT) { break; }
+                    infile->get(ch)
+                    std::cout << ch << std::endl;
                 }
 
 
