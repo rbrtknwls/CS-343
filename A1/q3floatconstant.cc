@@ -151,10 +151,10 @@ int main( int argc, char * argv[] ) {
                 numberSoFar += ch;
                 floatConstant.next(ch);
 
-            } catch ( Match & match ) {
+            } catch ( FloatConstant::Match & match ) {
                 std::cout << "match" << std::endl;
 
-            } catch ( Error & error ) {
+            } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
             }
 
