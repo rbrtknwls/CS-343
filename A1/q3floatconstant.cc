@@ -124,11 +124,13 @@ int main( int argc, char * argv[] ) {
     } // try
 
     char ch;
-
+    string line;
     for ( ;; ) { // Loop through file
         if ( infile->fail() ) { break; }
+        
+        infile.get(ch);
 
-        *infile >> ch;
+
         if (ch == '\n') {
             std::cout << "oh?";
         }
