@@ -25,7 +25,7 @@ void FloatConstant::main() {
      * need to flip them.
     */
     while ( isdigit(ch) ) {
-        characteristic = characteristic*10 + charToInt(ch)
+        characteristic = characteristic*10 + charToInt(ch);
         suspend();                                                               // Wait to read in the next value
     } // while
 
@@ -58,7 +58,7 @@ void FloatConstant::main() {
         if (ch == '-') { isExponentPositive = false; suspend(); }
 
         while ( isdigit(ch) ) {
-            exponent += exponent*10 + charToInt(ch)
+            exponent += exponent*10 + charToInt(ch);
             suspend();
         } // while
 
