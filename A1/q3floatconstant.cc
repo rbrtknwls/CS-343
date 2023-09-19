@@ -13,22 +13,6 @@ using namespace std;
  */
 int charToInt( char c ) { return (c - '0'); }
 
-/* Helper Function #2 (flipInt)
- * This function lets us flip an integer in a pretty quick way,
- * this lets us read in values and place them into one of the categories
- * very quickly O(n)!
- */
-int flipInt( int valToFlip ) {
-    int val = 0;
-
-    while ( valToFlip > 0 ) {
-        val        = 10*val + valToFlip%10;
-        valToFlip /= 10;
-    } // while
-
-    return val;
-}
-
 void FloatConstant::main() {
 
     // Process sign (if it exists)
@@ -41,13 +25,9 @@ void FloatConstant::main() {
      * need to flip them.
     */
     while ( isdigit(ch) ) {
-        characteristic += charToInt(ch) * pow(10, numberOfDigits++);
+        characteristic = characteristic*10 + charToInt(ch)
         suspend();                                                               // Wait to read in the next value
     } // while
-
-
-    totalFloat += flipInt(characteristic);                                        // characteristic done so add it
-    numberOfDigits = 0;                                                           // reset number of digits
 
     /*
      * If we run into a '.' we can assume that the next series of digits we will be reading
@@ -78,12 +58,11 @@ void FloatConstant::main() {
         if (ch == '-') { isExponentPositive = false; suspend(); }
 
         while ( isdigit(ch) ) {
-            exponent += charToInt(ch) * pow(10, numberOfDigits++);
+            exponent += exponent*10 + charToInt(ch)
             suspend();
         } // while
 
         if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
-        exponent = flipInt(exponent);
         totalFloat *= pow(10, exponent);
 
     } // if
@@ -153,7 +132,7 @@ int main( int argc, char * argv[] ) {
     floatConstant.next('6');
     floatConstant.next('e');
     floatConstant.next('1');
-    //floatConstant.next('\003');
+    floatConstant.next('\003');
 
     std::cout << "pls work" << std::endl;
 }
