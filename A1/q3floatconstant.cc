@@ -135,7 +135,7 @@ int main( int argc, char * argv[] ) {
     for ( ;; ) { // Loop through every line in the file
 
         // If line starts with new line, its empty so read it in and skip
-        if ( infile->peek() == "\n") {
+        if ( infile->peek() == '\n') {
             printEmptyLine();
             infile->get(ch);                             // Clear the character from the stream
             continue;
@@ -150,7 +150,7 @@ int main( int argc, char * argv[] ) {
 
 
             infile->get(ch);
-            if (ch == '\n') { ch = FloatConstant::EOF; }  // Replace new line with new constant
+            if (ch == '\n') { ch = FloatConstant::EOT; }  // Replace new line with new constant
 
 
             numberSoFar += ch;
