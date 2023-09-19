@@ -4,6 +4,10 @@
 #include <ctype.h>
 #include <math.h>
 
+#include <exception>
+#include <typeinfo>
+#include <stdexcept>
+
 #include "q3floatconstant.h"
 
 using namespace std;
@@ -156,6 +160,9 @@ int main( int argc, char * argv[] ) {
 
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
+            } catch ( ... ) {
+                std::exception_ptr p = std::current_exception();
+                std::clog <<(p ? p.__cxa_exception_type()->name() : "null") << std::endl;
             }
 
         } // for
