@@ -130,7 +130,7 @@ int main( int argc, char * argv[] ) {
 
         *infile >> ch;
         if (ch == '\n') {
-            std::cout << "oh?"
+            std::cout << "oh?";
         }
 
         std::cout << ch;
