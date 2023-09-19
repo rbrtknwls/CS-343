@@ -116,11 +116,8 @@ void FloatConstant::next(char c) {
     }
 }
 
-int main() {
-
-    enum { DefaultSize = 20, DefaultCode = 5 };			// global defaults
-    // MUST BE INT (NOT UNSIGNED) TO CORRECTLY TEST FOR NEGATIVE VALUES
-    intmax_t size = DefaultSize, code = DefaultCode;	// default value
+int main( int argc, char * argv[] ) {
+    
     istream * infile = &cin;							// default value
 
     struct cmd_error {};
