@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
@@ -117,7 +118,7 @@ void FloatConstant::next(char c) {
 }
 
 int main( int argc, char * argv[] ) {
-    
+
     istream * infile = &cin;							// default value
 
     struct cmd_error {};
