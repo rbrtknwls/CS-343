@@ -129,6 +129,9 @@ int main( int argc, char * argv[] ) {
         if ( infile->fail() ) { break; }
 
         *infile >> ch;
+        if (ch == '\n') {
+            std::cout << "oh?"
+        }
 
         std::cout << ch;
 
