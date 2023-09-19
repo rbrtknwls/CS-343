@@ -30,7 +30,7 @@ void printEmptyLine() {
  * Takes in the input stream and the current amount of characters read in, will then
  * print out the error output formatted to show the
  */
-void printError(string *str, int i ) {
+void printError(string *str, unsigned int i ) {
     cout << "\"" << *str << "\" : " << str->substr(0, i) << " no";                     // Print re values we have already read in
     if ( i + 1 < str->length() ) {
         cout << " -- extraneous characters \"" << str->substr(i, string::npos) << "\"";
@@ -160,7 +160,7 @@ int main( int argc, char * argv[] ) {
         line += FloatConstant::EOT;                                                   // Add end of text character
 
         FloatConstant floatConstant;
-        for ( int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
+        for ( unsigned int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
                 _Enable {
