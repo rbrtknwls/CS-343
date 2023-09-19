@@ -99,20 +99,20 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        throw Match(totalFloat);
+        _Throw Match(totalFloat);
     } // if
 
     // no valid possible match left, therefore throw an error
-    throw Error();
+    _Throw Error();
 }
 
 void FloatConstant::next(char c) {
     ch = c; // Read in the character;
     try {
         resume();
-    } catch ( Match &mc ) {
+    } catch ( Match mc ) {
         cout << "MATCH" << endl;
-    } catch ( Error &er ) {
+    } catch ( Error er ) {
         cout << "ERROR" << endl;
     }
 }
