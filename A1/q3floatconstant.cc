@@ -155,7 +155,7 @@ int main( int argc, char * argv[] ) {
         } // for
     } // for
 
-    /*FloatConstant floatConstant;
+    FloatConstant floatConstant;
     floatConstant.next('+');
     floatConstant.next('1');
     floatConstant.next('2');
@@ -164,7 +164,7 @@ int main( int argc, char * argv[] ) {
     floatConstant.next('6');
     floatConstant.next('e');
     floatConstant.next('1');
-    floatConstant.next('\003');*/
+    floatConstant.next('\003');
 
     if ( infile != &cin ) delete infile;
 }
