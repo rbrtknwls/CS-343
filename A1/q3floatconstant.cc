@@ -89,9 +89,9 @@ void FloatConstant::next(char c) {
     ch = c; // Read in the character;
     try {
         resume();
-    } catch ( FloatConstant::Match mc ) {
+    } catch ( Match &mc ) {
         cout << "MATCH" << endl;
-    } catch ( FloatConstant::Error er ) {
+    } catch ( Error &er ) {
         cout << "ERROR" << endl;
     }
 }
@@ -123,7 +123,18 @@ int main( int argc, char * argv[] ) {
         exit( EXIT_FAILURE );							// TERMINATE
     } // try
 
-    FloatConstant floatConstant;
+    char ch;
+
+    for ( ;; ) { // Loop through file
+        if ( infile->fail() ) { break; }
+
+        *infile >> ch;
+
+        std::cout << ch;
+
+    }
+
+    /*FloatConstant floatConstant;
     floatConstant.next('+');
     floatConstant.next('1');
     floatConstant.next('2');
@@ -132,7 +143,7 @@ int main( int argc, char * argv[] ) {
     floatConstant.next('6');
     floatConstant.next('e');
     floatConstant.next('1');
-    floatConstant.next('\003');
+    floatConstant.next('\003');*/
 
     std::cout << "pls work" << std::endl;
 }
