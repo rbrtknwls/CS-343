@@ -133,11 +133,12 @@ int main( int argc, char * argv[] ) {
         std::string numberSoFar = "";
         for ( ;; ) {                                     // Loop through each character on each line
 
-            if ( infile->fail() ) { break; }
-
             infile->get(ch);
 
+            if ( infile->fail() ) { break; }
+
             if (ch == '\n') {                            // End of Line
+
                 if (isOnlyChar) {
                     cout << "\"" << numberSoFar << "\"" << ": Warning! Blank line." << endl;
                     break;
