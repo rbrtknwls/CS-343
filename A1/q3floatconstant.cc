@@ -153,7 +153,7 @@ int main( int argc, char * argv[] ) {
     floatConstant.next('6');
     floatConstant.next('e');
     floatConstant.next('1');
-    floatConstant.next('\003');
+    //floatConstant.next('\003');
 
     std::cout << "pls work" << std::endl;
 }
