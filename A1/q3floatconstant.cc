@@ -124,7 +124,6 @@ int main( int argc, char * argv[] ) {
     } // try
 
     char ch;
-    string line;
     for ( ;; ) { // Loop through every line in the file
         if ( infile->fail() ) { break; }
 
@@ -132,7 +131,6 @@ int main( int argc, char * argv[] ) {
 
         bool isOnlyChar = true;                          // Check if line is only '\n'
         std::string numberSoFar = "";
-        char ch;
         for ( ;; ) {                                     // Loop through each character on each line
 
             if ( infile->fail() ) { break; }
