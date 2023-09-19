@@ -132,7 +132,7 @@ int main( int argc, char * argv[] ) {
 	} // for
 
 	printf("randcnt %d\n", randcnt);
-	printf("normal result %f exception results %d %d %d\n", rv, ev1, ev2, ev3);
+	printf("normal result %g exception results %d %d %d\n", rv, ev1, ev2, ev3);
 	printf("calls %d exceptions %d %d %d\n", rc, ec1, ec2, ec3);
 
 }
