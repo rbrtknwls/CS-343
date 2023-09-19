@@ -169,7 +169,7 @@ int main( int argc, char * argv[] ) {
 
                 for ( ;; ) {
                     if (ch == '\n' || ch == FloatConstant::EOT) { break; }
-                    infile->get(ch)
+                    infile->get(ch);
                     std::cout << ch << std::endl;
                 }
 
