@@ -31,10 +31,11 @@ void printEmptyLine() {
  * print out the error output formatted to show the
  */
 void printError(string *str, unsigned int i ) {
-    cout << "\"" << *str << "\" : " << str->substr(0, i) << " no";                     // Print re values we have already read in
-    if ( i + 1 < str->length() ) {
+    cout << "\"" << *str << "\" : \"" << str->substr(0, i) << "\" no";          // Print values we have read in
+    if ( i + 1 < str->length() ) {                                              // if left over values print them
         cout << " -- extraneous characters \"" << str->substr(i, string::npos) << "\"";
     }
+    cout << endl;                                                               // create a new line
 }
 
 void FloatConstant::main() {
@@ -172,8 +173,6 @@ int main( int argc, char * argv[] ) {
                 break;
 
             } catch ( FloatConstant::Error & error ) {
-                std::cout << "ERROR" << std::endl;
-
                 printError( &line, i );
                 break;
             }
