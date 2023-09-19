@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#include "/u/r2knowles/CS-343/A1/q3floatconstant.h"
+#include "q3floatconstant.h"
 
 using namespace std;
 
