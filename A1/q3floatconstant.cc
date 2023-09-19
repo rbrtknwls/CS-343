@@ -127,8 +127,8 @@ int main( int argc, char * argv[] ) {
     string line;
     for ( ;; ) { // Loop through file
         if ( infile->fail() ) { break; }
-        
-        infile.get(ch);
+
+        *infile->get(ch);
 
 
         if (ch == '\n') {
