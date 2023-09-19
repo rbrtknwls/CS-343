@@ -105,16 +105,16 @@ int main( int argc, char * argv[] ) {
     try {
         switch ( argc ) {
             case 2:
-                try {										// open input file first as output creates file
+                try {								    // open input file first as output creates file
                     infile = new ifstream( argv[1] );
-                } catch( uFile::Failure & ) {				// open failed ?
+                } catch( uFile::Failure & ) {		    // open failed ?
                     cerr << "Error! Could not open input file \"" << argv[3] << "\"" << endl;
                     throw cmd_error();
                 } // try
                 // FALL THROUGH
             case 1:										// defaults
                 break;
-            default:										// wrong number of options
+            default:								    // wrong number of options
                 throw cmd_error();
         } // switch
     } catch( ... ) {									// catch any
@@ -131,13 +131,17 @@ int main( int argc, char * argv[] ) {
         //FloatConstant floatConstant;
 
 
-        for ( ;; ) { // Loop through each character on each line
+        for ( ;; ) {                                     // Loop through each character on each line
 
             if ( infile->fail() ) { break; }
 
             infile->get(ch);
+            bool isOnlyChar = true;                      // Check if line is only '\n'
 
-            if (ch == '\n') { // End of Line
+            if (ch == '\n') {                            // End of Line
+                if (isOnlyChar) {
+                    cout << "Warning! Blank line." << endl;
+                }
                 std::cout << " OVER\n";
                 break;
             } // if
