@@ -31,9 +31,9 @@ void printEmptyLine() {
  * print out the error output formatted to show the
  */
 void printError(string *str, int i ) {
-    cout << "\"" << *str << "\" : " << str.substr(0, i) << " no";                     // Print re values we have already read in
-    if (i < *str->length() - 1) {
-        cout << " -- extraneous characters \"" << str.substr(i, string::npos) << "\"";
+    cout << "\"" << *str << "\" : " << str->substr(0, i) << " no";                     // Print re values we have already read in
+    if (i < str->length() - 1) {
+        cout << " -- extraneous characters \"" << str->substr(i, string::npos) << "\"";
     }
     std::cout <<
 
@@ -153,19 +153,16 @@ int main( int argc, char * argv[] ) {
         if ( infile->fail() ) { break; }
 
         // If line starts with new line, its empty so read it in and skip
-        if ( line == "") {
+        if ( line == "" ) {
             printEmptyLine();
             continue;
         } // if
 
 
+        line += FloatConstant::EOT;                                                   // Add end of text character
 
         FloatConstant floatConstant;
-        int i = 0;
-        char ch;
-        for ( ;; ) {                                     // Loop through each character on each line
-
-            if (line[i] == '\n') { line[i] = FloatConstant::EOT; }  // Replace new line with new constant
+        for ( int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
                 _Enable {
@@ -179,10 +176,8 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
 
-                printError( line, i )
+                printError( &line, i )
                 break;
-
-
             }
 
         } // for
