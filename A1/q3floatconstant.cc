@@ -25,6 +25,20 @@ void printEmptyLine() {
     cout << "\"\" : Warning! Blank line." << endl;
 }
 
+/*
+ * Helper Function #3 (printError)
+ * Takes in the input stream and the current amount of characters read in, will then
+ * print out the error output formatted to show the
+ */
+void printError(string *str, int i ) {
+    std::cout << "\"" << *str << "\" : " << str.substr(0, i) << " no";                     // Print re values we have already read in
+    if (i < *str->length() - 1) {
+        std::cout << " -- extraneous characters \"" << str.substr(i, string::npos) << "\"";
+    }
+    std::cout <<
+
+}
+
 void FloatConstant::main() {
 
     // Process sign (if it exists)
@@ -131,32 +145,31 @@ int main( int argc, char * argv[] ) {
         exit( EXIT_FAILURE );							// TERMINATE
     } // try
 
-    char ch;
     for ( ;; ) { // Loop through every line in the file
 
-        // If line starts with new line, its empty so read it in and skip
-        if ( infile->peek() == '\n') {
-            printEmptyLine();
-            infile->get(ch);                             // Clear the character from the stream
-            continue;
-        } // if
+        string line;
+        getline(*infile, line);
 
         if ( infile->fail() ) { break; }
 
-        FloatConstant floatConstant;
+        // If line starts with new line, its empty so read it in and skip
+        if ( line == "") {
+            printEmptyLine();
+            continue;
+        } // if
 
-        std::string numberSoFar = "";
+
+
+        FloatConstant floatConstant;
+        int i = 0;
+        char ch;
         for ( ;; ) {                                     // Loop through each character on each line
 
+            if (line[i] == '\n') { line[i] = FloatConstant::EOT; }  // Replace new line with new constant
 
-            infile->get(ch);
-            if (ch == '\n') { ch = FloatConstant::EOT; }  // Replace new line with new constant
-
-
-            numberSoFar += ch;
             try {
                 _Enable {
-                    floatConstant.next(ch);
+                    floatConstant.next(line[i++]);
                 } // Enable
 
             } catch ( FloatConstant::Match & match ) {
@@ -166,12 +179,7 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Error & error ) {
                 std::cout << "ERROR" << std::endl;
 
-                // Print the extra characters that were not needed
-                for ( ;; ) {
-                    if (ch == '\n' || ch == FloatConstant::EOT) { break; }
-                    infile->get(ch);
-                    std::cout << ch << std::endl;
-                }
+                printError( line, i )
                 break;
 
 
