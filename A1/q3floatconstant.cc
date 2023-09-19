@@ -93,7 +93,12 @@ void FloatConstant::next(char c) {
         cout << "MATCH" << endl;
     } _CatchResume ( Error &er ) {
         cout << "ERROR" << endl;
+    } catch ( Match &mc ) {
+        cout << "MATCH" << endl;
+    } catch ( Error &er ) {
+        cout << "ERROR" << endl;
     }
+
 }
 
 int main( int argc, char * argv[] ) {
