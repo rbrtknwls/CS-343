@@ -108,7 +108,8 @@ void FloatConstant::main() {
             suspend();
         } // while
 
-        //if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
+        if ( !isExponentPositive ) { exponent *= -1; }
+        
         totalFloat *= pow(10, exponent);
 
     }
