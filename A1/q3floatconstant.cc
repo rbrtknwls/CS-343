@@ -180,6 +180,7 @@ int main( int argc, char * argv[] ) {
         for ( unsigned int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
+                cout << line[i] << endl;
                 _Enable {
                     floatConstant.next(line[i++]);
                 } // Enable
