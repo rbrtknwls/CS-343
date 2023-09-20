@@ -50,7 +50,7 @@ void printMatch( string *line, double match ) {
 
 void FloatConstant::main() {
     // Start by assuming we haven't seen a ./E/e
-    notseenExpoOrFloat = true;
+    seenExpoOrFloat = false;
 
     // Process sign (if it exists)
     if (ch == '+') { isFloatPositive = false; suspend(); }
@@ -71,7 +71,7 @@ void FloatConstant::main() {
      * in belong to the mantissa, therefore we will keep reading them in
      */
     if ( ch == '.' ) {
-        notseenExpoOrFloat = false;
+        seenExpoOrFloat = true;
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
@@ -89,7 +89,7 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
-        notseenExpoOrFloat = false;
+        seenExpoOrFloat = true;
         suspend();
 
         // Process exponent sign (if it exists)
@@ -112,8 +112,11 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        cout << notseenExpoOrFloat << endl;
-        if ( !notseenExpoOrFloat ) { _Resume Match(totalFloat) _At resumer(); suspend(); }
+        if ( seenExpoOrFloat ) {
+            if ( !isFloatPositive ) { totalFloat *= -1; }                          // make the value negative
+            _Resume Match(totalFloat) _At resumer();
+            suspend();
+        }
         _Resume Error() _At resumer();
         suspend();
     } // if
