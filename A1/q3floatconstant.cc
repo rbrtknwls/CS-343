@@ -79,7 +79,7 @@ void FloatConstant::main() {
             suspend();
         } // while
 
-        if ( mantissa == 0 ) { throw Error(); }                                   // Mantissa is all zeros
+        //if ( mantissa == 0 ) { throw Error(); }                                   // Mantissa is all zeros
         totalFloat += mantissa;
 
     } // if
@@ -101,7 +101,7 @@ void FloatConstant::main() {
             suspend();
         } // while
 
-        if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
+        //if ( exponent == 0 ) { throw Error(); }                                   // Exponent is all zeros
         totalFloat *= pow(10, exponent);
 
     }

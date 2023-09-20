@@ -1,0 +1,38 @@
+Test #1 Input:
+adaf
+vafada
+
+ada
+131
+
+-.5
+
+Test #1 Output:
+"adaf" : "a" no -- extraneous characters "daf"
+"vafada" : "v" no -- extraneous characters "afada"
+"" : Warning! Blank line.
+"ada" : "a" no -- extraneous characters "da"
+"131" : "131" no
+"" : Warning! Blank line.
+"-.5" : "-.5" yes, value -0.5
+
+Test #2 Input:
++12.E-2
+-12.5
+12.
+-.5
+.1e+123
+-12.5F
+002.l
++01234567890123456.
+
+a
++.
+ 12.0
+12.0
+1.2.0a
+- 12.5F
+123.ee
+0123456789.01234567E-0124
+
+Test #2 Output:
