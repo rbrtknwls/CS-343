@@ -102,10 +102,12 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
+        // if we only have a (e/E) with no digits then we have an error
+        if ( numDigits == 0 ) { _Resume Error() _At resumer(); suspend(); }
         suspend();
 
         // if we only have a (e/E)EOT then we have an error
-        if ( numDigits == 0 && ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
+        if (ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
         numDigits = 0;
 
         // Process exponent sign (if it exists)

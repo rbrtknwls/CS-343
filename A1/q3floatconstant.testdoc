@@ -1,38 +1,88 @@
-Test #1 Input:
-adaf
-vafada
+The tests are seperated into two sections, the happy path (tests for expected input)
+and the sad path (tests for input that we expect to fail). For the unhappy path we will make
+sure to have tests for cover every possible _Resume():
 
-ada
-131
 
--.5
+==================  HAPPY PATH  ==================
 
-Test #1 Output:
-"adaf" : "a" no -- extraneous characters "daf"
-"vafada" : "v" no -- extraneous characters "afada"
-"" : Warning! Blank line.
-"ada" : "a" no -- extraneous characters "da"
-"131" : "131" no
-"" : Warning! Blank line.
-"-.5" : "-.5" yes, value -0.5
+Test #0 ( Positive / No Decimal / No Exponent )
+    Input: 7.0
+    Output: "7.0" : "7.0" yes, value 7
 
-Test #2 Input:
-+12.E-2
--12.5
-12.
--.5
-.1e+123
--12.5F
-002.l
-+01234567890123456.
+Test #1 ( Positive / No Decimal / No Exponent )
+    Input: +12.0
+    Output: "+12.0" : "+12.0" yes, value 12
 
-a
-+.
- 12.0
-12.0
-1.2.0a
-- 12.5F
-123.ee
-0123456789.01234567E-0124
+Test #2 ( Negative / No Decimal / No Exponent )
+    Input: -12.0
+    Output: "-12.0" : "-12.0" yes, value -12
 
-Test #2 Output:
+Test #3 ( Positive / With Decimal / No Exponent )
+    Input: 12.5463
+    Output: "12.5463" : "12.5463" yes, value 12.5463
+
+Test #4 ( Negative / With Decimal / No Exponent )
+    Input: -3.213141
+    Output: "-3.213141" : "-3.213141" yes, value -3.213141
+
+Test #5 ( Positive / No Decimal / Positive Exponent )
+    Input: 7E+13
+    Output: "7E+13" : "7E+13" yes, value 70000000000000
+
+Test #6 ( Positive / No Decimal / Negative Exponent )
+    Input: +7E-2
+    Output: "+7E-2" : "+7E-2" yes, value 0.07000000000000001
+
+Test #7 ( Negative / No Decimal / Positive Exponent )
+    Input: -176E21
+    Output: "-176E21" : "-176E21" yes, value -1.76e+23
+
+Test #8 ( Negative / No Decimal / Negative Exponent )
+    Input: -122E-2
+    Output: "-122E-2" : "-122E-2" yes, value -1.22
+
+Test #9 ( Positive / Yes Decimal / Positive Exponent )
+    Input: 55.783E10
+    Output: "55.783E10" : "55.783E10" yes, value 557830000000
+
+Test #10 ( Negative / Yes Decimal / Negative Exponent )
+    Input: -213.11E-2
+    Output: "-213.11E-2" : "-213.11E-2" yes, value -2.1311
+
+==================  BAD PATH  ==================
+
+Test #11 ( Empty line )
+    Input:
+    Output: "" : Warning! Blank line.
+
+Test #12 ( Only digit )
+    Input: 1341
+    Output: "1341" : "1341" no
+
+Test #13 ( Only letter )
+    Input: a
+    Output: "a" : "a" no
+
+Test #14 ( Only letters )
+    Input: abcd
+    Output: "abcd" : "a" no -- extraneous characters "bcd"
+
+Test #15 ( Valid sequence with letter at end )
+    Input: 123.12a
+    Output: "123.12a" : "123.12a" no
+
+Test #16 ( Valid sequence with letter in the middle )
+    Input: 123a.12
+    Output: "123a.12" : "123a" no -- extraneous characters ".12"
+
+Test #17 ( No digits only characters )
+    Input: +.
+    Output: "+." : "+." no
+
+    Input: -.
+    Output: "-." : "-." no
+
+    Input: E1
+    Output: "." : "." no
+
+
