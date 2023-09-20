@@ -107,7 +107,7 @@ void FloatConstant::main() {
 
         while ( isdigit(ch) ) {
             if ( numDigits++ > 3 ) { _Resume Error() _At resumer(); suspend(); }   // if too many digits, throw error
-            exponent += exponent*10 + charToInt(ch);
+            exponent = exponent*10 + charToInt(ch);
             suspend();
         } // while
 
