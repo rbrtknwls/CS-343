@@ -83,7 +83,7 @@ void FloatConstant::main() {
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
-            mantissa += charToInt(ch) / pow(10, numberOfDigits++);
+            mantissa += charToInt(ch) / pow(10, ++numberOfDigits);
             suspend();
         } // while
 
