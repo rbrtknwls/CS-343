@@ -94,6 +94,8 @@ Test #19 ( Too many mantisa digits split across period )
     Output: "12381419541.21314141" : "12381419541.213141" no -- extraneous characters "41"
 
 Test #20 ( Too many exponents )
+    Input: 1E1234
+    Output: "1E1234" : "1E1234" no
 
 
 
