@@ -85,8 +85,16 @@ Test #17 ( No digits only characters )
     Input: E1
     Output: "E1" : "E" no -- extraneous characters "1"
 
-Test #18 ( Too many Mantisa Digits )
+Test #18 ( Too many mantisa digits )
     Input: 123132131412414141.0
+    Output: "123132131412414141.0" : "12313213141241414" no -- extraneous characters "1.0"
+
+Test #19 ( Too many mantisa digits split across period )
+    Input: 12381419541.21314141
+    Output: "12381419541.21314141" : "12381419541.213141" no -- extraneous characters "41"
+
+Test #20 ( Too many exponents )
+
 
 
 

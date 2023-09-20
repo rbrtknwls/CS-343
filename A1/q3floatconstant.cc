@@ -115,7 +115,7 @@ void FloatConstant::main() {
         if (ch == '-') { isExponentPositive = false; suspend(); }
 
         while ( isdigit(ch) ) {
-            if ( numDigits++ > 3 ) { _Resume Error() _At resumer(); suspend(); }   // if too many digits, throw error
+            if ( numDigits++ >= 3 ) { _Resume Error() _At resumer(); suspend(); }   // if too many digits, throw error
             exponent = exponent*10 + charToInt(ch);
             suspend();
         } // while
