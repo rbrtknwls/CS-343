@@ -118,7 +118,9 @@ void FloatConstant::main() {
 
         _Resume Match(totalFloat) _At resumer();
     } // if
+
     cout << "E" << endl;
+
     // no valid possible match left, therefore throw an error
     _Resume Error() _At resumer();
 }
@@ -182,7 +184,6 @@ int main( int argc, char * argv[] ) {
                 } // Enable
 
             } catch ( FloatConstant::Match & match ) {
-                cout << "me" << endl;
                 printMatch( &line, match.value );
                 break;
 
@@ -190,8 +191,10 @@ int main( int argc, char * argv[] ) {
                 printError( &line, i );
                 break;
             }
+            std::cout << "A" << std::endl;
 
         } // for
+        std::cout << "E" << std::endl;
     } // for
 
     if ( infile != &cin ) delete infile;
