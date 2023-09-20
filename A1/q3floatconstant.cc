@@ -27,15 +27,25 @@ void printEmptyLine() {
 
 /*
  * Helper Function #3 (printError)
- * Takes in the input stream and the current amount of characters read in, will then
- * print out the error output formatted to show the
+ * Takes in the current line and the position of the last index, will then
+ * print out the error output formatted.
  */
-void printError(string *str, unsigned int i ) {
+void printError( string *str, unsigned int i ) {
     cout << "\"" << *str << "\" : \"" << str->substr(0, i) << "\" no";          // Print values we have read in
     if ( i + 1 < str->length() ) {                                              // if left over values print them
         cout << " -- extraneous characters \"" << str->substr(i, string::npos) << "\"";
     }
     cout << endl;                                                               // create a new line
+}
+
+/*
+ * Helper Function #4 (printMatch)
+ * Takes in the current line and the double we get from the match printing out the
+ * output to be formatted correctly.
+ */
+void printMatch( string *line, double match ) {
+    cout << "\"" << *line << "\" : \"" << *line << "\" yes, value ";            // Should be the same for a match
+    cout << match << endl;                                                      // print the matching value
 }
 
 void FloatConstant::main() {
@@ -167,7 +177,7 @@ int main( int argc, char * argv[] ) {
                 } // Enable
 
             } catch ( FloatConstant::Match & match ) {
-                std::cout << "match" << std::endl;
+                printMatch( &line, match.value );
                 break;
 
             } catch ( FloatConstant::Error & error ) {
