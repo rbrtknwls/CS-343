@@ -174,7 +174,6 @@ int main( int argc, char * argv[] ) {
         for ( unsigned int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
-                cout << line[i] << endl;
                 _Enable {
                     floatConstant.next(line[i++]);
                 } // Enable
@@ -187,10 +186,8 @@ int main( int argc, char * argv[] ) {
                 printError( &line, i );
                 break;
             }
-            std::cout << i << std::endl;
 
         } // for
-        std::cout << "E" << std::endl;
     } // for
 
     if ( infile != &cin ) delete infile;
