@@ -118,7 +118,7 @@ void FloatConstant::main() {
 
         _Resume Match(totalFloat) _At resumer();
     } // if
-
+    cout << "E" << endl;
     // no valid possible match left, therefore throw an error
     _Resume Error() _At resumer();
 }
