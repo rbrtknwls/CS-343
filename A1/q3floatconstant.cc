@@ -49,11 +49,11 @@ void printMatch( string *line, double match ) {
 }
 
 void FloatConstant::main() {
-
-    cout << notseenExpoOrFloat << endl;
+    // Start by assuming we haven't seen a ./E/e
+    notseenExpoOrFloat = true;
 
     // Process sign (if it exists)
-    if (ch == '+') { suspend(); }
+    if (ch == '+') { isFloatPositive = false; suspend(); }
     if (ch == '-') { isFloatPositive = false; suspend(); }
 
     /*
@@ -110,8 +110,6 @@ void FloatConstant::main() {
         suspend();
     } // if
 
-    cout << notseenExpoOrFloat << endl;
-
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
         cout << notseenExpoOrFloat << endl;
@@ -122,10 +120,6 @@ void FloatConstant::main() {
 
     // no valid possible match left, therefore throw an error
     _Resume Error() _At resumer();
-}
-
-void FloatConstant::floatConstant() {
-    cout << "hi" << endl;
 }
 
 void FloatConstant::next(char c) {
