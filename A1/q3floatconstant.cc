@@ -72,8 +72,8 @@ void FloatConstant::main() {
     // If we have only digits that's not a valid float, so if we get EOT now is an error
     if ( ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
 
+    if ( !isFloatPositive ) { characteristic *= -1; }                             // make the value negative
     totalFloat += characteristic;                                                 // once done reading, move to result
-    if ( !isFloatPositive ) { totalFloat *= -1; }                                 // make the value negative
 
     /*
      * If we run into a '.' we can assume that the next series of digits we will be reading
@@ -87,7 +87,7 @@ void FloatConstant::main() {
             suspend();
         } // while
 
-        //if ( mantissa == 0 ) { throw Error(); }                                   // Mantissa is all zeros
+        if ( !isFloatPositive ) { mantissa *= -1; }                                // Mantissa is all zeros
         totalFloat += mantissa;
 
     } // if
@@ -109,7 +109,7 @@ void FloatConstant::main() {
         } // while
 
         if ( !isExponentPositive ) { exponent *= -1; }
-        
+
         totalFloat *= pow(10, exponent);
 
     }
