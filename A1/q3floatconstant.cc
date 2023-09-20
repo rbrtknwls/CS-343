@@ -111,9 +111,11 @@ void FloatConstant::main() {
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
         if (!notseenExpoOrFloat) { _Resume Error() _At resumer(); }
+
         cout << "mantissa: " << mantissa << endl;
         cout << "characteristic: " << characteristic << endl;
         cout << "exponent: " << exponent << endl;
+
         _Resume Match(totalFloat) _At resumer();
     } // if
 
@@ -180,6 +182,7 @@ int main( int argc, char * argv[] ) {
                 } // Enable
 
             } catch ( FloatConstant::Match & match ) {
+                cout << "me" << endl;
                 printMatch( &line, match.value );
                 break;
 
