@@ -7,8 +7,8 @@ _Coroutine FloatConstant {
     bool isExponentPositive;                            // bool for if the exponent is positive
 
     double mantissa;                                    // holds the mantissa of the float
-    int characteristic;                                 // holds the characteristic of the float
-    int exponent;                                       // holds the exponent of the float
+    long characteristic;                                // holds the characteristic of the float
+    long exponent;                                      // holds the exponent of the float
     double totalFloat;                                  // holds the summation of our value to return
 
     int numberOfDigits;                                 /* stores how many digits have currently been read into
