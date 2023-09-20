@@ -49,8 +49,8 @@ void printMatch( string *line, double match ) {
 }
 
 void FloatConstant::main() {
-    // Initialize our values during our at()
-    isFloatPositive = true; isExponentPositive = true;
+    // Initialize our values during our next()
+    isFloatPositive = true; isExponentPositive = true; numberOfDigits = 0;
     mantissa = 0; characteristic = 0; exponent = 0; totalFloat = 0;             // Set the required state values
 
 
