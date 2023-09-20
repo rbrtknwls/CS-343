@@ -110,16 +110,15 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        if (!notseenExpoOrFloat) { _Resume Error() _At resumer(); }
+        if (!notseenExpoOrFloat) { _Resume Error() _At resumer(); break; }
 
         cout << "mantissa: " << mantissa << endl;
         cout << "characteristic: " << characteristic << endl;
         cout << "exponent: " << exponent << endl;
 
         _Resume Match(totalFloat) _At resumer();
+        break;
     } // if
-
-    cout << "E" << endl;
 
     // no valid possible match left, therefore throw an error
     _Resume Error() _At resumer();
