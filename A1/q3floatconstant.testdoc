@@ -83,6 +83,10 @@ Test #17 ( No digits only characters )
     Output: "-." : "-." no
 
     Input: E1
-    Output: "." : "." no
+    Output: "E1" : "E" no -- extraneous characters "1"
+
+Test #18 ( Too many Mantisa Digits )
+    Input: 123132131412414141.0
+
 
 

@@ -64,7 +64,7 @@ void FloatConstant::main() {
      * need to flip them.
     */
     while ( isdigit(ch) ) {
-        if ( numDigits++ > 16 ) { _Resume Error() _At resumer(); suspend(); }     // if too many digits, throw error
+        if ( numDigits++ >= 16 ) { _Resume Error() _At resumer(); suspend(); }     // if too many digits, throw error
         characteristic = characteristic*10 + charToInt(ch);
         suspend();                                                                // wait to read in the next value
     } // while
@@ -87,7 +87,7 @@ void FloatConstant::main() {
 
         // keep reading in values
         while ( isdigit(ch) ) {
-            if ( numDigits++ > 16 ) { _Resume Error() _At resumer(); suspend(); } // if too many digits, throw error
+            if ( numDigits++ >= 16 ) { _Resume Error() _At resumer(); suspend(); } // if too many digits, throw error
             mantissa += charToInt(ch) / pow(10, ++numberOfDigits);
             suspend();
         } // while
