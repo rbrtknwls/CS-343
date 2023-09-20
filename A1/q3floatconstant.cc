@@ -3,10 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
-
-#include <exception>
-#include <typeinfo>
-#include <stdexcept>
+#include <iomanip>
 
 #include "q3floatconstant.h"
 
@@ -45,7 +42,7 @@ void printError( string *str, unsigned int i ) {
  */
 void printMatch( string *line, double match ) {
     cout << "\"" << *line << "\" : \"" << *line << "\" yes, value ";            // Should be the same for a match
-    cout << match << endl;                                                      // print the matching value
+    cout << setprecision(16) << match << endl;                                                      // print the matching value
 }
 
 void FloatConstant::main() {
@@ -53,6 +50,8 @@ void FloatConstant::main() {
     isFloatPositive = true; isExponentPositive = true; numberOfDigits = 0;
     mantissa = 0; characteristic = 0; exponent = 0; totalFloat = 0;             // Set the required state values
 
+    // To be used to count how many digits have been read in
+    int numDigits = 0;
 
 
     // Process sign (if it exists)
@@ -65,6 +64,7 @@ void FloatConstant::main() {
      * need to flip them.
     */
     while ( isdigit(ch) ) {
+        if ( numDigits++ > 16 ) { _Resume Error() _At resumer(); suspend(); }     // if too many digits, throw error
         characteristic = characteristic*10 + charToInt(ch);
         suspend();                                                                // wait to read in the next value
     } // while
@@ -83,11 +83,12 @@ void FloatConstant::main() {
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
+            if ( numDigits++ > 16 ) { _Resume Error() _At resumer(); suspend(); } // if too many digits, throw error
             mantissa += charToInt(ch) / pow(10, ++numberOfDigits);
             suspend();
         } // while
 
-        if ( !isFloatPositive ) { mantissa *= -1; }                                // Mantissa is all zeros
+        if ( !isFloatPositive ) { mantissa *= -1; }                               // Mantissa is all zeros
         totalFloat += mantissa;
 
     } // if
@@ -97,6 +98,7 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
+        numDigits = 0;
         suspend();
 
         // Process exponent sign (if it exists)
@@ -104,6 +106,7 @@ void FloatConstant::main() {
         if (ch == '-') { isExponentPositive = false; suspend(); }
 
         while ( isdigit(ch) ) {
+            if ( numDigits++ > 3 ) { _Resume Error() _At resumer(); suspend(); }   // if too many digits, throw error
             exponent += exponent*10 + charToInt(ch);
             suspend();
         } // while
