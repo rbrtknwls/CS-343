@@ -114,7 +114,7 @@ void FloatConstant::main() {
         if ( !isExponentPositive ) { exponent *= -1; }
 
         totalFloat *= pow(10, exponent);
-
+        cout << exponent << endl;
     }
 
     if (ch == 'f' || ch == 'F' || ch == 'l' || ch == 'L') {
