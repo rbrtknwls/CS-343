@@ -124,6 +124,10 @@ void FloatConstant::main() {
     _Resume Error() _At resumer();
 }
 
+void FloatConstant::floatConstant() {
+    cout << "hi" << endl;
+}
+
 void FloatConstant::next(char c) {
     ch = c; // Read in the character;
     resume();
