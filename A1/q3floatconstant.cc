@@ -176,6 +176,7 @@ int main( int argc, char * argv[] ) {
         line += FloatConstant::EOT;                                                   // Add end of text character
 
         FloatConstant floatConstant;
+        cout << line << endl;
         for ( unsigned int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
@@ -191,7 +192,7 @@ int main( int argc, char * argv[] ) {
                 printError( &line, i );
                 break;
             }
-            std::cout << "A" << std::endl;
+            std::cout << i << std::endl;
 
         } // for
         std::cout << "E" << std::endl;
