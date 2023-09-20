@@ -111,9 +111,10 @@ void FloatConstant::main() {
     } // if
 
     cout << notseenExpoOrFloat << endl;
-    
+
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
+        cout << notseenExpoOrFloat << endl;
         if ( !notseenExpoOrFloat ) { _Resume Match(totalFloat) _At resumer(); suspend(); }
         _Resume Error() _At resumer();
         suspend();
