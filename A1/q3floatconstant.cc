@@ -82,6 +82,10 @@ void FloatConstant::main() {
     if ( ch == '.' ) {
         suspend();                                                                // read in the separator
 
+        // if we only have a .EOT then we have an error
+        if ( numDigits == 0 && ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
+
+        // keep reading in values
         while ( isdigit(ch) ) {
             if ( numDigits++ > 16 ) { _Resume Error() _At resumer(); suspend(); } // if too many digits, throw error
             mantissa += charToInt(ch) / pow(10, ++numberOfDigits);
@@ -98,8 +102,11 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
-        numDigits = 0;
         suspend();
+
+        // if we only have a (e/E)EOT then we have an error
+        if ( numDigits == 0 && ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
+        numDigits = 0;
 
         // Process exponent sign (if it exists)
         if (ch == '+') { isExponentPositive = true; suspend(); }
@@ -195,7 +202,7 @@ int main( int argc, char * argv[] ) {
             } catch ( FloatConstant::Error & error ) {
                 printError( &line, i );
                 break;
-            }
+            } // catch
 
         } // for
     } // for
