@@ -50,6 +50,8 @@ void printMatch( string *line, double match ) {
 
 void FloatConstant::main() {
 
+    cout << notseenExpoOrFloat << endl;
+
     // Process sign (if it exists)
     if (ch == '+') { suspend(); }
     if (ch == '-') { isFloatPositive = false; suspend(); }
@@ -170,7 +172,6 @@ int main( int argc, char * argv[] ) {
         line += FloatConstant::EOT;                                                   // Add end of text character
 
         FloatConstant floatConstant;
-        cout << line << endl;
         for ( unsigned int i = 0 ; i < line.length() ; ) {                                     // Loop through each character on each line
 
             try {
