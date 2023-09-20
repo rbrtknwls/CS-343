@@ -49,14 +49,14 @@ void printMatch( string *line, double match ) {
 }
 
 void FloatConstant::main() {
-    // Start by assuming we haven't seen a ./E/e
-    seenExpoOrFloat = false;
+    // Initialize our values during our at()
+    isFloatPositive = true; isExponentPositive = true;
     mantissa = 0; characteristic = 0; exponent = 0; totalFloat = 0;             // Set the required state values
 
 
 
     // Process sign (if it exists)
-    if (ch == '+') { isFloatPositive = false; suspend(); }
+    if (ch == '+') { isFloatPositive = true; suspend(); }
     if (ch == '-') { isFloatPositive = false; suspend(); }
 
     /*
@@ -69,7 +69,10 @@ void FloatConstant::main() {
         suspend();                                                                // wait to read in the next value
     } // while
 
-    totalFloat += characteristic;
+    // If we have only digits that's not a valid float, so if we get EOT now is an error
+    if ( ch == EOT ) { _Resume Error() _At resumer(); suspend(); }
+
+    totalFloat += characteristic;                                                 // once done reading, move to result
     if ( !isFloatPositive ) { totalFloat *= -1; }                                 // make the value negative
 
     /*
@@ -77,7 +80,6 @@ void FloatConstant::main() {
      * in belong to the mantissa, therefore we will keep reading them in
      */
     if ( ch == '.' ) {
-        seenExpoOrFloat = true;
         suspend();                                                                // read in the separator
 
         while ( isdigit(ch) ) {
@@ -95,11 +97,10 @@ void FloatConstant::main() {
      * exponent. Therefore, we will keep reading in values until we run out of digits.
      */
     if ( ch == 'e' || ch == 'E' ) {
-        seenExpoOrFloat = true;
         suspend();
 
         // Process exponent sign (if it exists)
-        if (ch == '+') { suspend(); }
+        if (ch == '+') { isExponentPositive = true; suspend(); }
         if (ch == '-') { isExponentPositive = false; suspend(); }
 
         while ( isdigit(ch) ) {
@@ -118,11 +119,7 @@ void FloatConstant::main() {
 
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
-        if ( seenExpoOrFloat ) {
-            _Resume Match(totalFloat) _At resumer();
-            suspend();
-        }
-        _Resume Error() _At resumer();
+        _Resume Match(totalFloat) _At resumer();
         suspend();
     } // if
 
