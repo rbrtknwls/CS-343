@@ -51,6 +51,9 @@ void printMatch( string *line, double match ) {
 void FloatConstant::main() {
     // Start by assuming we haven't seen a ./E/e
     seenExpoOrFloat = false;
+    mantissa = 0; characteristic = 0; exponent = 0; totalFloat = 0;             // Set the required state values
+
+
 
     // Process sign (if it exists)
     if (ch == '+') { isFloatPositive = false; suspend(); }
@@ -63,8 +66,11 @@ void FloatConstant::main() {
     */
     while ( isdigit(ch) ) {
         characteristic = characteristic*10 + charToInt(ch);
-        suspend();                                                               // Wait to read in the next value
+        suspend();                                                                // wait to read in the next value
     } // while
+
+    totalFloat += characteristic;
+    if ( !isFloatPositive ) { totalFloat *= -1; }                                 // make the value negative
 
     /*
      * If we run into a '.' we can assume that the next series of digits we will be reading
@@ -113,7 +119,6 @@ void FloatConstant::main() {
     // if we only have EOT left then we parsed successfully
     if ( ch == EOT ) {
         if ( seenExpoOrFloat ) {
-            if ( !isFloatPositive ) { totalFloat *= -1; }                          // make the value negative
             _Resume Match(totalFloat) _At resumer();
             suspend();
         }
