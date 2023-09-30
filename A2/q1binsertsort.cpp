@@ -14,8 +14,10 @@ int main( int argc, char * argv[] ) {
     try {
         switch (argc) {
             case 2:
-                try {                                    // open input file first as output creates file
+                try {                                    // open input file first
+                    std::cout <<"HERE"
                     infile = new ifstream(argv[1]);
+                    std::cout <<"thre"
                 } catch (uFile::Failure &) {            // open failed ?
                     cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
                     throw cmd_error();
