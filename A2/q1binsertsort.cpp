@@ -40,7 +40,6 @@ template<typename T> void Binsertsort<T>::main() {
             }
         } catch ( Sentinel & sentinel ){
             _Resume Sentinel() _At less;
-            suspend();
             break;
         }
 
@@ -55,13 +54,14 @@ template<typename T> void Binsertsort<T>::main() {
             }
         } catch ( Sentinel & sentinel ){
             //std::cout << pivot << " L Child Done..." << std::endl;
-            _Resume Sentinel() _At more;
+            suspend();
             break;
         }
     }
 
     value = pivot;
     suspend();
+    _Resume Sentinel() _At more;
 
     for ( ;; ) {
         try {
@@ -137,6 +137,7 @@ int main( int argc, char * argv[] ) {
         }
 
         _Resume Binsertsort<int>::Sentinel() _At tree;
+
         for (int i = 0; i < numberOfValuesToSort; i++) {
             std::cout << tree.retrieve() << std::endl;
         }
