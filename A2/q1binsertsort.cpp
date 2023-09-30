@@ -55,6 +55,7 @@ template<typename T> void Binsertsort<T>::main() {
             }
         } catch ( Sentinel & sentinel ){
             std::cout << pivot << " L Child Done..." << std::endl;
+            _Resume Sentinel() _At more;
             break;
         }
     }
