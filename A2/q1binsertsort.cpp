@@ -20,8 +20,8 @@ template<typename T> void Binsertsort<T>::main() {
         }
     } catch (Sentinel & sentinel) {
         std::cout << "END: " << value << std::endl;
-        _Resume Sentinel() _At resumer();
         suspend();
+        _Resume Sentinel() _At resumer();
     }
 
     // Keep adding values to tree until we reach an exception
@@ -53,7 +53,6 @@ template<typename T> void Binsertsort<T>::main() {
                 suspend();
             }
         } catch ( Sentinel & sentinel ){
-            suspend();
             break;
         }
     }
