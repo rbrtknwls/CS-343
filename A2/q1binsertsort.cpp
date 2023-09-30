@@ -19,7 +19,7 @@ template<typename T> void Binsertsort<T>::main() {
             //    trigger an exception to its parent and return the value
         }
     } catch (Sentinel & sentinel) {
-
+        std::cout << "END!" << std::endl;
         suspend();
 
     }
@@ -47,7 +47,7 @@ template<typename T> void Binsertsort<T>::main() {
     }
 
     for ( ;; ) {
-        value = tree.value;
+        value = less.retrieve();
         suspend();
     }
 
