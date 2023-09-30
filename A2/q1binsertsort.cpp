@@ -34,13 +34,14 @@ int main( int argc, char * argv[] ) {
 
     for (;;) {
         int numberOfValuesToSort;
-         numberOfValuesToSort << *infile;
+        if ( !(infile >> numberOfValuesToSort) ) {
+            break
+        }
 
         for (int i = 0; i < numberOfValuesToSort; i++) {
             int currValue;
 
-             currValue << *infile;
+             infile >> currValue;
+             std::cout << currValue << std::endl;
         }
-    }
-}
 
