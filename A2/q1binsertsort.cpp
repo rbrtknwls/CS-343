@@ -136,7 +136,9 @@ int main( int argc, char * argv[] ) {
         }
 
         _Resume Binsertsort<int>::Sentinel() _At tree;
-        std::cout << tree.retrieve() << std::endl;
+        for (int i = 0; i < numberOfValuesToSort; i++) {
+            std::cout << tree.retrieve() << std::endl;
+        }
 
     }
 
