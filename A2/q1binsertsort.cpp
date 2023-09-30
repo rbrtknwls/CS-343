@@ -2,7 +2,9 @@
 #include <fstream>
 
 #include "q1binsertsort.h"
-using std;
+
+using namespace std;
+
 int main( int argc, char * argv[] ) {
 
     istream * infile = &cin;							// default value
