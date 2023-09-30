@@ -19,7 +19,8 @@ template<typename T> void Binsertsort<T>::main() {
             //    trigger an exception to its parent and return the value
         }
     } catch (Sentinel & sentinel) {
-        std::cout << "END!" << std::endl;
+        std::cout << "END!" << value << std::endl;
+        _Resume Sentinel() _At resumer();
         suspend();
 
     }
@@ -39,17 +40,42 @@ template<typename T> void Binsertsort<T>::main() {
 
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << pivot << " Starting Search..." << std::endl;
             _Resume Sentinel() _At less;
             break;
         }
 
     }
 
+    // Loop through left children
     for ( ;; ) {
-        value = less.retrieve();
-        suspend();
+        try {
+            _Enable{
+                value = less.retrieve();
+                suspend();
+            }
+        } catch ( Sentinel & sentinel ){
+            std::cout << pivot << " L Child Done..." << std::endl;
+            break;
+        }
     }
+
+    value = pivot;
+    suspend();
+
+    for ( ;; ) {
+        try {
+            _Enable{
+                value = more.retrieve();
+                suspend();
+            }
+        } catch ( Sentinel & sentinel ){
+            std::cout << pivot << " R Child Done..." << std::endl;
+            break;
+        }
+    }
+
+    // Raise an exception at anything that trys to reacd this node
+    _Resume Sentinel() _At resumer();
 
 
 
