@@ -62,8 +62,8 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
-    _Co
-    for (;;) {
+
+    for ( ;; ) {
         std::cout << "==== new run ====" << std::endl;
         int numberOfValuesToSort;
         if (!(*infile >> numberOfValuesToSort)) {
