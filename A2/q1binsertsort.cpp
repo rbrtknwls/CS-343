@@ -19,7 +19,7 @@ template<typename T> void Binsertsort<T>::main() {
             //    trigger an exception to its parent and return the value
         }
     } catch (Sentinel & sentinel) {
-        std::cout << "END!" << value << std::endl;
+        std::cout << "END: " << value << std::endl;
         _Resume Sentinel() _At resumer();
         suspend();
     }
@@ -64,10 +64,12 @@ template<typename T> void Binsertsort<T>::main() {
     _Resume Sentinel() _At more;
 
     for ( ;; ) {
+        value = more.retrieve();
         try {
             _Enable{
-                value = more.retrieve();
+
                 suspend();
+                
             }
         } catch ( Sentinel & sentinel ){
            // std::cout << pivot << " R Child Done..." << std::endl;
