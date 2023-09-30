@@ -124,31 +124,35 @@ int main( int argc, char * argv[] ) {
         if (!(*infile >> numberOfValuesToSort)) {
             break;
         }
+        
+        if (numberOfValuesToSort > 0) {
+            Binsertsort<int> tree;
 
-        Binsertsort<int> tree;
+            for (int i = 0; i < numberOfValuesToSort; i++) {
+                int currValue;
 
-        for (int i = 0; i < numberOfValuesToSort; i++) {
-            int currValue;
-
-            *infile >> currValue;
-            cout << currValue << " ";
-            tree.sort(currValue);
-        }
-        cout << endl;
-
-        _Resume Binsertsort<int>::Sentinel() _At tree;
-
-        for ( ;; ) {
-            try {
-                _Enable{
-                        cout << tree.retrieve() << " ";
-                }
-            } catch ( Binsertsort<int>::Sentinel & sentinel ) {
-                break;
+                *infile >> currValue;
+                cout << currValue << " ";
+                tree.sort(currValue);
             }
-        }
-        cout << endl;
+            cout << endl;
 
+            _Resume
+            Binsertsort<int>::Sentinel()
+            _At tree;
+
+            for (;;) {
+                try {
+                    _Enable{
+                            cout << tree.retrieve() << " ";
+                    }
+                } catch (Binsertsort<int>::Sentinel &sentinel) {
+                    cout << endl;
+                    break;
+                }
+            }
+            cout << endl;
+        }
     }
 
     if ( infile != &cin ) delete infile;
