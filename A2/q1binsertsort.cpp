@@ -5,6 +5,38 @@
 
 using namespace std;
 
+template<typename T> void Binsertsort<T>::main() {
+    Binsertsort<T> less;
+    Binsertsort<T> more;
+
+    std::cout << "value stored: " << value << std::endl;
+    pivot = value;
+    suspend();
+
+    for ( ;; ) {
+
+        if (value < pivot) {
+            less.sort(value);
+        } else {
+            more.sort(value)
+        }
+        suspend();
+
+    }
+
+}
+
+template<typename T> void Binsertsort<T>::sort( T value ) {                                          // value to be sorted
+    Binsertsort::value = value;
+    resume();
+}
+
+
+template<typename T> T Binsertsort<T>::retrieve() {                                                  // retrieve sorted value
+    resume();
+    return value;
+}
+
 int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;                            // default value
@@ -30,18 +62,21 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
+    _Co
     for (;;) {
-
+        std::cout << "==== new run ====" << std::endl;
         int numberOfValuesToSort;
         if (!(*infile >> numberOfValuesToSort)) {
             break;
         }
 
+        Binsertsort<int> tree;
+
         for (int i = 0; i < numberOfValuesToSort; i++) {
             int currValue;
 
             *infile >> currValue;
-            cout << currValue << endl;
+            tree.sort(currValue);
         }
 
     }

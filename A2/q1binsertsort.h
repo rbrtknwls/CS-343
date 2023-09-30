@@ -7,17 +7,13 @@
 
 template<typename T> _Coroutine Binsertsort {
     T value;
+    T pivot;
     void main();
-    public:
+   public:
     _Event Sentinel {};
-    void sort( T value ) {
-        Binsertsort::value = value;
-        resume();
-    }
-    T retrieve() {
-        resume();
-        return value;
-    }
+    Binsertsort();
+    void sort( T value );
+    T retrieve();
 };
 
 
