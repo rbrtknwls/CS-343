@@ -26,6 +26,9 @@ template<typename T> void Binsertsort<T>::main() {
 
 }
 
+template<typename T> Binsertsort<T>::Binsertsort() {}
+
+
 template<typename T> void Binsertsort<T>::sort( T value ) {                                          // value to be sorted
     Binsertsort::value = value;
     resume();
