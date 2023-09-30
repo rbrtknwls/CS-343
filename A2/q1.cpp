@@ -3,6 +3,6 @@
 //
 
 int main() {
-    
+
 }
 #include "q1.h"
