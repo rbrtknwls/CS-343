@@ -9,7 +9,7 @@ template<typename T> void Binsertsort<T>::main() {
     _Coroutine Binsertsort<T> less;
     _Coroutine Binsertsort<T> more;
 
-    std::cout << "value stored: " << value << std::endl;
+    //std::cout << "value stored: " << value << std::endl;
     pivot = value;
     suspend();
 
@@ -54,7 +54,7 @@ template<typename T> void Binsertsort<T>::main() {
                 suspend();
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << pivot << " L Child Done..." << std::endl;
+            //std::cout << pivot << " L Child Done..." << std::endl;
             _Resume Sentinel() _At more;
             break;
         }
@@ -70,7 +70,7 @@ template<typename T> void Binsertsort<T>::main() {
                 suspend();
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << pivot << " R Child Done..." << std::endl;
+           // std::cout << pivot << " R Child Done..." << std::endl;
             break;
         }
     }
