@@ -9,8 +9,7 @@ int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;                            // default value
 
-    struct cmd_error {
-    };
+    struct cmd_error {};
 
     try {
         switch (argc) {
@@ -18,7 +17,7 @@ int main( int argc, char * argv[] ) {
                 try {                                    // open input file first as output creates file
                     infile = new ifstream(argv[1]);
                 } catch (uFile::Failure &) {            // open failed ?
-                    cerr << "Error! Could not open input file \"" << argv[3] << "\"" << endl;
+                    cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
                     throw cmd_error();
                 } // try
             default:                                    // wrong number of options
