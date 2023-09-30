@@ -33,15 +33,17 @@ int main( int argc, char * argv[] ) {
     } // try
 
     for (;;) {
+
         int numberOfValuesToSort;
-        if ( !(infile >> numberOfValuesToSort) ) {
-            break
+        if (!(infile >> numberOfValuesToSort)) {
+            break;
         }
 
         for (int i = 0; i < numberOfValuesToSort; i++) {
             int currValue;
 
-             infile >> currValue;
-             std::cout << currValue << std::endl;
+            infile >> currValue;
+            cout << currValue << endl;
         }
-
+        
+    }
