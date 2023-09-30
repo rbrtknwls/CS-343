@@ -27,7 +27,7 @@ template<typename T> void Binsertsort<T>::main() {
 
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << "hehedone" << std::endl;
+            std::cout << pivot << "Starting Search..." << std::endl;
             suspend();
         }
 
