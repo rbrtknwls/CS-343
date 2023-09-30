@@ -53,8 +53,6 @@ template<typename T> void Binsertsort<T>::main() {
                 suspend();
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << "last value" << value << std::endl;
-            //std::cout << pivot << " L Child Done..." << std::endl;
             suspend();
             break;
         }
@@ -73,10 +71,11 @@ template<typename T> void Binsertsort<T>::main() {
 
             }
         } catch ( Sentinel & sentinel ){
-           // std::cout << pivot << " R Child Done..." << std::endl;
+            suspend();
             break;
         }
     }
+    std::cout << "Left + Right children done: " << pivot << std::endl;
 
     // Raise an exception at anything that trys to reacd this node
     _Resume Sentinel() _At resumer();
