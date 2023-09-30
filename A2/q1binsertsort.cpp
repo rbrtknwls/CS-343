@@ -141,12 +141,13 @@ int main( int argc, char * argv[] ) {
         for ( ;; ) {
             try {
                 _Enable{
-                        std::cout << tree.retrieve() << " ";
+                        cout << tree.retrieve() << " ";
                 }
             } catch ( Binsertsort<int>::Sentinel & sentinel ) {
                 break;
             }
         }
+        cout << endl;
 
     }
 
