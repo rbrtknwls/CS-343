@@ -11,18 +11,18 @@ template<typename T> void Binsertsort<T>::main() {
 
     //std::cout << "value stored: " << value << std::endl;
     pivot = value;
-    suspend();
 
     try{
         _Enable {
-            // At this point a node does not have any children, so it should
-            //    trigger an exception to its parent and return the value
+                // At this point a node does not have any children, so it should
+                //    trigger an exception to its parent and return the value
         }
     } catch (Sentinel & sentinel) {
-        std::cout << "END: " << value << std::endl;
-        suspend();
         _Resume Sentinel() _At resumer();
+        suspend();
     }
+
+    suspend();
 
     // Keep adding values to tree until we reach an exception
     for ( ;; ) {
