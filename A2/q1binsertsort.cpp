@@ -135,7 +135,7 @@ int main( int argc, char * argv[] ) {
             int currValue;
 
             *infile >> currValue;
-            cout << currValue << " "
+            cout << currValue << " ";
             tree.sort(currValue);
         }
         cout << endl;
