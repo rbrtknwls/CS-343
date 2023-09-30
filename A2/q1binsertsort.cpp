@@ -47,12 +47,13 @@ template<typename T> void Binsertsort<T>::main() {
 
     // Loop through left children
     for ( ;; ) {
+        value = less.retrieve();
         try {
             _Enable{
-                value = less.retrieve();
                 suspend();
             }
         } catch ( Sentinel & sentinel ){
+            std::cout << "last value" << value << std::endl;
             //std::cout << pivot << " L Child Done..." << std::endl;
             suspend();
             break;
@@ -69,7 +70,7 @@ template<typename T> void Binsertsort<T>::main() {
             _Enable{
 
                 suspend();
-                
+
             }
         } catch ( Sentinel & sentinel ){
            // std::cout << pivot << " R Child Done..." << std::endl;
