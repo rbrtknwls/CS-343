@@ -8,7 +8,7 @@ MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 .cfa.o :
 	${CXX} ${CXXFLAGS} -c $<
 
-OBJECTS1 = q1binsertsort.cpp# object files forming 1st executable with prefix "q1"
+OBJECTS1 = q1binsertsort.o # object files forming 1st executable with prefix "q1"
 EXEC1 = binsertsort
 
 #OBJECTS2 = # object files forming 2nd executable with prefix "q2"
