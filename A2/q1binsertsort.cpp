@@ -6,8 +6,8 @@
 using namespace std;
 
 template<typename T> void Binsertsort<T>::main() {
-    Binsertsort<T> less;
-    Binsertsort<T> more;
+    _Coroutine Binsertsort<T> less;
+    _Coroutine Binsertsort<T> more;
 
     std::cout << "value stored: " << value << std::endl;
     pivot = value;
