@@ -16,6 +16,7 @@ template<typename T> void Binsertsort<T>::main() {
     for ( ;; ) {
         try {
             _Enable {
+
                 if ( value < pivot ) {
                     less.sort(value);
                 } else {
@@ -23,6 +24,7 @@ template<typename T> void Binsertsort<T>::main() {
                 }
 
                 suspend();
+
             }
         } catch ( Sentinel *sentinel ){
             std::cout << "hehedone" << std::endl;
@@ -88,6 +90,7 @@ int main( int argc, char * argv[] ) {
         }
 
         _Resume Binsertsort<int>::Sentinel() _At tree;
+        tree.retrieve();
 
     }
 
