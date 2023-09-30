@@ -13,6 +13,18 @@ template<typename T> void Binsertsort<T>::main() {
     pivot = value;
     suspend();
 
+    try{
+        _Enable {
+            // At this point a node does not have any children, so it should
+            //    trigger an exception to its parent and return the value
+        }
+    } catch (Sentinel & sentinel) {
+
+        suspend();
+
+    }
+
+    // Keep adding values to tree until we reach an exception
     for ( ;; ) {
         try {
             _Enable {
@@ -27,11 +39,19 @@ template<typename T> void Binsertsort<T>::main() {
 
             }
         } catch ( Sentinel & sentinel ){
-            std::cout << pivot << "Starting Search..." << std::endl;
-            suspend();
+            std::cout << pivot << " Starting Search..." << std::endl;
+            _Resume Sentinel() _At less;
+            break;
         }
 
     }
+
+    for ( ;; ) {
+        value = tree.value;
+        suspend();
+    }
+
+
 
 }
 
@@ -90,7 +110,7 @@ int main( int argc, char * argv[] ) {
         }
 
         _Resume Binsertsort<int>::Sentinel() _At tree;
-        tree.retrieve();
+        std::cout << tree.retrieve() << std::endl;
 
     }
 
