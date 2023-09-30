@@ -56,7 +56,6 @@ template<typename T> void Binsertsort<T>::main() {
             break;
         }
     }
-    std::cout << "Returning Pivot: " << value << std::endl;
     value = pivot;
 
     suspend();
@@ -74,7 +73,6 @@ template<typename T> void Binsertsort<T>::main() {
             break;
         }
     }
-    std::cout << "Left + Right children done: " << pivot << std::endl;
 
     // Raise an exception at anything that trys to reacd this node
     _Resume Sentinel() _At resumer();
@@ -122,7 +120,6 @@ int main( int argc, char * argv[] ) {
 
 
     for ( ;; ) {
-        std::cout << "==== new run ====" << std::endl;
         int numberOfValuesToSort;
         if (!(*infile >> numberOfValuesToSort)) {
             break;
@@ -141,8 +138,14 @@ int main( int argc, char * argv[] ) {
 
         _Resume Binsertsort<int>::Sentinel() _At tree;
 
-        for (int i = 0; i < numberOfValuesToSort; i++) {
-            std::cout << tree.retrieve() << std::endl;
+        for ( ;; ) {
+            try {
+                _Enable{
+                        std::cout << tree.retrieve() << " ";
+                }
+            } catch ( Binsertsort<int>::Sentinel() & sentinel ) {
+                break;
+            }
         }
 
     }
