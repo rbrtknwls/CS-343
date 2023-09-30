@@ -35,15 +35,15 @@ int main( int argc, char * argv[] ) {
     for (;;) {
 
         int numberOfValuesToSort;
-        if (!(infile >> numberOfValuesToSort)) {
+        if (!(*infile >> numberOfValuesToSort)) {
             break;
         }
 
         for (int i = 0; i < numberOfValuesToSort; i++) {
             int currValue;
 
-            infile >> currValue;
+            *infile >> currValue;
             cout << currValue << endl;
         }
-        
+
     }
