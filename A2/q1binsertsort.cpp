@@ -24,7 +24,7 @@ template<typename T> void Binsertsort<T>::main() {
 
                 suspend();
             }
-        } catch ( Sentinel sentinel ){
+        } catch ( Sentinel *sentinel ){
             std::cout << "hehedone" << std::endl;
             suspend();
         }
@@ -35,12 +35,10 @@ template<typename T> void Binsertsort<T>::main() {
 
 template<typename T> Binsertsort<T>::Binsertsort() {}
 
-
 template<typename T> void Binsertsort<T>::sort( T value ) {                                          // value to be sorted
     Binsertsort::value = value;
     resume();
 }
-
 
 template<typename T> T Binsertsort<T>::retrieve() {                                                  // retrieve sorted value
     resume();
@@ -89,7 +87,7 @@ int main( int argc, char * argv[] ) {
             tree.sort(currValue);
         }
 
-        _Resume Binsertsort::Sentinel() _At tree;
+        _Resume Binsertsort<int>::Sentinel() _At tree;
 
     }
 
