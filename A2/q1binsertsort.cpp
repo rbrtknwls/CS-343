@@ -96,7 +96,6 @@ template<typename T> T Binsertsort<T>::retrieve() {                             
 int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;                            // default value
-
     struct cmd_error {};
 
     try {
@@ -124,7 +123,7 @@ int main( int argc, char * argv[] ) {
         if (!(*infile >> numberOfValuesToSort)) {
             break;
         }
-        
+
         if (numberOfValuesToSort > 0) {
             Binsertsort<int> tree;
 

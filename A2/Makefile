@@ -11,12 +11,12 @@ MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 OBJECTS1 = q1binsertsort.o # object files forming 1st executable with prefix "q1"
 EXEC1 = binsertsort
 
-#OBJECTS2 = # object files forming 2nd executable with prefix "q2"
-#EXEC2 = hotpotato
+OBJECTS2 = q2hotpotato.o# object files forming 2nd executable with prefix "q2"
+EXEC2 = hotpotato
 
-OBJECTS = ${OBJECTS1} #${OBJECTS2}		# all object files
+OBJECTS = ${OBJECTS1} ${OBJECTS2}		# all object files
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
-EXECS = ${EXEC1} #${EXEC2}			# all executables
+EXECS = ${EXEC1} ${EXEC2}			# all executables
 
 .PHONY : all clean
 .ONESHELL :
