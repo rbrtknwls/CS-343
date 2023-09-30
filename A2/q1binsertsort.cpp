@@ -56,8 +56,9 @@ template<typename T> void Binsertsort<T>::main() {
             break;
         }
     }
-
+    std::cout << "Returning Pivot: " << value << std::endl;
     value = pivot;
+
     suspend();
     _Resume Sentinel() _At more;
 
@@ -70,7 +71,6 @@ template<typename T> void Binsertsort<T>::main() {
 
             }
         } catch ( Sentinel & sentinel ){
-            suspend();
             break;
         }
     }
