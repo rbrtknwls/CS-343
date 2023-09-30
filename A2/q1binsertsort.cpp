@@ -15,10 +15,10 @@ template<typename T> void Binsertsort<T>::main() {
 
     for ( ;; ) {
 
-        if (value < pivot) {
+        if ( value < pivot ) {
             less.sort(value);
         } else {
-            more.sort(value)
+            more.sort(value);
         }
         suspend();
 
