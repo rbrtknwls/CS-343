@@ -45,5 +45,5 @@ int main( int argc, char * argv[] ) {
 
     }
 
-    delete infile;
+    if ( infile != &cin ) delete infile;
 }
