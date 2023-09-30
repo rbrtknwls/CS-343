@@ -143,7 +143,7 @@ int main( int argc, char * argv[] ) {
                 _Enable{
                         std::cout << tree.retrieve() << " ";
                 }
-            } catch ( Binsertsort<int>::Sentinel() & sentinel ) {
+            } catch ( Binsertsort<int>::Sentinel & sentinel ) {
                 break;
             }
         }
