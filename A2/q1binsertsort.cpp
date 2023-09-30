@@ -34,12 +34,12 @@ int main( int argc, char * argv[] ) {
 
     for (;;) {
         int numberOfValuesToSort;
-        *infile >> numberOfValuesToSort;
+         numberOfValuesToSort << *infile;
 
         for (int i = 0; i < numberOfValuesToSort; i++) {
             int currValue;
 
-            *infile >> currValue
+             currValue << *infile;
         }
     }
 }
