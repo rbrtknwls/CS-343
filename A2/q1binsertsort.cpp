@@ -21,9 +21,6 @@ int main( int argc, char * argv[] ) {
                     cerr << "Error! Could not open input file \"" << argv[3] << "\"" << endl;
                     throw cmd_error();
                 } // try
-                // FALL THROUGH
-            case 1:                                        // defaults
-                break;
             default:                                    // wrong number of options
                 throw cmd_error();
         } // switch
@@ -49,5 +46,5 @@ int main( int argc, char * argv[] ) {
 
     }
 
-    return 0;
+    delete infile;
 }
