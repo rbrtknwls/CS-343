@@ -14,13 +14,20 @@ template<typename T> void Binsertsort<T>::main() {
     suspend();
 
     for ( ;; ) {
+        try {
+            _Enable {
+                if ( value < pivot ) {
+                    less.sort(value);
+                } else {
+                    more.sort(value);
+                }
 
-        if ( value < pivot ) {
-            less.sort(value);
-        } else {
-            more.sort(value);
+                suspend();
+            }
+        } catch ( Sentinel sentinel ){
+            std::cout << "hehedone" << std::endl;
+            suspend();
         }
-        suspend();
 
     }
 
@@ -81,6 +88,8 @@ int main( int argc, char * argv[] ) {
             *infile >> currValue;
             tree.sort(currValue);
         }
+
+        _Resume Binsertsort::Sentinel() _At tree;
 
     }
 
