@@ -8,7 +8,7 @@ int main( int argc, char * argv[] ) {
     istream *infile = &cin;                            // default value
     struct cmd_error {};
 
-    intmax_t seed = getpid()
+    intmax_t seed = getpid();
 
     try {
         switch (argc) {
