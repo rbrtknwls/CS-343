@@ -73,8 +73,7 @@ void Player::main() {
 
             if ( election.player->getId() < id ) { _Resume Election ( this ) _At *partner[1]; }
             else { _Resume Election ( election ) _At *partner[1]; }
-
-            std::cout << umpire->get
+            
             partner[1]->vote();
         }
 
