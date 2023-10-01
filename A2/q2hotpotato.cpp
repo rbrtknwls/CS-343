@@ -82,7 +82,7 @@ int main( int argc, char * argv[] ) {
                 Player * previousPlayer = players[numberOfPlayers-2];
                 if ( swappedPlayer == numberOfPlayers-2 ) { previousPlayer = players[0]; }
 
-                players[numberOfPlayers-1]->init( *previousPlayer, *players[swappedPlayer] )
+                players[numberOfPlayers-1]->init( *previousPlayer, *players[swappedPlayer] );
 
             default: {
                 cout << "haiiii" << endl;
