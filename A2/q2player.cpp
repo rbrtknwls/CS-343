@@ -41,6 +41,15 @@ void Player::main() {
         } catch ( Potato::Explode &explode ) {
             std::cout << " is eliminated" << std::endl;
 
+            if ( umpire->getId == id ) {
+                _Resume Election ( player[1] ) _At *player[1];
+                try {
+                    player[1].vote();
+                } _CatchResume ( Election &electedId ) {
+                    std::cout << "HAIII"
+                }
+            }
+
             partner[1]->partner[0] = partner[0];
             partner[0]->partner[1] = partner[1];
 
@@ -52,6 +61,11 @@ void Player::main() {
             std::cout << "U " << id;
             potato.reset();
             partner[prng(0, 1)]->toss();
+        } catch ( Election &election ) {
+            std::cout << "ID: " << id << " voted" << std::endl;
+            if ( election->getId() < id ) { _Resume Election ( this ) _At *player[1]; }
+
+            player[1].vote();
         }
 
     }
