@@ -77,12 +77,14 @@ int main( int argc, char * argv[] ) {
 
                 players[1]->init( *players[swappedPlayer], *nextPlayer );
                 break;
-            } // case 1
-            case numberOfPlayers-1:
-                Player * previousPlayer = players[numberOfPlayers-2];
-                if ( swappedPlayer == numberOfPlayers-2 ) { previousPlayer = players[0]; }
+            } // first player
+            case numberOfPlayers-1: {
+                Player * previousPlayer = players[numberOfPlayers - 2];
+                if (swappedPlayer == numberOfPlayers - 2) { previousPlayer = players[0]; }
 
-                players[numberOfPlayers-1]->init( *previousPlayer, *players[swappedPlayer] );
+                players[numberOfPlayers - 1]->init(*previousPlayer, *players[swappedPlayer]);
+                break;
+            } // last player
 
             default: {
                 cout << "haiiii" << endl;
