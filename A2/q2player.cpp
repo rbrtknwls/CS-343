@@ -53,7 +53,7 @@ void Player::main() {
                     }
                 } _CatchResume ( Election &election ) {
                     umpire = election.player;
-                    std::cout << " : umpire " << umpire.getId() << std::endl;
+                    std::cout << " : umpire " << umpire->getId() << std::endl;
                 }
             }
 
