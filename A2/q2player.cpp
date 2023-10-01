@@ -29,9 +29,15 @@ void Player::terminate() {
 void Player::main() {
     suspend();
     for ( ;; ) {
-
-        potato.countdown();
-        partner[prng(0,1)]->toss();
+        try {
+            _Enable{
+                potato.countdown();
+                partner[prng(0, 1)]->toss();
+            }
+        } catch ( Potato::Explode &explode ) {
+            std::cout << id << std::endl;
+            suspend();
+        }
     }
 
 } // main

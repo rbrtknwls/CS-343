@@ -12,6 +12,7 @@ void Potato::reset(unsigned int maxTicks) {
 }
 
 void Potato::countdown() {
-    std::cout << "POTATO IS AT: " << currentTicks-- << std::endl;
-    currentTicks--;
+    if (--currentTicks == 0) {
+        throw Explode();
+    }
 }
