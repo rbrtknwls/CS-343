@@ -56,8 +56,14 @@ int main( int argc, char * argv[] ) {
     Potato potato( potatoPRNG );
 
     cout << numberOfPlayers << " players in the game" << endl;
+
+    vector<Player * > players;
+
+    for (int id = 0; id < numberOfPlayers; id++) {
+        players[id] = Player( &playerPRNG, id, &potato )
+    }
+
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
-    //vector<Player> players;
 
 
 }
