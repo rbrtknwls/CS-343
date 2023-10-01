@@ -17,13 +17,14 @@ int main( int argc, char * argv[] ) {
     int players = 2;
 
     try {
-        if ( argv >= 4 ) {
+        if ( argc >= 4 ) {
             cerr << "Too many arguments!" << endl;
             throw cmd_error();
         } // if
 
-        if ( argc > 2 ) {
-            if ( argv[1] != 'd' ) { games = stoi(argv[1]); }
+        if ( argc >= 2 ) {
+
+            if ( argc != 1 ) { games = stoi(argv[1]); }
         } // if
 
         if ( argc > 3 ){
