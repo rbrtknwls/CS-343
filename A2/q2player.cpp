@@ -11,11 +11,11 @@ Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ),
 }
 
 void Player::init( Player & lp, Player & rp ) {
-    std::cout << "SILLYYYY"
+    std::cout << "SILLYYYY";
 }
 
 int Player::getId() { return id; }
 
 void Player::toss() {
-    std::cout << "TOSS"
+    std::cout << "TOSS" << std::endl;
 }
