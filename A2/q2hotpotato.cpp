@@ -81,9 +81,14 @@ int main( int argc, char * argv[] ) {
     } // for
 
     std::cout << "U ";
-    players[swappedPlayer]->toss();
+    // players[swappedPlayer]->toss();
 
-    delete Player::umpire;
+    // delete Player::umpire;
+
+    for (auto p : players)
+    {
+        delete p;
+    }
 
     players.clear();
     return 0;
