@@ -1,4 +1,6 @@
 #include <uPRNG.h>
+#include <iostream>
+
 #include "q2potato.h"
 
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
