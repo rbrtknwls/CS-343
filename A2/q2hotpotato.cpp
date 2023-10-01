@@ -63,13 +63,21 @@ int main( int argc, char * argv[] ) {
     } // for
 
     Player* umpire = players[0];
-    const int lastPlayer = numberOfPlayers-1;
     int swappedPlayer = mainPRNG(1,lastPlayer);
 
     Player* temp = players[swappedPlayer];
     players[swappedPlayer] = players[0];
     players[0] = players[swappedPlayer];
 
+    for (int id = 0; id < numberOfPlayers; id++) {
+        if ( id == 0 ) {
+            players[0]->init( *players[numberOfPlayers-1], *players[1] );
+        } else if ( id == numberOfPlayers-1 ) {
+            players[numberOfPlayers-1]->init( *players[numberOfPlayers-2], *players[0] );
+        } else {
+            players[id]->init( *players[id-1], *players[id+1] );
+        }
+    } // for
 
     return 0;
 
