@@ -17,7 +17,7 @@ int main( int argc, char * argv[] ) {
     PRNG mainPRNG(seed);
 
     int games = 5;
-    int numPlayers = mainPRNG(2, 10);
+    int numberOfPlayers = mainPRNG(2, 10);
 
     try {
         if ( argc > 4 ) {
@@ -30,7 +30,7 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc >= 3 ){
-            if ( *argv[2] != 'd' ) { numPlayers = stoi( argv[2] ); }
+            if ( *argv[2] != 'd' ) { numberOfPlayers = stoi( argv[2] ); }
         } // if
 
         if ( argc == 4 ) {
@@ -38,7 +38,7 @@ int main( int argc, char * argv[] ) {
                 seed = stoi( argv[3] );
                 mainPRNG.set_seed( seed );
 
-                if ( *argv[2] == 'd' ) { numPlayers = mainPRNG( 2, 10 ); }
+                if ( *argv[2] == 'd' ) { numberOfPlayers = mainPRNG( 2, 10 ); }
             } // if
         } // if
 
@@ -48,8 +48,6 @@ int main( int argc, char * argv[] ) {
              << "  [ games | ’d’ [ players | ’d’ [ seed | ’d’ ] ] ] " << endl;
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
-
-    const int numberOfPlayers = numPlayers;
 
     // Initial set up
     PRNG playerPRNG( seed );
@@ -65,10 +63,14 @@ int main( int argc, char * argv[] ) {
     } // for
 
     Player* umpire = players[0];
-    int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
+    const int lastPlayer = numberOfPlayers-1;
 
-    players[swappedPlayer]->init( *players[1], *players[numberOfPlayers-1] );
-    for (int id = 1; id < numberOfPlayers-1; id++) {
+    int swappedPlayer = mainPRNG(1,lastPlayer);
+
+    players[swappedPlayer]->init( *players[1], *players[lastPlayer] );
+
+
+    for (int id = 1; id < lastPlayer; id++) {
 
 
         switch ( id ) {
@@ -79,11 +81,11 @@ int main( int argc, char * argv[] ) {
                 players[1]->init( *players[swappedPlayer], *nextPlayer );
                 break;
             } // first player
-            case numberOfPlayers-1: {
+            case lastPlayernumberOfPlayers-1: {
                 Player * previousPlayer = players[numberOfPlayers - 2];
                 if (swappedPlayer == numberOfPlayers - 2) { previousPlayer = players[0]; }
 
-                players[numberOfPlayers - 1]->init(*previousPlayer, *players[swappedPlayer]);
+                players[lastPlayer]->init(*previousPlayer, *players[swappedPlayer]);
                 break;
             } // last player
 
