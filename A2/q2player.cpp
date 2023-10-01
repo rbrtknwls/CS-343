@@ -34,6 +34,7 @@ void Player::main() {
         try {
             _Enable {
                 if ( partner[0] == partner[1] ) {
+                    std::cout << id << " wins the Match!" << std::endl;
                     break;
                 }
                 std::cout << id;
