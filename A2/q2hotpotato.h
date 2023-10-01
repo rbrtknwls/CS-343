@@ -2,7 +2,7 @@
 #define CS_343_Q2_H
 
 class Potato {
-    PRNG potatoPrng;
+    PRNG * potatoPRNG;
     int currentTicks;
   public:
     _Event Explode {};
@@ -12,6 +12,9 @@ class Potato {
 };
 
 _Coroutine Player {
+    int playerId;
+    PRNG * playerPRNG;
+    Potato * playerPotato;
     _Event Terminate {
       public:
         Player & victim;					// delete player
