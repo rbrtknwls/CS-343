@@ -11,7 +11,11 @@ using namespace std;
 
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) {
     potatoPrng = prng;
-    currentTicks = maxTicks;
+    currentTicks = potatoPrng(1, maxTicks);
+}
+
+void Potato::reset(unsigned int maxTicks) {
+    currentTicks = potatoPrng(1, maxTicks);
 }
 
 int main( int argc, char * argv[] ) {
