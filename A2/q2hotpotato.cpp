@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <uPRNG.h>
+#include <string>
 
+#include <uPRNG.h>
 
 using namespace std;
 
@@ -23,16 +24,16 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc > 2 ) {
-            if ( argv[1] != 'd' ) { games = argv[1]; }
+            if ( argv[1] != 'd' ) { games = stoi(argv[1]); }
         } // if
 
         if ( argc > 3 ){
-            if ( argv[2] != 'd' ) { players = argv[2]; }
+            if ( argv[2] != 'd' ) { players = stoi(argv[2]); }
         } // if
 
-        if ( argc > 4 ) {
+        if ( argc == 4 ) {
             if ( argv[3] != 'd' ) {
-                seed = argv[3];
+                seed = stoi(argv[3]);
             }
         } // if
 
