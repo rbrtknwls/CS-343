@@ -17,7 +17,7 @@ int main( int argc, char * argv[] ) {
     int players = rng(2, 10);
 
     try {
-        if ( argc >= 4 ) {
+        if ( argc > 4 ) {
             cerr << "Too many arguments!" << endl;
             throw cmd_error();
         } // if
@@ -26,7 +26,7 @@ int main( int argc, char * argv[] ) {
             if ( *argv[1] != 'd' ) { games = stoi( argv[1] ); }
         } // if
 
-        if ( argc > 3 ){
+        if ( argc >= 3 ){
             if ( *argv[2] != 'd' ) { players = stoi( argv[2] ); }
         } // if
 
@@ -46,7 +46,7 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
     cout << players << " players in the game" << endl;
-
+    cout << games << endl;
     cout << "hi" << endl;
 
 }
