@@ -30,9 +30,9 @@ void Player::terminate() {
 void Player::main() {
     suspend();
     for ( ;; ) {
-        std::cout << id;
         try {
             _Enable{
+                std::cout << id;
                 potato.countdown();
                 std::cout << " -> ";
                 partner[prng(0, 1)]->toss();
