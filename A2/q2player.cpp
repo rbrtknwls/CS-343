@@ -19,3 +19,15 @@ int Player::getId() { return id; }
 void Player::toss() {
     std::cout << "TOSS" << std::endl;
 }
+
+void Player::main() {
+    std::cout << "TOSS" << std::endl;
+}
+
+void Player::vote() {
+    std::cout << "TOSS" << std::endl;
+}
+
+void Player::terminate() {
+    std::cout << "TOSS" << std::endl;
+}
