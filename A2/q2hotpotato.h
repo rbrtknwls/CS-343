@@ -13,7 +13,7 @@ class Potato {
 
 _Coroutine Player {
     int playerId;
-    PRNG & playerPRNG;
+    PRNG & prng;
     Potato & playerPotato;
     _Event Terminate {
       public:
