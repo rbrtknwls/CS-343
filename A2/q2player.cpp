@@ -43,7 +43,7 @@ void Player::main() {
             partner[1]->partner[0] = partner[0];
             partner[0]->partner[1] = partner[1];
 
-            throw Terminate ( this );
+            throw Terminate ( *this );
             umpire->terminate();
 
         }
