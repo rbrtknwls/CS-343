@@ -25,7 +25,6 @@ void Player::vote() {
 } // vote
 
 void Player::terminate() {
-    std::cout <<"TERM" << std::endl;
     resume();
 } // terminate
 
@@ -48,7 +47,11 @@ void Player::main() {
             _Resume Terminate ( *this ) _At *umpire;
             umpire->terminate();
         } catch ( Terminate &terminate ) {
-            std::cout << "CAUGHHTTTTT" << std::endl;
+            delete terminate.victim;
+
+            std::cout << "U";
+            potato->reset();
+            partner[prng(0, 1)]->toss();
         }
 
     }
