@@ -23,7 +23,8 @@ void Player::vote() {
 } // vote
 
 void Player::terminate() {
-    std::cout << "TOSS" << std::endl;
+    std::cout << "Umpire: " << id << std::endl;
+    resume();
 } // terminate
 
 void Player::main() {
@@ -37,11 +38,17 @@ void Player::main() {
                 partner[prng(0, 1)]->toss();
             }
         } catch ( Potato::Explode &explode ) {
-            std::cout << id << std::endl;
-            suspend();
+            std::cout << " is eliminated" << std::endl;
+
+            partner[1]->partner[0] = partner[0];
+            partner[0]->partner[1] = partner[1];
+
+            throw Terminate ( this );
+            umpire->terminate();
+
         }
-        
-        suspend();
+
+
     }
 
 }
