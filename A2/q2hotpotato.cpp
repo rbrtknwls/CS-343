@@ -63,7 +63,7 @@ int main( int argc, char * argv[] ) {
     } // for
 
     Player* umpire = players[0];
-    int swappedPlayer = mainPRNG(1,lastPlayer);
+    int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
 
     Player* temp = players[swappedPlayer];
     players[swappedPlayer] = players[0];
