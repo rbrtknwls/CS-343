@@ -1,12 +1,24 @@
-After running the experiment we get the following results:
-        [ 1000000000 1 ]               [ 1000000000 2 ]
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+3a) After running the experiment we get the following results:
+
+        [ ./a.out 1000000000 1 ]            [ ./a.out 1000000000 2 ]
+1           shared:2069109849                   shared:2068907374
+2           shared:2074551775                   shared:2070052992
+3           shared:2098106331                   shared:2078516316
+4           shared:2065430646                   shared:2089259803
+5           shared:2084246207                   shared:2076553374
+6           shared:2058529956                   shared:2065370323
+7           shared:2064130259                   shared:2081696306
+8           shared:2088362238                   shared:2065047572
+9           shared:2096401473                   shared:2085857474
+10          shared:2084709442                   shared:2089589567
+
+3b) No, since we are running multiple threads when we increment our for loop,
+the value of i can get modified, especially because there are multiple other
+threads running on the computer the order in which the threads run are random
+so the value of i and thus the result will be ever changing.
+
+3c) 0 (hehe I dunno just a guess)
+
+3d) the more processors we have the more likely that our value of i gets modified
+and less sums are run, which explains why the running with argument 1 returns larger
+results on average then running with argument 2.
