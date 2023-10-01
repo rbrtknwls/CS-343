@@ -7,7 +7,7 @@ class Potato {
     int currentTicks;
   public:
     _Event Explode {};
-    Potato( PRNG & prng, unsigned int maxTicks = 10 );
+    Potato( PRNG & prng, unsigned int maxTicks = 10 ) : prng ( prng );
     void reset( unsigned int maxTicks = 10 );
     void countdown();
 };
