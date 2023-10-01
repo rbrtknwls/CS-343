@@ -7,16 +7,15 @@
 Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) { }
 
 void Player::init( Player & lp, Player & rp ) {
-    std::cout << "ID: " << id << "[ L: " << lp.getId() << ", R: " << rp.getId() << " ]" << std::endl;
-
     partner[0] = &lp;
     partner[1] = &rp;
+    resume();
 } // init
 
 int Player::getId() { return id; }
 
 void Player::toss() {
-    std::cout << "TOSS" << std::endl;
+    resume();
 } // toss
 
 
@@ -29,5 +28,11 @@ void Player::terminate() {
 } // terminate
 
 void Player::main() {
-    std::cout << "TOSS" << std::endl;
+    suspend();
+    for ( ;; ) {
+
+        potato->countdown();
+        partner[prng(0,1)]->toss();
+    }
+
 } // main

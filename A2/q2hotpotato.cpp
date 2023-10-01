@@ -79,6 +79,8 @@ int main( int argc, char * argv[] ) {
         }
     } // for
 
+    umpire->toss();
+
     return 0;
 
 
