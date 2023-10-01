@@ -49,13 +49,15 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
+    vector<Player*> players;
+
     // Initial set up
     cout << numberOfPlayers << " players in the game" << endl;
 
     PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
     Potato potato( potatoPRNG );
-    vector<Player*> players;
+
 
     for (int id = 0; id < numberOfPlayers; id++) {
         players.push_back( new Player( playerPRNG, id, potato ) );
@@ -83,6 +85,7 @@ int main( int argc, char * argv[] ) {
 
     delete Player::umpire;
 
+    delete players;
     return 0;
 
 
