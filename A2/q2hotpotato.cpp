@@ -8,7 +8,6 @@ using namespace std;
 
 int main( int argc, char * argv[] ) {
 
-    istream *infile = &cin;                            // default value
     struct cmd_error {};
 
     intmax_t seed = getpid();
@@ -18,7 +17,7 @@ int main( int argc, char * argv[] ) {
     int players = 2;
 
     try {
-        if ( argc >= 4 ) {
+        if ( argv >= 4 ) {
             cerr << "Too many arguments!" << endl;
             throw cmd_error();
         } // if
