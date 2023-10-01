@@ -50,12 +50,11 @@ int main( int argc, char * argv[] ) {
     } // try
 
     // Initial set up
+    cout << numberOfPlayers << " players in the game" << endl;
+
     PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
     Potato potato( potatoPRNG );
-
-    cout << numberOfPlayers << " players in the game" << endl;
-
     vector<Player*> players;
 
     for (int id = 0; id < numberOfPlayers; id++) {

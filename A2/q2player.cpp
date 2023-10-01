@@ -65,8 +65,7 @@ void Player::main() {
             //delete terminate.victim;
 
             potato.reset();
-            std::cout << "U " << umpire->getId() << " ";
-            partner[prng(0, 1)]->toss();
+            std::cout << "U ";
 
         } catch ( Election &election ) {
             std::cout << "ID: " << id << " voted" << std::endl;
