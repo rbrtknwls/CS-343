@@ -31,7 +31,7 @@ void Player::main() {
     suspend();
     for ( ;; ) {
 
-        potato->countdown();
+        potato.countdown();
         partner[prng(0,1)]->toss();
     }
 
