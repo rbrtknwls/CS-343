@@ -61,7 +61,7 @@ int main( int argc, char * argv[] ) {
 
     for (int id = 0; id < numberOfPlayers; id++) {
         std::cout << "HI" << std::endl;
-        players[id] = new Player( *playerPRNG, id, *potato );
+        players.push_back( new Player( *playerPRNG, id, *potato ) );
         std::cout << "HI" << std::endl;
     }
 
