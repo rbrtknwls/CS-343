@@ -67,9 +67,9 @@ int main( int argc, char * argv[] ) {
     int swappedPlayer = mainPRNG(1,lastPlayer);
 
     Player* temp = players[swappedPlayer];
-    players[swappedPlayer] = players[0]
+    players[swappedPlayer] = players[0];
     players[0] = players[swappedPlayer];
-    
+
 
     return 0;
 
