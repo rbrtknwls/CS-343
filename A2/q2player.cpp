@@ -32,7 +32,7 @@ void Player::main() {
     suspend();
     for ( ;; ) {
         try {
-            _Enable{
+            _Enable {
                 if ( partner[0] == partner[1] ) {
                     break;
                 }
@@ -47,7 +47,9 @@ void Player::main() {
             if ( umpire->getId() == id ) {
                 _Resume Election ( partner[1] ) _At *partner[1];
                 try {
-                    partner[1]->vote();
+                    _Enable{
+                        partner[1]->vote();
+                    }
                 } _CatchResume ( Election &election ) {
                     umpire = election.player;
                     std::cout << "HAIII";
@@ -72,6 +74,7 @@ void Player::main() {
             if ( election.player->getId() < id ) { _Resume Election ( this ) _At *partner[1]; }
             else { _Resume Election ( election ) _At *partner[1]; }
 
+            std::cout << umpire->get
             partner[1]->vote();
         }
 
