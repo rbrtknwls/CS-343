@@ -37,7 +37,6 @@ void Player::main() {
                 std::cout << id;
                 potato.countdown();
                 std::cout << " -> ";
-                suspend();
                 partner[prng(0, 1)]->toss();
             }
         } catch ( Potato::Explode &explode ) {
@@ -46,12 +45,11 @@ void Player::main() {
             partner[1]->partner[0] = partner[0];
             partner[0]->partner[1] = partner[1];
 
-            throw Terminate ( *this );
+            _Resume Terminate ( *this ) _At *umpire;
             umpire->terminate();
         } catch ( Terminate &terminate ) {
             std::cout << "CAUGHHTTTTT" << std::endl;
         }
-
 
     }
 
