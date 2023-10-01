@@ -71,15 +71,17 @@ int main( int argc, char * argv[] ) {
 
 
         switch ( id ) {
-            case 1:
-                Player* nextPlayer = players[2];
+            case 1: {
+                Player * nextPlayer = players[2];
                 if (swappedPlayer == 2) { nextPlayer = players[0]; }
 
-                players[1]->init( *players[swappedPlayer], *nextPlayer );
+                players[1]->init(*players[swappedPlayer], *nextPlayer);
                 break;
-                
-            default:
+            } // case 1
+
+            default: {
                 cout << "haiiii" << endl;
+            } // default
 
         } // switch
     } // for
