@@ -40,6 +40,7 @@ void Player::main() {
             std::cout << id << std::endl;
             suspend();
         }
+        
         suspend();
     }
 
