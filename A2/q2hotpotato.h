@@ -2,7 +2,7 @@
 #define CS_343_Q2_H
 
 class Potato {
-    PRNG & potatoPRNG;
+    PRNG & prng;
     int currentTicks;
   public:
     _Event Explode {};
