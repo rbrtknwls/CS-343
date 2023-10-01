@@ -64,37 +64,12 @@ int main( int argc, char * argv[] ) {
 
     Player* umpire = players[0];
     const int lastPlayer = numberOfPlayers-1;
-
     int swappedPlayer = mainPRNG(1,lastPlayer);
 
-    players[swappedPlayer]->init( *players[1], *players[lastPlayer] );
-
-
-    for (int id = 1; id < lastPlayer; id++) {
-
-
-        switch ( id ) {
-            case 1: {
-                Player * nextPlayer = players[2];
-                if ( swappedPlayer == 2 ) { nextPlayer = players[0]; }
-
-                players[1]->init( *players[swappedPlayer], *nextPlayer );
-                break;
-            } // first player
-            case lastPlayer: {
-                Player * previousPlayer = players[numberOfPlayers - 2];
-                if (swappedPlayer == numberOfPlayers - 2) { previousPlayer = players[0]; }
-
-                players[lastPlayer]->init(*previousPlayer, *players[swappedPlayer]);
-                break;
-            } // last player
-
-            default: {
-                cout << "haiiii" << endl;
-            } // default
-
-        } // switch
-    } // for
+    Player* temp = players[swappedPlayer];
+    players[swappedPlayer] = players[0]
+    players[0] = players[swappedPlayer];
+    
 
     return 0;
 
