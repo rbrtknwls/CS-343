@@ -47,10 +47,10 @@ void Player::main() {
             _Resume Terminate ( *this ) _At *umpire;
             umpire->terminate();
         } catch ( Terminate &terminate ) {
-            delete terminate.victim;
+            delete *terminate.victim;
 
             std::cout << "U";
-            potato->reset();
+            potato.reset();
             partner[prng(0, 1)]->toss();
         }
 
