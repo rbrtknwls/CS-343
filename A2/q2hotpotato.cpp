@@ -75,7 +75,7 @@ int main( int argc, char * argv[] ) {
                 Player* nextPlayer = players[2];
                 if (swappedPlayer == 2) { nextPlayer = players[0]; }
 
-                players[1]->init( *players[swappedPlayer], *nextPlayer )
+                players[1]->init( *players[swappedPlayer], *nextPlayer );
             case default:
                 cout << "haiiii" << endl;
 
