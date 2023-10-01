@@ -15,4 +15,5 @@ void Potato::countdown() {
     if (--currentTicks == 0) {
         throw Explode();
     }
+    std::cout << currentTicks;
 }
