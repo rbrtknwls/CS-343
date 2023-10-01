@@ -27,11 +27,11 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc > 3 ){
-            if ( argv[2] != 'd' ) { players = stoi(argv[2]); }
+            if ( *argv[2] != 'd' ) { players = stoi(argv[2]); }
         } // if
 
         if ( argc == 4 ) {
-            if ( argv[3] != 'd' ) {
+            if ( *argv[3] != 'd' ) {
                 seed = stoi(argv[3]);
             }
         } // if
