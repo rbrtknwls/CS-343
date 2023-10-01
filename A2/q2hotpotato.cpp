@@ -81,7 +81,7 @@ int main( int argc, char * argv[] ) {
                 players[1]->init( *players[swappedPlayer], *nextPlayer );
                 break;
             } // first player
-            case lastPlayernumberOfPlayers-1: {
+            case lastPlayer: {
                 Player * previousPlayer = players[numberOfPlayers - 2];
                 if (swappedPlayer == numberOfPlayers - 2) { previousPlayer = players[0]; }
 
