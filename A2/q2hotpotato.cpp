@@ -85,7 +85,7 @@ int main( int argc, char * argv[] ) {
 
     delete Player::umpire;
 
-    delete[] players;
+    player.clear();
     return 0;
 
 
