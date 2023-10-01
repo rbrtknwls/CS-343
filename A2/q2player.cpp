@@ -33,7 +33,7 @@ void Player::main() {
     for ( ;; ) {
         try {
             _Enable {
-                if ( partner[0] == partner[1] ) {
+                if ( partner[0] == this ) {
                     std::cout << id << " wins the Match!" << std::endl;
                     break;
                 }

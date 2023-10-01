@@ -85,12 +85,7 @@ int main( int argc, char * argv[] ) {
     players[swappedPlayer]->toss();
 
 
-    for (auto p : players)
-    {
-        delete p;
-    }
-
-    players.clear();
+    delete Player::umpire;
     return 0;
 
 
