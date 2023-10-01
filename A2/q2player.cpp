@@ -9,8 +9,8 @@ Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ),
 void Player::init( Player & lp, Player & rp ) {
     std::cout << "ID: " << id << std::endl;
 
-    partner[0] = lp;
-    partner[1] = rp;
+    partner[0] = *lp;
+    partner[1] = *rp;
 }
 
 int Player::getId() { return id; }
