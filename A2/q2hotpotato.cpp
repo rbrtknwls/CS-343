@@ -62,7 +62,7 @@ int main( int argc, char * argv[] ) {
         players.push_back( new Player( playerPRNG, id, potato ) );
     } // for
 
-    Player* umpire = players[0];
+    Player::umpire = players[0];
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
 
     Player* temp = players[swappedPlayer];
@@ -80,7 +80,7 @@ int main( int argc, char * argv[] ) {
     } // for
 
     std::cout << "U";
-    umpire->toss();
+    Player::umpire->toss();
 
     return 0;
 
