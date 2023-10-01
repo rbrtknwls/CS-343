@@ -47,10 +47,15 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
-    PRNG playerPRNG(seed);
-    PRNG potatoPRNG(seed);
+
+    // Initial set up
+    PRNG playerPRNG( seed );
+    PRNG potatoPRNG( seed );
+    Potato potato( potatoPRNG );
 
     cout << players << " players in the game" << endl;
+    int swappedPlayer = mainPRNG(1,players-1);
+
     cout << games << endl;
     cout << "hi" << endl;
 
