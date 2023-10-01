@@ -57,13 +57,17 @@ int main( int argc, char * argv[] ) {
 
     cout << numberOfPlayers << " players in the game" << endl;
 
-    vector<Player * > players;
+    vector<Player*> players;
 
     for (int id = 0; id < numberOfPlayers; id++) {
+        std::cout << "HI" << std::endl;
         players[id] = new Player( playerPRNG, id, potato );
     }
 
+    Player* umpire = players[0];
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
+
+    swappedPlayer.init()
 
 
 }

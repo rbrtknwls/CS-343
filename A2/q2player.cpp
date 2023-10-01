@@ -6,12 +6,12 @@
 
 Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) {
 
-    std::cout << "MADE";
+    std::cout << "MADE" << std::endl;
 
 }
 
 void Player::init( Player & lp, Player & rp ) {
-    std::cout << "SILLYYYY";
+
 }
 
 int Player::getId() { return id; }
