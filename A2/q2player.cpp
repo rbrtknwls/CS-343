@@ -28,7 +28,7 @@ void Player::terminate() {
 
 void Player::main() {
     suspend();
-    for ( ;; )
+    for ( ;; ) {
         std::cout << id;
         try {
             _Enable{
@@ -42,4 +42,4 @@ void Player::main() {
         }
     }
 
-} // main
+}
