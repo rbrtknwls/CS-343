@@ -3,24 +3,11 @@
 #include <string>
 #include <vector>
 #include <uPRNG.h>
-#include "q2hotpotato.h"
+
+#include "q2potato.h"
+#include "q2player.h"
 
 using namespace std;
-
-// =========== potato classes ============
-
-Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
-    currentTicks = prng(1, maxTicks);
-}
-
-void Potato::reset(unsigned int maxTicks) {
-    currentTicks = prng(1, maxTicks);
-}
-
-// ============ player classes ============
-Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), potato ( potato ) {
-    playerId = id;
-}
 
 int main( int argc, char * argv[] ) {
 
