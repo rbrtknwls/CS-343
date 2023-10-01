@@ -41,11 +41,11 @@ void Player::main() {
         } catch ( Potato::Explode &explode ) {
             std::cout << " is eliminated" << std::endl;
 
-            if ( umpire->getId == id ) {
-                _Resume Election ( player[1] ) _At *player[1];
+            if ( umpire->getId() == id ) {
+                _Resume Election ( partner[1] ) _At *partner[1];
                 try {
                     player[1]->vote();
-                } _CatchResume ( Election &electedId ) {
+                } _CatchResume ( Election &election ) {
                     std::cout << "HAIII";
                 }
             }
