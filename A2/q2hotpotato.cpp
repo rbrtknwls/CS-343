@@ -49,7 +49,7 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
-    const numberOfPlayers = numPlayers;
+    const int numberOfPlayers = numPlayers;
 
     // Initial set up
     PRNG playerPRNG( seed );
