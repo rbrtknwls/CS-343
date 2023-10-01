@@ -51,7 +51,7 @@ int main( int argc, char * argv[] ) {
 
 
     // Initial set up
-    PRNG playerPRNG( seed );
+    PRNG *playerPRNG = new PRNG( seed );
     PRNG potatoPRNG( seed );
     Potato *potato = new Potato( potatoPRNG );
 
