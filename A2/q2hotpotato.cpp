@@ -18,9 +18,8 @@ void Potato::reset(unsigned int maxTicks) {
 }
 
 // ============ player classes ============
-Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ) {
+Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ) potato ( potato ) {
     playerId = id;
-    playerPotato = potato;
 }
 
 int main( int argc, char * argv[] ) {
