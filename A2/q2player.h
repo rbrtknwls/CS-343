@@ -4,8 +4,8 @@
 #include "q2potato.h"
 
 _Coroutine Player {
-    int id;
     PRNG & prng;
+    int id;
     Potato & potato;
     _Event Terminate {
       public:
