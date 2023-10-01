@@ -77,7 +77,8 @@ int main( int argc, char * argv[] ) {
 
                 players[1]->init( *players[swappedPlayer], *nextPlayer );
                 break;
-            case default:
+                
+            default:
                 cout << "haiiii" << endl;
 
         } // switch
