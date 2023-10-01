@@ -51,7 +51,7 @@ int main( int argc, char * argv[] ) {
     // Initial set up
     PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
-    Potato potato( potatoPRNG );
+    Potato potato( potatoPRNG, 10 );
 
     cout << players << " players in the game" << endl;
     int swappedPlayer = mainPRNG(1,players-1);
