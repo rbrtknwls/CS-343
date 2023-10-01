@@ -21,7 +21,7 @@ void Player::toss() {
 
 
 void Player::vote() {
-    std::cout << "TOSS" << std::endl;
+    resume();
 } // vote
 
 void Player::terminate() {
