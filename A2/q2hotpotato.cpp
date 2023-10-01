@@ -18,20 +18,20 @@ int main( int argc, char * argv[] ) {
     int players = 2;
 
     try {
-        if ( argc >= 4 ) {
+        if ( *argc >= 4 ) {
             cerr << "Too many arguments!" << endl;
             throw cmd_error();
         } // if
 
-        if ( argc > 2 ) {
+        if ( *argc > 2 ) {
             if ( argv[1] != 'd' ) { games = stoi(argv[1]); }
         } // if
 
-        if ( argc > 3 ){
+        if ( *argc > 3 ){
             if ( argv[2] != 'd' ) { players = stoi(argv[2]); }
         } // if
 
-        if ( argc == 4 ) {
+        if ( *argc == 4 ) {
             if ( argv[3] != 'd' ) {
                 seed = stoi(argv[3]);
             }
