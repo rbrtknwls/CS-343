@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <uPRNG.h>
 
-#include "PRNG.h"
 
 using namespace std;
 
