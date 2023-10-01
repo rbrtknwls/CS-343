@@ -10,19 +10,19 @@ using namespace std;
 // =========== potato classes ============
 
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) {
-    potatoPRNG = *prng;
+    potatoPRNG = prng;
+    currentTicks = potatoPRNG(1, maxTicks);
+}
+
+void Potato::reset(unsigned int maxTicks) {
     currentTicks = potatoPrng(1, maxTicks);
 }
 
 // ============ player classes ============
 Player::Player( PRNG & prng, unsigned int id, Potato & potato ) {
-    playerPRNG = *prng;
+    playerPRNG = prng;
     playerId = id;
-    playerPotato = *potato;
-}
-
-void Potato::reset(unsigned int maxTicks) {
-    currentTicks = potatoPrng(1, maxTicks);
+    playerPotato = potato;
 }
 
 int main( int argc, char * argv[] ) {
