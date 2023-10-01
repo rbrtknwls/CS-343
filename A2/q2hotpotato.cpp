@@ -80,7 +80,7 @@ int main( int argc, char * argv[] ) {
             } // case 1
             case numberOfPlayers-1:
                 Player * previousPlayer = players[numberOfPlayers-2];
-                if ( swappedPlayer == numberOfPlayers-2 ) { swappedPlayer = players[0]; }
+                if ( swappedPlayer == numberOfPlayers-2 ) { previousPlayer = players[0]; }
 
                 players[numberOfPlayers-1]->init( *previousPlayer, *players[swappedPlayer] )
 
