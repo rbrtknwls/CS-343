@@ -4,14 +4,13 @@
 #include "q2player.h"
 #include "q2potato.h"
 
-Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) {
-
-    std::cout << "MADE" << std::endl;
-
-}
+Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) { }
 
 void Player::init( Player & lp, Player & rp ) {
+    std::cout << "ID: " << id << std::endl;
 
+    partner[0] = lp;
+    partner[1] = rp;
 }
 
 int Player::getId() { return id; }
