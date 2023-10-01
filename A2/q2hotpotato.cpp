@@ -73,11 +73,16 @@ int main( int argc, char * argv[] ) {
         switch ( id ) {
             case 1: {
                 Player * nextPlayer = players[2];
-                if (swappedPlayer == 2) { nextPlayer = players[0]; }
+                if ( swappedPlayer == 2 ) { nextPlayer = players[0]; }
 
-                players[1]->init(*players[swappedPlayer], *nextPlayer);
+                players[1]->init( *players[swappedPlayer], *nextPlayer );
                 break;
             } // case 1
+            case numberOfPlayers-1:
+                Player * previousPlayer = numberOfPlayers-2;
+                if ( swappedPlayer == numberOfPlayers-2 ) { swappedPlayer = previousPlayer[0]; }
+
+                players[numberOfPlayers-1]->init( *previousPlayer, *players[swappedPlayer] )
 
             default: {
                 cout << "haiiii" << endl;
