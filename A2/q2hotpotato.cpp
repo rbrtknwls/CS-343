@@ -61,14 +61,28 @@ int main( int argc, char * argv[] ) {
 
     for (int id = 0; id < numberOfPlayers; id++) {
         players.push_back( new Player( playerPRNG, id, potato ) );
-    }
+    } // for
 
     Player* umpire = players[0];
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
 
     players[swappedPlayer]->init( *players[1], *players[numberOfPlayers-1] );
+    for (int id = 1; id < numberOfPlayers-1; id++) {
+
+
+        switch ( id ) {
+            case 1:
+                Player* nextPlayer = *players[2];
+                if (swappedPlayer == 2) { nextPlayer = *players[0]; }
+
+                players[1]->init( *players[swappedPlayer], nextPlayer )
+            case default:
+                cout << "haiiii" << endl;
+
+        } // switch
+    } // for
 
     return 0;
 
 
-}
+} // main

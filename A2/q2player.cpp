@@ -11,22 +11,23 @@ void Player::init( Player & lp, Player & rp ) {
 
     partner[0] = &lp;
     partner[1] = &rp;
-}
+} // init
 
 int Player::getId() { return id; }
 
 void Player::toss() {
     std::cout << "TOSS" << std::endl;
-}
+} // toss
 
-void Player::main() {
-    std::cout << "TOSS" << std::endl;
-}
 
 void Player::vote() {
     std::cout << "TOSS" << std::endl;
-}
+} // vote
 
 void Player::terminate() {
     std::cout << "TOSS" << std::endl;
-}
+} // terminate
+
+void Player::main() {
+    std::cout << "TOSS" << std::endl;
+} // main
