@@ -67,7 +67,7 @@ int main( int argc, char * argv[] ) {
 
     Player* temp = players[swappedPlayer];
     players[swappedPlayer] = players[0];
-    players[0] = players[swappedPlayer];
+    players[0] = temp;
 
     for (int id = 0; id < numberOfPlayers; id++) {
         if ( id == 0 ) {
