@@ -46,7 +46,7 @@ void Player::main() {
                 try {
                     player[1].vote();
                 } _CatchResume ( Election &electedId ) {
-                    std::cout << "HAIII"
+                    std::cout << "HAIII";
                 }
             }
 
