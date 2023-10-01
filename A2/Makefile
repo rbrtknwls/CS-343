@@ -11,7 +11,7 @@ MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 OBJECTS1 = q1binsertsort.o # object files forming 1st executable with prefix "q1"
 EXEC1 = binsertsort
 
-OBJECTS2 = q2hotpotato.o q2player.o q2potato.o# object files forming 2nd executable with prefix "q2"
+OBJECTS2 = q2hotpotato.o q2player.o q2potato.o # object files forming 2nd executable with prefix "q2"
 EXEC2 = hotpotato
 
 OBJECTS = ${OBJECTS1} ${OBJECTS2}		# all object files
