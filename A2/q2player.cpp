@@ -7,7 +7,7 @@
 Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) { }
 
 void Player::init( Player & lp, Player & rp ) {
-    std::cout << "ID: " << id << "[ L: ", << lp.getId() << ", R: " << rp.getId() << " ]" << std::endl;
+    std::cout << "ID: " << id << "[ L: " << lp.getId() << ", R: " << rp.getId() << " ]" << std::endl;
 
     partner[0] = &lp;
     partner[1] = &rp;

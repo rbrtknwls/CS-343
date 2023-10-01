@@ -51,7 +51,7 @@ int main( int argc, char * argv[] ) {
 
 
     // Initial set up
-    PRNG *playerPRNG = new PRNG( seed );
+    PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
     Potato potato( potatoPRNG );
 
@@ -60,9 +60,7 @@ int main( int argc, char * argv[] ) {
     vector<Player*> players;
 
     for (int id = 0; id < numberOfPlayers; id++) {
-        std::cout << "HI" << std::endl;
-        players.push_back( new Player( *playerPRNG, id, potato ) );
-        std::cout << "HI" << std::endl;
+        players.push_back( new Player( playerPRNG, id, potato ) );
     }
 
     Player* umpire = players[0];
