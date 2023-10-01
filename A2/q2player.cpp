@@ -49,6 +49,7 @@ void Player::main() {
                 try {
                     partner[1]->vote();
                 } _CatchResume ( Election &election ) {
+                    umpire = election.player;
                     std::cout << "HAIII";
                 }
             }
