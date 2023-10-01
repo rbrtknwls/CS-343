@@ -57,7 +57,7 @@ int main( int argc, char * argv[] ) {
 
     cout << numberOfPlayers << " players in the game" << endl;
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
-    vector<Player> players;
+    //vector<Player> players;
 
 
 }
