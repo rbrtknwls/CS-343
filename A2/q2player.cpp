@@ -23,7 +23,6 @@ void Player::vote() {
 } // vote
 
 void Player::terminate() {
-    std::cout << "Umpire: " << id << std::endl;
     resume();
 } // terminate
 
@@ -45,7 +44,8 @@ void Player::main() {
 
             throw Terminate ( *this );
             umpire->terminate();
-
+        } catch ( Terminate &terminate ) {
+            std::cout << "CAUGHHTTTTT" << std::endl;
         }
 
 
