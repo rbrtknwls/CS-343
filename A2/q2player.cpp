@@ -3,6 +3,8 @@
 
 #include "q2player.h"
 
+Player* Player::umpire;
+
 Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ), id ( id ), potato ( potato ) { }
 
 void Player::init( Player & lp, Player & rp ) {
