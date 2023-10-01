@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "PRNG.h"
+
 using namespace std;
 
 int main( int argc, char * argv[] ) {
@@ -9,23 +11,35 @@ int main( int argc, char * argv[] ) {
     struct cmd_error {};
 
     intmax_t seed = getpid();
+    PRNG rng(seed);
+
+    int games = 5;
+    int players = 2;
 
     try {
-        switch (argc) {
-            case 2:
-                try {                                    // open input file first
-                    infile = new ifstream(argv[1]);
-                    break;
-                } catch (uFile::Failure &) {            // open failed ?
-                    cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
-                    throw cmd_error();
-                } // try
-            default:                                    // wrong number of options
-                throw cmd_error();
-        } // switch
-    } catch (...) {                                    // catch any
+        if (argc >= 4) {
+            cerr << "Too many arguments!" << endl;
+            throw cmd_error();
+        } // if
+
+        if (argc > 2) {
+            if ( argv[1] != 'd' ) { games = argv[1] }
+        } // if
+
+        if (argc > 3){
+            if ( argv[2] != 'd' ) { players = argv[2] }
+        } // if
+
+        if (argc > 4) {
+            if ( argv[3] != 'd' ) {
+                seed = argv[3]
+            }
+        } // if
+
+
+    } catch (...) {
         cerr << "Usage: " << argv[0]
-             << " [ input-file ] " << endl;
+             << "  [ games | ’d’ [ players | ’d’ [ seed | ’d’ ] ] ] " << endl;
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
