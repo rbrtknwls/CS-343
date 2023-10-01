@@ -53,7 +53,7 @@ int main( int argc, char * argv[] ) {
     // Initial set up
     PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
-    Potato potato( potatoPRNG );
+    Potato *potato = new Potato( potatoPRNG );
 
     cout << numberOfPlayers << " players in the game" << endl;
 
@@ -61,7 +61,7 @@ int main( int argc, char * argv[] ) {
 
     for (int id = 0; id < numberOfPlayers; id++) {
         std::cout << "HI" << std::endl;
-        players[id] = new Player( playerPRNG, id, potato );
+        players[id] = new Player( playerPRNG, id, *potato );
         std::cout << "HI" << std::endl;
     }
 
