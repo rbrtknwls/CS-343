@@ -125,7 +125,7 @@ int main( int argc, char * argv[] ) {
         }
 
         if (numberOfValuesToSort > 0) {
-            Binsertsort<T> tree;
+            Binsertsort<TYPE> tree;
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
                 int currValue;
@@ -137,7 +137,7 @@ int main( int argc, char * argv[] ) {
             cout << endl;
 
             _Resume
-            Binsertsort<T>::Sentinel()
+            Binsertsort<TYPE>::Sentinel()
             _At tree;
 
             for (;;) {
@@ -145,7 +145,7 @@ int main( int argc, char * argv[] ) {
                     _Enable{
                             cout << tree.retrieve() << " ";
                     }
-                } catch (Binsertsort<T>::Sentinel &sentinel) {
+                } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
                     cout << endl;
                     break;
                 }
