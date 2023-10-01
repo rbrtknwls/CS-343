@@ -45,6 +45,7 @@ void Player::main() {
             std::cout << " is eliminated" << std::endl;
 
             if ( umpire->getId() == id ) {
+                std::cout << "E " << id << " -> ";
                 _Resume Election ( partner[1] ) _At *partner[1];
                 try {
                     _Enable{
@@ -68,7 +69,7 @@ void Player::main() {
             std::cout << "U ";
 
         } catch ( Election &election ) {
-            std::cout << "ID: " << id << " voted" << std::endl;
+            std::cout << id << " -> ";
 
             if ( election.player->getId() < id ) { _Resume Election ( this ) _At *partner[1]; }
             else { _Resume Election ( election ) _At *partner[1]; }
