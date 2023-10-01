@@ -44,7 +44,8 @@ void Player::main() {
             partner[1]->partner[0] = partner[0];
             partner[0]->partner[1] = partner[1];
 
-            std::cout << "HAII"
+            std::cout << "HAII";
+            std::cout<< umpire->getId() << std::endl;
             throw Terminate ( *this );
             umpire->terminate();
         } catch ( Terminate &terminate ) {
