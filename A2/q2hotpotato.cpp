@@ -79,6 +79,7 @@ int main( int argc, char * argv[] ) {
         }
     } // for
 
+    std::cout << "U"
     umpire->toss();
 
     return 0;

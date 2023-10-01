@@ -29,7 +29,7 @@ void Player::terminate() {
 void Player::main() {
     suspend();
     for ( ;; )
-        std::cout << id
+        std::cout << id;
         try {
             _Enable{
                 potato.countdown();
