@@ -72,10 +72,10 @@ int main( int argc, char * argv[] ) {
 
         switch ( id ) {
             case 1:
-                Player* nextPlayer = *players[2];
-                if (swappedPlayer == 2) { nextPlayer = *players[0]; }
+                Player* nextPlayer = players[2];
+                if (swappedPlayer == 2) { nextPlayer = players[0]; }
 
-                players[1]->init( *players[swappedPlayer], nextPlayer )
+                players[1]->init( *players[swappedPlayer], *nextPlayer )
             case default:
                 cout << "haiiii" << endl;
 
