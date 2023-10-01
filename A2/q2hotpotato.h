@@ -14,7 +14,7 @@ class Potato {
 _Coroutine Player {
     int playerId;
     PRNG & playerPRNG;
-    Potato * playerPotato;
+    Potato & playerPotato;
     _Event Terminate {
       public:
         Player & victim;					// delete player

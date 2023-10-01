@@ -15,7 +15,7 @@ Potato::Potato( PRNG &prng, unsigned int maxTicks ) {
 }
 
 void Potato::reset(unsigned int maxTicks) {
-    currentTicks = potatoPrng(1, maxTicks);
+    currentTicks = potatoPRNG(1, maxTicks);
 }
 
 // ============ player classes ============
