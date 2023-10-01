@@ -23,8 +23,7 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc >= 2 ) {
-
-            if ( argc != 1 ) { games = stoi(argv[1]); }
+            if ( *argv[1] != 'd' ) { games = stoi(argv[1]); }
         } // if
 
         if ( argc > 3 ){
