@@ -35,7 +35,7 @@ int main( int argc, char * argv[] ) {
                 seed = stoi( argv[3] );
                 rng.set_seed( seed );
 
-                if ( *argv[2] == 'd' ) { players = rng( 2, 10 ) }
+                if ( *argv[2] == 'd' ) { players = rng( 2, 10 ); }
             } // if
         } // if
 
