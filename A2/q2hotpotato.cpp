@@ -64,6 +64,7 @@ int main( int argc, char * argv[] ) {
     } // for
 
     Player::umpire = players[0];
+    /*
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
 
     Player* temp = players[swappedPlayer];
@@ -79,7 +80,7 @@ int main( int argc, char * argv[] ) {
             players[id]->init( *players[id-1], *players[id+1] );
         }
     } // for
-
+    */
     std::cout << "U ";
     // players[swappedPlayer]->toss();
 
