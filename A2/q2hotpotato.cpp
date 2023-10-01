@@ -79,7 +79,7 @@ int main( int argc, char * argv[] ) {
         }
     } // for
 
-    std::cout << "U";
+    std::cout << "U ";
     players[swappedPlayer]->toss();
 
     return 0;

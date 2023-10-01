@@ -64,8 +64,8 @@ void Player::main() {
         } catch ( Terminate &terminate ) {
             //delete terminate.victim;
 
-            std::cout << "U " << umpire->getId() << " ";
             potato.reset();
+            std::cout << "U " << umpire->getId() << " ";
             partner[prng(0, 1)]->toss();
 
         } catch ( Election &election ) {
@@ -73,7 +73,7 @@ void Player::main() {
 
             if ( election.player->getId() < id ) { _Resume Election ( this ) _At *partner[1]; }
             else { _Resume Election ( election ) _At *partner[1]; }
-            
+
             partner[1]->vote();
         }
 
