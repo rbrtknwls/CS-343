@@ -17,7 +17,7 @@ int main( int argc, char * argv[] ) {
     PRNG mainPRNG(seed);
 
     int games = 5;
-    int numberOfPlayers = mainPRNG(2, 10);
+    int numPlayers = mainPRNG(2, 10);
 
     try {
         if ( argc > 4 ) {
@@ -30,7 +30,7 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc >= 3 ){
-            if ( *argv[2] != 'd' ) { numberOfPlayers = stoi( argv[2] ); }
+            if ( *argv[2] != 'd' ) { numPlayers = stoi( argv[2] ); }
         } // if
 
         if ( argc == 4 ) {
@@ -38,7 +38,7 @@ int main( int argc, char * argv[] ) {
                 seed = stoi( argv[3] );
                 mainPRNG.set_seed( seed );
 
-                if ( *argv[2] == 'd' ) { numberOfPlayers = mainPRNG( 2, 10 ); }
+                if ( *argv[2] == 'd' ) { numPlayers = mainPRNG( 2, 10 ); }
             } // if
         } // if
 
@@ -49,6 +49,7 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
+    const numberOfPlayers = numPlayers;
 
     // Initial set up
     PRNG playerPRNG( seed );
