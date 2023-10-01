@@ -7,6 +7,13 @@
 
 using namespace std;
 
+// =========== potato classes ============
+
+Potato::Potato(int &prng, unsigned int maxTicks) {
+    potatoPrng = prng;
+    currentTicks = maxTicks;
+}
+
 int main( int argc, char * argv[] ) {
 
     struct cmd_error {};
@@ -51,7 +58,7 @@ int main( int argc, char * argv[] ) {
     // Initial set up
     PRNG playerPRNG( seed );
     PRNG potatoPRNG( seed );
-    Potato potato( potatoPRNG, 10 );
+    Potato potato( potatoPRNG );
 
     cout << players << " players in the game" << endl;
     int swappedPlayer = mainPRNG(1,players-1);

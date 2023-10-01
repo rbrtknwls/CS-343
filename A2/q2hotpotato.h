@@ -2,12 +2,12 @@
 #define CS_343_Q2_H
 
 class Potato {
-    PRNG prng;
+    PRNG potatoPrng;
     int currentTicks;
   public:
     _Event Explode {};
-    Potato( PRNG & prng, unsigned int maxTicks = 10 ) : prng( prng ) currentTicks( maxTicks ) {};
-    void reset( unsigned int maxTicks = 10 ) : currentTicks( maxTicks ) {}
+    Potato( PRNG & prng, unsigned int maxTicks = 10 );
+    void reset( unsigned int maxTicks = 10 );
     void countdown();
 };
 
