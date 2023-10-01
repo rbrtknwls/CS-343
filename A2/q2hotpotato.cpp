@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <vector>
 #include <uPRNG.h>
 #include "q2hotpotato.h"
 
@@ -26,7 +26,7 @@ int main( int argc, char * argv[] ) {
     PRNG mainPRNG(seed);
 
     int games = 5;
-    int players = mainPRNG(2, 10);
+    int numberOfPlayers = mainPRNG(2, 10);
 
     try {
         if ( argc > 4 ) {
@@ -39,7 +39,7 @@ int main( int argc, char * argv[] ) {
         } // if
 
         if ( argc >= 3 ){
-            if ( *argv[2] != 'd' ) { players = stoi( argv[2] ); }
+            if ( *argv[2] != 'd' ) { numberOfPlayers = stoi( argv[2] ); }
         } // if
 
         if ( argc == 4 ) {
@@ -47,7 +47,7 @@ int main( int argc, char * argv[] ) {
                 seed = stoi( argv[3] );
                 mainPRNG.set_seed( seed );
 
-                if ( *argv[2] == 'd' ) { players = mainPRNG( 2, 10 ); }
+                if ( *argv[2] == 'd' ) { numberOfPlayers = mainPRNG( 2, 10 ); }
             } // if
         } // if
 
@@ -64,10 +64,9 @@ int main( int argc, char * argv[] ) {
     PRNG potatoPRNG( seed );
     Potato potato( potatoPRNG );
 
-    cout << players << " players in the game" << endl;
-    int swappedPlayer = mainPRNG(1,players-1);
-
-    cout << games << endl;
-    cout << "hi" << endl;
+    cout << numberOfPlayers << " players in the game" << endl;
+    int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
+    vector<Players> players;
+    
 
 }
