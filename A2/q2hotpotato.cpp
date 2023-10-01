@@ -81,6 +81,7 @@ int main( int argc, char * argv[] ) {
     std::cout << "U ";
     players[swappedPlayer]->toss();
 
+    delete Player::umpire;
 
     return 0;
 

@@ -64,7 +64,7 @@ void Player::main() {
             _Resume Terminate ( *this ) _At *umpire;
             umpire->terminate();
         } catch ( Terminate &terminate ) {
-            //delete terminate.victim;
+            delete &terminate.victim;
 
             potato.reset();
             std::cout << "U ";
