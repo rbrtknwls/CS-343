@@ -12,7 +12,7 @@ void Potato::reset(unsigned int maxTicks) {
 }
 
 void Potato::countdown() {
-    if (--currentTicks == 0) {
+    if (--currentTicks >= 0) {
         throw Explode();
     }
     std::cout << currentTicks;

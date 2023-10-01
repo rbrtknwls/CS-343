@@ -35,12 +35,12 @@ void Player::main() {
                 potato.countdown();
                 std::cout << " -> ";
                 partner[prng(0, 1)]->toss();
-                suspend();
             }
         } catch ( Potato::Explode &explode ) {
             std::cout << id << std::endl;
             suspend();
         }
+        suspend();
     }
 
 }
