@@ -1,6 +1,7 @@
 #ifndef CS_343_PLAYER_H
 #define CS_343_PLAYER_H
 
+#include "q2potato.h"
 
 _Coroutine Player {
     int id;
