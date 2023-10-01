@@ -29,6 +29,4 @@ _Coroutine Player {
     void toss();							// tossed potato
 
 };
-
-
-#endif //CS_343_PLAYER_H
+#endif
