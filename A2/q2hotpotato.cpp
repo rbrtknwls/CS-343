@@ -9,7 +9,7 @@ using namespace std;
 
 // =========== potato classes ============
 
-Potato::Potato(int &prng, unsigned int maxTicks) {
+Potato::Potato( PRNG &prng, unsigned int maxTicks ) {
     potatoPrng = prng;
     currentTicks = maxTicks;
 }
