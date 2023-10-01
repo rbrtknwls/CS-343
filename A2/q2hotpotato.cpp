@@ -80,7 +80,7 @@ int main( int argc, char * argv[] ) {
     } // for
 
     std::cout << "U";
-    Player::umpire->toss();
+    players[swappedPlayer]->toss();
 
     return 0;
 
