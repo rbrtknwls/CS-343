@@ -3,6 +3,7 @@
 #include <string>
 
 #include <uPRNG.h>
+#include "q2hotpotato.h"
 
 using namespace std;
 
@@ -11,10 +12,10 @@ int main( int argc, char * argv[] ) {
     struct cmd_error {};
 
     intmax_t seed = getpid();
-    PRNG rng(seed);
+    PRNG mainPRNG(seed);
 
     int games = 5;
-    int players = rng(2, 10);
+    int players = mainPRNG(2, 10);
 
     try {
         if ( argc > 4 ) {
@@ -33,9 +34,9 @@ int main( int argc, char * argv[] ) {
         if ( argc == 4 ) {
             if ( *argv[3] != 'd' ) {
                 seed = stoi( argv[3] );
-                rng.set_seed( seed );
+                mainPRNG.set_seed( seed );
 
-                if ( *argv[2] == 'd' ) { players = rng( 2, 10 ); }
+                if ( *argv[2] == 'd' ) { players = mainPRNG( 2, 10 ); }
             } // if
         } // if
 
@@ -45,6 +46,10 @@ int main( int argc, char * argv[] ) {
              << "  [ games | ’d’ [ players | ’d’ [ seed | ’d’ ] ] ] " << endl;
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
+
+    PRNG playerPRNG(seed);
+    PRNG potatoPRNG(seed);
+
     cout << players << " players in the game" << endl;
     cout << games << endl;
     cout << "hi" << endl;
