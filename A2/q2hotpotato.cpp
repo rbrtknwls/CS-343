@@ -62,6 +62,7 @@ int main( int argc, char * argv[] ) {
     for (int id = 0; id < numberOfPlayers; id++) {
         std::cout << "HI" << std::endl;
         players[id] = new Player( playerPRNG, id, potato );
+        std::cout << "HI" << std::endl;
     }
 
     Player* umpire = players[0];
