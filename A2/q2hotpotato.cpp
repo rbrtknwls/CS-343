@@ -60,7 +60,7 @@ int main( int argc, char * argv[] ) {
     vector<Player * > players;
 
     for (int id = 0; id < numberOfPlayers; id++) {
-        players[id] = Player( &playerPRNG, id, &potato );
+        players[id] = Player( *playerPRNG, id, *potato );
     }
 
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
