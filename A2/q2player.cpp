@@ -44,7 +44,7 @@ void Player::main() {
             if ( umpire->getId == id ) {
                 _Resume Election ( player[1] ) _At *player[1];
                 try {
-                    player[1].vote();
+                    player[1]->vote();
                 } _CatchResume ( Election &electedId ) {
                     std::cout << "HAIII";
                 }
@@ -63,9 +63,9 @@ void Player::main() {
             partner[prng(0, 1)]->toss();
         } catch ( Election &election ) {
             std::cout << "ID: " << id << " voted" << std::endl;
-            if ( election->getId() < id ) { _Resume Election ( this ) _At *player[1]; }
+            if ( election.player->getId() < id ) { _Resume Election ( this ) _At *player[1]; }
 
-            player[1].vote();
+            player[1]->vote();
         }
 
     }
