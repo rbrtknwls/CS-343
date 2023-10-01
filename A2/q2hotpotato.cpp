@@ -66,7 +66,8 @@ int main( int argc, char * argv[] ) {
 
     Player* umpire = players[0];
     int swappedPlayer = mainPRNG(1,numberOfPlayers-1);
-    players[swappedPlayer].init(players[1], players[numberOfPlayers-1])
+    
+    players[swappedPlayer]->init(players[1], players[numberOfPlayers-1])
 
     return 0;
 
