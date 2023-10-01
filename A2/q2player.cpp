@@ -33,6 +33,9 @@ void Player::main() {
     for ( ;; ) {
         try {
             _Enable{
+                if ( partner[0] == partner[1] ) {
+                    break;
+                }
                 std::cout << id;
                 potato.countdown();
                 std::cout << " -> ";
