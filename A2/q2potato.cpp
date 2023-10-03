@@ -3,16 +3,33 @@
 
 #include "q2potato.h"
 
+using namespace std;
+
+/*
+ *  This is the main constructor for potato, it should run at the start of every game.
+ *    We will set the current ticks to be the same as maxTicks and output to cout how
+ *    long it will take the potato to explode
+ */
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
     currentTicks = prng(1, maxTicks);
-    std::cout << " POTATO goes off after " << currentTicks << " ticks" << std::endl;
+    cout << " POTATO goes off after " << currentTicks << " ticks" << endl;
 }
 
+
+/*
+ *  We run this code right after the potato explodes, acts similar to the constructor except
+ *    we dont need to set a prng.
+ */
 void Potato::reset(unsigned int maxTicks) {
     currentTicks = prng(1, maxTicks);
     std::cout << " POTATO goes off after " << currentTicks << " ticks" << std::endl;
 }
 
+/*
+ *  This is the code that decreases currentTicks, if the potato is going to explode then we throw an
+ *    exception which will be caught by one of the players. Otherwise we just decrease the current
+ *    number of ticks
+ */
 void Potato::countdown() {
     if (--currentTicks == 0) {
         throw Explode();

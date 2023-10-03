@@ -3,13 +3,13 @@
 
 
 class Potato {
-    PRNG & prng;
-    int currentTicks;
+    PRNG & prng;                                                // Stores random number generator to use
+    int currentTicks;                                           // Stores current ticks left
   public:
     _Event Explode {};
     Potato( PRNG & prng, unsigned int maxTicks = 10 );
-    void reset( unsigned int maxTicks = 10 );
-    void countdown();
+    void reset( unsigned int maxTicks = 10 );                    // Reset number of ticks
+    void countdown();                                            // Decrease number of ticks
 };
 
 
