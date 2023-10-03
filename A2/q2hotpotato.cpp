@@ -29,9 +29,9 @@ int main( int argc, char * argv[] ) {
                     gamesToPlay = mainPRNG(2, 10);                                 // seed updated so need to reinit
                 }
             case (3):
-                if (*argv[2] != 'd') { gamesToPlay = stoi(argv[2]); }              // update players if not given 'd'
+                if (*argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }          // update players if not given 'd'
             case (2):
-                if (*argv[1] != 'd') { games = stoi(argv[1]); }                    // update games if not given 'd'
+                if (*argv[1] != 'd') { gamesToPlay = stoi(argv[1]); }              // update games if not given 'd'
             case (1):
                 break;
             default:
@@ -40,16 +40,16 @@ int main( int argc, char * argv[] ) {
     } catch (...) {
         cerr << "Usage: " << argv[0]
              << "  [ games | ’d’ [ players | ’d’ [ seed | ’d’ ] ] ] " << endl;
-        exit(EXIT_FAILURE);                                                           // TERMINATE
+        exit(EXIT_FAILURE);                                                        // TERMINATE
     } // try
 
     for ( ; gamesToPlay > 0 ; gamesToPlay-- ) {
-        vector < Player * > players;                                                  // stores all player points*
+        vector < Player * > players;                                               // stores all player points*
         cout << numberOfPlayers << " players in the game" << endl;
 
-        PRNG playerPRNG(seed);                                                        // create PRNG for player(s)
-        PRNG potatoPRNG(seed);                                                        // create PRNG for potato
-        Potato potato(potatoPRNG);                                                    // create potato with prng
+        PRNG playerPRNG(seed);                                                     // create PRNG for player(s)
+        PRNG potatoPRNG(seed);                                                     // create PRNG for potato
+        Potato potato(potatoPRNG);                                                 // create potato with prng
 
 
         /*
@@ -61,7 +61,7 @@ int main( int argc, char * argv[] ) {
             players.push_back(new Player(playerPRNG, id, potato));
         } // for
 
-        Player::umpire = players[0];                                                  // set the umpire for the game
+        Player::umpire = players[0];                                               // set the umpire for the game
 
         // The below code is for swapping a random index with the umpire as per the requirements of the game
         int swappedPlayer = mainPRNG(1, numberOfPlayers - 1);
@@ -70,9 +70,10 @@ int main( int argc, char * argv[] ) {
         players[0] = temp;
 
         /*
-         * Initializes each of the players with the players that are directly beside them, note that we have two special
-         *  cases which happens at the first index (index 0) and the last index (index numberOfPlayers-1) this is because
-         *  one of the neighbors needs to "loop around" as the first element is neighbours with the last and vise versa.
+         * Initializes each of the players with the players that are directly beside them, note that we have two
+         *  special cases which happens at the first index (index 0) and the last index (index numberOfPlayers-1) this
+         *  is because one of the neighbors needs to "loop around" as the first element is neighbours
+         *  with the last and vise versa.
          */
         for (int id = 0; id < numberOfPlayers; id++) {
             if (id == 0) {
@@ -84,12 +85,12 @@ int main( int argc, char * argv[] ) {
             }
         } // for
 
-        std::cout << "U ";                                                             // game starts with umpire
-        players[swappedPlayer]->toss();                                                // toss the potato to umpire
+        std::cout << "U ";                                                           // game starts with umpire
+        players[swappedPlayer]->toss();                                              // toss the potato to umpire
 
 
-        delete Player::umpire;                                                         // delete last player
-        players.clear();                                                               // clear the player list
+        delete Player::umpire;                                                       // delete last player
+        players.clear();                                                             // clear the player list
     }
 
     return 0;
