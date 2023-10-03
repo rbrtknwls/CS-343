@@ -2,6 +2,6 @@
 
 
 int main ( int argc, char * argv[] ) {
-    std::string file1 = argv[1].c_str();
+    std::string file1 = str(argv[1].c_str());
     system("./" + file);
 }
