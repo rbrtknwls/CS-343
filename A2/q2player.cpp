@@ -44,7 +44,7 @@ void Player::main() {
 
               if ( partner[0] == this ) {                                   // Determine if player is only one left
                     std::cout << id << " wins the Match!" << std::endl;
-                    suspend();
+                    break;
               } // if
 
                 std::cout << id;
