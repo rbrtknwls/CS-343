@@ -2,5 +2,5 @@
 
 
 int main ( int argc, char * argv[] ) {
-    system("./" + argv[1].c_str)
+    system("./" + argv[1].c_str())
 }
