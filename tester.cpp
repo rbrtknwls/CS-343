@@ -2,5 +2,6 @@
 
 
 int main ( int argc, char * argv[] ) {
-    system("./" + argv[1].c_str())
+    std::string file1 = argv[1].c_str()
+    system("./" + file)
 }
