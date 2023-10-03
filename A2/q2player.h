@@ -19,7 +19,7 @@ _Coroutine Player {
     };
     Player * partner[2];					// left and right player
     void main();
-    void vote();							// resume partner to vote
+    void vote();         					// resume partner to vote
     void terminate();						// resume umpire
   public:
     static Player * umpire;					// current umpire

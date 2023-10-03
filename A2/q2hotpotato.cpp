@@ -19,6 +19,14 @@ int main( int argc, char * argv[] ) {
     int games = 5;
     int numberOfPlayers = mainPRNG(2, 10);
 
+    switch( argc ) {
+        case (1):
+            cout << "here" << endl;
+        case (2):
+            cout << "tjere" << endl;
+        case (3):
+            cout << "oh?" << endl;
+    }
     try {
         if ( argc > 4 ) {
             cerr << "Too many arguments!" << endl;
