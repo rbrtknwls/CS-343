@@ -2,7 +2,7 @@
 
 
 int main ( int argc, char * argv[] ) {
-    std::string file1 = argv[1];
+    std::string file1 = std::string("./") + argv[1];
 
-    system(std::string("./") + std::string(argv[1]));
+    system(file1.c_str());
 }
