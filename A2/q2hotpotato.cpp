@@ -18,7 +18,6 @@ int main( int argc, char * argv[] ) {
     PRNG mainPRNG(seed);
     int gamesToPlay = 5;
 
-
     try {
         switch( argc ) {
             case (4):
@@ -26,9 +25,7 @@ int main( int argc, char * argv[] ) {
                     seed = stoi(argv[3]);                                          // update the seed if not given 'd'
                     mainPRNG.set_seed(seed);
                 }
-            case (3):
-                if (*argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }          // update players if not given 'd'
-            case (2):
+            case (3): case (2):
                 if (*argv[1] != 'd') { gamesToPlay = stoi(argv[1]); }              // update games if not given 'd'
             case (1):
                 break;
