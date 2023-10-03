@@ -96,6 +96,8 @@ int main( int argc, char * argv[] ) {
 
         delete Player::umpire;                                                       // delete last player
         players.clear();                                                             // clear the player list
+
+        if ( gamesToPlay != 1 ) { cout << endl << endl }                             // separate games by spaces
     }
 
     return 0;
