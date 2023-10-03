@@ -11,6 +11,7 @@ Player::Player( PRNG & prng, unsigned int id, Potato & potato ) : prng ( prng ),
 void Player::init( Player & lp, Player & rp ) {
     partner[0] = &lp;                                                     // Create a pointer to the left player
     partner[1] = &rp;                                                     // Create a pointer to the right player
+    resume();
 } // init
 
 int Player::getId() { return id; }
@@ -36,6 +37,7 @@ void Player::terminate() {
  *      4) Check to see if there are any players left
  */
 void Player::main() {
+    suspend();
     for ( ;; ) {
         try {
             _Enable {
