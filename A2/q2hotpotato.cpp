@@ -17,7 +17,6 @@ int main( int argc, char * argv[] ) {
     intmax_t seed = getpid();
     PRNG mainPRNG(seed);
     int gamesToPlay = 5;
-    int numberOfPlayers = mainPRNG(2, 10);
 
 
     try {
@@ -26,7 +25,6 @@ int main( int argc, char * argv[] ) {
                 if (*argv[3] != 'd') {
                     seed = stoi(argv[3]);                                          // update the seed if not given 'd'
                     mainPRNG.set_seed(seed);
-                    gamesToPlay = mainPRNG(2, 10);                                 // seed updated so need to reinit
                 }
             case (3):
                 if (*argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }          // update players if not given 'd'
@@ -43,7 +41,17 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                                        // TERMINATE
     } // try
 
-    for ( ; gamesToPlay > 0 ; gamesToPlay-- ) {
+
+
+    for ( ; gamesToPlay > 0 ; gamesToPlay-- ) {                                    // Loop through games
+
+        /*
+         * The number of players in the game might change every game, so we regenerate them each time. We will update
+         *  them with random values always, and then replace them if we are given an alternative
+         */
+        int numberOfPlayers = mainPRNG(2, 10);
+        if (argc > 2 && *argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }
+
         vector < Player * > players;                                               // stores all player points*
         cout << numberOfPlayers << " players in the game" << endl;
 
