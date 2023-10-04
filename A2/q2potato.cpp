@@ -22,7 +22,7 @@ Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
  */
 void Potato::reset(unsigned int maxTicks) {
     currentTicks = prng(1, maxTicks);
-    std::cout << " POTATO goes off after " << currentTicks << " ticks" << std::endl;
+    std::cout << "  POTATO goes off after " << currentTicks << " ticks" << std::endl;
 }
 
 /*
