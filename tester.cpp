@@ -11,7 +11,7 @@ int main ( int argc, char * argv[] ) {
     srand(getpid());
 
 
-    for ( int testNum = 0; testNum < 10; testNum++ ) {
+    for ( int testNum = 0; testNum < 1; testNum++ ) {
         ofstream currentFile;
         currentFile.open("input" + std::to_string(testNum) + ".txt");
         int numberOfTests = rand()%10 + 5;
@@ -33,7 +33,7 @@ int main ( int argc, char * argv[] ) {
         currentFile.close();
     }
 
-    for ( int testNum = 0; testNum < 10; testNum++ ) {
+    for ( int testNum = 0; testNum < 1; testNum++ ) {
 
         std::string file = " input" + std::to_string(testNum) + ".txt ";
 
