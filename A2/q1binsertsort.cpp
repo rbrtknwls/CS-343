@@ -104,7 +104,7 @@ int main( int argc, char * argv[] ) {
                 try {                                    // open input file first
                     infile = new ifstream(argv[1]);
                     break;
-                } catch (uFile::Failure &) {            // open failed ?
+                } catch (uFile::Failure &) {            // open failed
                     cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
                     throw cmd_error();
                 } // try

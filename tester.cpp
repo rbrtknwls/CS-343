@@ -1,8 +1,29 @@
 #include "string"
-
+#include <stdlib.h>
 
 int main ( int argc, char * argv[] ) {
+    srand(getpid());
 
+
+    for ( int testNum = 0; testNum < 10; testNum++ ) {
+        ofstream currentFile;
+        currentFile.open("input" + std::to_string(testNum) + ".txt");
+        int numberOfTests = rand()%10 + 5;
+
+        for ( int currLength = 0; currLength < numberOfTests; currLength++ ) {
+            currentFile << "HIII";
+
+        }
+
+        currentFile.close();
+
+
+    }
+
+
+
+
+    /* A2 - Q2
     for ( int i = 0; i < 10; i++ ) {
         for (int x = 2; x < 10; x++ ) {
             for (int z = 2; z < 10; z++ ) {
@@ -28,6 +49,6 @@ int main ( int argc, char * argv[] ) {
                 system("diff temp.a temp.b");
             }
         }
-    }
+    }*/
 
 }
