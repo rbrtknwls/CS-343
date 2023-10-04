@@ -12,12 +12,13 @@ using namespace std;
  *      2) It has a value and therefore should check all its children when it gets sentinel
  */
 template<typename T> void Binsertsort<T>::main() {
+    _Coroutine Binsertsort<T> less;                 // Coroutine for value smaller
+    _Coroutine Binsertsort<T> more;                 // Coroutine for value greater
 
     try {
         _Enable{
-            _Coroutine Binsertsort<T> less;                                            // Coroutine for value smaller
-            _Coroutine Binsertsort<T> more;                                            // Coroutine for value greater
-            pivot = value;                                                             // Value we pivot on
+
+            pivot = value;                          // Value we pivot on
         } // enable
     } catch (Sentinel & sentinel) { // If we get an exception here we want to return nothing and propagate error
         _Resume Sentinel() _At resumer();
@@ -33,7 +34,7 @@ template<typename T> void Binsertsort<T>::main() {
     try {
         _Enable{
             for ( ;; ) {
-                if (value < pivot) {
+                if ( value < pivot ) {
                     less.sort(value);                  // Pass value to less than
                 } else {
                     more.sort(value);                  // Pass value to greater than
