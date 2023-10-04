@@ -10,7 +10,7 @@ using namespace std;
  *    are any other kind of value.
  */
 void printPotatoTicks( int currentTicks ) {
-    cout << << "  POTATO goes off after " << currentTicks << " tick";
+    cout << "  POTATO goes off after " << currentTicks << " tick";
     if ( currentTicks != 1 ) { cout << "s"; }
     cout << endl;
 }
