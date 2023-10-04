@@ -1,4 +1,4 @@
-TYPE:=float
+TYPE:=string
 
 CXX = u++					# compiler
 CXXFLAGS = -g -Wall -Wextra -MMD -O2 -DTYPE="${TYPE}"
