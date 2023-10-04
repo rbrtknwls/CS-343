@@ -74,7 +74,7 @@ void Player::main() {
             _Resume Terminate ( *this ) _At *umpire;                        // Send terminate instruction to umpire
             umpire->terminate();                                            // Resume umpire
         } catch ( Terminate &terminate ) {
-            std::cout << "TERMINATED " << terminate.victim.getId();
+            std::cout << terminate.victim.getId() << " is eliminated";
             delete &terminate.victim;                                       // Delete the terminated player
 
             potato.reset();                                                 // Reset the potato
