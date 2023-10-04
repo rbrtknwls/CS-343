@@ -119,6 +119,7 @@ int main( int argc, char * argv[] ) {
 
 
     for ( ;; ) {
+
         int numberOfValuesToSort;
         if (!(*infile >> numberOfValuesToSort)) {
             break;
@@ -139,9 +140,10 @@ int main( int argc, char * argv[] ) {
 
 
             try {
-                _Enable{
+                _Enable {
                     cout << tree.retrieve();
-                    for (;;) {
+                    cout << "HERE";
+                    for ( ;; ) {
                         cout << " " + tree.retrieve();
                     }
                 }
