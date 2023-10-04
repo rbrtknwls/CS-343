@@ -39,9 +39,8 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                                        // TERMINATE
     } // try
 
-    PRNG playerPRNG( seed );                                                   // create PRNG for player(s)
-    PRNG potatoPRNG( seed );                                                   // create PRNG for potato
-    Potato potato(potatoPRNG);                                                 // create potato with prng
+    PRNG playerPRNG( seed );                                                       // create PRNG for player(s)
+    PRNG potatoPRNG( seed );                                                       // create PRNG for potato
 
     for ( ; gamesToPlay > 0 ; gamesToPlay-- ) {                                    // Loop through games
 
@@ -54,6 +53,8 @@ int main( int argc, char * argv[] ) {
 
         vector < Player * > players;                                               // stores all player points*
         cout << numberOfPlayers << " players in the game" << endl;
+
+        Potato potato(potatoPRNG);                                                 // create potato with prng
 
         /*
          * This loops through all the number of players and initializes the player pointer.
