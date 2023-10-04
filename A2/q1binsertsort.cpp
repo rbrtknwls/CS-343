@@ -131,7 +131,8 @@ int main( int argc, char * argv[] ) {
                 int currValue;
 
                 *infile >> currValue;
-                cout << currValue << " ";
+                cout << currValue;
+                if (i != numberOfValuesToSort - 1) { cout << " "; }
                 tree.sort(currValue);
             }
             cout << endl;
@@ -144,7 +145,7 @@ int main( int argc, char * argv[] ) {
                     cout << tree.retrieve();
                     for ( ;; ) {
 
-                        cout << " " << tree.retrieve();
+                        cout << " " + tree.retrieve();
                     }
                 }
 
