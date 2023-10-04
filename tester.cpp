@@ -21,7 +21,7 @@ int main ( int argc, char * argv[] ) {
             int numberOfLines = rand()%10;
             currentFile << numberOfLines << endl;
             for ( int i = 0; i < numberOfLines; i++ ) {
-                currentFile << rand()%100
+                currentFile << rand()%100;
                 if (i != numberOfLines - 1) {
                     currentFile << " "
                 }
