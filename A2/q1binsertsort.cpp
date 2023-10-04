@@ -128,7 +128,7 @@ int main( int argc, char * argv[] ) {
             Binsertsort<TYPE> tree;
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
-                int currValue;
+                TYPE currValue;
 
                 *infile >> currValue;
                 cout << currValue;
