@@ -3,9 +3,9 @@
 
 int main ( int argc, char * argv[] ) {
 
-    for ( int i = 0; i < 5; i++ ) {
-        for (int x = 2; x < 5; x++ ) {
-            for (int z = 2; z < 5; z++ ) {
+    for ( int i = 0; i < 20; i++ ) {
+        for (int x = 2; x < 20; x++ ) {
+            for (int z = 2; z < 20; z++ ) {
                 std::string arguments = " ";
                 if ( i == 0 ) { arguments += "d "; }
                 else { arguments += std::to_string(i) + " "; }
