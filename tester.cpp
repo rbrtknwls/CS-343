@@ -24,6 +24,8 @@ int main ( int argc, char * argv[] ) {
 
                 system(file1.c_str());
                 system(file2.c_str());
+
+                system("diff temp.a temp.b")
             }
         }
     }
