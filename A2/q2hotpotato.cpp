@@ -47,7 +47,6 @@ int main( int argc, char * argv[] ) {
          * The number of players in the game might change every game, so we regenerate them each time. We will update
          *  them with random values always, and then replace them if we are given an alternative
          */
-        int numberOfPlayers = mainPRNG(2, 10);
         if (argc > 2 && *argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }
         else { numberOfPlayers = mainPRNG(2, 10); }
 
