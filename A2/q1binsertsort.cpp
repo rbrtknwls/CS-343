@@ -137,10 +137,10 @@ int main( int argc, char * argv[] ) {
 
             _Resume Binsertsort<TYPE>::Sentinel() _At tree;
 
-            
+
             try {
                 _Enable{
-                    cout << tree.retrieve()
+                    cout << tree.retrieve();
                     for (;;) {
                         cout << " " + tree.retrieve();
                     }
