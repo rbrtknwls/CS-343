@@ -160,4 +160,5 @@ int main( int argc, char * argv[] ) {
     }
 
     if ( infile != &cin ) delete infile;
+    if ( outfile != &cout ) delete outfile;
 }
