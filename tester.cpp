@@ -37,7 +37,7 @@ int main ( int argc, char * argv[] ) {
 
         std::string file = "input" + std::to_string(testNum) + ".txt";
 
-        std::string arg1 = file + " > temp"+ std::to_string(testNum) +".a 2> temp.a";
+        std::string arg1 = file + " > temp"+ std::to_string(testNum) +".a 2> temp"+ std::to_string(testNum) +".a";
         std::string arg2 = file + " > temp.b 2> temp.b";
 
         std::string file1 = std::string("./") + argv[1] + arg1;
