@@ -17,7 +17,7 @@ int main( int argc, char * argv[] ) {
     intmax_t seed = getpid();
     PRNG mainPRNG(seed);
     int gamesToPlay = 5;
-    int numberOfPlayers = 0;                                                      // This will be replaced later
+    int numberOfPlayers = 2;                                                      // This will be replaced later
 
     try {
         switch( argc ) {
@@ -26,9 +26,12 @@ int main( int argc, char * argv[] ) {
                     seed = stoi(argv[3]);                                          // update the seed if not given 'd'
                     mainPRNG.set_seed(seed);
                 }
-            case (3): case (2):
+            case (3):
+                if (*argv[1] != 'd') { numberOfPlayers = stoi(argv[1]); }          // update players if not given 'd'
+            case (2):
                 if (*argv[1] != 'd') { gamesToPlay = stoi(argv[1]); }              // update games if not given 'd'
             case (1):
+                if ( numberOfPlayers < 2 || gamesToPlay < 0 || seed < 0 ) { cmd_error(); }
                 break;
             default:
                 throw cmd_error();
