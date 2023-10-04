@@ -17,6 +17,7 @@ int main( int argc, char * argv[] ) {
     intmax_t seed = getpid();
     PRNG mainPRNG(seed);
     int gamesToPlay = 5;
+    int numberOfPlayers = 0;                                                      // This will be replaced later
 
     try {
         switch( argc ) {
@@ -48,13 +49,12 @@ int main( int argc, char * argv[] ) {
          */
         int numberOfPlayers = mainPRNG(2, 10);
         if (argc > 2 && *argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }
+        else { numberOfPlayers = mainPRNG(2, 10); }
 
         vector < Player * > players;                                               // stores all player points*
         cout << numberOfPlayers << " players in the game" << endl;
 
-        PRNG playerPRNG(seed);                                                     // create PRNG for player(s)
-        PRNG potatoPRNG(seed);                                                     // create PRNG for potato
-        Potato potato(potatoPRNG);                                                 // create potato with prng
+        Potato potato( mainPRNG );                                                 // create potato with prng
 
 
         /*
@@ -63,7 +63,7 @@ int main( int argc, char * argv[] ) {
          *  steps to initialize, as we need references to the other players which might not have been created yet.
          */
         for (int id = 0; id < numberOfPlayers; id++) {
-            players.push_back(new Player(playerPRNG, id, potato));
+            players.push_back(new Player(mainPRNG, id, potato));
         } // for
 
         Player::umpire = players[0];                                               // set the umpire for the game
