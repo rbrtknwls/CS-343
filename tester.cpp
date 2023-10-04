@@ -35,7 +35,7 @@ int main ( int argc, char * argv[] ) {
 
     for ( int testNum = 0; testNum < 10; testNum++ ) {
 
-        std::string file = "input" + std::to_string(testNum) + ".txt";
+        std::string file = " input" + std::to_string(testNum) + ".txt ";
 
         std::string arg1 = file + " > temp"+ std::to_string(testNum) +".a 2> temp"+ std::to_string(testNum) +".a";
         std::string arg2 = file + " > temp.b 2> temp.b";
@@ -45,7 +45,7 @@ int main ( int argc, char * argv[] ) {
 
         system(file1.c_str());
         system(file2.c_str());
-        
+
         system(("diff temp"+ std::to_string(testNum) +".a temp.b").c_str());
     }
 
