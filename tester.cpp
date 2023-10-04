@@ -17,7 +17,16 @@ int main ( int argc, char * argv[] ) {
         int numberOfTests = rand()%10 + 5;
 
         for ( int currLength = 0; currLength < numberOfTests; currLength++ ) {
-            currentFile << "HIII";
+
+            int numberOfLines = rand%10;
+            currentFile << numberOfLines << endl;
+            for ( int i = 0; i < numberOfLines; i++ ) {
+                currentFile << rand%100 
+                if (i != numberOfLines - 1) {
+                    currentFile << " "
+                }
+            }
+            currentFile << endl;
 
         }
 
