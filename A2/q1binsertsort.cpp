@@ -134,29 +134,29 @@ int main( int argc, char * argv[] ) {
                 TYPE currValue;
 
                 *infile >> currValue;
-                outfile << currValue;
-                if (i != numberOfValuesToSort - 1) { outfile << " "; }
+                *outfile << currValue;
+                if (i != numberOfValuesToSort - 1) { *outfile << " "; }
                 tree.sort(currValue);
             }
-            outfile << endl;
+            *outfile << endl;
 
             _Resume Binsertsort<TYPE>::Sentinel() _At tree;
 
 
             try {
                 _Enable {
-                    outfile << tree.retrieve();
+                    *outfile << tree.retrieve();
                     for ( ;; ) {
                         TYPE valRetrieved = tree.retrieve();
-                        outfile << " " << valRetrieved;
+                        *outfile << " " << valRetrieved;
                     }
                 }
 
             } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
-                outfile << endl;
+                *outfile << endl;
             }
 
-            outfile << endl;
+            *outfile << endl;
     }
 
     if ( infile != &cin ) delete infile;
