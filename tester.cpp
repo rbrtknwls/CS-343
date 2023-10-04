@@ -23,7 +23,7 @@ int main ( int argc, char * argv[] ) {
             for ( int i = 0; i < numberOfLines; i++ ) {
                 currentFile << rand()%100;
                 if (i != numberOfLines - 1) {
-                    currentFile << " "
+                    currentFile << " ";
                 }
             }
             currentFile << endl;
