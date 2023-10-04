@@ -124,7 +124,6 @@ int main( int argc, char * argv[] ) {
             break;
         }
 
-        if (numberOfValuesToSort > 0) {
             Binsertsort<TYPE> tree;
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
@@ -136,9 +135,7 @@ int main( int argc, char * argv[] ) {
             }
             cout << endl;
 
-            _Resume
-            Binsertsort<TYPE>::Sentinel()
-            _At tree;
+            _Resume Binsertsort<TYPE>::Sentinel() _At tree;
 
             for (;;) {
                 try {
@@ -151,7 +148,6 @@ int main( int argc, char * argv[] ) {
                 }
             }
             cout << endl;
-        }
     }
 
     if ( infile != &cin ) delete infile;
