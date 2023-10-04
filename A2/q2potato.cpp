@@ -12,7 +12,7 @@ using namespace std;
  */
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
     currentTicks = prng(1, maxTicks);
-    cout << " POTATO goes off after " << currentTicks << " ticks" << endl;
+    cout << "  POTATO goes off after " << currentTicks << " ticks" << endl;
 }
 
 
