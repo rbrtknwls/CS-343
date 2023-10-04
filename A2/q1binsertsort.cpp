@@ -137,16 +137,19 @@ int main( int argc, char * argv[] ) {
 
             _Resume Binsertsort<TYPE>::Sentinel() _At tree;
 
-            for (;;) {
-                try {
-                    _Enable{
-                            cout << tree.retrieve() << " ";
+            
+            try {
+                _Enable{
+                    cout << tree.retrieve()
+                    for (;;) {
+                        cout << " " + tree.retrieve();
                     }
-                } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
-                    cout << endl;
-                    break;
                 }
+            } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
+                cout << endl;
+                break;
             }
+
             cout << endl;
     }
 
