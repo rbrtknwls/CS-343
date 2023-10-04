@@ -144,8 +144,8 @@ int main( int argc, char * argv[] ) {
                 _Enable {
                     cout << tree.retrieve();
                     for ( ;; ) {
-
-                        cout << " " + tree.retrieve();
+                        TYPE valRetrieved = tree.retrieve()
+                        cout << " " << valRetrieved;
                     }
                 }
 
