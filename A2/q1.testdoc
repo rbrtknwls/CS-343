@@ -1,7 +1,35 @@
+=================== Unhappy Path ==========================
+The first test we want is for when the user does not give a file. Our output matches the given program and
+we both output:
+
+
 
 
 =================== Happy Path (float) ====================
 
+Input: [8 adsadadsa sjfafafab gadjgmsagac sdakmlkmdad fanjsfe njfsalknsalkfaf dsadmlkamdag fmsafmanfah
+        2 318nsjfknafa aasfmalkmda
+        3 10 1 2
+        3 aaa] babas 12031]
+
+Result: [
+
+adsadadsa sjfafafab gadjgmsagac sdakmlkmdad fanjsfe njfsalknsalkfaf dsadmlkamdag fmsafmanfah
+adsadadsa dsadmlkamdag fanjsfe fmsafmanfah gadjgmsagac njfsalknsalkfaf sdakmlkmdad sjfafafab
+
+318nsjfknafa aasfmalkmda
+318nsjfknafa aasfmalkmda
+
+10 1 2
+1 10 2
+
+aaa] babas 12031
+12031 aaa] babas
+
+]
+
+Since strings can contain all kinds of characters we want to make sure that its working with such an input,
+this covers the case for the different types
 
 =================== Happy Path (int) ====================
 

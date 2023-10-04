@@ -8,8 +8,7 @@ using namespace std;
 template<typename T> void Binsertsort<T>::main() {
     _Coroutine Binsertsort<T> less;
     _Coroutine Binsertsort<T> more;
-
-    //std::cout << "value stored: " << value << std::endl;
+    
     pivot = value;
 
     try{
@@ -96,10 +95,14 @@ template<typename T> T Binsertsort<T>::retrieve() {                             
 int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;                            // default value
+    ofstream *outfile = &cout;
+
     struct cmd_error {};
 
     try {
         switch (argc) {
+            case 3:
+                outfile = new ofstream(argv[2]);
             case 2:
                 try {                                    // open input file first
                     infile = new ifstream(argv[1]);
@@ -113,7 +116,7 @@ int main( int argc, char * argv[] ) {
         } // switch
     } catch (...) {                                    // catch any
         cerr << "Usage: " << argv[0]
-             << " [ input-file ] " << endl;
+             << " unsorted-file [ sorted-file ] " << endl;
         exit(EXIT_FAILURE);                            // TERMINATE
     } // try
 
@@ -131,29 +134,29 @@ int main( int argc, char * argv[] ) {
                 TYPE currValue;
 
                 *infile >> currValue;
-                cout << currValue;
-                if (i != numberOfValuesToSort - 1) { cout << " "; }
+                outfile << currValue;
+                if (i != numberOfValuesToSort - 1) { outfile << " "; }
                 tree.sort(currValue);
             }
-            cout << endl;
+            outfile << endl;
 
             _Resume Binsertsort<TYPE>::Sentinel() _At tree;
 
 
             try {
                 _Enable {
-                    cout << tree.retrieve();
+                    outfile << tree.retrieve();
                     for ( ;; ) {
                         TYPE valRetrieved = tree.retrieve();
-                        cout << " " << valRetrieved;
+                        outfile << " " << valRetrieved;
                     }
                 }
 
             } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
-                cout << endl;
+                outfile << endl;
             }
 
-            cout << endl;
+            outfile << endl;
     }
 
     if ( infile != &cin ) delete infile;
