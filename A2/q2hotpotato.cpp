@@ -47,13 +47,16 @@ int main( int argc, char * argv[] ) {
          * The number of players in the game might change every game, so we regenerate them each time. We will update
          *  them with random values always, and then replace them if we are given an alternative
          */
+        int numberOfPlayers = mainPRNG(2, 10);
         if (argc > 2 && *argv[2] != 'd') { numberOfPlayers = stoi(argv[2]); }
         else { numberOfPlayers = mainPRNG(2, 10); }
 
         vector < Player * > players;                                               // stores all player points*
         cout << numberOfPlayers << " players in the game" << endl;
 
-        Potato potato( mainPRNG );                                                 // create potato with prng
+        PRNG playerPRNG( seed );                                                   // create PRNG for player(s)
+        PRNG potatoPRNG( seed );                                                   // create PRNG for potato
+        Potato potato(potatoPRNG);                                                 // create potato with prng
 
 
         /*
@@ -62,7 +65,7 @@ int main( int argc, char * argv[] ) {
          *  steps to initialize, as we need references to the other players which might not have been created yet.
          */
         for (int id = 0; id < numberOfPlayers; id++) {
-            players.push_back(new Player(mainPRNG, id, potato));
+            players.push_back(new Player(playerPRNG, id, potato));
         } // for
 
         Player::umpire = players[0];                                               // set the umpire for the game
