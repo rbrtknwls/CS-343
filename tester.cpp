@@ -5,7 +5,7 @@ int main ( int argc, char * argv[] ) {
 
     for ( int i = 0; i < 5; i++ ) {
         for (int x = 0; x < 5; x++ ) {
-            for (int z = 0; z < 5; z++ ) {
+            for (int z = 2; z < 5; z++ ) {
                 std::string arguments = " ";
                 if ( i == 0 ) { arguments += "d "; }
                 else { arguments += std::to_string(i) + " "; }

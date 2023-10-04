@@ -35,7 +35,7 @@ int main( int argc, char * argv[] ) {
         } // switch
     } catch (...) {
         cerr << "Usage: " << argv[0]
-             << "  [ games | ’d’ [ players | ’d’ [ seed | ’d’ ] ] ] " << endl;
+             << "  [ games (>=0) | 'd' (default 5) [ players (>=2) | 'd' (random 2-10) [ seed (>0) | 'd' (random) ] ] ] " << endl;
         exit(EXIT_FAILURE);                                                        // TERMINATE
     } // try
 
