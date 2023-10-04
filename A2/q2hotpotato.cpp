@@ -39,7 +39,7 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                                        // TERMINATE
     } // try
 
-
+    cout << "SEED: " << seed <<endl;
 
     for ( ; gamesToPlay > 0 ; gamesToPlay-- ) {                                    // Loop through games
 
