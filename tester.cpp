@@ -19,7 +19,7 @@ int main ( int argc, char * argv[] ) {
         for ( int currLength = 0; currLength < numberOfTests; currLength++ ) {
 
             int numberOfLines = rand()%10;
-            currentFile << numberOfLines << endl;
+            currentFile << numberOfLines << " ";
             for ( int i = 0; i < numberOfLines; i++ ) {
                 currentFile << rand()%100;
                 if (i != numberOfLines - 1) {
