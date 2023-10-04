@@ -43,7 +43,7 @@ int main ( int argc, char * argv[] ) {
         std::string file1 = std::string("./") + argv[1] + arg1;
         std::string file2 = std::string("./") + argv[2] + arg2;
 
-        system("diff temp"+ std::to_string(testNum) +".a temp.b");
+        system(("diff temp"+ std::to_string(testNum) +".a temp.b").c_str());
     }
 
 
