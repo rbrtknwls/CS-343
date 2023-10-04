@@ -140,13 +140,14 @@ int main( int argc, char * argv[] ) {
 
 
             try {
-                _Enable {
-                    cout << tree.retrieve();
+                cout << tree.retrieve();
 
-                    for ( ;; ) {
+                for ( ;; ) {
+                    _Enable{
                         cout << " " << tree.retrieve();
                     }
                 }
+
             } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
                 cout << endl;
                 break;
