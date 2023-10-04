@@ -148,10 +148,8 @@ int main( int argc, char * argv[] ) {
                     }
                 }
 
-            } catch ( ... ) {
+            } catch (Binsertsort<TYPE>::Sentinel &sentinel) {
                 cout << endl;
-                cout << "UERE";
-                break;
             }
 
             cout << endl;
