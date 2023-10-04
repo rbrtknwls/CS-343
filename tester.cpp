@@ -1,10 +1,10 @@
 #include "string"
+#include <unistd.h>
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
-#include <uPRNG.h>
 
 using namespace std;
 int main ( int argc, char * argv[] ) {
