@@ -53,7 +53,7 @@ void Player::main() {
                 partner[prng(0, 1)]->toss();                                // Resume the next player in the game
             } // Enable
         } catch ( Potato::Explode &explode ) {
-            std::cout << " is eliminated" << std::endl;
+            std::cout << id << " is eliminated" << std::endl;
 
             if ( umpire->getId() == id ) {                                  // Check to see if the player is the umpire
                 std::cout << "E " << id;
