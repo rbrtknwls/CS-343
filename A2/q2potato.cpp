@@ -6,13 +6,23 @@
 using namespace std;
 
 /*
+ * Helper function to help print the number of ticks, if current ticks are 1 the output is different then if ticks
+ *    are any other kind of value.
+ */
+void printPotatoTicks( int currentTicks ) {
+    cout << << "  POTATO goes off after " << currentTicks << " tick";
+    if ( currentTicks != 1 ) { cout << "s"; }
+    cout << endl;
+}
+
+/*
  *  This is the main constructor for potato, it should run at the start of every game.
  *    We will set the current ticks to be the same as maxTicks and output to cout how
  *    long it will take the potato to explode
  */
 Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
     currentTicks = prng(1, maxTicks);
-    cout << "  POTATO goes off after " << currentTicks << " ticks" << endl;
+    printPotatoTicks( currentTicks );
 }
 
 
@@ -22,7 +32,7 @@ Potato::Potato( PRNG &prng, unsigned int maxTicks ) : prng( prng ) {
  */
 void Potato::reset(unsigned int maxTicks) {
     currentTicks = prng(1, maxTicks);
-    std::cout << "  POTATO goes off after " << currentTicks << " ticks" << std::endl;
+    printPotatoTicks( currentTicks );
 }
 
 /*

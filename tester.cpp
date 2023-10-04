@@ -13,7 +13,7 @@ int main ( int argc, char * argv[] ) {
                 if ( x == 0 ) { arguments += "d "; }
                 else { arguments += std::to_string(x) + " "; }
 
-                if ( z == 0 ) { arguments += "d "; }
+                if ( z == -1 ) { arguments += "d "; }
                 else { arguments += std::to_string(z) + " "; }
 
                 std::string arg1 = arguments + " > temp.a 2> temp.a";
