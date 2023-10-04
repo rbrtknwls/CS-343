@@ -140,10 +140,10 @@ int main( int argc, char * argv[] ) {
 
 
             try {
-                cout << tree.retrieve();
+                _Enable {
+                    cout << tree.retrieve();
+                    for ( ;; ) {
 
-                for ( ;; ) {
-                    _Enable {
                         cout << " " << tree.retrieve();
                     }
                 }
