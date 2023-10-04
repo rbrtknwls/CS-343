@@ -2,8 +2,14 @@
 The first test we want is for when the user does not give a file. Our output matches the given program and
 we both output:
 
+Error! Could not open input file "tes1"
+Usage: ./testingExec/binsertsort unsorted-file [ sorted-file ]
 
+The next test was if the number provided for the characters to read was incorrect both outputs gave the same answer.
 
+=================== General Happy Path ====================
+For this I tested if it worked with a output file and an input file provided. It did! Both streams where then deleted
+if they were created. It also works with only one stream being provided.
 
 =================== Happy Path (float) ====================
 

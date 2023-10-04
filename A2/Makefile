@@ -1,4 +1,4 @@
-TYPE:=string
+TYPE:=int
 
 CXX = u++					# compiler
 CXXFLAGS = -g -Wall -Wextra -MMD -O2 -DTYPE="${TYPE}"
