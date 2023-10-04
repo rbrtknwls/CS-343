@@ -45,7 +45,6 @@ template<typename T> void Binsertsort<T>::main() {
         } // enable
     } catch ( Sentinel & sentinel ){
         _Resume Sentinel() _At less;                   // Start with left tree
-        break;
     } // try
 
 
