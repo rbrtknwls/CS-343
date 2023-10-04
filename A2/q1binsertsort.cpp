@@ -8,7 +8,7 @@ using namespace std;
 template<typename T> void Binsertsort<T>::main() {
     _Coroutine Binsertsort<T> less;
     _Coroutine Binsertsort<T> more;
-    
+
     pivot = value;
 
     try{
@@ -95,7 +95,7 @@ template<typename T> T Binsertsort<T>::retrieve() {                             
 int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;                            // default value
-    ofstream *outfile = &cout;
+    ostream *outfile = &cout;                          // default value
 
     struct cmd_error {};
 
