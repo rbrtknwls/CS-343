@@ -56,7 +56,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
 #if defined( TASK )
 template<typename T> void quicksort( T values[], int low, int high, int depth ) {
-    _Task Quicksort {
+    _Task sorting {
         T values[];
         int low;
         int high;
@@ -70,13 +70,13 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
             if ( depth == 0 ) {
                 sequentialQuicksort(values, low, high);
             } else {
-                Quicksort left(values, low, idx - 1, depth-1);
+                sorting left(values, low, idx - 1, depth-1);
                 sequentialQuicksort(values, idx + 1, high);
             }
         }
 
       public:
-        Quicksort( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
+        sorting( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
     }
 
     std::cout << "hi" << endl;
