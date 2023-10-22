@@ -74,8 +74,7 @@ int main( int argc, char * argv[] ) {
         for ( ;; ) {
 
             int numberOfValuesToSort;
-            if (!(*infile >> numb
-                STYPE valueReadIn;erOfValuesToSort)) { break; }
+            if (!(*infile >> numberOfValuesToSort)) { break; }
 
             STYPE *arrayOfValues  = new STYPE[numberOfValuesToSort];
             for (int i = 0; i < numberOfValuesToSort; i++) {
