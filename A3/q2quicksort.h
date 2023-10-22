@@ -44,8 +44,7 @@ template<typename T> _Task SortWithTask {
     int low;
     int high;
     int depth;
-
-    void rec()
+    
 
     void main() {
 
