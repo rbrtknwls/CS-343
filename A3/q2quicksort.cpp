@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "q2quicksort.h"
 
 using namespace std;
@@ -9,6 +10,7 @@ int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;
     ostream *outfile = &cout;
+
     int depth = 0;
     int size = 0;
     bool timeMode = false;
@@ -80,7 +82,7 @@ int main( int argc, char * argv[] ) {
                 *infile >> valueReadIn
                 *outfile << valueReadIn;
                 arrayOfValues[i] = valueReadIn;
-                
+
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
 
