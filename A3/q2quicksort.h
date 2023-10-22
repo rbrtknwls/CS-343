@@ -77,6 +77,7 @@ _Actor SortWithActor {
             int low = msg_d->low;
             int high = msg_d->high;
             int depth = msg_d->depth;
+          if ( low >= high ) { return Delete; }
             if ( depth == 0 ) { sequentialQuicksort( msg_d->values, low, high ); } else {
 
                 int idx = partition(msg_d->values, low, high);
