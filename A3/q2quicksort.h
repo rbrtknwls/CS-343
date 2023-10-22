@@ -38,7 +38,7 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 }
 
 #if defined( TASK )
-template<typename T> _Task Quicksort {
+template<typename T> _Task SortWithTask {
     T *values;
     int low;
     int high;
@@ -52,14 +52,26 @@ template<typename T> _Task Quicksort {
         if ( depth == 0 ) {
             sequentialQuicksort(values, low, high);
         } else {
-            Quicksort left(values, low, idx - 1, depth-1);
+            SortWithTask left(values, low, idx - 1, depth-1);
             sequentialQuicksort(values, idx + 1, high);
         }
     }
 
   public:
-    Quicksort( T values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
+    SortWithTask( T values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
 };
+#elif defined( ACTOR )
+struct SortMsg : public uActor::Message {
+    T *values;
+    int low;
+    int high;
+    int depth;
+
+    SortMsg( T values[], int low, int high, int depth ) : Message( uActor::Delete ),
+        values(values), low(low), high(high), depth(depth) {}
+};
+
+_Actor QuickSort
 #endif
 
 
@@ -77,7 +89,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
             BEGIN quicksort(values, idx + 1, high, depth-1); END
         COEND
 #elif defined( TASK )
-        Quicksort sort(values, low, high, depth);
+        SortWithTask sort(values, low, high, depth);
 #endif
     }
 }
