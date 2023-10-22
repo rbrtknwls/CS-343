@@ -32,12 +32,14 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
 
-  if (low >= high) { break; }
+    if (low < high) {
 
-    int idx = partition(values, low, high);
+        int idx = partition(values, low, high);
 
-    quicksort(values, low, idx-1, depth);
-    quicksort(values, idx+1, high, depth);
+        quicksort(values, low, idx - 1, depth);
+        quicksort(values, idx + 1, high, depth);
+        
+    }
 
 
 }
