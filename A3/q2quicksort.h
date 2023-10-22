@@ -83,7 +83,6 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 #endif
     }
 }
-#endif
 
 
 
