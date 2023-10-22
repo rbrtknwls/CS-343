@@ -11,6 +11,8 @@ template<typename T> int partition ( T values[], unsigned int low, unsigned high
 
     cout << pivot << endl;
 
+    return low;
+
 }
 
 
