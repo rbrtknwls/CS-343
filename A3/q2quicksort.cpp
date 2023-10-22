@@ -85,7 +85,7 @@ int main( int argc, char * argv[] ) {
 
             *outfile << endl;
 
-
+            quicksort(arrayOfValues, 0, numberOfValuesToSort-1, depth);
 
             delete[] arrayOfValues;
 
