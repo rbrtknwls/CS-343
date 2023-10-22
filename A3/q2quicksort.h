@@ -11,26 +11,21 @@ template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx
     T temp = values[idx1];
     values[idx1] = values[idx2];
     values[idx2] = temp;
-
 }
 
 template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned int high ) {
-
     int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
     swap(values, pivotIdx, high);
-
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
             swap(values, localSwap++, j);
         }
     }
-
     swap(values, localSwap, high);
 
     return localSwap;
-
 }
 
 template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
@@ -45,7 +40,6 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
 #if defined( TASK )
 template<typename T> _Task QuickSort {
-
     T values[];
     int low;
     int high;
@@ -71,8 +65,8 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
     if ( depth == 0 ) {
 
-        sequentialQuicksort(values, low, idx - 1, depth-1);
-        sequentialQuicksort(values, idx + 1, high, depth-1);
+        sequentialQuicksort(values, low, idx - 1);
+        sequentialQuicksort(values, idx + 1, high);
 
     } else {
 
