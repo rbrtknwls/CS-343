@@ -39,7 +39,7 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 }
 
 #if defined( TASK )
-_Task QuickSort {
+_Task Quicksort {
     STYPE values[];
     int low;
     int high;
@@ -59,7 +59,7 @@ _Task QuickSort {
     }
 
   public:
-    _Nomutex Quicksort( STYPE Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
+    Quicksort( STYPE Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
 }
 #endif
 
