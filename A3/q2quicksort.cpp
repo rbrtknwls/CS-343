@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-#include "q2sortingimpl.h"
+#include "q2quicksort.h"
 
 using namespace std;
 
