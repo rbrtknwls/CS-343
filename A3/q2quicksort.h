@@ -74,15 +74,18 @@ template<typename T> struct SortMsg : public uActor::Message {
 _Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
         Case( SortMsg<STYPE>, msg ) {
-            std::cout << "hi" << endl;
-            /*
-            if ( depth == 0 ) { sequentialQuicksort(msg->values, msg->low, msg->high); } else {
+
+            if ( depth == 0 ) { sequentialQuicksort( msg->values, msg->low, msg->high ); } else {
 
                 int idx = partition(msg->values, msg->low, msg->high);
 
-            }
+                uActor::start();
+                *new SortWithActor() | *new SortMsg( msg->values, msg->low, idx - 1, msg->depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( msg->values, idx + 1, msg->high, msg->depth-1 ) | uActor::stopMsg;
+                uActor::stop();
 
-            */
+
+            }
         } else Case( StopMsg, msg ) return Delete;
         return uActor::Nodelete;
     }
@@ -99,14 +102,23 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
     if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
 
 #if defined( CBEGIN )
-        int idx = partition(values, low, high);
 
+        int idx = partition(values, low, high);
         COBEGIN
-            BEGIN quicksort(values, low, idx - 1, depth-1); END
-            BEGIN quicksort(values, idx + 1, high, depth-1); END
+            BEGIN quicksort( values, low, idx - 1, depth-1 ); END
+            BEGIN quicksort( values, idx + 1, high, depth-1 ); END
         COEND
+
 #elif defined( TASK )
-        SortWithTask sort(values, low, high, depth);
+
+        SortWithTask sort( values, low, high, depth );
+
+#elif defined( ACTOR )
+
+        uActor::start();
+        *new SortWithActor() | *new SortMsg( msg->values, msg->low, msg->high, msg->depth ) | uActor::stopMsg;
+        uActor::stop();
+        
 #endif
     }
 }
