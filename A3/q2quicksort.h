@@ -39,7 +39,7 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
 #if defined( TASK )
 template<typename T> _Task Quicksort {
-    STYPE values[];
+    T *values;
     int low;
     int high;
     int depth;
