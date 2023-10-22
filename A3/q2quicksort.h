@@ -31,20 +31,26 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
 }
 
+#if defined( CBEGIN )
 
-template<typename T> void quicksort( T values[], int low, int high, int depth ) {
+    template<typename T> void quicksort( T values[], int low, int high, int depth ) {
 
-    if (low < high) {
+        if (low >= high) { return; }
 
         int idx = partition(values, low, high);
 
-        quicksort(values, low, idx - 1, depth);
-        quicksort(values, idx + 1, high, depth);
+        if ( depth == 0 ) {
+            quicksort(values, low, idx - 1, depth);
+            quicksort(values, idx + 1, high, depth);
+        } else {
+            quicksort(values, low, idx - 1, depth-1);
+            quicksort(values, idx + 1, high, depth-1);
+        }
+
 
     }
+#endif
 
-
-}
 
 
 
