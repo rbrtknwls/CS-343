@@ -16,15 +16,15 @@ int main( int argc, char * argv[] ) {
 
     try {
 
-        if ( argc > 2 && argv[1][0] == '-' ) {
+        if ( argc > 2 && *argv[1][0] == '-' ) {
             timeMode = true;
 
             switch (argc) {
                 case 3:
-                    depth = argv[2]
+                    depth = stoi(argv[2)
                   if ( depth >= 0 ) { break; }
                 case 2:
-                    size = argv[1];
+                    size = stoi(argv[1]);
                   if ( size >= 0 ) { break; }
                 default:                                       // wrong number of options
                     throw cmd_error();
@@ -34,13 +34,13 @@ int main( int argc, char * argv[] ) {
 
             switch (argc) {
                 case 4:
-                    depth = argv[3];
+                    depth = stoi(argv[3]);
                   if ( depth < 0 ) { throw cmd_error(); }
                 case 3:
-                    if ( argv[2] != 'd' ) { outfile = new ofstream(argv[2]); }
+                    if ( *argv[2] != 'd' ) { outfile = new ofstream(argv[2]); }
 
                 case 2:
-                  if ( argv[1] == 'd' ) { break; }
+                  if ( *argv[1] == 'd' ) { break; }
                     try {                                      // open input file first
                         infile = new ifstream(argv[1]);
                         break;
