@@ -3,9 +3,11 @@
 
 #include <iostream>
 
-
-
 using namespace std;
+
+int partition ( STYPE values[], unsigned int low, unsigned high ) {
+
+}
 
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
     cout << "A" << endl;
