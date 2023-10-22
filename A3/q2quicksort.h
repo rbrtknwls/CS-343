@@ -7,13 +7,13 @@
 
 using namespace std;
 
-template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx2 ) {
+template<typename T> void swap ( T *values, unsigned int idx1, unsigned int idx2 ) {
     T temp = values[idx1];
     values[idx1] = values[idx2];
     values[idx2] = temp;
 }
 
-template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned int high ) {
+template<typename T> unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
     int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
@@ -28,7 +28,7 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
     return localSwap;
 }
 
-template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
+template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
   if (low >= high) { return; }
 
     int idx = partition(values, low, high);
@@ -44,6 +44,8 @@ template<typename T> _Task SortWithTask {
     int low;
     int high;
     int depth;
+
+    void rec()
 
     void main() {
 
@@ -99,7 +101,7 @@ _Actor SortWithActor {
 #endif
 
 
-template<typename T> void quicksort( T values[], int low, int high, int depth ) {
+template<typename T> void quicksort( T *values, int low, int high, int depth ) {
   if (low >= high) { return; }
 
     if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
