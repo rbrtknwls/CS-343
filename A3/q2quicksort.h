@@ -33,8 +33,8 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
     int idx = partition(values, low, high);
 
-    sequentialQuicksort(values, low, idx - 1, depth);
-    sequentialQuicksort(values, idx + 1, high, depth);
+    sequentialQuicksort(values, low, idx - 1);
+    sequentialQuicksort(values, idx + 1, high);
 
 }
 
