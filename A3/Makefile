@@ -9,14 +9,17 @@ CXXFLAGS = -g -Wall -Wextra -multi ${OPT} -MMD -DSTYPE="${STYPE}" -D"${SIMPL}" \
 		-D"${BIMPL}" -D"${BCHECK}"	# compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS0 = q1.o
-EXEC0 = q1test					# 1st executable name
+
+OBJECTS1 = q2quicksort.o
+EXEC1 = quicksort				# 1st executable name
+
+OBJECTS2 = # object files forming 2nd executable with prefix "q3"
+EXEC2 = buffer					# 2nd executable name
 
 
-
-OBJECTS = ${OBJECTS0} #${OBJECTS1} ${OBJECTS2}		# all object files
+OBJECTS = ${OBJECTS0} ${OBJECTS1} ${OBJECTS2}		# all object files
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
-EXECS = ${EXEC0} #${EXEC1} ${EXEC2}			# all executables
+EXECS = ${EXEC0} ${EXEC1} ${EXEC2}			# all executables
 
 #############################################################
 
