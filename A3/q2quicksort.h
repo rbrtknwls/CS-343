@@ -116,7 +116,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 #elif defined( ACTOR )
 
         uActor::start();
-        *new SortWithActor() | *new SortMsg( msg->values, msg->low, msg->high, msg->depth ) | uActor::stopMsg;
+        *new SortWithActor() | *new SortMsg( values, low, high, depth ) | uActor::stopMsg;
         uActor::stop();
 
 #endif
