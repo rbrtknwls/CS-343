@@ -12,16 +12,11 @@ MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 OBJECTS0 = q1.cpp
 EXEC0 = q1test					# 1st executable name
 
-OBJECTS1 =
-EXEC1 = quicksort				# 2nd executable name
-
-OBJECTS2 =
-EXEC2 = buffer					# 3rd executable name
 
 
-OBJECTS = ${OBJECTS0} ${OBJECTS1} ${OBJECTS2}		# all object files
+OBJECTS = ${OBJECTS0} #${OBJECTS1} ${OBJECTS2}		# all object files
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
-EXECS = ${EXEC0} ${EXEC1} ${EXEC2}			# all executables
+EXECS = ${EXEC0} #${EXEC1} ${EXEC2}			# all executables
 
 #############################################################
 
