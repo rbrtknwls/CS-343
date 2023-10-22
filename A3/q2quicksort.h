@@ -74,16 +74,16 @@ struct SortMsg : public uActor::Message {
 _Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
         Case( SortMsg, msg ) {
-
-            if ( msg.depth == 0 ) { sequentialQuicksort( msg.values, msg.low, msg.high ); } else {
-
+            std::cout << msg;
+            if ( msg.depth == 0 ) { sequentialQuicksort( msg->values, msg->low, msg->high ); } else {
+                /*
                 int idx = partition(msg.values, msg.low, msg.high);
 
                 uActor::start();
                 *new SortWithActor() | *new SortMsg( msg.values, msg.low, idx - 1, msg.depth-1 ) | uActor::stopMsg;
                 *new SortWithActor() | *new SortMsg( msg.values, idx + 1, msg.high, msg.depth-1 ) | uActor::stopMsg;
                 uActor::stop();
-
+                */
 
             }
         } else Case( StopMsg, msg ) return Delete;
