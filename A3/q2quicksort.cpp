@@ -21,11 +21,11 @@ int main( int argc, char * argv[] ) {
             timeMode = true;
 
             switch ( argc ) {
+                case 4:
+                    depth = stoi(argv[3]);
+                  if ( depth < 0 ) { cmd_error(); }
                 case 3:
-                    depth = stoi(argv[2]);
-                  if ( depth >= 0 ) { break; }
-                case 2:
-                    size = stoi(argv[1]);
+                    size = stoi(argv[2]);
                   if ( size >= 0 ) { break; }
                 default:                                       // wrong number of options
                     throw cmd_error();
