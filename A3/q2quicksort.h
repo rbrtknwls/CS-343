@@ -53,13 +53,13 @@ template<typename T> _Task Quicksort {
         if ( depth == 0 ) {
             sequentialQuicksort(values, low, high);
         } else {
-            QuickSort left(values, low, idx - 1, depth-1);
+            Quicksort left(values, low, idx - 1, depth-1);
             sequentialQuicksort(values, idx + 1, high);
         }
     }
 
   public:
-    QuickSort( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
+    Quicksort( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
 }
 #endif
 
