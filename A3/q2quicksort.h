@@ -61,19 +61,19 @@ template<typename T> _Task SortWithTask {
 };
 #elif defined( ACTOR )
 
-template<typename T> struct SortMsg : public uActor::Message {
-    T *values;
+struct SortMsg : public uActor::Message {
+    STYPE *values;
     int low;
     int high;
     int depth;
 
-    SortMsg( T *values, int low, int high, int depth ) :
+    SortMsg( STYPE *values, int low, int high, int depth ) :
         Message(uActor::Delete), values(values), low(low), high(high), depth(depth) {}
 };
 
 _Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
-        Case( SortMsg<STYPE>, msg ) {
+        Case( SortMsg, msg ) {
 
             if ( msg.depth == 0 ) { sequentialQuicksort( msg.values, msg.low, msg.high ); } else {
 
