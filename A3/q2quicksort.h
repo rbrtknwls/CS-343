@@ -5,12 +5,17 @@
 
 using namespace std;
 
-int partition ( STYPE values[], unsigned int low, unsigned high ) {
+template<typename T> int partition ( T values[], unsigned int low, unsigned high ) {
+
+    T pivot = values[low + (high - low) / 2];
+
+    cout << pivot << endl;
 
 }
 
+
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    cout << "A" << endl;
+    partition(values, low, high);
 }
 
 
