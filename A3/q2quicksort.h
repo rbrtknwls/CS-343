@@ -46,12 +46,10 @@ template<typename T> _Task SortWithTask {
 
     void main() {
 
-      if (low >= high) { return; }
-        int idx = partition(values, low, high);
+      if ( low >= high ) { return; }
 
-        if ( depth == 0 ) {
-            sequentialQuicksort(values, low, high);
-        } else {
+        if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
+            int idx = partition(values, low, high);
             SortWithTask left(values, low, idx - 1, depth-1);
             sequentialQuicksort(values, idx + 1, high);
         }
@@ -71,16 +69,26 @@ struct SortMsg : public uActor::Message {
         values(values), low(low), high(high), depth(depth) {}
 };
 
-_Actor QuickSort
+_Actor QuickSort {
+    Allocation receive( Message & msg ) {
+        Case( StrMsg, msg ) {
+            if (depth == 0) {
+            int idx = partition(msg->values, msg->low, msg->high);
+
+        msg_d->val
+        } else Case( StopMsg, msg ) return Delete;
+    }
+}
+
+};
 #endif
 
 
 template<typename T> void quicksort( T values[], int low, int high, int depth ) {
   if (low >= high) { return; }
 
-    if ( depth == 0 ) {
-        sequentialQuicksort(values, low, high);
-    } else {
+    if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
+
 #if defined( CBEGIN )
         int idx = partition(values, low, high);
 
