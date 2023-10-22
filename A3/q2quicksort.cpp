@@ -71,9 +71,8 @@ int main( int argc, char * argv[] ) {
     } else {
 
         for ( ;; ) {
-
             int numberOfValuesToSort;
-            if (!(*infile >> numberOfValuesToSort)) { break; }
+          if (!(*infile >> numberOfValuesToSort)) { break; }
 
             STYPE *arrayOfValues  = new STYPE[numberOfValuesToSort];
             for (int i = 0; i < numberOfValuesToSort; i++) {
@@ -82,15 +81,20 @@ int main( int argc, char * argv[] ) {
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
-
             *outfile << endl;
 
             if (numberOfValuesToSort != 0) {
                 quicksort(arrayOfValues, 0, numberOfValuesToSort - 1, depth);
             }
 
-            delete[] arrayOfValues;
+            for (int i = 0; i < numberOfValuesToSort; i++) {
+                *outfile << arrayOfValues[i];
 
+                if (i != numberOfValuesToSort - 1) { *outfile << " "; }
+            }
+            *outfile << endl;
+
+            delete[] arrayOfValues;
         }
     }
 
