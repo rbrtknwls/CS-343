@@ -11,9 +11,9 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
     for ( unsigned int j = low; j <= high; j++ ) {
         if ( values[j] < pivot ) {
-            T temp = values[j];
-            values[j] = values[localSwap];
-            values[localSwap] = temp;
+            T temp = values[localSwap];
+            values[localSwap] = values[j];
+            values[j] = temp;
 
             localSwap++;
         }
