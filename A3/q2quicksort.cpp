@@ -8,22 +8,39 @@ int main( int argc, char * argv[] ) {
 
     istream *infile = &cin;
     ostream *outfile = &cout;
+    int depth = 0;
+    int size = 0
+    bool timeMode = false;
 
     struct cmd_error {};
 
     try {
 
-        if ( argc < 2 ) { throw cmd_error }
+        if ( argc > 2 && argv[1][0] == '-' ) {
+            timeMode = true;
 
-        if ( argv[1][0] == '-' ) {
+            switch (argc) {
+                case 3:
+                    depth = argv[2]
+                  if ( depth >= 0 ) { break; }
+                case 2:
+                    size = argv[1];
+                  if ( size >= 0 ) { break; }
+                default:                                       // wrong number of options
+                    throw cmd_error();
+            }
 
         } else {
+
             switch (argc) {
+                case 4:
+                    depth = argv[3];
+                  if ( depth < 0 ) { throw cmd_error(); }
                 case 3:
                     if ( argv[2] != 'd' ) { outfile = new ofstream(argv[2]); }
 
                 case 2:
-                    if ( argv[1] == 'd' ) { break; }
+                  if ( argv[1] == 'd' ) { break; }
                     try {                                      // open input file first
                         infile = new ifstream(argv[1]);
                         break;
@@ -36,9 +53,14 @@ int main( int argc, char * argv[] ) {
                     throw cmd_error();
             } // switch
         }
+
     } catch (...) {                                        // catch any
         cerr << "Usage: " << argv[0]
-             << " unsorted-file [ sorted-file ] " << endl;
+             << " ( [ unsorted-file | 'd' [ sorted-file | 'd' [ depth (>= 0) ] ] ] | "
+             << "-t size (>= 0) [ depth (>= 0) ] ) " << endl;
         exit(EXIT_FAILURE);                                // TERMINATE
     } // try
+
+    std::cout << "DEPTH: " << depth << endl;
+    std::cout << "SIZE: " << size << endl;
 }
