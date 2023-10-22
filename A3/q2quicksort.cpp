@@ -22,7 +22,7 @@ int main( int argc, char * argv[] ) {
 
             switch ( argc ) {
                 case 3:
-                    depth = stoi(argv[2])
+                    depth = stoi(argv[2]);
                   if ( depth >= 0 ) { break; }
                 case 2:
                     size = stoi(argv[1]);
