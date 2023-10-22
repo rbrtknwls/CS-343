@@ -38,8 +38,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
 
         int idx = partition(values, low, high);
-
-
+        std::cout << idx << endl;
 
         quicksort(values, low, idx - 1, depth);
         quicksort(values, idx + 1, high, depth);
