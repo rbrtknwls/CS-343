@@ -9,14 +9,14 @@ int main( int argc, char * argv[] ) {
     istream *infile = &cin;
     ostream *outfile = &cout;
     int depth = 0;
-    int size = 0
+    int size = 0;
     bool timeMode = false;
 
     struct cmd_error {};
 
     try {
 
-        if ( argc > 2 && *argv[1][0] == '-' ) {
+        if ( argc > 2 && argv[1][0] == '-' ) {
             timeMode = true;
 
             switch (argc) {
