@@ -17,7 +17,7 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
     int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
-    /*swap(values, pivotIdx, high);
+    swap(values, pivotIdx, high);
 
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
@@ -25,7 +25,7 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
         }
     }
 
-    swap(values, localSwap, high);*/
+    swap(values, localSwap, high);
 
     return localSwap;
 
@@ -37,8 +37,6 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
     if (low < high) {
 
         int idx = partition(values, low, high);
-
-        cout << idx << " | " << low << " " << high << endl;
 
         quicksort(values, low, idx - 1, depth);
         quicksort(values, idx + 1, high, depth);
