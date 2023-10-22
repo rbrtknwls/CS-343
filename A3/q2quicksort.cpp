@@ -62,6 +62,26 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                // TERMINATE
     } // try
 
-    std::cout << "DEPTH: " << depth << endl;
-    std::cout << "SIZE: " << size << endl;
+
+
+    if ( timeMode ) {
+
+    } else {
+
+
+        for ( ;; ) {
+
+            int numberOfValuesToSort;
+            if (!(*infile >> numberOfValuesToSort)) { break; }
+
+            int arrayOfValues [numberOfValuesToSort];
+            for (int i = 0; i < numberOfValuesToSort; i++) {
+                *infile >> arrayOfValues[i]
+                *outfile << *infile;
+                if (i != numberOfValuesToSort - 1) { *outfile << " "; }
+            }
+
+
+        }
+    }
 }
