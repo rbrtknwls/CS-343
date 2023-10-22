@@ -44,7 +44,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
         quicksort(values, low, idx - 1, depth);
         quicksort(values, idx + 1, high, depth);
 #endif
-    } else
+    } else {
 #if defined( CBEGIN )
         COBEGIN
             BEGIN quicksort(values, low, idx - 1, depth-1); END
