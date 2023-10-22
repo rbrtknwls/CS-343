@@ -5,11 +5,11 @@
 
 using namespace std;
 
-template<typename T> int partition ( T values[], unsigned int low, unsigned high ) {
+template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned high ) {
     T pivot = values[low + (high - low) / 2];
-    int localSwap = low;
+    unsigned int localSwap = low;
 
-    for ( int j = low; j <= high; j++ ) {
+    for ( unsigned int j = low; j <= high; j++ ) {
         if ( values[j] < pivot ) {
             T temp = values[j];
             values[j] = values[localSwap];
@@ -33,6 +33,8 @@ template<typename T> int partition ( T values[], unsigned int low, unsigned high
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
 
     int idx = partition(values, low, high);
+
+    
 
 }
 
