@@ -9,7 +9,7 @@ CXXFLAGS = -g -Wall -Wextra -multi ${OPT} -MMD -DSTYPE="${STYPE}" -D"${SIMPL}" \
 		-D"${BIMPL}" -D"${BCHECK}"	# compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS0 = q1.cpp
+OBJECTS0 = q1.o
 EXEC0 = q1test					# 1st executable name
 
 
