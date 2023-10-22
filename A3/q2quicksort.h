@@ -61,7 +61,7 @@ template<typename T> _Task SortWithTask {
 };
 #elif defined( ACTOR )
 
-struct SortMsg : public uActor::Message {
+template<typename T> struct SortMsg : public uActor::Message {
     T *values;
     int low;
     int high;
