@@ -12,7 +12,7 @@ template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx
 
 }
 
-template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned high ) {
+template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned int high ) {
 
     int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
@@ -32,7 +32,7 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 }
 
 
-template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
+template<typename T> void quicksort( T values[], int low, int high, int depth ) {
 
     if (low < high) {
 
