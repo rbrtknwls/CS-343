@@ -15,11 +15,9 @@ template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx
 template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned high ) {
 
     int pivotIdx = low + (high - low) / 2;
-
-    swap(values, pivotIdx, high);
-
-
     unsigned int localSwap = low;
+    
+    /*swap(values, pivotIdx, high);
 
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
@@ -27,7 +25,7 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
         }
     }
 
-    swap(values, localSwap, high);
+    swap(values, localSwap, high);*/
 
     return localSwap;
 
