@@ -45,11 +45,16 @@ template<typename T> _Task QuickSort {
     int high;
     int depth;
 
-
     void main() {
 
+      if (low >= high) { return; }
+        int idx = partition(values, low, high);
+
         if ( depth == 0 ) {
-            se
+            sequentialQuicksort(values, low, high);
+        } else {
+            QuickSort left(values, low, idx - 1, depth-1);
+            sequentialQuicksort(values, idx + 1, high);
         }
     }
 
@@ -58,21 +63,24 @@ template<typename T> _Task QuickSort {
 }
 #endif
 
-#if defined( CBEGIN )
+
 template<typename T> void quicksort( T values[], int low, int high, int depth ) {
   if (low >= high) { return; }
 
-    int idx = partition(values, low, high);
-
     if ( depth == 0 ) {
         sequentialQuicksort(values, low, high);
-
     } else {
+
+#if defined( CBEGIN )
+        int idx = partition(values, low, high);
+
         COBEGIN
             BEGIN quicksort(values, low, idx - 1, depth-1); END
             BEGIN quicksort(values, idx + 1, high, depth-1); END
         COEND
-
+#elif defined( TASK )
+        Quicksort quicksort(values, low, high, depth);
+#endif
     }
 }
 #endif
