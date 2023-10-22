@@ -6,7 +6,8 @@
 using namespace std;
 
 template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned high ) {
-    T pivot = values[low + (high - low) / 2];
+    int pivotIdx = low + (high - low) / 2;
+    T pivot = values[pivotIdx];
     unsigned int localSwap = low;
 
     for ( unsigned int j = low; j < high; j++ ) {
@@ -19,11 +20,9 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
         }
     }
 
-    localSwap++;
-
     T temp = values[localSwap];
-    values[localSwap] = values[high];
-    values[high] = temp;
+    values[localSwap] = values[pivotIdx];
+    values[pivotIdx] = temp;
 
     return localSwap;
 
