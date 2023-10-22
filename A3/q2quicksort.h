@@ -72,7 +72,7 @@ template<typename T> struct SortMsg : public uActor::Message {
 };
 
 _Actor SortWithActor {
-    Allocation receive( uActor::Message & msg ) {
+    Allocation receive( Message & msg ) {
         Case( SortMsg, msg ) {
             if ( depth == 0 ) { sequentialQuicksort(msg->values, msg->low, msg->high); } else {
 
@@ -82,8 +82,9 @@ _Actor SortWithActor {
 
 
         } else Case( StopMsg, msg ) return Delete;
+        return uActor::Nodelete;
     }
-    return uActor::Nodelete;
+
 
 };
 #endif
