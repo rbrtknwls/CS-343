@@ -59,7 +59,7 @@ _Task QuickSort {
     }
 
   public:
-    Quicksort( STYPE Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
+    _Nomutex Quicksort( STYPE Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
 }
 #endif
 
