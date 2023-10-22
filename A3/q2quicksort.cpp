@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-#include "q2quicksort.h"
+#include "q2sortingImpl.h"
 
 using namespace std;
 
@@ -70,7 +70,6 @@ int main( int argc, char * argv[] ) {
 
     } else {
 
-
         for ( ;; ) {
 
             int numberOfValuesToSort;
@@ -84,7 +83,15 @@ int main( int argc, char * argv[] ) {
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
 
+            *outfile << endl;
+
+
+
+
 
         }
     }
+
+    if ( infile != &cin ) delete infile;                    // delete in stream pointer at end
+    if ( outfile != &cout ) delete outfile;                 // delete out stream pointer at end
 }
