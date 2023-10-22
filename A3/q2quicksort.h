@@ -2,6 +2,7 @@
 #define CS_343_Q2SORTINGIMPL_H
 
 #include <iostream>
+#include <uCobegin.h>
 
 using namespace std;
 
