@@ -37,52 +37,50 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
 }
 
-#if defined( CBEGIN )
+#if defined( TASK )
+template<typename T> _Task Quicksort {
+    STYPE values[];
+    int low;
+    int high;
+    int depth;
+
+    void main() {
+
+      if (low >= high) { return; }
+        int idx = partition(values, low, high);
+
+        if ( depth == 0 ) {
+            sequentialQuicksort(values, low, high);
+        } else {
+            Quicksort left(values, low, idx - 1, depth-1);
+            sequentialQuicksort(values, idx + 1, high);
+        }
+    }
+
+  public:
+    Quicksort( T Values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
+};
+#endif
+
+
 template<typename T> void quicksort( T values[], int low, int high, int depth ) {
   if (low >= high) { return; }
 
     if ( depth == 0 ) {
         sequentialQuicksort(values, low, high);
     } else {
+#if defined( CBEGIN )
         int idx = partition(values, low, high);
 
         COBEGIN
             BEGIN quicksort(values, low, idx - 1, depth-1); END
             BEGIN quicksort(values, idx + 1, high, depth-1); END
         COEND
+#elif defined( TASK )
+        Quicksort sort(values, low, high, depth);
+#endif
     }
 }
-#endif
-
-#if defined( TASK )
-template<typename T> void quicksort( T values[], int low, int high, int depth ) {
-    _Task sorting {
-        T values[];
-        int low;
-        int high;
-        int depth;
-
-        void main() {
-
-          if (low >= high) { return; }
-            int idx = partition(values, low, high);
-
-            if ( depth == 0 ) {
-                sequentialQuicksort(values, low, high);
-            } else {
-                sorting left(values, low, idx - 1, depth-1);
-                sequentialQuicksort(values, idx + 1, high);
-            }
-        }
-
-      public:
-        sorting( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
-    };
-
-    std::cout << "hi" << endl;
-}
-#endif
-
 
 
 
