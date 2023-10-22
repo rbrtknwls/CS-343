@@ -74,14 +74,13 @@ int main( int argc, char * argv[] ) {
         for ( ;; ) {
 
             int numberOfValuesToSort;
-            if (!(*infile >> numberOfValuesToSort)) { break; }
+            if (!(*infile >> numb
+                STYPE valueReadIn;erOfValuesToSort)) { break; }
 
             STYPE *arrayOfValues  = new STYPE[numberOfValuesToSort];
             for (int i = 0; i < numberOfValuesToSort; i++) {
-                STYPE valueReadIn;
-                *infile >> valueReadIn
-                *outfile << valueReadIn;
-                arrayOfValues[i] = valueReadIn;
+                *infile >> arrayOfValues[i]
+                //*outfile << arrayOfValues[i];
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
