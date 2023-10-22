@@ -16,16 +16,16 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
     int pivotIdx = low + (high - low) / 2;
 
-    swap(values, pivotIdx, high)
+    swap(values, pivotIdx, high);
     unsigned int localSwap = low;
 
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
-            swap(values, localSwap++, j)
+            swap(values, localSwap++, j);
         }
     }
 
-    swap(values, localSwap, high)
+    swap(values, localSwap, high);
 
     return localSwap;
 
