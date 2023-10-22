@@ -21,9 +21,9 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
     localSwap++;
 
-    T temp = values[high];
-    values[high] = values[localSwap];
-    values[localSwap] = temp;
+    T temp = values[localSwap];
+    values[localSwap] = values[high];
+    values[high] = temp;
 
     return localSwap;
 
