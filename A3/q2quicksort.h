@@ -75,13 +75,13 @@ _Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
         Case( SortMsg<STYPE>, msg ) {
 
-            if ( depth == 0 ) { sequentialQuicksort( msg->values, msg->low, msg->high ); } else {
+            if ( msg.depth == 0 ) { sequentialQuicksort( msg.values, msg.low, msg.high ); } else {
 
-                int idx = partition(msg->values, msg->low, msg->high);
+                int idx = partition(msg.values, msg.low, msg.high);
 
                 uActor::start();
-                *new SortWithActor() | *new SortMsg( msg->values, msg->low, idx - 1, msg->depth-1 ) | uActor::stopMsg;
-                *new SortWithActor() | *new SortMsg( msg->values, idx + 1, msg->high, msg->depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( msg.values, msg.low, idx - 1, msg.depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( msg.values, idx + 1, msg.high, msg.depth-1 ) | uActor::stopMsg;
                 uActor::stop();
 
 
@@ -118,7 +118,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
         uActor::start();
         *new SortWithActor() | *new SortMsg( msg->values, msg->low, msg->high, msg->depth ) | uActor::stopMsg;
         uActor::stop();
-        
+
 #endif
     }
 }
