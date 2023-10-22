@@ -74,7 +74,7 @@ int main( int argc, char * argv[] ) {
             int numberOfValuesToSort;
             if (!(*infile >> numberOfValuesToSort)) { break; }
 
-            TYPE arrayOfValues [numberOfValuesToSort];
+            TYPE *arrayOfValues  = new TYPE[numberOfValuesToSort];
             for (int i = 0; i < numberOfValuesToSort; i++) {
                 *infile >> arrayOfValues[i]
                 *outfile << *infile;
