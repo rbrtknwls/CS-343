@@ -72,9 +72,9 @@ struct SortMsg : public uActor::Message {
 };
 
 _Actor SortWithActor {
-    Allocation receive( Message & msg ) {
-        Case( StrMsg, msg ) {
-            if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
+    Allocation receive( uActor::Message & msg ) {
+        Case( SortMsg, msg ) {
+            if ( depth == 0 ) { sequentialQuicksort(msg->values, msg->low, msg->high); } else {
 
                 int idx = partition(msg->values, msg->low, msg->high);
 
@@ -83,6 +83,7 @@ _Actor SortWithActor {
 
         } else Case( StopMsg, msg ) return Delete;
     }
+    return uActor::Nodelete;
 
 };
 #endif
