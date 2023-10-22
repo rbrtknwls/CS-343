@@ -6,12 +6,6 @@
 
 using namespace std;
 
-template<typename T> void quicksort( T values[], int low, int high, int depth );
-
-#if defined( TASK )
-
-#endif
-
 
 template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx2 ) {
     T temp = values[idx1];
@@ -39,6 +33,36 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
 }
 
+template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
+  if (low >= high) { return; }
+
+    int idx = partition(values, low, high);
+
+    sequentialQuicksort(values, low, idx - 1, depth);
+    sequentialQuicksort(values, idx + 1, high, depth);
+
+}
+
+#if defined( TASK )
+template<typename T> _Task QuickSort {
+
+    T values[];
+    int low;
+    int high;
+    int depth;
+
+
+    void main() {
+
+        if ( depth == 0 ) {
+
+        }
+    }
+
+  public:
+    QuickSort( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
+}
+#endif
 
 template<typename T> void quicksort( T values[], int low, int high, int depth ) {
   if (low >= high) { return; }
@@ -47,10 +71,8 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
     if ( depth == 0 ) {
 
-#if defined( CBEGIN )
-        quicksort(values, low, idx - 1, depth);
-        quicksort(values, idx + 1, high, depth);
-#endif
+        sequentialQuicksort(values, low, idx - 1, depth-1);
+        sequentialQuicksort(values, idx + 1, high, depth-1);
 
     } else {
 
