@@ -71,9 +71,9 @@ template<typename T> struct SortMsg : public uActor::Message {
         Message(uActor::Delete), values(values), low(low), high(high), depth(depth) {}
 };
 
-template<typename T> _Actor SortWithActor {
+_Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
-        Case( SortMsg<T>, msg ) {
+        Case( SortMsg<STYPE>, msg ) {
             std::cout << "hi" << endl;
             /*
             if ( depth == 0 ) { sequentialQuicksort(msg->values, msg->low, msg->high); } else {
