@@ -39,7 +39,7 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 }
 
 #if defined( TASK )
-template<typename T> _Task QuickSort {
+template<typename T> _Task Quicksort {
     T values[];
     int low;
     int high;
@@ -79,7 +79,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
             BEGIN quicksort(values, idx + 1, high, depth-1); END
         COEND
 #elif defined( TASK )
-        Quicksort quicksort(values, low, high, depth);
+        Quicksort sort(values, low, high, depth);
 #endif
     }
 }
