@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx2 ) {
     T temp = values[idx1];
     values[idx1] = values[idx2];
@@ -32,27 +33,27 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
 }
 
+
+template<typename T> void quicksort( T values[], int low, int high, int depth ) {
+  if (low >= high) { return; }
+
+    int idx = partition(values, low, high);
+
+    if ( depth == 0 ) {
 #if defined( CBEGIN )
-
-    template<typename T> void quicksort( T values[], int low, int high, int depth ) {
-
-        if (low >= high) { return; }
-
-        int idx = partition(values, low, high);
-
-        if ( depth == 0 ) {
-            quicksort(values, low, idx - 1, depth);
-            quicksort(values, idx + 1, high, depth);
-        } else {
-            COBEGIN
-                BEGIN quicksort(values, low, idx - 1, depth-1); END
-                BEGIN quicksort(values, idx + 1, high, depth-1); END
-            COEND
-        }
-
-
-    }
+        quicksort(values, low, idx - 1, depth);
+        quicksort(values, idx + 1, high, depth);
 #endif
+    } else
+#if defined( CBEGIN )
+        COBEGIN
+            BEGIN quicksort(values, low, idx - 1, depth-1); END
+            BEGIN quicksort(values, idx + 1, high, depth-1); END
+        COEND
+#endif
+    }
+}
+
 
 
 
