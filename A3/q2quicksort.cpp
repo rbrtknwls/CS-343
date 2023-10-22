@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <uPRNG.h>
 
 #include "q2quicksort.h"
 
