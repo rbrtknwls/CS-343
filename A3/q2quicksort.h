@@ -81,10 +81,8 @@ _Actor SortWithActor {
 
                 int idx = partition(msg_d->values, low, high);
 
-                uActor::start();
                 *new SortWithActor() | *new SortMsg( msg_d->values, low, idx - 1, depth-1 ) | uActor::stopMsg;
                 *new SortWithActor() | *new SortMsg( msg_d->values, idx + 1, high, depth-1 ) | uActor::stopMsg;
-                uActor::stop();
 
 
             }
