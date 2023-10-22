@@ -43,8 +43,10 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
             quicksort(values, low, idx - 1, depth);
             quicksort(values, idx + 1, high, depth);
         } else {
-            quicksort(values, low, idx - 1, depth-1);
-            quicksort(values, idx + 1, high, depth-1);
+            COBEGIN
+                BEGIN quicksort(values, low, idx - 1, depth-1); END
+                BEGIN quicksort(values, idx + 1, high, depth-1); END
+            COEND
         }
 
 
