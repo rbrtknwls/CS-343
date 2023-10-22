@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <uCobegin.h>
+#include <uActor.h>
 
 using namespace std;
 
@@ -59,6 +60,7 @@ template<typename T> _Task SortWithTask {
     SortWithTask( T values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
 };
 #elif defined( ACTOR )
+
 struct SortMsg : public uActor::Message {
     T *values;
     int low;
@@ -69,16 +71,18 @@ struct SortMsg : public uActor::Message {
         values(values), low(low), high(high), depth(depth) {}
 };
 
-_Actor QuickSort {
+_Actor SortWithActor {
     Allocation receive( Message & msg ) {
         Case( StrMsg, msg ) {
-            if (depth == 0) {
-            int idx = partition(msg->values, msg->low, msg->high);
+            if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
 
-        msg_d->val
+                int idx = partition(msg->values, msg->low, msg->high);
+
+            }
+
+
         } else Case( StopMsg, msg ) return Delete;
     }
-}
 
 };
 #endif
