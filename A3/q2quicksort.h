@@ -5,8 +5,17 @@
 
 using namespace std;
 
+template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx2 ) {
+    T temp = values[idx1];
+    values[idx1] = values[idx2];
+    values[idx2] = temp;
+
+}
+
 template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned high ) {
-    unsigned int pivotIdx = low + (high - low) / 2;
+
+    int pivotIdx = low + (high - low) / 2;
+
     T pivot = values[pivotIdx];
     unsigned int localSwap = low;
 
