@@ -77,7 +77,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
       public:
         sorting( T Values[], low, high, depth ) : values(values), low(low), high(high), depth(depth) {}
-    }
+    };
 
     std::cout << "hi" << endl;
 }
