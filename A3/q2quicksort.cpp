@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>gi
 #include <string>
 #include "q2quicksort.h"
 
@@ -19,9 +20,9 @@ int main( int argc, char * argv[] ) {
         if ( argc > 2 && argv[1][0] == '-' ) {
             timeMode = true;
 
-            switch (argc) {
+            switch ( argc ) {
                 case 3:
-                    depth = stoi(argv[2)
+                    depth = stoi(argv[2])
                   if ( depth >= 0 ) { break; }
                 case 2:
                     size = stoi(argv[1]);
@@ -32,7 +33,7 @@ int main( int argc, char * argv[] ) {
 
         } else {
 
-            switch (argc) {
+            switch ( argc ) {
                 case 4:
                     depth = stoi(argv[3]);
                   if ( depth < 0 ) { throw cmd_error(); }
