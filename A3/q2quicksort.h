@@ -67,17 +67,13 @@ template<typename T> struct SortMsg : public uActor::Message {
     int high;
     int depth;
 
-    SortMsg( T *values, int low, int high, int depth ) : Message(uActor::Delete), values(values), low(low), high(high), depth(depth) {}
-};
-struct StrMsg : public uActor::Message { // default Nodelete
-    string val;
-    StrMsg( string val ) :
-    val( val ) {}
+    SortMsg( T *values, int low, int high, int depth ) :
+        Message(uActor::Delete), values(values), low(low), high(high), depth(depth) {}
 };
 
-_Actor SortWithActor {
-    Allocation receive( Message & msg ) {
-        Case( StrMsg, msg ) {
+template<typename T> _Actor SortWithActor {
+    Allocation receive( uActor::Message & msg ) {
+        Case( SortMsg<T>, msg ) {
             std::cout << "hi" << endl;
             /*
             if ( depth == 0 ) { sequentialQuicksort(msg->values, msg->low, msg->high); } else {
