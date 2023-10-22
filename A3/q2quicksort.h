@@ -58,7 +58,7 @@ template<typename T> _Task Quicksort {
     }
 
   public:
-    Quicksort( T Values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
+    Quicksort( T values[], int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
 };
 #endif
 
