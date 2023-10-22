@@ -78,7 +78,7 @@ int main( int argc, char * argv[] ) {
 
             STYPE *arrayOfValues  = new STYPE[numberOfValuesToSort];
             for (int i = 0; i < numberOfValuesToSort; i++) {
-                *infile >> arrayOfValues[i]
+                *infile >> arrayOfValues[i];
                 //*outfile << arrayOfValues[i];
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
