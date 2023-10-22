@@ -68,6 +68,21 @@ int main( int argc, char * argv[] ) {
 
     if ( timeMode ) {
 
+        unsigned int times = sqrt( size );
+        STYPE *arrayOfValues  = new STYPE[ size ];
+
+        for ( unsigned int counter = 0; counter < times; counter += 1 ) {
+            swap( values[0], values[prng( size ) ] );
+        } // for
+
+        uProcessor p[ (1 << depth) - 1 ] __attribute__(( unused )); // 2^depth-1 kernel threads
+
+        uTime start = uClock::currTime();
+        quicksort( arrayOfValues );
+        cout << "Sort time " << uClock::currTime() - start << " sec." << endl;
+
+        delete[] arrayOfValues;
+
     } else {
 
         for ( ;; ) {
