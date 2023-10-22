@@ -16,7 +16,16 @@ template<typename T> unsigned int partition ( T values[], unsigned int low, unsi
 
     int pivotIdx = low + (high - low) / 2;
 
+    for (int i = 0; i < high; i++) {
+        cout << values[i] << " ";
+    }
+
     swap(values, pivotIdx, high);
+
+    for (int i = 0; i < high; i++) {
+        cout << values[i] << " ";
+    }
+    
     unsigned int localSwap = low;
 
     for ( unsigned int j = low; j < high; j++ ) {
