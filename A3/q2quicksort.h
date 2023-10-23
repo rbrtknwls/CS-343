@@ -8,26 +8,32 @@
 using namespace std;
 
 
+template<typename T> unsigned int partition ( T &values, unsigned int low, unsigned int high ) {
+    T pivot = arr[high];
+    unsigned int i = (low - 1);
 
-template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
-    if (low >= high || high == (unsigned int)-1) { return; }
-
-    unsigned int i = low, j = high;
-    T pivot = values[i + (j - i) / 2];
-    while (i <= j ) {
-        while (values[i] < pivot) ++i;
-        while (values[j] > pivot) --j;
-        if (i <= j) {
-            swap(values[i], values[j]);
-            ++i;
-            if (j != 0 ) --j;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[++i], arr[j]);
         }
     }
 
+    swap(arr[i++], arr[high]);
+    return i;
 
 
-    sequentialQuicksort(values, low, j);
-    sequentialQuicksort(values, i, high);
+}
+
+template<typename T> void sequentialQuicksort( T &values, unsigned int low, unsigned int high ) {
+    if (low >= high || high == (unsigned int)-1) { return; }
+
+    unsigned int idx = partition(values, low, high);
+
+    if ( idx > 0 ) {
+        sequentialQuicksort(values, low, idx - 1);
+    }
+    sequentialQuicksort(values, idx + 1, high);
 
 }
 
@@ -108,13 +114,13 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
 #if defined( CBEGIN )
 
-/*        int idx = partition(values, low, high);
+        int idx = partition(values, low, high);
 
         COBEGIN
             BEGIN quicksort( values, low, idx - 1, depth-1 ); END
             BEGIN quicksort( values, idx + 1, high, depth-1 ); END
         COEND
-*/
+
 #elif defined( TASK )
 
         SortWithTask sort( values, low, high, depth );
