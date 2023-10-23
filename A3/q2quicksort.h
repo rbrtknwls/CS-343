@@ -13,23 +13,21 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
   if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int pivotIdx = low + (high - low) / 2;
-    unsigned int localSwap = low;
+    unsigned int idx = low;
 
     swap(values[pivotIdx], values[high]);
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
-            swap(values[localSwap++], values[j]);
+            swap(values[idx++], values[j]);
         }
     }
-    swap(values[localSwap], values[high]);
+    swap(values[idx], values[high]);
 
 
     if ( depth == 0 ) {
         if ( low < idx - 1 ) quicksort( values, low, idx - 1, depth-1 );
         if ( high < idx + 1) quicksort( values, idx + 1, high, depth-1 );
     } else {
-
-        int idx = partition(values, low, high);
 
         COBEGIN
             BEGIN if ( low < idx - 1 ) quicksort( values, low, idx - 1, depth-1 ); END
