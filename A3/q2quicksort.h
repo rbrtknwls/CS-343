@@ -6,7 +6,7 @@
 #include <uActor.h>
 
 using namespace std;
-
+/*
 template<typename T> void swap ( T *values, unsigned int idx1, unsigned int idx2 ) {
     T temp = values[idx1];
     values[idx1] = values[idx2];
@@ -37,7 +37,7 @@ template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
     sequentialQuicksort(values, idx + 1, high);
 
 }
-
+*/
 #if defined( TASK )
 template<typename T> _Task SortWithTask {
     T *values;
@@ -103,15 +103,38 @@ _Actor SortWithActor {
 template<typename T> void quicksort( T *values, int low, int high, int depth ) {
   if (low >= high) { return; }
 
-    if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
 
 #if defined( CBEGIN )
+
+    void swap ( T *values, unsigned int idx1, unsigned int idx2 ) {
+        T temp = values[idx1];
+        values[idx1] = values[idx2];
+        values[idx2] = temp;
+    }
+
+    unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
+        int pivotIdx = low + (high - low) / 2;
+        unsigned int localSwap = low;
+
+        swap(values, pivotIdx, high);
+        for ( unsigned int j = low; j < high; j++ ) {
+            if ( values[j] < values[high] ) {
+                swap(values, localSwap++, j);
+            }
+        }
+        swap(values, localSwap, high);
+
+        return localSwap;
+    }
+
+    if ( depth == 0 ) { quicksort(values, low, high); } else {
 
         int idx = partition(values, low, high);
         COBEGIN
             BEGIN quicksort( values, low, idx - 1, depth-1 ); END
             BEGIN quicksort( values, idx + 1, high, depth-1 ); END
         COEND
+    }
 
 #elif defined( TASK )
 
@@ -124,7 +147,6 @@ template<typename T> void quicksort( T *values, int low, int high, int depth ) {
         uActor::stop();
 
 #endif
-    }
 }
 
 
