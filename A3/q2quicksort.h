@@ -15,19 +15,20 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     uThisTask().verify();
 
     unsigned int pivotIdx = low + (high - low) / 2;
-    unsigned int idx = low - 1;
+    unsigned int newLower = low;
+    unsigned int newHigher = high;
 
-    swap(values[pivotIdx], values[high]);
-    for ( unsigned int j = low; j < high; j++ ) {
-        if ( values[j] < values[high] ) {
-            idx++;
-            swap(values[idx], values[j]);
-        }
+    while (newLower <= newHigher ) {
+		while (values[newLower] < values[pivotIdx]) ++newLower;
+		while (values[newHigher] > values[pivotIdx]) --newHigher;
+        // cout << "i: " << i << " j: " << j << endl;
+		if (i <= j) {
+			swap(values[newLower], values[newHigher]);
+
+            newLower++;
+            if (j > 0 ) { newHigher--; }
+		}
     }
-    swap(values[idx+1], values[high]);
-
-    cout << idx << endl;
-
     idx++;
     if ( depth == 0 ) {
 
