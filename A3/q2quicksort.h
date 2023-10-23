@@ -21,7 +21,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
             swap(values[idx++], values[j]);
         }
     }
-    swap(values[++idx], values[high]);
+    swap(values[idx], values[high]);
 
 
     if ( depth == 0 ) {
