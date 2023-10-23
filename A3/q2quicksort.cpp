@@ -79,7 +79,7 @@ int main( int argc, char * argv[] ) {
         uProcessor p[ (1 << depth) - 1 ]; // 2^depth-1 kernel threads
 
         uTime start = uClock::currTime();
-        sequentialQuicksort( arrayOfValues, 0, size-1 );
+        quicksort( arrayOfValues, 0, size-1, depth );
         cout << "Sort time " << uClock::currTime() - start << " sec." << endl;
 
         delete[] arrayOfValues;
