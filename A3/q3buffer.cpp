@@ -72,10 +72,10 @@ int main( int argc, char * argv[] ) {
     for (int i = 0 ; i < cons; i++ ) {
         delete consList[i];
         totalSum += consumerResults[i];
-    }*/
+    }
 
     cout << "total: " << totalSum << endl;
     cout << endl;
-    cout << "Total Producer/Consumer blocks in insert/remove " << endl;
+    cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
 
 }
