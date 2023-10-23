@@ -65,7 +65,7 @@ template<typename T> class BoundedBuffer {
 #endif // NOBUSY
 
 _Task Producer {
-    BoundedBuffer<int> & buffer
+    BoundedBuffer<int> & buffer;
     int produce = 0;
     int delay = 0;
     void main() {
