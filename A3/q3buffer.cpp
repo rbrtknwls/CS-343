@@ -65,14 +65,17 @@ int main( int argc, char * argv[] ) {
     for (int i = 0 ; i < prods; i++ ) {
         delete prodList[i];
     }
-    /*
+
+    buffer.posion();
+
+
     int totalSum = 0;
     for (int i = 0 ; i < cons; i++ ) {
         delete consList[i];
         totalSum += consumerResults[i];
     }
 
-    cout << "total: " << totalSum << endl;*/
+    cout << "total: " << totalSum << endl;
     cout << endl;
     cout << "Total Producer/Consumer blocks in insert/remove " << endl;
 

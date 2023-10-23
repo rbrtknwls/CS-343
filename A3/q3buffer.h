@@ -98,7 +98,6 @@ _Task Producer {
             yield( prng( delay ) );
             buffer.insert(i);
         }
-        std::cout << "DONE";
     }
   public:
     Producer( BoundedBuffer<int> & buffer, const int produce, const int delay ) : buffer(buffer),
