@@ -96,6 +96,7 @@ _Task Producer {
     void main() {
         for ( int i = 0; i < produce; i++ ) {
             yield( prng( delay ) );
+            std::cout << i << std::endl;
             buffer.insert(i);
         }
     }
@@ -117,7 +118,6 @@ _Task Consumer {
 
                     yield( prng( delay ) );
                     int result = buffer.remove();
-                    std::cout << result << std::endl;
                     sum += result;
 
                 }
