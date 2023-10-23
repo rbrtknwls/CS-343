@@ -12,7 +12,7 @@ template<typename T> void sequentialQuicksort( T values[], unsigned int low, uns
 
         unsigned int pivotIdx = low + (high - low) / 2;
         unsigned int localSwap = low;
-        /*
+
         swap(values[pivotIdx], values[high]);
         for ( unsigned int j = low; j < high; j++ ) {
             if ( values[j] < values[high] ) {
@@ -20,7 +20,7 @@ template<typename T> void sequentialQuicksort( T values[], unsigned int low, uns
             }
         }
         swap(values[localSwap], values[high]);
-        */
+        
         if ( localSwap != 0 ) { sequentialQuicksort(values, low, localSwap - 1); }
         sequentialQuicksort(values, localSwap + 1, high);
     }
