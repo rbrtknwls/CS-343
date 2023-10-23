@@ -66,7 +66,7 @@ int main( int argc, char * argv[] ) {
         delete prodList[i];
     }
 
-    buffer.posion();
+    buffer.poison();
 
 
     int totalSum = 0;
