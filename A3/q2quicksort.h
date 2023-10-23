@@ -10,6 +10,7 @@ using namespace std;
 
 
 template<typename T> void sequentialQuicksort( T &values, int low, int high ) {
+    if (high == (unsigned int)-1) return;
   if (low < high) {
 
       int pivotIdx = low + (high - low) / 2;
