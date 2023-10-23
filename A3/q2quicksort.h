@@ -15,7 +15,7 @@ void partition ( STYPE values[], unsigned int low, unsigned int high, PartResult
     unsigned int i = low;
     unsigned int j = high;
 
-    for ( ;; )
+    for ( ;; ) {
         while (values[i] < values[pivotIdx]) i++;
         while (values[j] > values[pivotIdx]) j--;
 
