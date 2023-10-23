@@ -84,6 +84,7 @@ template<typename T> class BoundedBuffer {
     uCondLock consLock;
     std::vector<T> items;
 
+    BCHECK_DECL;
   public:
     _Event Poison {};
 
