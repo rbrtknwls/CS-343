@@ -21,8 +21,8 @@ template<typename T> void sequentialQuicksort( T values[], unsigned int low, uns
         }
         swap(values[localSwap], values[high]);
         */
-        if ( localSwap != 0 ) { sequentialQuicksort(values, low, localSwap - 1, depth); }
-        sequentialQuicksort(values, localSwap + 1, high, depth);
+        if ( localSwap != 0 ) { sequentialQuicksort(values, low, localSwap - 1); }
+        sequentialQuicksort(values, localSwap + 1, high);
     }
 
 }
