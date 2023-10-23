@@ -13,7 +13,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
   if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int pivotIdx = low + (high - low) / 2;
-    unsigned int idx = low-1;
+    unsigned int idx = low;
 
     swap(values[pivotIdx], values[high]);
     for ( unsigned int j = low; j <= high; j++ ) {
