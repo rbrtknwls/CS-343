@@ -44,7 +44,7 @@ template<typename T> class BoundedBuffer {
         try {
             if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
 
-            if ( poisoned ) {
+            if ( numberOfElements == 0 && poisoned ) {
                 _Throw Poison();
             } else {
                 elem = items[--numberOfElements];
