@@ -75,7 +75,7 @@ int main( int argc, char * argv[] ) {
             swap( arrayOfValues[0], arrayOfValues[prng( size ) ] );
         } // for
 
-        uProcessor p[ (1 << depth) - 1 ];  __attribute__((unused)); // 2^depth-1 kernel threads
+        uProcessor p[ (1 << depth) - 1 ];  __attribute__((unused)); g// 2^depth-1 kernel threads
 
         uTime start = uClock::currTime();
         quicksort( arrayOfValues, 0, size-1, depth );
