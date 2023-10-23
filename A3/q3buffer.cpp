@@ -35,7 +35,7 @@ int main( int argc, char * argv[] ) {
             case 2:
                 if ( *argv[1] != 'd' ) { cons = stoi(argv[1]); }
                 if ( argc < 6 || *argv[5] == 'd' ) {
-                    delays = cons + produce;
+                    delays = cons + prods;
                 }
                 break;
             default:                                       // wrong number of options
