@@ -8,10 +8,11 @@
 
 #ifdef BUSY
 template<typename T> class BoundedBuffer {
-    int sizeLimit;
-    int numberOfBlocks = 0;
     int numberOfElements = 0;
+    unsigned long int numberOfBlocks = 0;
     bool poisoned = false;
+    int sizeLimit;
+
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
@@ -29,7 +30,11 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
         buffLock.acquire();
         try {
-            if ( numberOfElements == sizeLimit ) { prodLock.wait(buffLock); }
+
+            if ( numberOfElements == sizeLimit ) {
+                numberOfBlocks++;
+                prodLock.wait(buffLock);
+            }
             items.push_back(elem);
             numberOfElements++;
             consLock.signal();
@@ -47,9 +52,10 @@ template<typename T> class BoundedBuffer {
                 if ( poisoned ) {
                     _Throw Poison();
                 }
+                numberOfBlocks++;
                 consLock.wait(buffLock);
             }
-            
+
             elem = items[--numberOfElements];
             items.pop_back();
             prodLock.signal();

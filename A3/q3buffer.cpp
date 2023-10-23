@@ -77,6 +77,6 @@ int main( int argc, char * argv[] ) {
 
     cout << "total: " << totalSum << endl;
     cout << endl;
-    cout << "Total Producer/Consumer blocks in insert/remove " << endl;
+    cout << "Total Producer/Consumer blocks in insert/remove " << blocks << endl;
 
 }
