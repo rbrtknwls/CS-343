@@ -89,8 +89,6 @@ _Actor SortWithActor {
 
 };
 
-#endif
-
 template<typename T>
 void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
     if (high == (unsigned int)-1) return; // sorting empty arr (length-1 underflowed)
