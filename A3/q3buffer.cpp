@@ -1,6 +1,7 @@
 #include "q3buffer.h"
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -47,7 +48,11 @@ int main( int argc, char * argv[] ) {
 
 
     BoundedBuffer<int> buffer ( buffersize );
-    Producer prodList[prods];
+    vector<Producer> prodList;
+
+    for (int i = 0 ; i < prods; i++ ) {
+        prodList.push_back( new Producer( buffer, produce, delays ));
+    }
 
 
 
