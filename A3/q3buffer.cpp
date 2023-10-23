@@ -34,7 +34,7 @@ int main( int argc, char * argv[] ) {
                 if ( *argv[2] != 'd' ) { prods = stoi(argv[2]); }
             case 2:
                 if ( *argv[1] != 'd' ) { cons = stoi(argv[1]); }
-                if ( argc == 6 && *argv[5] != 'd' ) {
+                if ( argc < 6 || *argv[5] == 'd' ) {
                     delays = cons + produce;
                 }
                 break;
