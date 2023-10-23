@@ -40,7 +40,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     uThisTask().verify();
 
 
-    PartResults results[2];
+    PartResults results;
     partition(values, low, high, &results);
 
     unsigned int i = *results[0];
