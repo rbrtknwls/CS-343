@@ -86,7 +86,7 @@ template<typename T> _Task SortWithTask {
     SortWithTask( T *values, int low, int high, int depth ) : values(values), low(low), high(high), depth(depth) {}
 };
 */
-#elif defined( ACTOR )
+#if defined( ACTOR )
 
 struct SortMsg : public uActor::Message {
     STYPE *values;
