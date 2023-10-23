@@ -82,7 +82,12 @@ template<typename T> class BoundedBuffer {
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
+    uCondLock waitLock;
     std::vector<T> items;
+
+    bool consFlag = false;
+    bool prodFlag = false;
+    bool bargeFlag = false;
 
     BCHECK_DECL;
   public:
@@ -99,18 +104,40 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
         buffLock.acquire();
         try {
+
             PROD_ENTER;
 
+            if ( consFlag || prodFlag || bargeFlag ) {
+                waitLock.wait(buffLock);
+
+                if (waitLock.empty()) bargeFlag = false;
+            }
+
             if ( numberOfElements == sizeLimit ) {
+
+
+                if ( consFlag == false && waitLock.empty() == false ) {
+                    waitLock.signal();
+                }
+
                 numberOfBlocks++;
                 prodLock.wait(buffLock);
             }
+
             INSERT_DONE;
             items.push_back(elem);
             numberOfElements++;
 
             CONS_SIGNAL( consLock );
-            consLock.signal();
+
+            if ( consLock.empty() == false ) {
+                consLock = true
+                consLock.signal();
+            } else if ( waitLock.empty() == false ) {
+                bargeFlag = true;
+                waitLock.signal();
+            }
+            prodFlag = false;
         } _Finally {
             buffLock.release();
         }
