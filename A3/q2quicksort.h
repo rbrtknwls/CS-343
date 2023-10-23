@@ -115,7 +115,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
-            swap(localSwap++, j);
+
             temp = values[localSwap];
             values[localSwap] = values[j];
             values[j] = temp;
