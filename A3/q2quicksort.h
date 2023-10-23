@@ -10,22 +10,22 @@ using namespace std;
 
 
 template<typename T> void sequentialQuicksort( T &values, int low, int high ) {
-  if (low >= high) { return; }
+  if (low < high) {
 
-    int pivotIdx = low + (high - low) / 2;
-    unsigned int localSwap = low;
+      int pivotIdx = low + (high - low) / 2;
+      unsigned int localSwap = low;
 
-    swap(values[pivotIdx], values[high]);
-    for ( unsigned int j = low; j < high; j++ ) {
-        if ( values[j] < values[high] ) {
-            swap(values[localSwap++], values[j]);
-        }
-    }
-    swap(values[localSwap], values[high]);
+      swap(values[pivotIdx], values[high]);
+      for (unsigned int j = low; j < high; j++) {
+          if (values[j] < values[high]) {
+              swap(values[localSwap++], values[j]);
+          }
+      }
+      swap(values[localSwap], values[high]);
 
-    sequentialQuicksort(values, low, localSwap - 1);
-    sequentialQuicksort(values, localSwap + 1, high);
-
+      sequentialQuicksort(values, low, localSwap - 1);
+      sequentialQuicksort(values, localSwap + 1, high);
+  }
 }
 
 #if defined( TASK )
