@@ -16,6 +16,8 @@ int main( int argc, char * argv[] ) {
     struct cmd_error {
     };
 
+    std::cout << "done";
+
     try {
 
         switch (argc) {
