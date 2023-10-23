@@ -1,5 +1,15 @@
 2a) After running the experiment a total of 4 times, we get the following output:
 
-{flag}    [ (BUSY) ./buffer {flag} 55 50 4000 20 10 1 ]     [ (NOBUSY) ./buffer {flag} 55 50 4000 20 10 ]
-N/A             34.35u 0.05s 0:34.39r 7316kb                        
--O2             33.57u 0.02s 0:33.57r 7008kb                        34.92u 0.03s 0:34.94r 6368kb
+{flag}    [ (BUSY) ./buffer {flag} 55 50 4000 20 10 1 ]     [ (NOBUSY) ./buffer {flag} 55 50 4000 20 10 1 ]
+N/A             34.35u 0.05s 0:34.39r 7316kb                        34.96u 0.00s 0:34.94r 6480kb
+-O2             33.57u 0.02s 0:33.57r 7008kb                        31.93u 0.03s 0:31.95r 6380kb
+
+2b) As we can see compiler optimization for both improves the runtime, due to the fact that we use vectors,
+it takes a lot of time to remove and add elements. Moreover we can see that NOBUSY seems to be faster than
+BUSY with compiler optimization.
+
+2c) After running the experiment a total of 4 times, we get the following output:
+
+{flag}    [ (BUSY) ./buffer {flag} 55 50 4000 20 10 3 ]     [ (NOBUSY) ./buffer {flag} 55 50 4000 20 10 3 ]
+N/A             34.35u 0.05s 0:34.39r 7316kb                        34.96u 0.00s 0:34.94r 6480kb
+-O2             33.57u 0.02s 0:33.57r 7008kb                        31.93u 0.03s 0:31.95r 6380kb
