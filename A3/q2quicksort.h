@@ -9,7 +9,7 @@ using namespace std;
 
 typedef unsigned int PartResults[2];
 
-void partition ( STYPE values[], unsigned int low, unsigned int high, PartResults *returnVals ) {
+template<typename T> void partition ( T values[], unsigned int low, unsigned int high, PartResults *returnVals ) {
     unsigned int pivotIdx = low + (high - low) / 2;
 
     unsigned int i = low;
@@ -30,6 +30,24 @@ void partition ( STYPE values[], unsigned int low, unsigned int high, PartResult
     (*returnVals)[1] = j;
 
 }
+
+template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
+    if ( low >= high || high == (unsigned int)-1 ) { return; }
+
+    PartResults results;
+    partition(values, low, high, &results);
+
+    unsigned int i = results[0];
+    unsigned int j = results[1];
+
+
+    if ( depth == 0 ) {
+
+        sequentialQuicksort( values, low, j );
+        sequentialQuicksort( values, i, high );
+
+}
+
 
 
 
