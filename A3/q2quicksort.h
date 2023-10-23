@@ -9,11 +9,6 @@
 using namespace std;
 
 
-template<typename T> unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
-
-    return localSwap;
-}
-
 template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
   if (low >= high) { return; }
 
