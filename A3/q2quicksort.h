@@ -28,8 +28,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
             if (j != 0 ) --j; // watch out for unsigned underflow
 		}
 	}
-
-    idx++;
+    
     if ( depth == 0 ) {
 
         quicksort( values, low, j, 0 );
