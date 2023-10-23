@@ -106,13 +106,15 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
 #if defined( CBEGIN )
 
-    void swap ( T *values, unsigned int idx1, unsigned int idx2 ) {
+    void swap (unsigned int idx1, unsigned int idx2 ) {
         T temp = values[idx1];
         values[idx1] = values[idx2];
         values[idx2] = temp;
     }
 
-    unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
+
+    if ( depth == 0 ) { quicksort(values, low, high); } else {
+
         int pivotIdx = low + (high - low) / 2;
         unsigned int localSwap = low;
 
@@ -123,16 +125,10 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
             }
         }
         swap(values, localSwap, high);
-
-        return localSwap;
-    }
-
-    if ( depth == 0 ) { quicksort(values, low, high); } else {
-
-        int idx = partition(values, low, high);
+        
         COBEGIN
-            BEGIN quicksort( values, low, idx - 1, depth-1 ); END
-            BEGIN quicksort( values, idx + 1, high, depth-1 ); END
+            BEGIN quicksort( values, low, localSwap - 1, depth-1 ); END
+            BEGIN quicksort( values, localSwap + 1, high, depth-1 ); END
         COEND
     }
 
