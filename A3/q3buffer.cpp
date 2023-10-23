@@ -16,8 +16,6 @@ int main( int argc, char * argv[] ) {
     struct cmd_error {
     };
 
-    std::cout << "done";
-
     try {
 
         switch (argc) {
@@ -77,6 +75,6 @@ int main( int argc, char * argv[] ) {
 
     cout << "total: " << totalSum << endl;
     cout << endl;
-    cout << "Total Producer/Consumer blocks in insert/remove " << buffer.blocks << endl;
+    cout << "Total Producer/Consumer blocks in insert/remove " << buffer.blocks() << endl;
 
 }
