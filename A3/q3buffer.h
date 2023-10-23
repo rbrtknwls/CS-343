@@ -95,6 +95,7 @@ _Task Producer {
 
     void main() {
         for ( int i = 0; i < produce; i++ ) {
+            std::cout << "Hai";
             yield( prng( delay ) );
             buffer.insert(i);
         }
