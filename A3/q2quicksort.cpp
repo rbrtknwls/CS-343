@@ -100,7 +100,7 @@ int main( int argc, char * argv[] ) {
             *outfile << endl;
 
             if (numberOfValuesToSort != 0) {
-                quicksort(arrayOfValues, 0, numberOfValuesToSort - 1, depth);
+                //quicksort(arrayOfValues, 0, numberOfValuesToSort - 1, depth);
             }
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
