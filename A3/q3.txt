@@ -1,5 +1,5 @@
 2a) After running the experiment a total of 4 times, we get the following output:
 
 {flag}    [ (BUSY) ./buffer {flag} 55 50 4000 20 10 1 ]     [ (NOBUSY) ./buffer {flag} 55 50 4000 20 10 ]
-N/A             34.35u 0.05s 0:34.39r 7316kb
--O2             33.57u 0.02s 0:33.57r 7008kb
+N/A             34.35u 0.05s 0:34.39r 7316kb                        
+-O2             33.57u 0.02s 0:33.57r 7008kb                        34.92u 0.03s 0:34.94r 6368kb
