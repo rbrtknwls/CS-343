@@ -103,11 +103,8 @@ _Actor SortWithActor {
                 partition(values, low, high, &results);
                 unsigned int i = results[0];
                 unsigned int j = results[1];
-                if ( j != 0 ) {
-                    *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
-                }
+                *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
                 *new SortWithActor() | *new SortMsg( values, i, high, depth-1 ) | uActor::stopMsg;
-
 
             }
         } else Case( StopMsg, msg ) return Delete;
@@ -121,7 +118,7 @@ _Actor SortWithActor {
 
 
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    if ( low >= high || high == (unsigned int)-1 ) { return; }
+    if ( low >= high ) { return; }
 
     if ( depth == 0 ) {
         sequentialQuicksort( values, low, high );
