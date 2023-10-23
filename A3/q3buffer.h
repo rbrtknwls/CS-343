@@ -68,8 +68,9 @@ _Task Producer {
     BoundedBuffer<int> & buffer;
     int produce = 0;
     int delay = 0;
-    void main() {
 
+    void main() {
+        std::cout << "HI" << endl;
     }
   public:
     Producer( BoundedBuffer<int> & buffer, const int produce, const int delay ) : buffer(buffer),
