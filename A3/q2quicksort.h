@@ -7,7 +7,7 @@
 
 using namespace std;
 
-template<typename T> void partition ( T *values, unsigned int low, unsigned int high, unsigned int *returnVals) {
+void partition ( STYPE values[], unsigned int low, unsigned int high, unsigned int *returnVals) {
     unsigned int pivotIdx = low + (high - low) / 2;
 
     unsigned int i = low;
