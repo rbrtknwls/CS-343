@@ -67,7 +67,7 @@ int main( int argc, char * argv[] ) {
     int totalSum = 0;
     for (int i = 0 ; i < cons; i++ ) {
         delete consList[i];
-        totalSum += consumerResults[i]
+        totalSum += consumerResults[i];
     }
 
     cout << "total: " << totalSum << endl;
