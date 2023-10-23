@@ -51,7 +51,7 @@ int main( int argc, char * argv[] ) {
     vector<Producer> prodList;
 
     for (int i = 0 ; i < prods; i++ ) {
-        prodList.push_back( new Producer( buffer, produce, delays ));
+        prodList.push_back( Producer( buffer, produce, delays ) );
     }
 
 
