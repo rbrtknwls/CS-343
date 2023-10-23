@@ -8,10 +8,11 @@
 
 #ifdef BUSY
 template<typename T> class BoundedBuffer {
-    int numberOfBlocks = 0;
-    std::vector<T> items;
     int sizeLimit;
+    int numberOfBlocks = 0;
     int numberOfElements = 0;
+
+    std::vector<T> items;
 
   public:
     _Event Poison {};
