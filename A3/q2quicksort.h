@@ -100,7 +100,7 @@ _Actor SortWithActor {
 #endif
 
 
-template<typename T> void quicksort( T *values, int low, int high, int depth ) {
+template<typename T> void quicksort( T values[], int low, int high, int depth ) {
   if (low >= high) { return; }
 
 
