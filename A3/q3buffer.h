@@ -23,7 +23,7 @@ template<typename T> class BoundedBuffer {
     }
 	void insert( T elem ) {
 
-        if ( items.size() == sizeLimit ) {}
+        if ( numberOfElements == sizeLimit ) {}
         items.push_back(elem);
         numberOfElements++;
 
@@ -31,7 +31,7 @@ template<typename T> class BoundedBuffer {
 	}
 	T remove() __attribute__(( warn_unused_result )) {
 
-        if ( items.size() == 0 ) {}
+        if ( numberOfElements == 0 ) {}
         T elem = items[--numberOfElements];
         items.pop_back();
 
