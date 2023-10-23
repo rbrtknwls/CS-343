@@ -23,9 +23,7 @@ void quicksort( T values[], unsigned int low, unsigned int high, unsigned int de
         }
 
         std::swap(arr[i++], arr[high]);
-
-
-        int pivotIndex = partition(arr, low, high);
+        
 
         quicksort(arr, low, i - 1, depth);
         quicksort(arr, i + 1, high, depth);
