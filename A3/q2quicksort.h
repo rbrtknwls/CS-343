@@ -106,22 +106,26 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
 #if defined( CBEGIN )
 
-    void swap (unsigned int idx1, unsigned int idx2 ) {
-        T temp = values[idx1];
-        values[idx1] = values[idx2];
-        values[idx2] = temp;
-    };
-
     unsigned int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
-    swap(pivotIdx, high);
+    T temp = values[pivotIdx];
+    values[pivotIdx] = values[high];
+    values[high] = temp;
+
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
             swap(localSwap++, j);
+            temp = values[localSwap];
+            values[localSwap] = values[j];
+            values[j] = temp;
+            localSwap++;
         }
     }
-    swap(localSwap, high);
+
+    T temp = values[localSwap];
+    values[localSwap] = values[high];
+    values[high] = temp;
 
     if ( depth == 0 ) {
         quicksort( values, low, localSwap - 1, 0 );
