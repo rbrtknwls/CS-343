@@ -7,38 +7,28 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
 template<typename T>
 void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    if (high == (unsigned int)-1) return; // sorting empty arr (length-1 underflowed)
-    uThisTask().verify();
+    if (low < high) {
 
-    auto swap = [](T& a, T& b) {
-        T temp = a;
-        a = b; b = temp;
-    };
+        T pivot = arr[high];
+        int i = (low - 1);
 
-    unsigned int i = low, j = high;
-    T pivot = values[low + (high - low) / 2];
-    // partition
-    while (i <= j ) {
-        while (values[i] < pivot) ++i;
-        while (values[j] > pivot) --j;
-        // cout << "i: " << i << " j: " << j << endl;
-        if (i <= j) {
-            swap(values[i], values[j]);
-            ++i;
-            if (j != 0 ) --j; // watch out for unsigned underflow
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                std::swap(arr[i], arr[j]);
+            }
         }
-    }
-    // recursion
-    if (depth == 0) { // execute sequentially
-        if (j > low ) quicksort(values, low, j, depth);
-        if (i < high) quicksort(values, i, high, depth);
-    } else {
-        COBEGIN // create a thread for each partition
-        BEGIN if (j > low ) quicksort(values, low, j, depth-1); END
-        BEGIN if (i < high) quicksort(values, i, high, depth-1); END
-                COEND
+
+        std::swap(arr[i++], arr[high]);
+
+
+        int pivotIndex = partition(arr, low, high);
+
+        quicksort(arr, low, i - 1, depth);
+        quicksort(arr, i + 1, high, depth);
     }
 }
 
