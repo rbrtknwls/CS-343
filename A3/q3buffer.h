@@ -3,20 +3,16 @@
 
 #include "BargingCheck.h"
 #include <iostream>
-
+#include <vector>
 
 #ifdef BUSY							// busy waiting implementation
-// implementation
-#endif // BUSY
-
-#ifdef NOBUSY
 template<typename T> class BoundedBuffer {
     int numberOfBlocks = 0;
+    std::vector<int> items;
+    int size = 0;
   public:
     _Event Poison {};
-    BoundedBuffer( const unsigned int size = 10 ) {
 
-    }
     unsigned long int blocks() {
         return numberOfBlocks;
     }
@@ -29,6 +25,31 @@ template<typename T> class BoundedBuffer {
 	T remove() __attribute__(( warn_unused_result )) {
 
 	}
+    BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
+};
+#endif // BUSY
+
+#ifdef NOBUSY
+template<typename T> class BoundedBuffer {
+    int numberOfBlocks = 0;
+    std::vector<int> items;
+    int size = 0;
+  public:
+    _Event Poison {};
+
+    unsigned long int blocks() {
+        return numberOfBlocks;
+    }
+    void poison() {
+
+    }
+	void insert( T elem ) {
+
+	}
+	T remove() __attribute__(( warn_unused_result )) {
+
+	}
+    BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
 };
 #endif // NOBUSY
 

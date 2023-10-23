@@ -1,7 +1,7 @@
 OPT := -O2 -multi -nodebug
 STYPE := int
 SIMPL := CBEGIN
-BIMPL := NOBUSY
+BIMPL := BUSY
 BCHECK := NOBARGINGCHECK
 
 CXX = u++					# compiler
