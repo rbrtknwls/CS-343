@@ -11,14 +11,14 @@
 
 #ifdef NOBUSY
 template<typename T> class BoundedBuffer {
-    int blocks = 0;
+    int numberOfBlocks = 0;
   public:
     _Event Poison {};
     BoundedBuffer( const unsigned int size = 10 ) {
 
     }
     unsigned long int blocks() {
-        return blocks;
+        return numberOfBlocks;
     }
     void poison() {
 
