@@ -7,6 +7,29 @@
 
 using namespace std;
 
+template<typename T> void partition ( T values[], unsigned int low, unsigned int high, unsigned *returnVals) {
+    unsigned int pivotIdx = low + (high - low) / 2;
+
+    unsigned int i = low;
+    unsigned int j = high;
+
+    while (i <= j) {
+        while (values[i] < values[pivotIdx]) ++i;
+        while (values[j] > values[pivotIdx]) --j;
+
+        if (i <= j) {
+            swap(values[i], values[j]);
+            ++i;
+            if (j != 0) --j; // watch out for unsigned underflow
+        }
+    }
+
+    (*returnVals)[0] = i
+    (*returnVals)[1] = j
+
+}
+
+
 
 #if defined( CBEGIN )
 
@@ -16,19 +39,11 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
     unsigned int pivotIdx = low + (high - low) / 2;
 
-    unsigned int i = low;
-    unsigned int j = high;
-
-    while (i <= j ) {
-		while (values[i] < values[pivotIdx]) ++i;
-		while (values[j] > values[pivotIdx]) --j;
-        // cout << "i: " << i << " j: " << j << endl;
-		if (i <= j) {
-			swap(values[i], values[j]);
-            ++i;
-            if (j != 0 ) --j; // watch out for unsigned underflow
-		}
-	}
+    int results[2]
+    partition(values, low, high, results)
+    unsigned int i = results[0];
+    unsigned int j = results[1];
+    
 
     if ( depth == 0 ) {
 
