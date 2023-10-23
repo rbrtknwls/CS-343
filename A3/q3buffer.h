@@ -43,16 +43,17 @@ template<typename T> class BoundedBuffer {
         T elem;
         try {
 
-            if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
-
-            if ( poisoned ) {
-                std::cout << numberOfElements << std::endl;
-                _Throw Poison();
-            } else {
-                elem = items[--numberOfElements];
-                items.pop_back();
-                prodLock.signal();
+            if ( numberOfElements == 0 ) {
+                if ( poisoned ) {
+                    _Throw Poison();
+                }
+                consLock.wait(buffLock);
             }
+            
+            elem = items[--numberOfElements];
+            items.pop_back();
+            prodLock.signal();
+
 
         } _Finally {
             buffLock.release();
