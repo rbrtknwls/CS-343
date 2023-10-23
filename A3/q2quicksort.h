@@ -29,7 +29,7 @@ template<typename T> unsigned int partition ( T &values, unsigned int low, unsig
 }
 
 template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
-    if (low >= high || high = (unsigned int)-1) { return; }
+    if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int idx = partition(values, low, high);
 
@@ -105,7 +105,7 @@ _Actor SortWithActor {
 
 
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    if (low >= high || high= (unsigned int)-1) { return; }
+    if (low >= high || high == (unsigned int)-1) { return; }
 
     if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
 
