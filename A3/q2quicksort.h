@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-template<typename T> void sequentialQuicksort( T &values, unsigned int low, unsigned int high ) {
+template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
     if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int i = low, j = high;
