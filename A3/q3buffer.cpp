@@ -47,9 +47,9 @@ int main( int argc, char * argv[] ) {
 
 
     BoundedBuffer<int> buffer ( buffersize );
-    Producer [prods];
+    Producer prodList[prods];
 
-    
+
 
 
 }
