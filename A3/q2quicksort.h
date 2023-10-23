@@ -115,7 +115,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
 
     if ( depth == 0 ) { quicksort(values, low, high); } else {
 
-        int pivotIdx = low + (high - low) / 2;
+        unsigned int pivotIdx = low + (high - low) / 2;
         unsigned int localSwap = low;
 
         swap(pivotIdx, high);
