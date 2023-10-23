@@ -14,7 +14,7 @@
 time seems to double with the number of tasks. To be more specific, the user time seems to increase linearly with
 the number of tasks and the real time seems not to scale at all.
 
-1b)
+1c)
     STACK: This implementation uses a fixed size array which allows us to query values very quickly. This explains
         why each thread executes so quickly.
 

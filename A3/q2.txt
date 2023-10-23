@@ -1,33 +1,30 @@
 2a) After running the experiment a total of 12 times, we get the following output:
 
-{depth}      [ (TASK) ./quicksort -t 500000000 {depth} ]      [ (ACTOR) ./a.out {tasks} 400000000 ]
-0              Sort time 13.368971903 sec.
-               11.44u 2.28s 0:13.65 1957564kb
-1              Sort time 9.911528928 sec.
-               14.71u 4.43s 0:10.22 1957560kb
-2              Sort time 8.530559558 sec.
-               18.30u 3.40s 0:08.83 1957608kb
-3              Sort time 9.735353070 sec.
-               26.06u 4.60s 0:10.07 1957840kb
-4              Sort time 9.665543541 sec.
-               29.65u 4.02s 0:09.99 1957960kb
+{depth}      [ (TASK) ./quicksort -t 500000000 {depth} ]      [ (ACTOR) ./quicksort -t 500000000 {depth} ]
+0              Sort time 13.368971903 sec.                      Sort time 15.083787929 sec.
+               11.44u 2.28s 0:13.65 1957564kb                   11.71u 3.72s 0:15.36 1957532kb
+
+1              Sort time 9.911528928 sec.                       Sort time 9.090626603 sec.
+               14.71u 4.43s 0:10.22 1957560kb                   14.76u 3.77s 0:09.39 1957616kb
+
+2              Sort time 8.530559558 sec.                       Sort time 6.583640445 sec.
+               18.30u 3.40s 0:08.83 1957608kb                   23.46u 3.26s 0:06.88 1957536kb
+
+3              Sort time 9.735353070 sec.                       Sort time 7.083668692 sec.
+               26.06u 4.60s 0:10.07 1957840kb                   52.71u 4.36s 0:07.40 1957864kb
+
+4              Sort time 9.665543541 sec.                       Sort time 6.805041421 sec.
+               29.65u 4.02s 0:09.99 1957960kb                   103.48u 5.67s 0:07.10 1958236kb
+
+{depth}      [ (CBEGIN) ./quicksort -t 500000000 {depth} ]
+0
+
+1
+
+2
+
+3
+
+4
 
 
-1b) Across all tasks we see that real time remains almost exactly the same across all the tests, whereas the user
-time seems to double with the number of tasks. To be more specific, the user time seems to increase linearly with
-the number of tasks and the real time seems not to scale at all.
-
-1b)
-    STACK: This implementation uses a fixed size array which allows us to query values very quickly. This explains
-        why each thread executes so quickly.
-
-    DARRAY: This implementation uses a unique pointer to an array, this means that accessing values in the array will
-        take more time than the previous approach. This explains the 6x relative increase in user time for the critical
-        path.
-
-    VECTOR1: This implementation uses a dynamically created vector, we then query its indexes for a value. This is
-        slower than the DARRAY as a pointer to a static array is a bit faster in creation. This explains why it's slower
-        than the previous 2.
-
-    VECTOR2: This implementation is slower than VECTOR1 as instead of accessing elements, we are pushing elements to the
-        back of the vector which is more computationally intensive. Thus explaining why its slower than the previous 3.

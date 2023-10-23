@@ -1,6 +1,6 @@
 OPT := -O2 -multi -nodebug
 STYPE := int
-SIMPL := ACTOR
+SIMPL := CBEGIN
 BIMPL := NOBUSY
 BCHECK := NOBARGINGCHECK
 
