@@ -92,21 +92,21 @@ struct SortMsg : public uActor::Message {
 _Actor SortWithActor {
     Allocation receive( uActor::Message & msg ) {
         Case( SortMsg, msg ) {
+            STYPE *values = msg_d->values;
             unsigned int low = msg_d->low;
             unsigned int high = msg_d->high;
             unsigned int depth = msg_d->depth;
+          if ( low >= high || high == (unsigned int)-1 ) { break; }
 
-          if ( low >= high || high == (unsigned int)-1 ) { return; }
-
-            if ( depth == 0 ) { sequentialQuicksort( msg_d->values, low, high ); } else {
+            if ( depth == 0 ) { sequentialQuicksort( values, low, high ); } else {
 
                 PartResults results;
                 partition(values, low, high, &results);
                 unsigned int i = results[0];
                 unsigned int j = results[1];
 
-                *new SortWithActor() | *new SortMsg( msg_d->values, low, j, depth-1 ) | uActor::stopMsg;
-                *new SortWithActor() | *new SortMsg( msg_d->values, i, high, depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( values, i, high, depth-1 ) | uActor::stopMsg;
 
 
             }
