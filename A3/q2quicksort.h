@@ -14,8 +14,6 @@ void quicksort( T values[], unsigned int low, unsigned int high, unsigned int de
 
         unsigned int pivotIdx = low + (high - low) / 2;
         unsigned int localSwap = low;
-        cout << low;
-        cout << high;
         /*
         swap(values[pivotIdx], values[high]);
         for ( unsigned int j = low; j < high; j++ ) {
