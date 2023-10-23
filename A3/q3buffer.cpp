@@ -45,14 +45,10 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                // TERMINATE
     } // try
 
-    cout << cons << endl;
-    cout << prods << endl;
-    cout << produce << endl;
-    cout << buffersize << endl;
-    cout << delays << endl;
-    cout << processors << endl;
-    
+
     BoundedBuffer<int> buffer ( buffersize );
+    buffer.insert(5);
+    cout << buffer.remove() << endl;
 
 
 }
