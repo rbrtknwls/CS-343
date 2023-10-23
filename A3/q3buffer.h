@@ -98,9 +98,8 @@ _Task Consumer {
         }
     }
   public:
-        Consumer( BoundedBuffer<int> & buffer, const int delay, int &sum ) : buffer(buffer),
+    Consumer( BoundedBuffer<int> & buffer, const int delay, int &sum ) : buffer(buffer),
         delay(delay), sum(sum) {}
-    Consumer( BoundedBuffer<int> & buffer, const int Delay, int &sum );
 };
 
 #endif //CS_343_Q3BUFFER_H
