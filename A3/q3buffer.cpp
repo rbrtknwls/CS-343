@@ -62,7 +62,7 @@ int main( int argc, char * argv[] ) {
         consList.push_back( new Consumer( buffer, produce, consumerResults[i] ) );
     }
 
-    buffer.poison();
+    //buffer.poison();
     /*
     for (int i = 0 ; i < prods; i++ ) {
         delete prodList[i];

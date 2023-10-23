@@ -115,7 +115,6 @@ _Task Consumer {
         try {
             _Enable {
                 for ( ;; ) {
-                    std::cout << "Hai";
                     yield( prng( delay ) );
                     int result = buffer.remove();
                     sum += result;
