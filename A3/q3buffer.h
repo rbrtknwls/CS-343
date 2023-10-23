@@ -65,9 +65,15 @@ template<typename T> class BoundedBuffer {
 #endif // NOBUSY
 
 _Task Producer {
-      void main();
-    public:
-      Producer( BoundedBuffer<int> & buffer, const int Produce, const int Delay );
+    BoundedBuffer<int> & buffer
+    int produce = 0;
+    int delay = 0;
+    void main() {
+
+    }
+  public:
+    Producer( BoundedBuffer<int> & buffer, const int produce, const int delay ) : buffer(buffer),
+        produce(produce), delay(delay) {}
 };
 
 _Task Consumer {

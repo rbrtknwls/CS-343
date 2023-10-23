@@ -47,6 +47,7 @@ int main( int argc, char * argv[] ) {
 
 
     BoundedBuffer<int> buffer ( buffersize );
+    int
     buffer.insert(5);
     cout << buffer.remove() << endl;
 
