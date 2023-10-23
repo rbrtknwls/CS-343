@@ -19,8 +19,8 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     unsigned int j = low;
 
     while (i <= j ) {
-		while (values[i] < pivot) ++i;
-		while (values[j] > pivot) --j;
+		while (values[i] < values[pivotIdx]) ++i;
+		while (values[j] > values[pivotIdx]) --j;
         // cout << "i: " << i << " j: " << j << endl;
 		if (i <= j) {
 			swap(values[i], values[j]);
