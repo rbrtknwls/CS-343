@@ -11,7 +11,7 @@ template<typename T> class BoundedBuffer {
     int sizeLimit;
     int numberOfBlocks = 0;
     int numberOfElements = 0;
-
+    bool poisoned = false;
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
@@ -24,7 +24,7 @@ template<typename T> class BoundedBuffer {
         return numberOfBlocks;
     }
     void poison() {
-
+        poisoned = true;
     }
 	void insert( T elem ) {
         buffLock.acquire();
@@ -43,12 +43,19 @@ template<typename T> class BoundedBuffer {
         T elem;
         try {
             if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
-            elem = items[--numberOfElements];
-            items.pop_back();
-            prodLock.signal();
+
+            if ( poisoned ) {
+                _Throw Poison();
+            } else {
+                elem = items[--numberOfElements];
+                items.pop_back();
+                prodLock.signal();
+            }
+
         } _Finally {
             buffLock.release();
         }
+
         return elem;
 
 	}
@@ -104,11 +111,17 @@ _Task Consumer {
     int &sum;
 
     void main() {
-        for ( ;; ) {
-            yield( prng( delay ) );
-            std::cout << "read some vals";
-            int result = buffer.remove();
-            sum += result;
+        try {
+            _Enable {
+                for ( ;; ) {
+                    yield( prng( delay ) );
+                    std::cout << "read some vals";
+                    int result = buffer.remove();
+                    sum += result;
+                }
+            }
+        } catch ( BoundedBuffer<int>::Poison ) {
+           return;
         }
     }
   public:

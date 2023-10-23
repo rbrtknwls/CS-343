@@ -48,14 +48,13 @@ int main( int argc, char * argv[] ) {
 
 
     BoundedBuffer<int> buffer ( buffersize );
-    int consumerResults[cons];
+    int consumerResults[cons] = {0};
     vector<Consumer*> consList;
     vector<Producer*> prodList;
 
     for (int i = 0 ; i < prods; i++ ) {
         prodList.push_back( new Producer( buffer, produce, delays ) );
     }
-
     for (int i = 0 ; i < cons; i++ ) {
         consList.push_back( new Consumer( buffer, produce, consumerResults[i] ) );
     }
