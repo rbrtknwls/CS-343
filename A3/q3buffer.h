@@ -74,26 +74,77 @@ template<typename T> class BoundedBuffer {
 
 #ifdef NOBUSY
 template<typename T> class BoundedBuffer {
+    int numberOfElements = 0;
+    unsigned long int numberOfBlocks = 0;
+    bool poisoned = false;
+    int sizeLimit;
 
-    int numberOfBlocks = 0;
-    std::vector<int> items;
-    int size = 0;
+    uOwnerLock buffLock;
+    uCondLock prodLock;
+    uCondLock consLock;
+    std::vector<T> items;
+
   public:
     _Event Poison {};
 
     unsigned long int blocks() {
         return numberOfBlocks;
     }
-    void poison() {
 
+    void poison() {
+        poisoned = true;
     }
+
 	void insert( T elem ) {
+        buffLock.acquire();
+        try {
+            PROD_ENTER;
+
+            if ( numberOfElements == sizeLimit ) {
+                numberOfBlocks++;
+                prodLock.wait(buffLock);
+            }
+            INSERT_DONE;
+            items.push_back(elem);
+            numberOfElements++;
+
+            CONS_SIGNAL( consLock );
+            consLock.signal();
+        } _Finally {
+            buffLock.release();
+        }
 
 	}
 	T remove() __attribute__(( warn_unused_result )) {
+        buffLock.acquire();
+        T elem;
+        try {
+            CONS_ENTER;
+
+            if ( numberOfElements == 0 ) {
+                if ( poisoned ) {
+                    _Throw Poison();
+                }
+                numberOfBlocks++;
+                consLock.wait(buffLock);
+            }
+
+            REMOVE_DONE;
+            elem = items[--numberOfElements];
+            items.pop_back();
+
+            PROD_SIGNAL( prodLock );
+            prodLock.signal();
+
+
+        } _Finally {
+            buffLock.release();
+        }
+
+        return elem;
 
 	}
-    BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
+    BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {}
 };
 #endif // NOBUSY
 
