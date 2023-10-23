@@ -85,8 +85,21 @@ _Task Producer {
 };
 
 _Task Consumer {
-    void main();
+    BoundedBuffer<int> & buffer;
+    int delay = 0;
+    int &produce;
+
+    void main() {
+        for ( ;; ) {
+            yield( prng( delay ) );
+            cout << "read some vals"
+            int result = buffer.remove(i);
+            produce += result;
+        }
+    }
   public:
+        Consumer( BoundedBuffer<int> & buffer, const int delay, int &sum ) : buffer(buffer),
+        delay(delay), sum(sum) {}
     Consumer( BoundedBuffer<int> & buffer, const int Delay, int &sum );
 };
 
