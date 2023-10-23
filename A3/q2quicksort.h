@@ -4,14 +4,10 @@
 #include <iostream>
 #include <uCobegin.h>
 #include <uActor.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-template<typename T> void swap ( T *values, unsigned int idx1, unsigned int idx2 ) {
-    T temp = values[idx1];
-    values[idx1] = values[idx2];
-    values[idx2] = temp;
-}
 
 template<typename T> unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
     int pivotIdx = low + (high - low) / 2;
