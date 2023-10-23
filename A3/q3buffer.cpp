@@ -4,6 +4,10 @@
 
 #include "q3buffer.h"
 
+#include <iostream>
+
+using namespace std;
+
 int main( int argc, char * argv[] ) {
     int cons = 5;
     int prods = 3;
