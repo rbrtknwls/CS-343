@@ -9,7 +9,7 @@
 using namespace std;
 
 
-template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
+template<typename T> void sequentialQuicksort( T &values[], int low, int high ) {
   if (low >= high) { return; }
 
     int pivotIdx = low + (high - low) / 2;
