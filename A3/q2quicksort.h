@@ -31,8 +31,8 @@ template<typename T> void partition ( T values[], unsigned int low, unsigned int
 
 }
 
-template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
-    if ( low >= high || high == (unsigned int)-1 ) { return; }
+template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
+    if ( low >= high ) { return; }
 
     PartResults results;
     partition(values, low, high, &results);
@@ -62,14 +62,18 @@ template<typename T> _Task SortWithTask {
       if ( low >= high ) { return; }
 
         if ( depth == 0 ) {
-            std::cout << "seq start" << endl;
             sequentialQuicksort(values, low, high);
+
         } else {
-            unsigned int idx = partition(values, low, high);
-            if ( idx - 1 > 0 ) {
-                SortWithTask left(values, low, idx - 1, depth-1);
-            }
-            sequentialQuicksort(values, idx + 1, high);
+
+            PartResults results;
+            partition(values, low, high, &results);
+            unsigned int i = results[0];
+            unsigned int j = results[1];
+
+
+            SortWithTask left(values, low, j, depth-1);
+            sequentialQuicksort(values, i, high);
         }
     }
 
