@@ -23,7 +23,7 @@ int main( int argc, char * argv[] ) {
 
         switch (argc) {
             case 7:
-                if ( *argv[6] != 'd' ) { processors = stoi(argv[6]) }
+                if ( *argv[6] != 'd' ) { processors = stoi(argv[6]); }
             case 6:
                 if ( *argv[5] != 'd' ) { delays = stoi(argv[5]); }
             case 5:
@@ -33,7 +33,7 @@ int main( int argc, char * argv[] ) {
             case 3:
                 if ( *argv[2] != 'd' ) { prods = stoi(argv[2]); }
                 if ( argc == 6 && *argv[5] != 'd' ) {
-                    delays = cons + produce
+                    delays = cons + produce;
                 }
             case 2:
                 if ( *argv[1] != 'd' ) { cons = stoi(argv[1]); }
