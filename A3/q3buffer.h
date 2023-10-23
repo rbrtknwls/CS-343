@@ -40,15 +40,15 @@ template<typename T> class BoundedBuffer {
 	}
 	T remove() __attribute__(( warn_unused_result )) {
         buffLock.acquire();
+        T elem;
         try {
             if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
-            T elem = items[--numberOfElements];
+            elem = items[--numberOfElements];
             items.pop_back();
             prodLock.signal();
         } _Finally {
             buffLock.release();
         }
-
         return elem;
 
 	}
