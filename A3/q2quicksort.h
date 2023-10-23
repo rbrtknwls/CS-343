@@ -118,14 +118,14 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
         int pivotIdx = low + (high - low) / 2;
         unsigned int localSwap = low;
 
-        swap(values, pivotIdx, high);
+        swap(pivotIdx, high);
         for ( unsigned int j = low; j < high; j++ ) {
             if ( values[j] < values[high] ) {
-                swap(values, localSwap++, j);
+                swap(localSwap++, j);
             }
         }
-        swap(values, localSwap, high);
-        
+        swap(localSwap, high);
+
         COBEGIN
             BEGIN quicksort( values, low, localSwap - 1, depth-1 ); END
             BEGIN quicksort( values, localSwap + 1, high, depth-1 ); END
