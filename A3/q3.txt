@@ -12,4 +12,16 @@ BUSY with compiler optimization.
 
 {flag}    [ (BUSY) ./buffer {flag} 55 50 1000 20 10 4 ]     [ (NOBUSY) ./buffer {flag} 55 50 1000 20 10 4 ]
 N/A             209.45u 0.26s 0:52.40r 6968kb                       213.92u 0.24s 0:53.51r 6548kb
--O2             151.04u 0.13s 0:37.78r 6928kb                        31.93u 0.03s 0:31.95r 6380kb
+-O2             151.04u 0.13s 0:37.78r 6928kb                       147.63u 0.09s 0:36.92r 6488kb
+
+2d) We notice a very large difference and improvement in runtime with compiler optimization. This runs alot slower than
+the single thread process we did, again due to the vector implementation. Moreover, we can see that NOBUSY seems
+to be faster than BUSY with compiler optimization.
+
+2e) Due to the fact that BUSY has alot less blocks than NOBUSY, we would expect them to run faster. Howeover due to
+the slow implementation of adding and removing values to the array, we cant see this difference due to the high noise
+in run time.
+
+2f) The more processors running slows down the total run time. This is because only one process can be in the critical
+section at a time, and so the more processors wont increase any throughput but will add extra time through context
+switching.
