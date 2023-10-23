@@ -123,7 +123,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
         }
     }
 
-    T temp = values[localSwap];
+    temp = values[localSwap];
     values[localSwap] = values[high];
     values[high] = temp;
 
