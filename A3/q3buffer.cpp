@@ -40,7 +40,7 @@ int main( int argc, char * argv[] ) {
 
     } catch (...) {                                        // catch any
         cerr << "Usage: " << argv[0]
-             << " [ cons | ’d’ [ prods | ’d’ [ produce | ’d’ [ buffersize | ’d’ [ delay | ’d’
+             << " [ cons | ’d’ [ prods | ’d’ [ produce | ’d’ [ buffersize | ’d’ [ delay | ’d’ "
              << "[ processors | ’d’ ] ] ] ] ] ] " << endl;
         exit(EXIT_FAILURE);                                // TERMINATE
     } // try
