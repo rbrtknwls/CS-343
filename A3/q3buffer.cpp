@@ -52,6 +52,7 @@ int main( int argc, char * argv[] ) {
     vector<Consumer*> consList;
     vector<Producer*> prodList;
 
+    std::cout << "done";
     for (int i = 0 ; i < prods; i++ ) {
         prodList.push_back( new Producer( buffer, produce, delays ) );
     }
