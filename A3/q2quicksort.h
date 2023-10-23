@@ -110,7 +110,7 @@ template<typename T> void quicksort( T values[], int low, int high, int depth ) 
         T temp = values[idx1];
         values[idx1] = values[idx2];
         values[idx2] = temp;
-    }
+    };
 
 
     if ( depth == 0 ) { quicksort(values, low, high); } else {
