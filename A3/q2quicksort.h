@@ -16,7 +16,7 @@ template<typename T> unsigned int partition ( T *values, unsigned int low, unsig
     swap(values[pivotIdx], values[high]);
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
-            swap(values[localSwap++], value[j]);
+            swap(values[localSwap++], values[j]);
         }
     }
     swap(values[localSwap], values[high]);
