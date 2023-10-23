@@ -23,7 +23,7 @@ template<typename T> unsigned int partition ( T &values, unsigned int low, unsig
     return localSwap;
 }
 
-template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
+template<typename T> void sequentialQuicksort( T &values, unsigned int low, unsigned int high ) {
     if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int idx = partition(values, low, high);
