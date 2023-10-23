@@ -12,18 +12,18 @@ template<typename T>
 void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
     if (low < high) {
 
-        T pivot = arr[high];
+        T pivot = values[high];
         int i = (low - 1);
 
         for (int j = low; j < high; j++) {
             if (arr[j] < pivot) {
                 i++;
-                std::swap(arr[i], arr[j]);
+                std::swap(values[i], values[j]);
             }
         }
 
-        std::swap(arr[i++], arr[high]);
-        
+        std::swap(values[i++], values[high]);
+
 
         quicksort(arr, low, i - 1, depth);
         quicksort(arr, i + 1, high, depth);
