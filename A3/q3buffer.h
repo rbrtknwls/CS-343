@@ -12,6 +12,9 @@ template<typename T> class BoundedBuffer {
     int numberOfBlocks = 0;
     int numberOfElements = 0;
 
+    uOwnerLock buffLock;
+    uCondLock prodLock;
+    uCondLock consLock;
     std::vector<T> items;
 
   public:
@@ -24,18 +27,27 @@ template<typename T> class BoundedBuffer {
 
     }
 	void insert( T elem ) {
-
-        if ( numberOfElements == sizeLimit ) {}
-        items.push_back(elem);
-        numberOfElements++;
-
+        buffLock.acquire();
+        try {
+            if ( numberOfElements == sizeLimit ) { prodLock.wait(); }
+            items.push_back(elem);
+            numberOfElements++;
+            consLock.signal();
+        } _Finally {
+            buffLock.release();
+        }
 
 	}
 	T remove() __attribute__(( warn_unused_result )) {
-
-        if ( numberOfElements == 0 ) {}
-        T elem = items[--numberOfElements];
-        items.pop_back();
+        buffLock.acquire();
+        try {
+            if ( numberOfElements == 0 ) { consLock.wait(); }
+            T elem = items[--numberOfElements];
+            items.pop_back();
+            prodLock.signal();
+        } _Finally {
+            buffLock.release();
+        }
 
         return elem;
 
@@ -46,6 +58,7 @@ template<typename T> class BoundedBuffer {
 
 #ifdef NOBUSY
 template<typename T> class BoundedBuffer {
+
     int numberOfBlocks = 0;
     std::vector<int> items;
     int size = 0;
@@ -85,6 +98,7 @@ _Task Producer {
 };
 
 _Task Consumer {
+
     BoundedBuffer<int> & buffer;
     int delay = 0;
     int &sum;
