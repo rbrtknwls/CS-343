@@ -117,12 +117,12 @@ _Task Consumer {
 
                     yield( prng( delay ) );
                     int result = buffer.remove();
+                    std::cout << result << endl;
                     sum += result;
 
                 }
             }
         } catch ( BoundedBuffer<int>::Poison &poison ) {
-            std::cout << "CAUGHT";
             return;
         }
     }
