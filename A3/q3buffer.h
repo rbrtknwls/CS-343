@@ -42,9 +42,11 @@ template<typename T> class BoundedBuffer {
         buffLock.acquire();
         T elem;
         try {
+
             if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
 
-            if ( numberOfElements == 0 && poisoned ) {
+            if ( poisoned ) {
+                std::cout << numberOfElements << std::endl;
                 _Throw Poison();
             } else {
                 elem = items[--numberOfElements];
@@ -96,7 +98,6 @@ _Task Producer {
     void main() {
         for ( int i = 0; i < produce; i++ ) {
             yield( prng( delay ) );
-            std::cout << i << std::endl;
             buffer.insert(i);
         }
     }
