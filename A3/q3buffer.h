@@ -24,13 +24,13 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
 
         items.push_back(elem);
-        numberOfElements++;
+
 
 	}
 	T remove() __attribute__(( warn_unused_result )) {
 
-        T elem = items.pop_back();
-        numberOfElements--;
+        T elem = items[items.size() - 1]
+        items.pop_back();
 
 	}
     BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
