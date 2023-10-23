@@ -54,22 +54,21 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
   if (low >= high || high == (unsigned int)-1) { return; }
-    uThisTask().verify();
-
-
-    PartResults results;
-    partition(values, low, high, &results);
-
-    unsigned int i = results[0];
-    unsigned int j = results[1];
 
 
     if ( depth == 0 ) {
 
-        quicksort( values, low, j, 0 );
-        quicksort( values, i, high, 0 );
+        sequentialQuicksort( values, low, high );
 
     } else {
+        uThisTask().verify();
+
+
+        PartResults results;
+        partition(values, low, high, &results);
+
+        unsigned int i = results[0];
+        unsigned int j = results[1];
 
         COBEGIN
             BEGIN quicksort( values, low, j, depth-1 ); END
