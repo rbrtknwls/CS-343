@@ -10,6 +10,13 @@ using namespace std;
 
 
 template<typename T> unsigned int partition ( T *values, unsigned int low, unsigned int high ) {
+
+    return localSwap;
+}
+
+template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
+  if (low >= high) { return; }
+
     int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
@@ -21,16 +28,8 @@ template<typename T> unsigned int partition ( T *values, unsigned int low, unsig
     }
     swap(values[localSwap], values[high]);
 
-    return localSwap;
-}
-
-template<typename T> void sequentialQuicksort( T *values, int low, int high ) {
-  if (low >= high) { return; }
-
-    int idx = partition(values, low, high);
-
-    sequentialQuicksort(values, low, idx - 1);
-    sequentialQuicksort(values, idx + 1, high);
+    sequentialQuicksort(values, low, localSwap - 1);
+    sequentialQuicksort(values, localSwap + 1, high);
 
 }
 
