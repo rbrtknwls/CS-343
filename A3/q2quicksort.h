@@ -7,11 +7,6 @@
 
 using namespace std;
 
-template<typename T> void swap ( T &idx1, T &idx2 ) {
-    T temp = idx1;
-    idx1 = idx2;
-    idx2 = temp;
-}
 
 template<typename T> unsigned int partition ( T &values, unsigned int low, unsigned int high ) {
     unsigned int pivotIdx = low + (high - low) / 2;
