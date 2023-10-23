@@ -29,8 +29,6 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 		}
 	}
 
-    cout << idx << endl;
-
     idx++;
     if ( depth == 0 ) {
 

@@ -38,7 +38,6 @@ int main( int argc, char * argv[] ) {
             switch ( argc ) {
                 case 4:
                     depth = stoi(argv[3]);
-                  if ( depth < 0 ) { throw cmd_error(); }
                 case 3:
                     if ( *argv[2] != 'd' ) { outfile = new ofstream(argv[2]); }
 
