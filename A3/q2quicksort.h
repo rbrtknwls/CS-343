@@ -7,23 +7,23 @@
 
 using namespace std;
 
-template<typename T> void swap ( T &values, unsigned int idx1, unsigned int idx2 ) {
-    T temp = *values[idx1];
-    values[idx1] = values[idx2];
-    values[idx2] = temp;
+template<typename T> void swap ( T &idx1, T &idx2 ) {
+    T temp = idx1;
+    idx1 = idx2;
+    idx2 = temp;
 }
 
 template<typename T> unsigned int partition ( T &values, unsigned int low, unsigned int high ) {
     unsigned int pivotIdx = low + (high - low) / 2;
     unsigned int localSwap = low;
 
-    swap(values, pivotIdx, high);
+    swap(values[pivotIdx], values[high]);
     for ( unsigned int j = low; j < high; j++ ) {
         if ( values[j] < values[high] ) {
-            swap(values, localSwap++, j);
+            swap(values[localSwap++], values[j]);
         }
     }
-    swap(values, localSwap, high);
+    swap(values[localSwap], values[high]);
 
     return localSwap;
 }
