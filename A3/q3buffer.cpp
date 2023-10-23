@@ -46,6 +46,7 @@ int main( int argc, char * argv[] ) {
         exit(EXIT_FAILURE);                                // TERMINATE
     } // try
 
+    uProcessor p[processors - 1] __attribute__(( unused ));
 
     BoundedBuffer<int> buffer ( buffersize );
     int consumerResults[cons] = {0};
