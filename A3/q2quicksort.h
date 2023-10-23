@@ -15,8 +15,9 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     uThisTask().verify();
 
     unsigned int pivotIdx = low + (high - low) / 2;
+
     unsigned int i = low;
-    unsigned int j = low;
+    unsigned int j = high;
 
     while (i <= j ) {
 		while (values[i] < values[pivotIdx]) ++i;
@@ -28,7 +29,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
             if (j != 0 ) --j; // watch out for unsigned underflow
 		}
 	}
-    
+
     if ( depth == 0 ) {
 
         quicksort( values, low, j, 0 );
