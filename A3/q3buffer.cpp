@@ -1,7 +1,3 @@
-//
-// Created by robde on 2023/10/23.
-//
-
 #include "q3buffer.h"
 
 #include <iostream>
