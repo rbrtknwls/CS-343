@@ -92,7 +92,7 @@ _Task Consumer {
     void main() {
         for ( ;; ) {
             yield( prng( delay ) );
-            cout << "read some vals"
+            std::cout << "read some vals";
             int result = buffer.remove(i);
             produce += result;
         }
