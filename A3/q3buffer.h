@@ -29,7 +29,7 @@ template<typename T> class BoundedBuffer {
 	}
 	T remove() __attribute__(( warn_unused_result )) {
 
-        T elem = items[items.size() - 1]
+        T elem = items[items.size() - 1];
         items.pop_back();
 
         return elem;
