@@ -7,36 +7,23 @@
 
 using namespace std;
 
-template<typename T> void swap ( T values[], unsigned int idx1, unsigned int idx2 ) {
-    T temp = values[idx1];
-    values[idx1] = values[idx2];
-    values[idx2] = temp;
-}
-
-template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned int high ) {
-    unsigned int pivotIdx = low + (high - low) / 2;
-    unsigned int localSwap = low;
-
-    swap(values, pivotIdx, high);
-    for ( unsigned int j = low; j < high; j++ ) {
-        if ( values[j] < values[high] ) {
-            swap(values, localSwap++, j);
-        }
-    }
-    swap(values, localSwap, high);
-
-    return localSwap;
-}
-
 template<typename T> void sequentialQuicksort( T values[], unsigned int low, unsigned int high ) {
-    if (low >= high) { return; }
+    if (low < high) {
 
-    unsigned int idx = partition(values, low, high);
-
-    if ( idx > 0 ) {
-        sequentialQuicksort(values, low, idx - 1);
+        unsigned int pivotIdx = low + (high - low) / 2;
+        unsigned int localSwap = low;
+        /*
+        swap(values[pivotIdx], values[high]);
+        for ( unsigned int j = low; j < high; j++ ) {
+            if ( values[j] < values[high] ) {
+                swap(values[localSwap++], values[j]);
+            }
+        }
+        swap(values[localSwap], values[high]);
+        */
+        if ( localSwap != 0 ) { sequentialQuicksort(values, low, localSwap - 1, depth); }
+        sequentialQuicksort(values, localSwap + 1, high, depth);
     }
-    sequentialQuicksort(values, idx + 1, high);
 
 }
 
