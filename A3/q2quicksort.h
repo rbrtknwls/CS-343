@@ -10,7 +10,7 @@ using namespace std;
 
 #if defined( CBEGIN )
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-  if (low >= high || high == (unsigned int)-1) { return; }
+  if (low >= high ) { return; }
 
     unsigned int pivotIdx = low + (high - low) / 2;
     unsigned int idx = low - 1;
