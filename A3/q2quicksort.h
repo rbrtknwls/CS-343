@@ -46,7 +46,10 @@ template<typename T> _Task SortWithTask {
 
       if ( low >= high ) { return; }
 
-        if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
+        if ( depth == 0 ) {
+            std::cout << "seq start" << endl;
+            sequentialQuicksort(values, low, high);
+        } else {
             unsigned int idx = partition(values, low, high);
             if ( idx - 1 > 0 ) {
                 SortWithTask left(values, low, idx - 1, depth-1);
