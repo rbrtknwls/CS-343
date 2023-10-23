@@ -2,7 +2,8 @@
 #define CS_343_Q3BUFFER_H
 
 #include "BargingCheck.h"
-#include iostream;
+#include "<iostream>"
+
 
 #ifdef BUSY							// busy waiting implementation
 // implementation
