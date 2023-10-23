@@ -29,7 +29,7 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
         buffLock.acquire();
         try {
-            if ( numberOfElements == sizeLimit ) { prodLock.wait(); }
+            if ( numberOfElements == sizeLimit ) { prodLock.wait(buffLock); }
             items.push_back(elem);
             numberOfElements++;
             consLock.signal();
@@ -41,7 +41,7 @@ template<typename T> class BoundedBuffer {
 	T remove() __attribute__(( warn_unused_result )) {
         buffLock.acquire();
         try {
-            if ( numberOfElements == 0 ) { consLock.wait(); }
+            if ( numberOfElements == 0 ) { consLock.wait(buffLock); }
             T elem = items[--numberOfElements];
             items.pop_back();
             prodLock.signal();
