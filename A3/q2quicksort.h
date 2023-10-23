@@ -43,8 +43,8 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     PartResults results;
     partition(values, low, high, &results);
 
-    unsigned int i = *results[0];
-    unsigned int j = *results[1];
+    unsigned int i = results[0];
+    unsigned int j = results[1];
 
 
     if ( depth == 0 ) {
