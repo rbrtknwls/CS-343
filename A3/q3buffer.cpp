@@ -53,7 +53,7 @@ int main( int argc, char * argv[] ) {
     int consumerResults[cons] = {0};
     vector<Consumer*> consList;
     vector<Producer*> prodList;
-    
+
     for (int i = 0 ; i < prods; i++ ) {
         prodList.push_back( new Producer( buffer, produce, delays ) );
     }
@@ -63,19 +63,19 @@ int main( int argc, char * argv[] ) {
     }
 
     buffer.poison();
-    /*
 
    for (int i = 0 ; i < prods; i++ ) {
        delete prodList[i];
    }
-   int totalSum = 0;
-   for (int i = 0 ; i < cons; i++ ) {
-       delete consList[i];
-       totalSum += consumerResults[i];
-   }
+    /*
+    int totalSum = 0;
+    for (int i = 0 ; i < cons; i++ ) {
+        delete consList[i];
+        totalSum += consumerResults[i];
+    }
 
-   cout << "total: " << totalSum << endl;
-   cout << endl;
-   cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
+    cout << "total: " << totalSum << endl;
+    cout << endl;
+    cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
 
 }
