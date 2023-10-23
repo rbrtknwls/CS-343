@@ -47,9 +47,9 @@ int main( int argc, char * argv[] ) {
 
 
     BoundedBuffer<int> buffer ( buffersize );
-    Producer producer( buffer, produce, delays );
+    Producer [prods];
 
-    cout << buffer.remove() << endl;
+    
 
 
 }
