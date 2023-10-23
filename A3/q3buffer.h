@@ -147,12 +147,25 @@ template<typename T> class BoundedBuffer {
         buffLock.acquire();
         T elem;
         try {
+
             CONS_ENTER;
+
+            if ( consFlag || prodFlag || bargeFlag ) {
+                waitLock.wait(buffLock);
+
+                if (waitLock.empty()) bargeFlag = false;
+            }
+
 
             if ( numberOfElements == 0 ) {
                 if ( poisoned ) {
                     _Throw Poison();
                 }
+
+                if ( consFlag == false && waitLock.empty() == false ) {
+                    waitLock.signal();
+                }
+
                 numberOfBlocks++;
                 consLock.wait(buffLock);
             }
@@ -162,9 +175,14 @@ template<typename T> class BoundedBuffer {
             items.pop_back();
 
             PROD_SIGNAL( prodLock );
-            prodLock.signal();
 
-
+            if ( prodLock.empty() == false ) {
+                prodFlag = true;
+                prodLock.signal();
+            } else if ( waitLock.empty() == false ) {
+                bargeFlag = true;
+                waitLock.signal();
+            }
         } _Finally {
             buffLock.release();
         }
