@@ -41,10 +41,8 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
     unsigned int j = results[1];
 
 
-    if ( depth == 0 ) {
-
-        sequentialQuicksort( values, low, j );
-        sequentialQuicksort( values, i, high );
+    sequentialQuicksort( values, low, j );
+    sequentialQuicksort( values, i, high );
 
 }
 
