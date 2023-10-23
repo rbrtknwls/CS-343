@@ -25,8 +25,7 @@ void quicksort( T values[], unsigned int low, unsigned int high, unsigned int de
         }
         swap(values[localSwap], values[high]);
         */
-
-        quicksort(values, low, localSwap - 1, depth);
+        if ( localSwap != 0 ) { quicksort(values, low, localSwap - 1, depth); }
         quicksort(values, localSwap + 1, high, depth);
     }
 }
