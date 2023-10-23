@@ -9,20 +9,24 @@ using namespace std;
 
 typedef unsigned int PartResults[2];
 
-void partition ( STYPE values[], unsigned int low, unsigned int high, PartResults *returnVals) {
+void partition ( STYPE values[], unsigned int low, unsigned int high, PartResults *returnVals ) {
     unsigned int pivotIdx = low + (high - low) / 2;
 
     unsigned int i = low;
     unsigned int j = high;
 
-    while (i <= j) {
-        while (values[i] < values[pivotIdx]) ++i;
-        while (values[j] > values[pivotIdx]) --j;
+    while ( i <= j ) {
 
-        if (i <= j) {
-            swap(values[i], values[j]);
-            ++i;
-            if (j != 0) --j; // watch out for unsigned underflow
+        for ( ; values[i] < values[pivotIdx]; i++) {
+
+            for ( ; values[j] > values[pivotIdx]; j--) {
+
+                if (i <= j) {
+                    swap(values[i], values[j]);
+                    ++i;
+                    if (j != 0) --j;
+                }
+            }
         }
     }
 
@@ -30,6 +34,7 @@ void partition ( STYPE values[], unsigned int low, unsigned int high, PartResult
     (*returnVals)[1] = j;
 
 }
+
 
 
 
@@ -88,6 +93,7 @@ template<typename T> _Task SortWithTask {
   public:
     SortWithTask( T *values, unsigned int low, unsigned int high, unsigned int depth ) : values(values), low(low), high(high), depth(depth) {}
 };
+
 #elif defined( ACTOR )
 
 struct SortMsg : public uActor::Message {
