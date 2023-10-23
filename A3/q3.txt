@@ -12,4 +12,4 @@ BUSY with compiler optimization.
 
 {flag}    [ (BUSY) ./buffer {flag} 55 50 1000 20 10 4 ]     [ (NOBUSY) ./buffer {flag} 55 50 1000 20 10 4 ]
 N/A             209.45u 0.26s 0:52.40r 6968kb                       213.92u 0.24s 0:53.51r 6548kb
--O2             33.57u 0.02s 0:33.57r 7008kb                        31.93u 0.03s 0:31.95r 6380kb
+-O2             151.04u 0.13s 0:37.78r 6928kb                        31.93u 0.03s 0:31.95r 6380kb
