@@ -97,13 +97,13 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     if ( depth == 0 ) { sequentialQuicksort(values, low, high); } else {
 
 #if defined( CBEGIN )
-
+/*
         int idx = partition(values, low, high);
         COBEGIN
             BEGIN quicksort( values, low, idx - 1, depth-1 ); END
             BEGIN quicksort( values, idx + 1, high, depth-1 ); END
         COEND
-
+*/
 #elif defined( TASK )
 
         SortWithTask sort( values, low, high, depth );
