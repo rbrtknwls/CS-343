@@ -51,7 +51,8 @@ int main( int argc, char * argv[] ) {
     cout << buffersize << endl;
     cout << delays << endl;
     cout << processors << endl;
-
+    
+    BoundedBuffer<int> buffer ( buffersize );
 
 
 }

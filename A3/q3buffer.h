@@ -5,11 +5,13 @@
 #include <iostream>
 #include <vector>
 
-#ifdef BUSY							// busy waiting implementation
+#ifdef BUSY
 template<typename T> class BoundedBuffer {
     int numberOfBlocks = 0;
-    std::vector<int> items;
+    std::vector<T> items;
     int size = 0;
+    int numberOfElements = 0;
+
   public:
     _Event Poison {};
 
@@ -21,8 +23,14 @@ template<typename T> class BoundedBuffer {
     }
 	void insert( T elem ) {
 
+        items.push_back(elem);
+        numberOfElements++;
+
 	}
 	T remove() __attribute__(( warn_unused_result )) {
+
+        T elem = items.pop();
+        numberOfElements--;
 
 	}
     BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
