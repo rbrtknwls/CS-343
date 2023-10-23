@@ -50,35 +50,7 @@ template<typename T> void sequentialQuicksort( T values[], int low, int high ) {
 
 
 
-#if defined( CBEGIN )
-
-template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-  if (low >= high || high == (unsigned int)-1) { return; }
-
-
-    if ( depth == 0 ) {
-
-        sequentialQuicksort( values, low, high );
-
-    } else {
-        uThisTask().verify();
-
-
-        PartResults results;
-        partition(values, low, high, &results);
-
-        unsigned int i = results[0];
-        unsigned int j = results[1];
-
-        COBEGIN
-            BEGIN quicksort( values, low, j, depth-1 ); END
-            BEGIN quicksort( values, i, high, depth-1 ); END
-        COEND
-
-    }
-}
-
-#elif defined( TASK )
+#if defined( TASK )
 template<typename T> _Task SortWithTask {
     T *values;
     unsigned int low;
@@ -124,15 +96,17 @@ _Actor SortWithActor {
             unsigned int high = msg_d->high;
             unsigned int depth = msg_d->depth;
 
+          if ( low >= high || high == (unsigned int)-1 ) { return; }
 
+            if ( depth == 0 ) { sequentialQuicksort( msg_d->values, low, high ); } else {
 
-            if ( depth == 0 || low >= high ) { sequentialQuicksort( msg_d->values, low, high ); } else {
+                PartResults results;
+                partition(values, low, high, &results);
+                unsigned int i = results[0];
+                unsigned int j = results[1];
 
-                unsigned int idx = partition(msg_d->values, low, high);
-                if ( idx - 1 > 0 ) {
-                    *new SortWithActor() | *new SortMsg( msg_d->values, low, idx - 1, depth-1 ) | uActor::stopMsg;
-                }
-                *new SortWithActor() | *new SortMsg( msg_d->values, idx + 1, high, depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( msg_d->values, low, j, depth-1 ) | uActor::stopMsg;
+                *new SortWithActor() | *new SortMsg( msg_d->values, i, high, depth-1 ) | uActor::stopMsg;
 
 
             }
@@ -146,7 +120,36 @@ _Actor SortWithActor {
 #endif
 
 
+template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
+    if ( low >= high || high == (unsigned int)-1 ) { return; }
 
+    if ( depth == 0 ) {
+        sequentialQuicksort( values, low, high );
+        return;
+    }
+
+#if defined( CBEGIN )
+    uThisTask().verify();
+
+    PartResults results;
+    partition(values, low, high, &results);
+    unsigned int i = results[0];
+    unsigned int j = results[1];
+
+    COBEGIN
+        BEGIN quicksort( values, low, j, depth-1 ); END
+        BEGIN quicksort( values, i, high, depth-1 ); END
+    COEND
+
+#elif defined( TASK )
+    SortWithTask sort( values, low, high, depth );
+
+#elif defined( ACTOR )
+    uActor::start();
+    *new SortWithActor() | *new SortMsg( values, low, high, depth ) | uActor::stopMsg;
+    uActor::stop();
+#endif
+}
 
 
 #endif //CS_343_Q2SORTINGIMPL_H
