@@ -2,7 +2,7 @@ OPT := -O2 -multi -nodebug
 STYPE := int
 SIMPL := CBEGIN
 BIMPL := NOBUSY
-BCHECK := NOBARGINGCHECK
+BCHECK := BARGINGCHECK
 
 CXX = u++					# compiler
 CXXFLAGS = -g -Wall -Wextra -multi ${OPT} -MMD -DSTYPE="${STYPE}" -D"${SIMPL}" \
