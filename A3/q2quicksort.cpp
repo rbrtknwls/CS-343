@@ -12,8 +12,8 @@ int main( int argc, char * argv[] ) {
     istream *infile = &cin;
     ostream *outfile = &cout;
 
-    int depth = 0;
-    int size = 0;
+    unsigned int depth = 0;
+    unsigned int size = 0;
     bool timeMode = false;
 
     struct cmd_error {};
