@@ -7,31 +7,31 @@
 
 using namespace std;
 
-
-template<typename T> unsigned int partition ( T &values, unsigned int low, unsigned int high ) {
-    unsigned int i = (low - 1);
-
-    for (unsigned int j = low; j < high; j++) {
-        if (values[j] < values[high]) {
-            swap(values[++i], values[j]);
+tuple<unsigned int, unsigned int> partition(unsigned int low, unsigned int high) {
+    unsigned int i = low, j = high;
+    T pivot = values[low + (high - low) / 2];
+    // partition
+    while (i <= j ) {
+        while (values[i] < pivot) ++i;
+        while (values[j] > pivot) --j;
+        if (i <= j) {
+            swap(values[i], values[j]);
+            ++i;
+            if (j != 0 ) --j; // watch out for unsigned underflow
         }
     }
-
-    swap(values[++i], values[high]);
-    return i;
-
-
+    return tuple(i, j);
 }
+
 
 template<typename T> void sequentialQuicksort( T &values, unsigned int low, unsigned int high ) {
     if (low >= high || high == (unsigned int)-1) { return; }
 
     unsigned int idx = partition(values, low, high);
 
-    if ( idx > 0 ) {
-        sequentialQuicksort(values, low, idx - 1);
-    }
-    sequentialQuicksort(values, idx + 1, high);
+    auto [i, j] = partition(low, high);
+    if (j > low ) recurse(low, j);
+    if (i < high) recurse(i, high);
 
 }
 
