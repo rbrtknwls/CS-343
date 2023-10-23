@@ -15,19 +15,15 @@ void partition ( STYPE values[], unsigned int low, unsigned int high, PartResult
     unsigned int i = low;
     unsigned int j = high;
 
-    while ( i <= j ) {
+    for ( ;; )
+        while (values[i] < values[pivotIdx]) i++;
+        while (values[j] > values[pivotIdx]) j--;
 
-        for ( ; values[i] < values[pivotIdx]; i++) {
+      if ( i > j ) { break; }
 
-            for ( ; values[j] > values[pivotIdx]; j--) {
-
-                if (i <= j) {
-                    swap(values[i], values[j]);
-                    ++i;
-                    if (j != 0) --j;
-                }
-            }
-        }
+        swap(values[i], values[j]);
+        i++;
+        if (j != 0) { j--; }
     }
 
     (*returnVals)[0] = i;
