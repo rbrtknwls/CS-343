@@ -87,14 +87,14 @@ _Task Producer {
 _Task Consumer {
     BoundedBuffer<int> & buffer;
     int delay = 0;
-    int &produce;
+    int &sum;
 
     void main() {
         for ( ;; ) {
             yield( prng( delay ) );
             std::cout << "read some vals";
             int result = buffer.remove(i);
-            produce += result;
+            sum += result;
         }
     }
   public:
