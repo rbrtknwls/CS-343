@@ -48,8 +48,7 @@ int main( int argc, char * argv[] ) {
 
     BoundedBuffer<int> buffer ( buffersize );
     Producer producer( buffer, produce, delays );
-
-    buffer.insert(5);
+    
     cout << buffer.remove() << endl;
 
 
