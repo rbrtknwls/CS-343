@@ -24,8 +24,8 @@ template<typename T> void partition ( T values[], unsigned int low, unsigned int
         }
     }
 
-    (*returnVals)[0] = i
-    (*returnVals)[1] = j
+    (*returnVals)[0] = i;
+    (*returnVals)[1] = j;
 
 }
 
@@ -40,8 +40,8 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     unsigned int pivotIdx = low + (high - low) / 2;
 
     int results[2];
-    partition(values, low, high, results);
-    
+    partition(values, low, high, &results);
+
     unsigned int i = results[0];
     unsigned int j = results[1];
 
