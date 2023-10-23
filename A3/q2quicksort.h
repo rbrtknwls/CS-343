@@ -26,7 +26,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
     idx++;
     if ( depth == 0 ) {
-        if ( low < idx - 1 ) quicksort( values, low, idx - 1, 0 );
+        if ( low < idx - 1 && idx != 0 ) quicksort( values, low, idx - 1, 0 );
         if ( idx + 1 < high ) quicksort( values, idx + 1, high, 0 );
     } else {
 
