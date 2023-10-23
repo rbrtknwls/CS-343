@@ -78,8 +78,4 @@ int main( int argc, char * argv[] ) {
     cout << endl;
     cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
 
-    for (int i = 0 ; i < cons; i++ ) {
-
-        cout << consumerResults[i] << endl;
-    }
 }
