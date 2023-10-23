@@ -13,7 +13,7 @@ int main( int argc, char * argv[] ) {
     int prods = 3;
     int produce = 10;
     int buffersize = 10;
-    int delays = numberOfProducers + numberOfConsumers
+    int delays = cons + produce;
     int processors = 1;
 
     struct cmd_error {
@@ -33,7 +33,7 @@ int main( int argc, char * argv[] ) {
             case 3:
                 if ( *argv[2] != 'd' ) { prods = stoi(argv[2]); }
                 if ( argc == 6 && *argv[5] != 'd' ) {
-                    delays = numberOfProducers + numberOfConsumers
+                    delays = cons + produce
                 }
             case 2:
                 if ( *argv[1] != 'd' ) { cons = stoi(argv[1]); }
