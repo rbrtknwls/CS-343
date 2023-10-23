@@ -115,12 +115,11 @@ _Task Consumer {
             _Enable {
                 for ( ;; ) {
                     yield( prng( delay ) );
-                    std::cout << "read some vals";
                     int result = buffer.remove();
                     sum += result;
                 }
             }
-        } catch ( BoundedBuffer<int>::Poison ) {
+        } catch ( BoundedBuffer<int>::Poison &poison ) {
            return;
         }
     }
