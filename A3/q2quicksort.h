@@ -25,7 +25,9 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
         }
     }
     swap(values[idx+1], values[high]);
+
     cout << idx << endl;
+
     idx++;
     if ( depth == 0 ) {
 
@@ -35,7 +37,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     } else {
 
         COBEGIN
-            BEGIN if ( low < idx - 1 ) quicksort( values, low, idx - 1, depth-1 ); END
+            BEGIN if ( low < idx - 1 && idx != 0 ) quicksort( values, low, idx - 1, depth-1 ); END
             BEGIN if ( high < idx + 1) quicksort( values, idx + 1, high, depth-1 ); END
         COEND
 
