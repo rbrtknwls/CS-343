@@ -71,7 +71,7 @@ int main( int argc, char * argv[] ) {
         STYPE *arrayOfValues  = new STYPE[ size ];
 
         for ( unsigned int counter = 0; counter < times; counter += 1 ) {
-            swap( arrayOfValues[0], arrayOfValues[prng( size ) ] );
+            swap( arrayOfValues[0], arrayOfValues[ prng( size ) ] );
         } // for
 
         uProcessor p[ (1 << depth) - 1 ] __attribute__((unused)); // 2^depth-1 kernel threads

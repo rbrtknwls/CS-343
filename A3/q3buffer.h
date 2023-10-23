@@ -4,6 +4,7 @@
 #include "BargingCheck.h"
 #include <iostream>
 #include <vector>
+#include <uPRNG.h>
 
 #ifdef BUSY
 template<typename T> class BoundedBuffer {
@@ -72,7 +73,10 @@ _Task Producer {
     int delay = 0;
 
     void main() {
-        std::cout << "HI";
+        for ( int i = 0; i < produce; i++ ) {
+            yield( prng( delay ) );
+            buffer.insert(i);
+        }
     }
   public:
     Producer( BoundedBuffer<int> & buffer, const int produce, const int delay ) : buffer(buffer),
