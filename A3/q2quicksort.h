@@ -16,6 +16,7 @@ void quicksort( T values[], unsigned int low, unsigned int high, unsigned int de
         unsigned int localSwap = low;
         cout << low;
         cout << high;
+        /*
         swap(values[pivotIdx], values[high]);
         for ( unsigned int j = low; j < high; j++ ) {
             if ( values[j] < values[high] ) {
@@ -23,7 +24,7 @@ void quicksort( T values[], unsigned int low, unsigned int high, unsigned int de
             }
         }
         swap(values[localSwap], values[high]);
-
+        */
 
         quicksort(values, low, localSwap - 1, depth);
         quicksort(values, localSwap + 1, high, depth);
