@@ -62,20 +62,18 @@ int main( int argc, char * argv[] ) {
         consList.push_back( new Consumer( buffer, produce, consumerResults[i] ) );
     }
 
-    //buffer.poison();
-    /*
     for (int i = 0 ; i < prods; i++ ) {
         delete prodList[i];
     }
-
+    /*
     int totalSum = 0;
     for (int i = 0 ; i < cons; i++ ) {
         delete consList[i];
         totalSum += consumerResults[i];
     }
 
-    cout << "total: " << totalSum << endl;
+    cout << "total: " << totalSum << endl;*/
     cout << endl;
-    cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
+    cout << "Total Producer/Consumer blocks in insert/remove " << endl;
 
 }
