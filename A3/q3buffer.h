@@ -122,7 +122,7 @@ _Task Consumer {
                 }
             }
         } catch ( BoundedBuffer<int>::Poison &poison ) {
-            cout << "CAUGHT";
+            std::cout << "CAUGHT";
             return;
         }
     }
