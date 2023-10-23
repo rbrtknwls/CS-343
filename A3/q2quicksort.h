@@ -16,12 +16,12 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     unsigned int idx = low;
 
     swap(values[pivotIdx], values[high]);
-    for ( unsigned int j = low; j < high; j++ ) {
+    for ( unsigned int j = low; j <= high; j++ ) {
         if ( values[j] < values[high] ) {
             swap(values[idx++], values[j]);
         }
     }
-    swap(values[idx], values[high]);
+    swap(values[idx++], values[high]);
 
 
     if ( depth == 0 ) {
