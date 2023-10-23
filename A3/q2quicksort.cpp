@@ -26,10 +26,9 @@ int main( int argc, char * argv[] ) {
             switch ( argc ) {
                 case 4:
                     depth = stoi(argv[3]);
-                  if ( depth < 0 ) { cmd_error(); }
                 case 3:
                     size = stoi(argv[2]);
-                  if ( size >= 0 ) { break; }
+                    break;
                 default:                                       // wrong number of options
                     throw cmd_error();
             }
