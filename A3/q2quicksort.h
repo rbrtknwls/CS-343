@@ -7,6 +7,40 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+template<typename T>
+void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
+    if (high == (unsigned int)-1) return; // sorting empty arr (length-1 underflowed)
+    uThisTask().verify();
+
+    auto swap = [](T& a, T& b) {
+        T temp = a;
+        a = b; b = temp;
+    };
+
+    unsigned int i = low, j = high;
+    T pivot = values[low + (high - low) / 2];
+    // partition
+    while (i <= j ) {
+        while (values[i] < pivot) ++i;
+        while (values[j] > pivot) --j;
+        // cout << "i: " << i << " j: " << j << endl;
+        if (i <= j) {
+            swap(values[i], values[j]);
+            ++i;
+            if (j != 0 ) --j; // watch out for unsigned underflow
+        }
+    }
+    // recursion
+    if (depth == 0) { // execute sequentially
+        if (j > low ) quicksort(values, low, j, depth);
+        if (i < high) quicksort(values, i, high, depth);
+    } else {
+        COBEGIN // create a thread for each partition
+        BEGIN if (j > low ) quicksort(values, low, j, depth-1); END
+        BEGIN if (i < high) quicksort(values, i, high, depth-1); END
+                COEND
+    }
+}
 
 /*
 template<typename T> void sequentialQuicksort( T &values, int low, int high ) {
@@ -89,40 +123,7 @@ _Actor SortWithActor {
 
 };
 
-template<typename T>
-void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    if (high == (unsigned int)-1) return; // sorting empty arr (length-1 underflowed)
-    uThisTask().verify();
 
-    auto swap = [](T& a, T& b) {
-        T temp = a;
-        a = b; b = temp;
-    };
-
-    unsigned int i = low, j = high;
-    T pivot = values[low + (high - low) / 2];
-    // partition
-    while (i <= j ) {
-        while (values[i] < pivot) ++i;
-        while (values[j] > pivot) --j;
-        // cout << "i: " << i << " j: " << j << endl;
-        if (i <= j) {
-            swap(values[i], values[j]);
-            ++i;
-            if (j != 0 ) --j; // watch out for unsigned underflow
-        }
-    }
-    // recursion
-    if (depth == 0) { // execute sequentially
-        if (j > low ) quicksort(values, low, j, depth);
-        if (i < high) quicksort(values, i, high, depth);
-    } else {
-        COBEGIN // create a thread for each partition
-        BEGIN if (j > low ) quicksort(values, low, j, depth-1); END
-        BEGIN if (i < high) quicksort(values, i, high, depth-1); END
-                COEND
-    }
-}
 
 /*
 template<typename T> void quicksort( T *values, int low, int high, int depth ) {
@@ -149,10 +150,10 @@ template<typename T> void quicksort( T *values, int low, int high, int depth ) {
         uActor::start();
         *new SortWithActor() | *new SortMsg( values, low, high, depth ) | uActor::stopMsg;
         uActor::stop();
-
-#endif
-}
 */
+#endif
+
+
 
 
 
