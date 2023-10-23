@@ -117,7 +117,7 @@ _Task Consumer {
 
                     yield( prng( delay ) );
                     int result = buffer.remove();
-                    std::cout << result << endl;
+                    std::cout << result << std::endl;
                     sum += result;
 
                 }
