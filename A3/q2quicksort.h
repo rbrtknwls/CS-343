@@ -9,6 +9,7 @@ using namespace std;
 
 
 #if defined( CBEGIN )
+
 template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
   if (low >= high || high == (unsigned int)-1) { return; }
     uThisTask().verify();
@@ -24,7 +25,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
         }
     }
     swap(values[idx+1], values[high]);
-
+    cout << idx;
     idx++;
     if ( depth == 0 ) {
         if ( low < idx - 1 && idx != 0 ) quicksort( values, low, idx - 1, 0 );
