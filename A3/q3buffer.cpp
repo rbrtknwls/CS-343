@@ -53,29 +53,29 @@ int main( int argc, char * argv[] ) {
     int consumerResults[cons] = {0};
     vector<Consumer*> consList;
     vector<Producer*> prodList;
-
-    std::cout << "done";
+    
     for (int i = 0 ; i < prods; i++ ) {
         prodList.push_back( new Producer( buffer, produce, delays ) );
     }
-    std::cout << "done";
+
     for (int i = 0 ; i < cons; i++ ) {
         consList.push_back( new Consumer( buffer, produce, consumerResults[i] ) );
     }
-    std::cout << "done"; /*
+
     buffer.poison();
+    /*
 
-    for (int i = 0 ; i < prods; i++ ) {
-        delete prodList[i];
-    }
-    int totalSum = 0;
-    for (int i = 0 ; i < cons; i++ ) {
-        delete consList[i];
-        totalSum += consumerResults[i];
-    }
+   for (int i = 0 ; i < prods; i++ ) {
+       delete prodList[i];
+   }
+   int totalSum = 0;
+   for (int i = 0 ; i < cons; i++ ) {
+       delete consList[i];
+       totalSum += consumerResults[i];
+   }
 
-    cout << "total: " << totalSum << endl;
-    cout << endl;
-    cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
+   cout << "total: " << totalSum << endl;
+   cout << endl;
+   cout << "Total Producer/Consumer blocks in insert/remove " << endl; */
 
 }
