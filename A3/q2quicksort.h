@@ -8,12 +8,11 @@
 using namespace std;
 
 
-template<typename T> unsigned int partition ( T values[], unsigned int low, unsigned int high ) {
-    T pivot = values[high];
+template<typename T> unsigned int partition ( T &values, unsigned int low, unsigned int high ) {
     unsigned int i = (low - 1);
 
     for (unsigned int j = low; j < high; j++) {
-        if (values[j] < pivot) {
+        if (values[j] < values[high]) {
             swap(values[++i], values[j]);
         }
     }
