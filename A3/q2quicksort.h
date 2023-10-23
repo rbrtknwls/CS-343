@@ -7,35 +7,39 @@
 
 using namespace std;
 
-tuple<unsigned int, unsigned int> partition(unsigned int low, unsigned int high) {
-    unsigned int i = low, j = high;
-    T pivot = values[low + (high - low) / 2];
-    // partition
-    while (i <= j ) {
-        while (values[i] < pivot) ++i;
-        while (values[j] > pivot) --j;
-        if (i <= j) {
-            swap(values[i], values[j]);
-            ++i;
-            if (j != 0 ) --j; // watch out for unsigned underflow
+
+#if defined( CBEGIN )
+template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
+  if (low >= high || high == (unsigned int)-1) { return; }
+
+    unsigned int pivotIdx = low + (high - low) / 2;
+    unsigned int localSwap = low;
+
+    swap(values[pivotIdx], values[high]);
+    for ( unsigned int j = low; j < high; j++ ) {
+        if ( values[j] < values[high] ) {
+            swap(values[localSwap++], values[j]);
         }
     }
-    return tuple(i, j);
+    swap(values[localSwap], values[high]);
+
+
+    if ( depth == 0 ) {
+        if ( low < idx - 1 ) quicksort( values, low, idx - 1, depth-1 );
+        if ( high < idx + 1) quicksort( values, idx + 1, high, depth-1 );
+    } else {
+
+        int idx = partition(values, low, high);
+
+        COBEGIN
+            BEGIN if ( low < idx - 1 ) quicksort( values, low, idx - 1, depth-1 ); END
+            BEGIN if ( high < idx + 1) quicksort( values, idx + 1, high, depth-1 ); END
+        COEND
+
+    }
 }
 
-
-template<typename T> void sequentialQuicksort( T &values, unsigned int low, unsigned int high ) {
-    if (low >= high || high == (unsigned int)-1) { return; }
-
-    unsigned int idx = partition(values, low, high);
-
-    auto [i, j] = partition(low, high);
-    if (j > low ) recurse(low, j);
-    if (i < high) recurse(i, high);
-
-}
-
-#if defined( TASK )
+#elif defined( TASK )
 template<typename T> _Task SortWithTask {
     T *values;
     unsigned int low;
@@ -101,37 +105,6 @@ _Actor SortWithActor {
 
 #endif
 
-
-template<typename T> void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
-    if (low >= high || high == (unsigned int)-1) { return; }
-
-    if ( depth == 0 ) {
-        std::cout << "SEQ START" << std::endl;
-        sequentialQuicksort(values, low, high);
-    } else {
-
-#if defined( CBEGIN )
-
-        int idx = partition(values, low, high);
-
-        COBEGIN
-            BEGIN quicksort( values, low, idx - 1, depth-1 ); END
-            BEGIN quicksort( values, idx + 1, high, depth-1 ); END
-        COEND
-
-#elif defined( TASK )
-
-        SortWithTask sort( values, low, high, depth );
-
-#elif defined( ACTOR )
-
-        uActor::start();
-        *new SortWithActor() | *new SortMsg( values, low, high, depth ) | uActor::stopMsg;
-        uActor::stop();
-
-#endif
-    }
-}
 
 
 
