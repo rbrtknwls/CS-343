@@ -9,8 +9,7 @@
 template<typename T> class BoundedBuffer {
     int numberOfBlocks = 0;
     std::vector<T> items;
-    int size = 0;
-    int numberOfElements = 0;
+    int size;
 
   public:
     _Event Poison {};
@@ -23,12 +22,14 @@ template<typename T> class BoundedBuffer {
     }
 	void insert( T elem ) {
 
+        if ( items.size() == size ) {}
         items.push_back(elem);
 
 
 	}
 	T remove() __attribute__(( warn_unused_result )) {
 
+        if ( items.size() == 0 ) {}
         T elem = items[items.size() - 1];
         items.pop_back();
 
