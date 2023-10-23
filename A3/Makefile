@@ -1,4 +1,4 @@
-OPT := -O2 -multi -nodebug
+OPT := -nodebug
 STYPE := int
 SIMPL := CBEGIN
 BIMPL := NOBUSY
