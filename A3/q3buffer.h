@@ -183,6 +183,7 @@ template<typename T> class BoundedBuffer {
                 bargeFlag = true;
                 waitLock.signal();
             }
+            consFlag = false;
         } _Finally {
             buffLock.release();
         }
