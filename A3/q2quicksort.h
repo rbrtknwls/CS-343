@@ -96,16 +96,16 @@ _Actor SortWithActor {
             unsigned int low = msg_d->low;
             unsigned int high = msg_d->high;
             unsigned int depth = msg_d->depth;
-          if ( low >= high || high == (unsigned int)-1 ) { break; }
 
-            if ( depth == 0 ) { sequentialQuicksort( values, low, high ); } else {
+            if ( depth == 0 || low >= high ) { sequentialQuicksort( values, low, high ); } else {
 
                 PartResults results;
                 partition(values, low, high, &results);
                 unsigned int i = results[0];
                 unsigned int j = results[1];
-
-                *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
+                if ( j != 0 ) {
+                    *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
+                }
                 *new SortWithActor() | *new SortMsg( values, i, high, depth-1 ) | uActor::stopMsg;
 
 
