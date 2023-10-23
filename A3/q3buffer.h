@@ -131,7 +131,7 @@ template<typename T> class BoundedBuffer {
             CONS_SIGNAL( consLock );
 
             if ( consLock.empty() == false ) {
-                consLock = true
+                consFlag = true
                 consLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
