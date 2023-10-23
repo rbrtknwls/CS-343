@@ -32,6 +32,8 @@ template<typename T> class BoundedBuffer {
         T elem = items[items.size() - 1]
         items.pop_back();
 
+        return elem;
+
 	}
     BoundedBuffer( const unsigned int size = 10 ) : size(size) {}
 };
