@@ -17,14 +17,29 @@
                29.65u 4.02s 0:09.99 1957960kb                   103.48u 5.67s 0:07.10 1958236kb
 
 {depth}      [ (CBEGIN) ./quicksort -t 500000000 {depth} ]
-0
+0              Sort time 14.486851901 sec.
+               12.04u 2.80s 0:14.78 1957488kb
 
-1
+1              Sort time 9.048075037 sec.
+               14.74u 3.03s 0:09.34 1957412kb
 
-2
+2              Sort time 6.212483222 sec.
+               16.39u 3.14s 0:06.55 1957680kb
 
-3
+3              Sort time 5.287138325 sec.
+               19.87u 3.09s 0:05.60 1957620kb
 
-4
+4              Sort time 4.062479974 sec.
+               19.87u 2.67s 0:04.40 1957668kb
+
+2b) As we add more processors, the amount of user time always increases, for CBEGIN and TASK it seems to be somewhat
+linear, however for ACTOR each increase in depth seems to double the user time. The real time running speed of
+all the programs seems to decrease with the number of processors, although with diminishing returns and in some cases
+can actually increase the real time running speed after a while.
+
+2c) We will get some discrepancies as the time our program outputs only accounts for the time it takes to run quicksort,
+on the other-hand the time that's provided from usr/bin/time will account for the time the total program executes. Which
+is why the reported time is less than the usr/bin/time as it doesn't account for the time it takes to output values to
+an ostream, for example.
 
 
