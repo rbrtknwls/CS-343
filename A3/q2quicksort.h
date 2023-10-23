@@ -15,31 +15,33 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     uThisTask().verify();
 
     unsigned int pivotIdx = low + (high - low) / 2;
-    unsigned int newLower = low;
-    unsigned int newHigher = high;
+    unsigned int i = low;
+    unsigned int j = low;
 
-    while (newLower <= newHigher ) {
-		while (values[newLower] < values[pivotIdx]) ++newLower;
-		while (values[newHigher] > values[pivotIdx]) --newHigher;
+    while (i <= j ) {
+		while (values[i] < pivot) ++i;
+		while (values[j] > pivot) --j;
         // cout << "i: " << i << " j: " << j << endl;
 		if (i <= j) {
-			swap(values[newLower], values[newHigher]);
-
-            newLower++;
-            if (j > 0 ) { newHigher--; }
+			swap(values[i], values[j]);
+            ++i;
+            if (j != 0 ) --j; // watch out for unsigned underflow
 		}
-    }
+	}
+
+    cout << idx << endl;
+
     idx++;
     if ( depth == 0 ) {
 
-        if ( low < idx - 1 && idx != 0 ) quicksort( values, low, idx - 1, 0 );
-        if ( idx + 1 < high ) quicksort( values, idx + 1, high, 0 );
+        quicksort( values, low, j, 0 );
+        quicksort( values, i, high, 0 );
 
     } else {
 
         COBEGIN
-            BEGIN if ( low < idx - 1 && idx != 0 ) quicksort( values, low, idx - 1, depth-1 ); END
-            BEGIN if ( high < idx + 1) quicksort( values, idx + 1, high, depth-1 ); END
+            BEGIN quicksort( values, low, j, depth-1 ); END
+            BEGIN quicksort( values, i, high, depth-1 ); END
         COEND
 
     }
