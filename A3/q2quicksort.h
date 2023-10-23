@@ -108,7 +108,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
 
         int idx = partition(values, low, high);
         COBEGIN
-            BEGIN quicksort( values, low, idx - 1, depth-1 ); END
+            if ( idx - 1 != 0 ) { BEGIN quicksort( values, low, idx - 1, depth-1 ); END }
             BEGIN quicksort( values, idx + 1, high, depth-1 ); END
         COEND
 
