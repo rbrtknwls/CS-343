@@ -12,21 +12,20 @@ template<typename T>
 void quicksort( T values[], unsigned int low, unsigned int high, unsigned int depth ) {
     if (low < high) {
 
-        T pivot = values[high];
-        int i = (low - 1);
+        int pivotIdx = low + (high - low) / 2;
+        unsigned int localSwap = low;
 
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                std::swap(values[i], values[j]);
+        swap(values, pivotIdx, high);
+        for ( unsigned int j = low; j < high; j++ ) {
+            if ( values[j] < values[high] ) {
+                swap(values, localSwap++, j);
             }
         }
+        swap(values, localSwap, high);
 
-        std::swap(values[i++], values[high]);
 
-
-        quicksort(arr, low, i - 1, depth);
-        quicksort(arr, i + 1, high, depth);
+        quicksort(values, low, localSwap - 1, depth);
+        quicksort(values, localSwap + 1, high, depth);
     }
 }
 
