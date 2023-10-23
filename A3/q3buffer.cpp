@@ -58,7 +58,7 @@ int main( int argc, char * argv[] ) {
     for (int i = 0 ; i < cons; i++ ) {
         consList.push_back( new Consumer( buffer, produce, consumerResults[i] ) );
     }
-
+    std::cout << "done";
     buffer.poison();
 
     for (int i = 0 ; i < prods; i++ ) {
