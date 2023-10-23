@@ -7,7 +7,7 @@
 
 using namespace std;
 
-template<typename T> void partition ( T values[], unsigned int low, unsigned int high, unsigned int *returnVals) {
+template<typename T> void partition ( T *values, unsigned int low, unsigned int high, unsigned int *returnVals) {
     unsigned int pivotIdx = low + (high - low) / 2;
 
     unsigned int i = low;
@@ -37,9 +37,8 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
   if (low >= high || high == (unsigned int)-1) { return; }
     uThisTask().verify();
 
-    unsigned int pivotIdx = low + (high - low) / 2;
 
-    int results[2];
+    unsigned int results[2];
     partition(values, low, high, &results);
 
     unsigned int i = results[0];
