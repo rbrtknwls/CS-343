@@ -70,7 +70,7 @@ int main( int argc, char * argv[] ) {
         STYPE arrayOfValues [ size ];
 
         for ( unsigned int counter = 0; counter < size; counter++ ) {
-            arrayOfValues[counter] = size - counter
+            arrayOfValues[counter] = size - counter;
         }
 
         for ( unsigned int counter = 0; counter < times; counter += 1 ) {
