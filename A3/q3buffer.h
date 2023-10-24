@@ -104,7 +104,6 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
         buffLock.acquire();
         try {
-            prod_flag = true
             PROD_ENTER;
 
             if ( bargeFlag ) {

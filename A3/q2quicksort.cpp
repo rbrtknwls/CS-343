@@ -67,7 +67,11 @@ int main( int argc, char * argv[] ) {
     if ( timeMode ) {
 
         unsigned int times = sqrt( size );                         // set time to sqrt of size
-        STYPE *arrayOfValues  = new STYPE[ size ];
+        STYPE arrayOfValues [ size ];
+
+        for ( unsigned int counter = 0; counter < size; counter++ ) {
+            arrayOfValues[counter] = size - counter
+        }
 
         for ( unsigned int counter = 0; counter < times; counter += 1 ) {
             swap( arrayOfValues[0], arrayOfValues[ prng( size ) ] );
@@ -79,7 +83,6 @@ int main( int argc, char * argv[] ) {
         quicksort( arrayOfValues, 0, size-1, depth );
         cout << "Sort time " << uClock::currTime() - start << " sec." << endl;
 
-        delete[] arrayOfValues;                                    // delete pointer to an array of values
 
     } else {
 
@@ -88,7 +91,7 @@ int main( int argc, char * argv[] ) {
           if (!(*infile >> numberOfValuesToSort)) { break; }       // exit when we dont get new values to read
 
             STYPE arrayOfValues[numberOfValuesToSort];
-          
+
             for (int i = 0; i < numberOfValuesToSort; i++) {
                 *infile >> arrayOfValues[i];
                 *outfile << arrayOfValues[i];
@@ -107,8 +110,6 @@ int main( int argc, char * argv[] ) {
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
             *outfile << endl;
-
-            delete[] arrayOfValues;
         }
     }
 
