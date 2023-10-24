@@ -107,7 +107,7 @@ template<typename T> class BoundedBuffer {
 
             PROD_ENTER;
 
-            if ( consFlag || prodFlag || bargeFlag ) {
+            if ( bargeFlag ) {
                 waitLock.wait(buffLock);
 
                 if (waitLock.empty()) bargeFlag = false;
@@ -115,8 +115,7 @@ template<typename T> class BoundedBuffer {
 
             if ( numberOfElements == sizeLimit ) {
 
-
-                if ( consFlag == false && waitLock.empty() == false ) {
+                if ( waitLock.empty() == false ) {
                     waitLock.signal();
                 }
 
@@ -130,14 +129,13 @@ template<typename T> class BoundedBuffer {
 
             CONS_SIGNAL( consLock );
 
-            if ( consLock.empty() == false ) {
-                consFlag = true;
+            if ( consLock.empty() ) {
                 consLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
                 waitLock.signal();
             }
-            prodFlag = false;
+
         } _Finally {
             buffLock.release();
         }
@@ -150,7 +148,7 @@ template<typename T> class BoundedBuffer {
 
             CONS_ENTER;
 
-            if ( consFlag || prodFlag || bargeFlag ) {
+            if ( bargeFlag ) {
                 waitLock.wait(buffLock);
 
                 if (waitLock.empty()) bargeFlag = false;
@@ -162,7 +160,7 @@ template<typename T> class BoundedBuffer {
                     _Throw Poison();
                 }
 
-                if ( consFlag == false && waitLock.empty() == false ) {
+                if ( waitLock.empty() == false ) {
                     waitLock.signal();
                 }
 
@@ -177,13 +175,12 @@ template<typename T> class BoundedBuffer {
             PROD_SIGNAL( prodLock );
 
             if ( prodLock.empty() == false ) {
-                prodFlag = true;
                 prodLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
                 waitLock.signal();
             }
-            consFlag = false;
+
         } _Finally {
             buffLock.release();
         }
