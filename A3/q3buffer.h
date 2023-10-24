@@ -16,7 +16,7 @@ template<typename T> class BoundedBuffer {
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
-    
+
     std::queue<T> items;
 
   public:
@@ -36,7 +36,7 @@ template<typename T> class BoundedBuffer {
                 numberOfBlocks++;
                 prodLock.wait(buffLock);
             }
-            items.push_back(elem);
+            items.push(elem);
             numberOfElements++;
             consLock.signal();
         } _Finally {
@@ -57,8 +57,8 @@ template<typename T> class BoundedBuffer {
                 consLock.wait(buffLock);
             }
 
-            elem = items[--numberOfElements];
-            items.pop_front();
+            elem = items.front();
+            items.pop();
             prodLock.signal();
 
 
