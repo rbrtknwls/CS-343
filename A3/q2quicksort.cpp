@@ -87,7 +87,8 @@ int main( int argc, char * argv[] ) {
             int numberOfValuesToSort;
           if (!(*infile >> numberOfValuesToSort)) { break; }       // exit when we dont get new values to read
 
-            STYPE *arrayOfValues = STYPE[numberOfValuesToSort];
+            STYPE arrayOfValues[numberOfValuesToSort];
+          
             for (int i = 0; i < numberOfValuesToSort; i++) {
                 *infile >> arrayOfValues[i];
                 *outfile << arrayOfValues[i];
