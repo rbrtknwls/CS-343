@@ -104,7 +104,7 @@ template<typename T> class BoundedBuffer {
 	void insert( T elem ) {
         buffLock.acquire();
         try {
-
+            prod_flag = true
             PROD_ENTER;
 
             if ( bargeFlag ) {
@@ -160,7 +160,7 @@ template<typename T> class BoundedBuffer {
                     _Throw Poison();
                 }
 
-                if ( prodLock.empty() && waitLock.empty() == false ) {
+                if ( prodLock.empty() ) {
                     waitLock.signal();
                 }
 
