@@ -177,7 +177,7 @@ template<typename T> class BoundedBuffer {
             if ( prodLock.empty() == false ) {
                 prodLock.signal();
             } else if ( waitLock.empty() == false ) {
-                //bargeFlag = true;
+                bargeFlag = true;
                 waitLock.signal();
             }
 
