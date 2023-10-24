@@ -59,6 +59,7 @@ template<typename T> class BoundedBuffer {
 
             elem = items.front();
             items.pop();
+            numberOfElements++;
             prodLock.signal();
 
 
