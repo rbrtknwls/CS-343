@@ -69,10 +69,12 @@ int main( int argc, char * argv[] ) {
         unsigned int times = sqrt( size );                         // set time to sqrt of size
         STYPE arrayOfValues [ size ];
 
+        // set up the array so its descending from size to 1
         for ( unsigned int counter = 0; counter < size; counter++ ) {
             arrayOfValues[counter] = size - counter;
-        }
+        } // for
 
+        // swap the indexes randomly
         for ( unsigned int counter = 0; counter < times; counter += 1 ) {
             swap( arrayOfValues[0], arrayOfValues[ prng( size ) ] );
         } // for
@@ -93,8 +95,8 @@ int main( int argc, char * argv[] ) {
             STYPE arrayOfValues[numberOfValuesToSort];
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
-                *infile >> arrayOfValues[i];
-                *outfile << arrayOfValues[i];
+                *infile >> arrayOfValues[i];                       // save value to array
+                *outfile << arrayOfValues[i];                      // output the values as we read them in
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
@@ -105,7 +107,7 @@ int main( int argc, char * argv[] ) {
             }
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
-                *outfile << arrayOfValues[i];
+                *outfile << arrayOfValues[i];                      // output the sorted values
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
             }
