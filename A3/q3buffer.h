@@ -16,6 +16,7 @@ template<typename T> class BoundedBuffer {
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
+    
     std::queue<T> items;
 
   public:
