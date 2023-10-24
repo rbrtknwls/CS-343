@@ -190,6 +190,9 @@ template<typename T> class BoundedBuffer {
     BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {
         items = new T[size];
     }
+    ~BoundedBuffer() {
+        delete[] items;
+    }
 };
 #endif // NOBUSY
 
