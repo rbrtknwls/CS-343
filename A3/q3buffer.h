@@ -83,7 +83,7 @@ template<typename T> class BoundedBuffer {
     uCondLock prodLock;
     uCondLock consLock;
     uCondLock waitLock;
-    std::vector<T> items;
+    T *items;
 
     bool consFlag = false;
     bool prodFlag = false;
@@ -187,7 +187,9 @@ template<typename T> class BoundedBuffer {
         return elem;
 
 	}
-    BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {}
+    BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {
+        items = new T[size];
+    }
 };
 #endif // NOBUSY
 

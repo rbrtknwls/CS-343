@@ -99,21 +99,21 @@ int main( int argc, char * argv[] ) {
                 *outfile << arrayOfValues[i];                      // output the values as we read them in
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
-            }
+            } // for
             *outfile << endl;
 
             if (numberOfValuesToSort != 0) {
                 quicksort(arrayOfValues, 0, numberOfValuesToSort - 1, depth);
-            }
+            } // if
 
             for (int i = 0; i < numberOfValuesToSort; i++) {
                 *outfile << arrayOfValues[i];                      // output the sorted values
 
                 if (i != numberOfValuesToSort - 1) { *outfile << " "; }
-            }
+            } // for
             *outfile << endl;
-        }
-    }
+        } // for
+    } // if
 
     if ( infile != &cin ) delete infile;                    // delete in stream pointer at end
     if ( outfile != &cout ) delete outfile;                 // delete out stream pointer at end

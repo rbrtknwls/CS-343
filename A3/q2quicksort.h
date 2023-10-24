@@ -37,7 +37,7 @@ template<typename T> void partition ( T values[], unsigned int low, unsigned int
         swap(values[i], values[j]);                                     // swap i and j
         i++;
         if (j != 0) { j--; }
-    }
+    } // for
 
     (*returnVals)[0] = i;                                               // save i to return values
     (*returnVals)[1] = j;                                               // save j to return values
@@ -88,8 +88,8 @@ template<typename T> _Task SortWithTask {
 
             SortWithTask left(values, low, j, depth-1);                   // make a new task for the left
             sequentialQuicksort(values, i, high);                         // continue on the right
-        }
-    }
+        } // if
+    } // main()
 
   public:
     // generic constructors
@@ -128,10 +128,10 @@ _Actor SortWithActor {
                 *new SortWithActor() | *new SortMsg( values, low, j, depth-1 ) | uActor::stopMsg;
                 *new SortWithActor() | *new SortMsg( values, i, high, depth-1 ) | uActor::stopMsg;
 
-            }
+            } // if
         } else Case( StopMsg, msg ) return Delete;
         return uActor::Nodelete;
-    }
+    } // allocation
 
 
 };
@@ -147,7 +147,7 @@ template<typename T> void quicksort( T values[], unsigned int low, unsigned int 
     if ( depth == 0 ) {                                                    // if depth is zero, run sequential sort
         sequentialQuicksort( values, low, high );
         return;
-    }
+    } // if
 
 #if defined( CBEGIN )
     uThisTask().verify();
