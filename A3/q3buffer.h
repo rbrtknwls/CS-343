@@ -3,7 +3,7 @@
 
 #include "BargingCheck.h"
 #include <iostream>
-#include <vector>
+#include <queue>
 #include <uPRNG.h>
 
 #ifdef BUSY
@@ -16,7 +16,7 @@ template<typename T> class BoundedBuffer {
     uOwnerLock buffLock;
     uCondLock prodLock;
     uCondLock consLock;
-    std::vector<T> items;
+    std::queue<T> items;
 
   public:
     _Event Poison {};
@@ -57,7 +57,7 @@ template<typename T> class BoundedBuffer {
             }
 
             elem = items[--numberOfElements];
-            items.pop_back();
+            items.pop_front();
             prodLock.signal();
 
 
@@ -83,7 +83,7 @@ template<typename T> class BoundedBuffer {
     uCondLock prodLock;
     uCondLock consLock;
     uCondLock waitLock;
-    std::vector<T> items;
+    std::queue<T> items;
 
     bool consFlag = false;
     bool prodFlag = false;
@@ -172,7 +172,7 @@ template<typename T> class BoundedBuffer {
 
             REMOVE_DONE;
             elem = items[--numberOfElements];
-            items.pop_back();
+            items.pop_front();
 
             PROD_SIGNAL( prodLock );
 
