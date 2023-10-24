@@ -160,7 +160,7 @@ template<typename T> class BoundedBuffer {
                     _Throw Poison();
                 }
 
-                if ( waitLock.empty() == false ) {
+                if ( prodLock.empty() && waitLock.empty() == false ) {
                     waitLock.signal();
                 }
 
