@@ -83,7 +83,7 @@ template<typename T> class BoundedBuffer {
     uCondLock prodLock;
     uCondLock consLock;
     uCondLock waitLock;
-    T *items;
+    std::vector<T> items;
 
     bool consFlag = false;
     bool prodFlag = false;
@@ -114,20 +114,18 @@ template<typename T> class BoundedBuffer {
 
             if ( numberOfElements == sizeLimit ) {
 
-                if ( waitLock.empty() == false ) {
-                    waitLock.signal();
-                }
 
                 numberOfBlocks++;
                 prodLock.wait(buffLock);
             }
 
             INSERT_DONE;
-            items[numberOfElements++] = elem;
+            items.push_back(elem);
+            numberOfElements++;
 
             CONS_SIGNAL( consLock );
 
-            if ( consLock.empty() ) {
+            if ( consLock.empty() == false ) {
                 consLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
@@ -168,6 +166,7 @@ template<typename T> class BoundedBuffer {
 
             REMOVE_DONE;
             elem = items[--numberOfElements];
+            items.pop_back();
 
             PROD_SIGNAL( prodLock );
 
@@ -185,12 +184,7 @@ template<typename T> class BoundedBuffer {
         return elem;
 
 	}
-    BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {
-        items = new T[size];
-    }
-    ~BoundedBuffer() {
-        delete[] items;
-    }
+    BoundedBuffer( const unsigned int size = 10 ) : sizeLimit(size) {}
 };
 #endif // NOBUSY
 
