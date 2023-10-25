@@ -106,14 +106,14 @@ template<typename T> class BoundedBuffer {
         try {
             PROD_ENTER;
 
-            if ( bargeFlag ) {
+            if ( bargeFlag || prodFlag || consFlag ) {
                 waitLock.wait(buffLock);
 
                 if (waitLock.empty()) bargeFlag = false;
             }
 
             if ( numberOfElements == sizeLimit ) {
-                bargeFlag = true;
+                if ( consFlag == false && waitLock.empty == false ) { waitLock.signal(); }
                 numberOfBlocks++;
                 prodLock.wait(buffLock);
             }
@@ -123,14 +123,14 @@ template<typename T> class BoundedBuffer {
             numberOfElements++;
 
             CONS_SIGNAL( consLock );
-            consLock.signal();
-            /*
             if ( consLock.empty() == false ) {
+                consFlag = true;
                 consLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
                 waitLock.signal();
-            }*/
+            }
+            prodFlag = false;
 
         } _Finally {
             buffLock.release();
@@ -144,7 +144,7 @@ template<typename T> class BoundedBuffer {
 
             CONS_ENTER;
 
-            if ( bargeFlag ) {
+            if ( bargeFlag || prodFlag || consFlag ) {
                 waitLock.wait(buffLock);
 
                 if (waitLock.empty()) bargeFlag = false;
@@ -152,13 +152,8 @@ template<typename T> class BoundedBuffer {
 
 
             if ( numberOfElements == 0 ) {
-                if ( poisoned ) {
-                    _Throw Poison();
-                }
-
-                if ( prodLock.empty() ) {
-                    waitLock.signal();
-                }
+                if ( prodFlag == false && waitLock.empty == false ) { waitLock.signal(); }
+                if ( poisoned ) { _Throw Poison(); }
 
                 numberOfBlocks++;
                 consLock.wait(buffLock);
@@ -169,13 +164,15 @@ template<typename T> class BoundedBuffer {
             items.pop_back();
 
             PROD_SIGNAL( prodLock );
-            prodLock.signal(); /*
+            prodLock.signal();
             if ( prodLock.empty() == false ) {
+                prodFlag = true;
                 prodLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
                 waitLock.signal();
-            }*/
+            }
+            consFlag = false;
 
         } _Finally {
             buffLock.release();
