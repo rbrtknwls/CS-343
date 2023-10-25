@@ -113,6 +113,7 @@ template<typename T> class BoundedBuffer {
             }
 
             if ( numberOfElements == sizeLimit ) {
+                bargeFlag = true;
                 numberOfBlocks++;
                 prodLock.wait(buffLock);
             }
@@ -168,13 +169,13 @@ template<typename T> class BoundedBuffer {
             items.pop_back();
 
             PROD_SIGNAL( prodLock );
-
+            prodLock.signal(); /*
             if ( prodLock.empty() == false ) {
                 prodLock.signal();
             } else if ( waitLock.empty() == false ) {
                 bargeFlag = true;
                 waitLock.signal();
-            }
+            }*/
 
         } _Finally {
             buffLock.release();
