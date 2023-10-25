@@ -123,8 +123,7 @@ template<typename T> class BoundedBuffer {
             }
 
             INSERT_DONE;
-            items.push_back(elem);
-            numberOfElements++;
+            items[numberOfElements++] = elem;
 
             CONS_SIGNAL( consLock );
 
@@ -169,7 +168,6 @@ template<typename T> class BoundedBuffer {
 
             REMOVE_DONE;
             elem = items[--numberOfElements];
-            items.pop_back();
 
             PROD_SIGNAL( prodLock );
 
