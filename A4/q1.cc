@@ -45,7 +45,9 @@ int main( int argc, char * argv[] ) {
         for ( volatile int i = 0; i < size; i += 1 ) ssbuf << (C - i) << '\t' << (C + i) << '\t'
 												  << (C | i) << '\t' << (C ^ i) << '\t';
 		ssbuf.seekp( 0 );								// reset stream
-gi
+#else
+#error unknown buffering style
+#endif
     } // for
 
     if ( ! nosummary ) { malloc_stats(); }				// print heap statistics
