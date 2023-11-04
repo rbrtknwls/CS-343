@@ -1,0 +1,22 @@
+1a) After running the experiment a total of 12 times, we get the following output:
+
+                         [ (DARRAY) ./a.out 100000000 20 ]    [ (DSTRING) ./a.out 10000000 20 ]
+NO OPTIMIZATION          4.77u 0.00s 0:04.78r, Malloc: 47    56.69u 0.00s 0:56.74r, Malloc: 400,000,053
+COMPILER OPTIMIZATION    3.69u 0.00s 0:03.69r, Malloc: 47    24.10u 0.00s 0:24.11r, Malloc: 400,000,053
+
+                         [ (DSTRINGSTREAM) ./a.out 100000000 20 ]
+NO OPTIMIZATION          23.72u 0.00s 0:23.74r, Malloc: 49
+COMPILER OPTIMIZATION    21.92u 0.00s 0:21.93r, Malloc: 49
+
+1b) In terms of performance, we see that DARRAY preforms the best followed be DSTRSTREAM and then DSTRING.
+The difference between DARRAY and DSTRSTREAM is 20 seconds, whereas the difference between DSTRSTREAM and
+DSTRING is 30 seconds.
+
+1c) Across the board, we see that compiler optimization improves the run time. In the case of DARRAY compiler
+optimization provides a speedup of 1 second (around 20% speedup), for DSTRSTREAM we see that compiler
+optimization provides a speedup of 2 seconds (around 5% speedup). Finally for DSTRING we see that the
+compiler optimization provides a speedup of 25 seconds (around 50% speedup).
+
+1d) Array seems to be the fastest, this makes sense as the array does the least number of computations for each
+time. DSTRSTREAM is a bit slower as the stream opperation is a bit slower, and lastly adding using strings is the
+slowest for each time opperation which explains the bad performance.
