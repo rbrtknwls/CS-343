@@ -2,6 +2,7 @@
 #define CS_343_Q3PRINTER_H
 
 #include "q3voter.h"
+#include "q3tallyVotes.h"
 
 #if defined( MC ) || defined( SEM )
 _Monitor Printer {
