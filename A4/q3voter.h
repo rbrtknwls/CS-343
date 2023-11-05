@@ -1,6 +1,7 @@
 #ifndef CS_343_Q3VOTER_H
 #define CS_343_Q3VOTER_H
 
+#include <uPRNG.h>
 #include "q3tallyVotes.h"
 
 extern PRNG mainPRNG;
