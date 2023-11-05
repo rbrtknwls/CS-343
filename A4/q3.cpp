@@ -12,11 +12,12 @@
 
 using namespace std;
 
+PRNG prng;
+
 int main( int argc, char * argv[] ) {
     int voters = 6;
     int group = 3;
     int votes = 1;
-    PRNG mainPRNG;
     int processors = 1;                                                   // default number of processors
 
     struct cmd_error { };
