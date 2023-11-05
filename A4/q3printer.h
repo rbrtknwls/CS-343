@@ -6,7 +6,7 @@
 
 
 _Monitor Printer {
-    int voters;
+    unsigned int voters;
   public:
     Printer( unsigned int voters );
     void print( unsigned int id, Voter::States state );

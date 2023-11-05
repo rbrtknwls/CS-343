@@ -23,7 +23,9 @@ _Cormonitor TallyVotes : public uBarrier {
 #else
     #error unsupported voter type
 #endif
-// common declarations
+    Printer * printer;
+    unsigned int groupNumber;
+    unsigned int voters;
   public:							// common interface
     _Event Failed {};
     struct Ballot { unsigned int picture, statue, giftshop; };
