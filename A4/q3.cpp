@@ -54,11 +54,11 @@ int main( int argc, char * argv[] ) {
     cout << "voters" << voters << "|" << "group" << group << endl;
     cout << "votes" << votes << endl;
 
-    Printer *printer = Printer( voters );
-    TallyVotes *voteTallier = TallyVotes( voters, group, printer );
-    vector< Voter* > voters;
+    Printer printer = Printer( voters );
+    TallyVotes voteTallier = TallyVotes( voters, group, &printer );
+    vector< Voter* > listOfVoters;
 
     for (int id = 0; id < voters; id++ ) {
-        voters.push_back(new Voters( id, votes, voteTallier, printer ));
+        listOfVoters.push_back(new Voter( id, votes, &voteTallier, &printer ));
     }
 }
