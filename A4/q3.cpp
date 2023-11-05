@@ -50,6 +50,6 @@ int main( int argc, char * argv[] ) {
     uProcessor p[processors - 1] __attribute__(( unused ));
 
     cout << "voters" << voters << "|" << "group" << group << endl;
-    cout << "votes" << votes << "|" << "seed" << seed << endl;
+    cout << "votes" << votes << "|" << endl;
 
 }
