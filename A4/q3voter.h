@@ -17,6 +17,7 @@ _Task Voter {
         unsigned int picture = prng( 3 ), statue = prng( 2 );
         return (TallyVotes::Ballot){ picture, voting[picture][statue][0], voting[picture][statue][1] };
     }
+    void main();
   public:
     enum States : char { Start = 'S', Vote = 'V', Block = 'B', Unblock = 'U', Barging = 'b',
                          Done = 'D', Complete = 'C', Going = 'G', Failed = 'X', Terminated = 'T' };
