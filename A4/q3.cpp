@@ -1,6 +1,6 @@
 #include <iostream>
-
 #include <uPRNG.h>
+
 #include "q3tallyVotes.h"
 #include "q3voter.h"
 #include "q3printer.h"
@@ -9,7 +9,9 @@
  * states for the printer, voters and tally system.
 */
 
-int main() {
+using namespace std;
+
+int main( int argc, char * argv[] ) {
     int voters = 6;
     int group = 3;
     int votes = 1;
