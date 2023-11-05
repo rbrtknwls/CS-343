@@ -1,6 +1,8 @@
+#ifndef CS_343_Q3TALLYVOTES
+#define CS_343_Q3TALLYVOTES
+
 #if defined( MC )					// mutex/condition solution
 #include "BargingCheckVote.h"
-#include "q3printer.h"
 // includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
@@ -31,3 +33,5 @@ _Cormonitor TallyVotes : public uBarrier {
 		#endif
 	);
 };
+
+#endif
