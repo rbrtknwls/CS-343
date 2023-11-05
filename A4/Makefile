@@ -11,7 +11,7 @@ endif
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
 
-OBJECTS = q3.o q3tallyVotes${VIMPL}.o q3voter.o q3printer.o # list of object files for question 3 prefixed with "q3"
+OBJECTS = q3tallyVotes.o q3voter.o q3printer.o # list of object files for question 3 prefixed with "q3"
 EXEC = vote
 
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
