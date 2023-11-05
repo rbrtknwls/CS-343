@@ -3,6 +3,7 @@
 
 #if defined( MC )					// mutex/condition solution
 #include "BargingCheckVote.h"
+// includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
 #elif defined( SEM )				// semaphore solution
@@ -15,7 +16,7 @@ class TallyVotes {
 _Cormonitor TallyVotes : public uBarrier {
 	// private declarations for this kind of vote-tallier
 #else
-#error unsupported voter type
+    #error unsupported voter type
 #endif
 // common declarations
   public:							// common interface
@@ -27,9 +28,10 @@ _Cormonitor TallyVotes : public uBarrier {
     TallyVotes( unsigned int voters, unsigned int group, Printer & printer );
     Tour vote( unsigned int id, Ballot ballot );
     void done(
-#if defined( MC ) || defined( BAR )
+    #if defined( MC ) || defined( BAR )
         unsigned int id
-#endif
-);
+    #endif
+    );
+};
 
 #endif
