@@ -1,6 +1,8 @@
 #ifndef CS_343_Q3PRINTER_H
 #define CS_343_Q3PRINTER_H
 
+#include "q3voter.h"
+
 #if defined( MC ) || defined( SEM )
 _Monitor Printer {
 #elif defined( BAR )

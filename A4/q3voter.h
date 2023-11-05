@@ -1,6 +1,7 @@
 #ifndef CS_343_Q3VOTER_H
 #define CS_343_Q3VOTER_H
 
+#include "q3tallyVotes.h"
 
 _Task Voter {
     TallyVotes::Ballot cast() __attribute__(( warn_unused_result )) {  // cast 3-way vote
