@@ -1,3 +1,6 @@
+#ifndef CS_343_Q3BARGINGCHECKVOTE
+#define CS_343_Q3BARGINGCHECKVOTE
+
 #include <iostream>
 
 // Preprocessor variables declared in a program can have no value (empty), but variables declared with compiler flag -D
@@ -39,3 +42,5 @@ void __prodleave__( unsigned int ticket, unsigned int group ) { \
 	BCHECK( unsigned int __voter_ticket__ = __prodEnter__( group ); )
 #define VOTER_LEAVE( group ) \
 	BCHECK( __prodleave__( __voter_ticket__, group ); )
+
+#endif
