@@ -1,6 +1,6 @@
 #include <iostream>
+#include <vector>
 #include <uPRNG.h>
-#include <vector.h>
 
 #include "q3tallyVotes.h"
 #include "q3voter.h"
@@ -57,7 +57,7 @@ int main( int argc, char * argv[] ) {
     Printer *printer = Printer( voters );
     TallyVotes *voteTallier = TallyVotes( voters, group, printer );
     vector< Voter* > voters;
-    
+
     for (int id = 0; id < voters; id++ ) {
         voters.push_back(new Voters( id, votes, voteTallier, printer ));
     }
