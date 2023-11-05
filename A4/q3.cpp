@@ -59,6 +59,6 @@ int main( int argc, char * argv[] ) {
     vector< Voter* > listOfVoters;
 
     for (int id = 0; id < voters; id++ ) {
-        listOfVoters.push_back(new Voter( id, votes, *voteTallier, *printer ));
+        listOfVoters.push_back(new Voter( id, votes, voteTallier, printer ));
     }
 }
