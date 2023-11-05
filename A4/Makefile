@@ -10,7 +10,7 @@ ifeq ("${OUTPUT}","NOOUTPUT")
 endif
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS = q3.cpp q3tallyVotes${VIMPL}.cpp # list of object files for question 3 prefixed with "q3"
+OBJECTS = q3.o q3tallyVotes${VIMPL}.cpp # list of object files for question 3 prefixed with "q3"
 EXEC = vote
 
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
