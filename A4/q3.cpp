@@ -55,7 +55,7 @@ int main( int argc, char * argv[] ) {
     cout << "votes" << votes << endl;
 
     Printer printer = Printer( voters );
-    TallyVotes voteTallier = TallyVotes( voters, group, *printer );
+    TallyVotes voteTallier = TallyVotes( voters, group, printer );
     /*
     vector< Voter* > listOfVoters;
 
