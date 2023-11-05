@@ -1,5 +1,6 @@
 #include <iostream>
 #include <uPRNG.h>
+#include <vector.h>
 
 #include "q3tallyVotes.h"
 #include "q3voter.h"
@@ -51,6 +52,13 @@ int main( int argc, char * argv[] ) {
     uProcessor p[processors - 1] __attribute__(( unused ));
 
     cout << "voters" << voters << "|" << "group" << group << endl;
-    cout << "votes" << votes << "|" << endl;
+    cout << "votes" << votes << endl;
 
+    Printer *printer = Printer( voters );
+    TallyVotes *voteTallier = TallyVotes( voters, group, printer );
+    vector< Voter* > voters;
+    
+    for (int id = 0; id < voters; id++ ) {
+        voters.push_back(new Voters( id, votes, voteTallier, printer ));
+    }
 }
