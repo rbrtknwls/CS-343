@@ -1,8 +1,12 @@
 #ifndef CS_343_Q3PRINTER_H
 #define CS_343_Q3PRINTER_H
 
+#if defined( MC ) || defined( SEM )
+_Monitor Printer {
+#elif defined( BAR )
+_Cormonitor Printer {
+#endif
 
-_Monitor / _Cormonitor Printer {	// chose one of the two kinds of type constructor
   public:
     Printer( unsigned int voters );
     void print( unsigned int id, Voter::States state );
