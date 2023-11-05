@@ -1,0 +1,11 @@
+2ai) Rule number 5 (starvation) could be violated with this change. Without loss of generality, let's say that
+thread 1 was the last thread in and both thread 1 and 2 want to get in. Because thread 1 went in last it will wait as
+long as thread 2 wants to get in. If the second thread reestablishes its intent to go in before thread 1 is scheduled to
+run, thread 1 will never be able to go into the critical section. Thus we get starvation.
+
+2aii) This is unlikely to cause a failure during a test as depending on when the scheduler runs thread 1 it can break
+the starvation, this means that over a large enough test span we are likely to break the starvation as a single time
+slice can fix the starvation at any given time.
+
+2b) Dekker will no longer be write/write safe as intent reset is done before protocol exit. For example, if thread 1
+retracts its intent, thread 2 can go to the critical section and then both can write to last as the same time.
