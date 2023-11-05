@@ -56,9 +56,10 @@ int main( int argc, char * argv[] ) {
 
     Printer printer = Printer( voters );
     TallyVotes voteTallier = TallyVotes( voters, group, *printer );
+    /*
     vector< Voter* > listOfVoters;
 
     for (int id = 0; id < voters; id++ ) {
         listOfVoters.push_back(new Voter( id, votes, *voteTallier, *printer ));
-    }
+    }*/
 }
