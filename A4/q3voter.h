@@ -3,6 +3,8 @@
 
 #include "q3tallyVotes.h"
 
+extern PRNG mainPRNG;
+
 _Monitor Printer;
 
 _Task Voter {
