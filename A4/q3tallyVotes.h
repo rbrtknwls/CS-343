@@ -3,6 +3,8 @@
 
 #if defined( MC )					// mutex/condition solution
 #include "BargingCheckVote.h"
+#include "q3printer.h"
+
 // includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
