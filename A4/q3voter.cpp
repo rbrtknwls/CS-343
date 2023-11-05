@@ -7,5 +7,5 @@ Voter::Voter( unsigned int id, unsigned int nvotes, TallyVotes & voteTallier, Pr
     id(id), nvotes(nvotes), voteTallier(&voteTallier), printer(&printer) {}
 
 void Voter::main() {
-    p
+    std::cout << "e" << std::endl;
 }
