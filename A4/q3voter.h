@@ -2,7 +2,7 @@
 #define CS_343_Q3VOTER_H
 
 #include "q3tallyVotes.h"
-
+#include "q3printer.h"
 _Task Voter {
     TallyVotes::Ballot cast() __attribute__(( warn_unused_result )) {  // cast 3-way vote
         // O(1) random selection of 3 items without replacement using divide and conquer.
