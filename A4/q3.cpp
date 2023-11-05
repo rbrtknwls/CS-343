@@ -28,7 +28,7 @@ int main( int argc, char * argv[] ) {
             case 5:
                 if ( *argv[4] != 'd' ) {
                     int seed = stoi(argv[4]);
-                  if (seed < 0) { throw cmd_error(); }
+                  if (seed <= 0) { throw cmd_error(); }
                      mainPRNG.set_seed(seed);
                 }
             case 4:
@@ -37,14 +37,15 @@ int main( int argc, char * argv[] ) {
                 if ( *argv[2] != 'd' ) { group = stoi(argv[2]); }
             case 2:
                 if ( *argv[1] != 'd' ) { voters = stoi(argv[1]); }
-                break;
             default:                                                      // wrong number of options
-                throw cmd_error();
+
+              if ( voters <= 0 || group <= 0 || votes <= 0 || processors <= 0 ) { throw cmd_error(); }
+                break;
         } // switch
 
     } catch (...) {                                                       // catch any
         cerr << "Usage: " << argv[0]
-             << "vote [ voters | ’d’ [ group | ’d’ [ votes | ’d’ [ seed | ’d’ [ processors | ’d’ ] ] ] ] ]"  << endl;
+             << " [ voters | ’d’ [ group | ’d’ [ votes | ’d’ [ seed | ’d’ [ processors | ’d’ ] ] ] ] ]"  << endl;
         exit(EXIT_FAILURE);                                               // TERMINATE
     } // try
     uProcessor p[processors - 1] __attribute__(( unused ));
