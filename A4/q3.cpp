@@ -58,7 +58,13 @@ int main( int argc, char * argv[] ) {
     TallyVotes voteTallier = TallyVotes( voters, group, printer );
     vector< Voter* > listOfVoters;
 
-    for (int id = 0; id < voters; id++ ) {
+    for ( int id = 0; id < voters; id++ ) {
         listOfVoters.push_back(new Voter( id, votes, voteTallier, printer ));
     }
+
+    for ( int id = 0; id < voters; id++ ) {
+        delete listOfVoters[listOfVoters.size()-1];
+        listOfVoters.pop_back();
+    }
+    listOfVoters.clear();
 }
