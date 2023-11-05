@@ -12,7 +12,7 @@
 
 using namespace std;
 
-PRNG prng;
+PRNG mainPRNG;
 
 int main( int argc, char * argv[] ) {
     int voters = 6;

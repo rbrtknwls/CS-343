@@ -8,7 +8,7 @@ Voter::Voter( unsigned int id, unsigned int nvotes, TallyVotes & voteTallier, Pr
 
 void Voter::main() {
     yield ( prng( 19 ) );
-    for ( int tourNum = 0; tourNum < nvotes; tourNum++ ) {
+    for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
         std::cout << "start" << std::endl;
         yield( prng(4) );
         std::cout << "vote" << std::endl;
