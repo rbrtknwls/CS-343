@@ -6,9 +6,9 @@ using namespace std;
 void flushBuffer ( int voters, bool* hasBeenWrittenTo, PrinterState *buffer ) {
     for ( int i = 0; i < voters; i++ ) {
         if (hasBeenWrittenTo[i]) {
-            
+
         } else {
-            std::cout << "\t"
+            std::cout << "\t";
         }
     }
 }
@@ -30,7 +30,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
     for ( unsigned int i = 0; i < voters; i++ ) {
         cout << "*******";
-        if (i != voters-1 ) { cout << " "; }
+        if ( i != voters-1 ) { cout << " "; }
     }
 }
 
