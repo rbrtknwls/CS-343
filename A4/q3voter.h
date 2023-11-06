@@ -3,7 +3,6 @@
 
 #include <uPRNG.h>
 #include "q3tallyVotes.h"
-
 extern PRNG mainPRNG;
 
 _Monitor Printer;
