@@ -9,6 +9,14 @@ void Printer::flushBuffer () {
             Voter::States currentState = printBuffer[i].mainState;
             std::cout << currentState;
 
+            switch ( currentState ) {
+                case Voter::States.Vote:
+                    std::cout << "HI";
+                    break
+                default:
+                    std::cout << "        ";
+            }
+
 
         } else {
             std::cout << "\t";

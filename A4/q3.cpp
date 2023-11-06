@@ -24,7 +24,7 @@ int main( int argc, char * argv[] ) {
 
     try {
 
-        switch (argc) {
+        switch ( argc ) {
             case 6:
                 if ( *argv[5] != 'd' ) { processors = stoi(argv[5]); }
             case 5:
