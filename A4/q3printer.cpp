@@ -44,6 +44,7 @@ void Printer::flushBuffer () {
                     nonSpaceValues += 4;
                     break;
                 default:
+                    break;
             }
             std::cout << std::string( 8-nonSpaceValues, ' ' );
 
