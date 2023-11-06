@@ -6,7 +6,7 @@ using namespace std;
 void Printer::flushBuffer () {
     for ( int i = 0; i < voters; i++ ) {
         if ( hasBeenWrittenTo[i] ) {
-            Voter::State currentState = printBuffer[i]->mainState;
+            Voter::States currentState = printBuffer[i].mainState;
             std::cout << currentState;
 
 
