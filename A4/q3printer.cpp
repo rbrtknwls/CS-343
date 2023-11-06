@@ -11,8 +11,18 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
 
     for ( unsigned int i = 0; i < voters; i++ ) {
-        std::cout <<
         hasBeenWrittenTo[i] = false;
+        cout << "V" << i;
+
+        if ( i != voters-1 ) {
+            if ( i < 10 ) { cout << "       "; }
+            else { cout << "       "; }
+        }
+    }
+
+    for ( unsigned int i = 0; i < voters; i++ ) {
+        cout << "*******";
+        if (i != voters-1 ) { cout << " "; }
     }
 }
 
