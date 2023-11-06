@@ -9,9 +9,9 @@ Voter::Voter( unsigned int id, unsigned int nvotes, TallyVotes & voteTallier, Pr
 void Voter::main() {
     yield ( prng( 19 ) );
     for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
-        std::cout << "start" << std::endl;
+        printer->print(id, Start);
         yield( prng(4) );
-        std::cout << "vote" << std::endl;
+        printer->print(id, Start);
         yield( prng(4) );
         std::cout << "going on tour" << std::endl;
         std::cout << "end tour" << std::endl;
