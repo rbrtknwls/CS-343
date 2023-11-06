@@ -24,7 +24,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
         if ( i != voters-1 ) {
             if ( i < 10 ) { cout << "      "; }
-            else { cout << "      "; }
+            else { cout << "     "; }
         }
     }
 
