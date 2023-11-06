@@ -10,9 +10,9 @@ void Printer::flushBuffer () {
             std::cout << currentState;
 
             switch ( currentState ) {
-                case Voter::States.Vote:
+                case Vote:
                     std::cout << "HI";
-                    break
+                    break;
                 default:
                     std::cout << "        ";
             }
