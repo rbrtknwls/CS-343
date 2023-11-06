@@ -4,22 +4,51 @@
 using namespace std;
 
 void Printer::flushBuffer () {
-    for ( int i = 0; i < voters; i++ ) {
+    for ( unsigned int i = 0; i < voters; i++ ) {
         if ( hasBeenWrittenTo[i] ) {
+            int nonSpaceValues = 0;
             Voter::States currentState = printBuffer[i].mainState;
-            std::cout << currentState;
+            nonSpaceValues++;
+
+            cout << currentState;
 
             switch ( currentState ) {
                 case Voter::Vote:
-                    std::cout << "HI";
+                    cout << " " << printBuffer[i].vote.picture << "," << printBuffer[i].vote.statue;
+                    cout << "," << printBuffer[i].vote.giftshop;
+                    nonSpaceValues += 6;
                     break;
-                default:
-                    std::cout << "        ";
+
+                case Voter::Block:
+                    cout << " " << printBuffer[i].numBlocked;
+                    nonSpaceValues += 2;
+                    break;
+
+                case Voter::Unblock:
+                    cout << " " << printBuffer[i].numBlocked;
+                    nonSpaceValues += 2;
+                    break;
+
+                case Voter::Barging:
+                    cout << " " << printBuffer[i].numBlocked << " " << printBuffer[i].group;
+                    nonSpaceValues += 4;
+                    break;
+
+                case Voter::Complete:
+                    cout << " " << printBuffer[i].tour.tourkind;
+                    nonSpaceValues += 2;
+                    break;
+
+                case Voter::Going:
+                    cout << " " << printBuffer[i].tour.tourkind << " " << printBuffer[i].tour.groupno;
+                    nonSpaceValues += 4;
+                    break;
             }
+            std::cout << std::string( 8-nonSpaceValues, ' ' );
 
 
         } else {
-            std::cout << "\t";
+            cout << "\t";
         }
     }
 }
