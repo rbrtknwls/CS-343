@@ -1,8 +1,16 @@
 #include "q3printer.h"
 #include <iostream>
 
-void flushBuffer ( int voters, bool* hasBeenWrittenTo, PrinterState *buffer ) {
+using namespace std;
 
+void flushBuffer ( int voters, bool* hasBeenWrittenTo, PrinterState *buffer ) {
+    for ( int i = 0; i < voters; i++ ) {
+        if (hasBeenWrittenTo[i]) {
+            
+        } else {
+            std::cout << "\t"
+        }
+    }
 }
 
 Printer::Printer( unsigned int voters ) : voters(voters) {
