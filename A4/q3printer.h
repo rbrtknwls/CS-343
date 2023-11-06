@@ -7,9 +7,7 @@
 _Monitor Printer {
     struct PrinterState {
         Voter::States mainState,
-        unsigned int val1,
-        unsigned int val2,
-        unsigned int val3
+        unsigned int val1, val2, val3;
     };
 
     unsigned int voters;
