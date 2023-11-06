@@ -2,8 +2,10 @@
 
 Printer::Printer( unsigned int voters ) : voters(voters) {
     hasBeenWrittenTo = new bool[voters];
+    printBuffer = new PrinterState[voters];
 
-    for ( int i = 0; i < voters; i++ ) {
+
+    for ( unsigned int i = 0; i < voters; i++ ) {
         hasBeenWrittenTo[i] = false;
     }
 }
