@@ -90,7 +90,35 @@ void Printer::print( unsigned int id, Voter::States state ) {
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
     printBuffer[id].mainState = state;
     hasBeenWrittenTo[id] = true;
+}
 
+void Printer::print( unsigned int id, Voter::States state, TallyVotes::Tour tour ) {
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
+    printBuffer[id].mainState = state;
+    printBuffer[id].tour = tour;
+    hasBeenWrittenTo[id] = true;
+}
+
+void Printer::print( unsigned int id, Voter::States state, TallyVotes::Ballot vote ) {
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
+    printBuffer[id].mainState = state;
+    printBuffer[id].vote = vote;
+    hasBeenWrittenTo[id] = true;
+}
+
+void Printer::print( unsigned int id, Voter::States state, unsigned int numBlocked ) {
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
+    printBuffer[id].mainState = state;
+    printBuffer[id].numBlocked = numBlocked;
+    hasBeenWrittenTo[id] = true;
+}
+
+void Printer::print( unsigned int id, Voter::States state, unsigned int numBlocked, unsigned int group ) {
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
+    printBuffer[id].mainState = state;
+    printBuffer[id].numBlocked = numBlocked;
+    printBuffer[id].group = group;
+    hasBeenWrittenTo[id] = true;
 }
 
 Printer::~Printer() {
