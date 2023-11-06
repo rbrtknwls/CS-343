@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// ================== Private Methods ==================== //
 void Printer::flushBuffer () {
     for ( unsigned int i = 0; i < voters; i++ ) {
         if ( hasBeenWrittenTo[i] ) {
@@ -46,14 +47,19 @@ void Printer::flushBuffer () {
                 default:
                     break;
             }
-            std::cout << std::string( 8-nonSpaceValues, ' ' );
+            cout << string( 8-nonSpaceValues, ' ' );
 
 
         } else {
             cout << "\t";
         }
     }
+
+    cout << endl;
+    for ( unsigned int i = 0; i < voters; i++ ) { hasBeenWrittenTo[i] = false; }
 }
+
+// ================== Public Methods ==================== //
 
 Printer::Printer( unsigned int voters ) : voters(voters) {
     hasBeenWrittenTo = new bool[voters];
@@ -76,10 +82,18 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
         cout << "*******";
         if ( i != voters-1 ) { cout << " "; }
     }
+
+    cout << endl;
+}
+
+void Printer::print( unsigned int id, Voter::States state ) {
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
+    printBuffer[i].mainState = state;
+    hasBeenWrittenTo[id] = true;
+
 }
 
 Printer::~Printer() {
     delete printBuffer;
     delete hasBeenWrittenTo;
 }
-
