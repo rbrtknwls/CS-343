@@ -88,7 +88,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
 void Printer::print( unsigned int id, Voter::States state ) {
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
-    printBuffer[i].mainState = state;
+    printBuffer[id].mainState = state;
     hasBeenWrittenTo[id] = true;
 
 }
