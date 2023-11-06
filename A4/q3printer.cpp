@@ -43,6 +43,7 @@ void Printer::flushBuffer () {
                     cout << " " << printBuffer[i].tour.tourkind << " " << printBuffer[i].tour.groupno;
                     nonSpaceValues += 4;
                     break;
+                default:
             }
             std::cout << std::string( 8-nonSpaceValues, ' ' );
 
