@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void flushBuffer ( int voters, bool* hasBeenWrittenTo, Printer::PrinterState *buffer ) {
+void Printer::flushBuffer () {
     for ( int i = 0; i < voters; i++ ) {
         if (hasBeenWrittenTo[i]) {
 
