@@ -21,7 +21,7 @@ _Monitor Printer {
     void print( unsigned int id, Voter::States state, TallyVotes::Ballot vote );
     void print( unsigned int id, Voter::States state, unsigned int numBlocked );
     void print( unsigned int id, Voter::States state, unsigned int numBlocked, unsigned int group );
-
+    ~Printer();
 };
 
 #endif //CS_343_Q3PRINTER_H
