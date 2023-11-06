@@ -28,6 +28,8 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
         }
     }
 
+    cout << endl;
+
     for ( unsigned int i = 0; i < voters; i++ ) {
         cout << "*******";
         if ( i != voters-1 ) { cout << " "; }
