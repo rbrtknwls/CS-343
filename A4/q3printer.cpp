@@ -11,7 +11,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 }
 
 Printer::~Printer() {
-    delete printerBuffer;
-    delete hasBeenWrittento;
+    delete printBuffer;
+    delete hasBeenWrittenTo;
 }
 
