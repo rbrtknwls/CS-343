@@ -12,7 +12,9 @@ void Voter::main() {
     for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
         printer->print(id, Start);
         yield( prng(4) );
-        Ballot = cast();
+
+        TallyVotes::Ballot ballot = cast();
+        
         printer->print(id, Start);
         yield( prng(4) );
         std::cout << "going on tour" << std::endl;
