@@ -9,7 +9,7 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
     votes[2] = 0;
 }
 
-TallyVotes::determineWinner() {
+Ballot TallyVotes::determineWinner() {
     if ( votes[0] >= votes[1] && votes[0] >= votes[2] ) { return picture; }
     if ( votes[1] >= votes[0] && votes[1] >= votes[2] ) { return statue; }
     return giftshop;
