@@ -26,6 +26,10 @@ _Cormonitor TallyVotes : public uBarrier {
     Printer * printer;
     unsigned int groupNumber;
     unsigned int voters;
+    unsigned int votes[3];
+    unsigned int currentNumberOfGroupMembers;
+
+    Ballot determineWinner();
   public:							// common interface
     _Event Failed {};
     struct Ballot { unsigned int picture, statue, giftshop; };
