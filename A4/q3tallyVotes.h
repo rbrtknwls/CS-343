@@ -41,9 +41,9 @@ _Cormonitor TallyVotes : public uBarrier {
 #if defined( MC ) || defined( BAR )
         unsigned int id
 #endif
-private:
-    Ballot determineWinner();
     );
+  private:
+    Ballot determineWinner();
 };
 
 #endif
