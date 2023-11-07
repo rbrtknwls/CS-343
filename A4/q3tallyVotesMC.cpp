@@ -9,10 +9,10 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
     votes[2] = 0;
 }
 
-TallyVotes::Ballot TallyVotes::determineWinner() {
-    if ( votes[0] >= votes[1] && votes[0] >= votes[2] ) { return TallyVotes::Ballot.picture; }
-    if ( votes[1] >= votes[0] && votes[1] >= votes[2] ) { return TallyVotes::Ballot.statue; }
-    return TallyVotes::giftshop;
+TallyVotes::TourKind TallyVotes::determineWinner() {
+    if ( votes[0] >= votes[1] && votes[0] >= votes[2] ) { return Picture; }
+    if ( votes[1] >= votes[0] && votes[1] >= votes[2] ) { return Statue; }
+    return GiftShop;
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
