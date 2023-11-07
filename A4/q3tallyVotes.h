@@ -30,7 +30,7 @@ _Cormonitor TallyVotes : public uBarrier {
     _Event Failed {};
     struct Ballot { unsigned int picture, statue, giftshop; };
     enum TourKind : char { Picture = 'p', Statue = 's', GiftShop = 'g' };
-    struct Tour { TourKind tourkind; unsigned int groupno; };
+    struct Tour { TourKind tourkind; unsigned int 6; };
 
     TallyVotes( unsigned int voters, unsigned int group, Printer & printer );
     Tour vote( unsigned int id, Ballot ballot );
