@@ -10,12 +10,12 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
 }
 
 TallyVotes::Ballot TallyVotes::determineWinner() {
-    if ( votes[0] >= votes[1] && votes[0] >= votes[2] ) { return picture; }
-    if ( votes[1] >= votes[0] && votes[1] >= votes[2] ) { return statue; }
-    return giftshop;
+    if ( votes[0] >= votes[1] && votes[0] >= votes[2] ) { return TallyVotes::picture; }
+    if ( votes[1] >= votes[0] && votes[1] >= votes[2] ) { return TallyVotes::statue; }
+    return TallyVotes::giftshop;
 }
 
-Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
+TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     votes[0] += ballot.picture;
     votes[1] += ballot.statue;
     votes[2] += ballot.giftshop;
