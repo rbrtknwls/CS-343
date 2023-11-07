@@ -28,4 +28,5 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
     }
+    return Picture;
 }
