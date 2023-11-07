@@ -22,7 +22,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentNumberOfGroupMembers++;
 
     if ( currentNumberOfGroupMembers == voters ) {
-        Ballot winner = determineWinner();
+        TourKind winner = determineWinner();
 
         votes[0] = 0;
         votes[1] = 0;

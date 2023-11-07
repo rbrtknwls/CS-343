@@ -43,7 +43,7 @@ _Cormonitor TallyVotes : public uBarrier {
 #endif
     );
   private:
-    Ballot determineWinner();
+    TourKind determineWinner();
 };
 
 #endif
