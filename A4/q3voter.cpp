@@ -14,7 +14,7 @@ void Voter::main() {
         yield( prng(4) );
 
         TallyVotes::Ballot ballot = cast();
-        
+
         printer->print(id, Start);
         yield( prng(4) );
         std::cout << "going on tour" << std::endl;
