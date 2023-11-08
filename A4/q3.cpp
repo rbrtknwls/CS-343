@@ -67,5 +67,9 @@ int main( int argc, char * argv[] ) {
         delete listOfVoters[listOfVoters.size()-1];
         listOfVoters.pop_back();
     }
+
+    for ( int id = 0; id < voters; id++ ) {
+        printer.print( id, Voter::Terminated );
+    }
     listOfVoters.clear();
 }
