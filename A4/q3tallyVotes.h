@@ -34,6 +34,8 @@ _Cormonitor TallyVotes : public uBarrier {
     unsigned int votes[3];
     unsigned int currentNumberOfGroupMembers;
 
+    Tour currentTour;
+
   public:							// common interface
     _Event Failed {};
     struct Ballot { unsigned int picture, statue, giftshop; };

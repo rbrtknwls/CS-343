@@ -15,8 +15,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] += ballot.statue;
         votes[2] += ballot.giftshop;
         currentNumberOfGroupMembers++;
-
-        Tour currentTour;
+        
         if (currentNumberOfGroupMembers == maxGroupSize) {
             votingGroupInProgress = true;
 
