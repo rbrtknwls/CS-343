@@ -14,10 +14,11 @@ void Voter::main() {
         yield( prng(4) );
 
         TallyVotes::Ballot ballot = cast();
-        voteTallier->vote( id, ballot );
         printer->print( id, Vote, ballot );
+        TallyVotes::Tour groupResult = voteTallier->vote( id, ballot );
+
         yield( prng(4) );
-        std::cout << "going on tour" << std::endl;
-        std::cout << "end tour" << std::endl;
+        printer->print( id, Going, groupResult);
     }
+    printer->print( id, Terminated);
 }
