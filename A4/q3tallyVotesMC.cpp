@@ -10,7 +10,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             //bargingLock.wait( tallyVotesLock );
         }
 
-        printer->print( id, Voter::Vote, Ballot );
+        printer->print( id, Voter::Vote );
 
         votes[0] += ballot.picture;
         votes[1] += ballot.statue;
