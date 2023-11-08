@@ -27,7 +27,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             votes[1] = 0;
             votes[2] = 0;
 
-            printer->print( id, Voter::Complete, currentTour.tourkind );
+            printer->print( id, Voter::Complete, currentTour );
 
         } else {
             printer->print( id, Voter::Block, currentNumberOfGroupMembers );
