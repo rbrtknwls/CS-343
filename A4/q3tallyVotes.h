@@ -7,7 +7,9 @@ _Monitor Printer;
 #include "BargingCheckVote.h"
 // includes for this kind of vote-tallier
 class TallyVotes {
-	// private declarations for this kind of vote-tallier
+    uOwnerLock tallyVotesLock;
+    uCondLock votingGroupLock;
+    uCondLock consLock;
 
 #elif defined( SEM )				// semaphore solution
 #include "BargingCheckVote.h"
