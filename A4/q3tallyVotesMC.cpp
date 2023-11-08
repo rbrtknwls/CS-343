@@ -17,6 +17,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[2] = 0;
     }
     TourKind winner = determineWinner();
-    Tour newTour = (winner, groupNumber);
+    Tour newTour;
+    newTour.tourkind = winner;
+    newTour.groupno = groupNumber;
     return newTour;
 }
