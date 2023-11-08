@@ -5,6 +5,7 @@
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     tallyVotesLock.acquire();
     try {
+        VOTER_ENTER( maxGroupSize );
 
         if ( votingGroupInProgress ) {
             //bargingLock.wait( tallyVotesLock );
@@ -42,6 +43,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             votingGroupLock.signal();
         }
         currentNumberOfGroupMembers--;
+
+        VOTER_LEAVE( maxGroupSize );
 
         return currentTour;
 

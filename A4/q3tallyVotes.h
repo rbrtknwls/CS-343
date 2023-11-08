@@ -12,6 +12,7 @@ class TallyVotes {
     uCondLock bargingLock;
 
     bool votingGroupInProgress;
+    BCHECK_DECL;
 
 #elif defined( SEM )				// semaphore solution
 #include "BargingCheckVote.h"
