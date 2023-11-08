@@ -9,15 +9,21 @@ Voter::Voter( unsigned int id, unsigned int nvotes, TallyVotes & voteTallier, Pr
 
 void Voter::main() {
     yield ( prng( 19 ) );
-    for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
-        printer->print(id, Start);
-        yield( prng(4) );
+    try {
+        _Enable{
+                for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
+                    printer->print(id, Start);
+                    yield(prng(4));
 
-        TallyVotes::Ballot ballot = cast();
-        TallyVotes::Tour groupResult = voteTallier->vote( id, ballot );
+                    TallyVotes::Ballot ballot = cast();
+                    TallyVotes::Tour groupResult = voteTallier->vote(id, ballot);
 
-        yield( prng(4) );
-        printer->print( id, Going, groupResult);
+                    yield(prng(4));
+                    printer->print(id, Going, groupResult);
+                }
+        }
+    } catch ( TallyVotes::Failed &failed ) {
+        printer->print(id, Failed);
     }
     voteTallier->done(id);
 }

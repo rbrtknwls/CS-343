@@ -7,6 +7,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     try {
         VOTER_ENTER( maxGroupSize );
 
+        if ( voters < MaxGroupSize ) { _Throw Failed(); }
+
         if ( votingGroupInProgress ) {
             //bargingLock.wait( tallyVotesLock );
         }
