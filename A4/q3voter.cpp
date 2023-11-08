@@ -14,7 +14,6 @@ void Voter::main() {
         yield( prng(4) );
 
         TallyVotes::Ballot ballot = cast();
-        printer->print( id, Vote, ballot );
         TallyVotes::Tour groupResult = voteTallier->vote( id, ballot );
 
         yield( prng(4) );
