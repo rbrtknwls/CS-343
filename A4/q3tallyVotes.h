@@ -9,7 +9,9 @@ _Monitor Printer;
 class TallyVotes {
     uOwnerLock tallyVotesLock;
     uCondLock votingGroupLock;
-    uCondLock consLock;
+    uCondLock bargingLock;
+
+    bool votingGroupInProgress;
 
 #elif defined( SEM )				// semaphore solution
 #include "BargingCheckVote.h"
@@ -26,7 +28,8 @@ _Cormonitor TallyVotes : public uBarrier {
     #error unsupported voter type
 #endif
     Printer * printer;
-    unsigned int groupNumber;
+    unsigned int maxGroupSize;
+    unsigned int currentGroupNumber;
     unsigned int voters;
     unsigned int votes[3];
     unsigned int currentNumberOfGroupMembers;

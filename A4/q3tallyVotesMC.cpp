@@ -5,26 +5,45 @@
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     tallyVotesLock.acquire();
     try {
+
+        if ( votingGroupInProgress ) {
+            bargingLock.wait( tallyVotesLock );
+        }
+
+
         votes[0] += ballot.picture;
         votes[1] += ballot.statue;
         votes[2] += ballot.giftshop;
         currentNumberOfGroupMembers++;
 
-        if (currentNumberOfGroupMembers == groupNumber) {
-            if (id == 1) {
+        Tour currentTour;
+        if (currentNumberOfGroupMembers == maxGroupSize) {
+            votingGroupInProgress = true;
 
-            }
+            currentTour.tourkind = determineWinner();
+            currentTour.groupno = ++currentGroupNumber;
+
             votes[0] = 0;
             votes[1] = 0;
             votes[2] = 0;
+
+            printer->print(id, voter::Complete);
+
         } else {
-            //votingGroupLock.wait(tallyVotesLock);
+            printer->print(id, voter::Block, currentNumberOfGroupMembers);
+            votingGroupLock.wait( tallyVotesLock );
+            printer->print(id, voter::Unblock, --currentNumberOfGroupMembers);
         }
-        TourKind winner = determineWinner();
-        Tour newTour;
-        newTour.tourkind = winner;
-        newTour.groupno = groupNumber;
-        return newTour;
+
+        if ( currentNumberOfGroupMembers == 0) {
+            votingGroupInProgress = false;
+            bargingLock.broadcast();
+        } else {
+            votingGroupLock.signal();
+        }
+
+        return currentTour;
+
     } _Finally {
         tallyVotesLock.release();
     }
