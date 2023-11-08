@@ -7,7 +7,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     try {
 
         if ( votingGroupInProgress ) {
-            bargingLock.wait( tallyVotesLock );
+            //bargingLock.wait( tallyVotesLock );
         }
 
 
@@ -36,8 +36,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         }
 
         if ( currentNumberOfGroupMembers == 0) {
-            votingGroupInProgress = false;
-            bargingLock.broadcast();
+            //votingGroupInProgress = false;
+            //bargingLock.broadcast();
         } else {
             votingGroupLock.signal();
         }
