@@ -1,5 +1,6 @@
 #include "q3tallyVotes.h"
 #include "q3voter.h"
+#include "q3printer.h"
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     votes[0] += ballot.picture;
