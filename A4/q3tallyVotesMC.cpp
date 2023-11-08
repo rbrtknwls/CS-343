@@ -9,12 +9,14 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentNumberOfGroupMembers++;
 
     if ( currentNumberOfGroupMembers == voters ) {
-
+        if (id == 1) {
+            
+        }
         votes[0] = 0;
         votes[1] = 0;
         votes[2] = 0;
     }
     TourKind winner = determineWinner();
-    Tour newTour = new Tour (winner, groupNumber);
+    Tour newTour = new Tour(winner, groupNumber);
     return newTour;
 }
