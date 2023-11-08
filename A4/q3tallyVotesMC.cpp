@@ -4,6 +4,7 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     tallyVotesLock.acquire();
+    try {
         votes[0] += ballot.picture;
         votes[1] += ballot.statue;
         votes[2] += ballot.giftshop;
