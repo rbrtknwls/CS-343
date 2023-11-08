@@ -20,5 +20,5 @@ void Voter::main() {
         yield( prng(4) );
         printer->print( id, Going, groupResult);
     }
-    printer->print( id, Terminated);
+    voteTallier->done(id);
 }

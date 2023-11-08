@@ -68,8 +68,5 @@ int main( int argc, char * argv[] ) {
         listOfVoters.pop_back();
     }
 
-    for ( int id = 0; id < voters; id++ ) {
-        printer.print( id, Voter::Terminated );
-    }
     listOfVoters.clear();
 }
