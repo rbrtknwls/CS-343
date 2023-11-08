@@ -25,7 +25,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         newTour.tourkind = winner;
         newTour.groupno = groupNumber;
         return newTour;
-    } _ Finally {
+    } _Finally {
         tallyVotesLock.release();
     }
 }
