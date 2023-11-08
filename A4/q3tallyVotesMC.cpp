@@ -32,7 +32,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         } else {
             printer->print( id, Voter::Block, currentNumberOfGroupMembers );
             votingGroupLock.wait( tallyVotesLock );
-            printer->print( id, Voter::Unblock, --currentNumberOfGroupMembers );
+            printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
         }
 
         if ( currentNumberOfGroupMembers == 0) {
@@ -41,6 +41,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         } else {
             votingGroupLock.signal();
         }
+        currentNumberOfGroupMembers--;
 
         return currentTour;
 
