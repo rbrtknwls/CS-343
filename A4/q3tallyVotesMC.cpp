@@ -24,7 +24,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 }
 
 void TallyVotes::done( unsigned id ) {
-    printer->print(id, Voter::terminate );
+    printer->print(id, Voter::Terminated );
     voters--;
-    if (voters == 0) { printer->print(id, Voter::terminate ); }
+    if (voters == 0) { printer->print(id, Voter::Terminated ); }
 }
