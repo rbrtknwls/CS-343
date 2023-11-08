@@ -3,7 +3,7 @@
 #include "q3printer.h"
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    tallyVotesLock.aquire();
+    tallyVotesLock.acquire();
     try {
         votes[0] += ballot.picture;
         votes[1] += ballot.statue;
@@ -27,7 +27,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         return newTour;
     } _ Finally {
         tallyVotesLock.release();
-    };
+    }
 }
 
 void TallyVotes::done( unsigned id ) {
