@@ -27,12 +27,12 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             votes[1] = 0;
             votes[2] = 0;
 
-            printer->print(id, Voter::Complete);
+            printer->print( id, Voter::Complete, currentTour.tourkind );
 
         } else {
-            printer->print(id, Voter::Block, currentNumberOfGroupMembers);
+            printer->print( id, Voter::Block, currentNumberOfGroupMembers );
             votingGroupLock.wait( tallyVotesLock );
-            printer->print(id, Voter::Unblock, --currentNumberOfGroupMembers);
+            printer->print( id, Voter::Unblock, --currentNumberOfGroupMembers );
         }
 
         if ( currentNumberOfGroupMembers == 0) {
