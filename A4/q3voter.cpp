@@ -36,5 +36,9 @@ void Voter::main() {
 #endif
     );
 
+#if defined(SEM)
+    printer->print(id, Terminate);
+#endif
+
 
 }
