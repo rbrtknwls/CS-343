@@ -6,14 +6,14 @@ using namespace std;
 
 // ================== Private Methods ==================== //
 void Printer::flushBuffer () {
-    for ( unsigned int i = 0; i < voters; i++ ) {
-        if ( hasBeenWrittenTo[i] ) {
-            int nonSpaceValues = 0;
+    for ( unsigned int i = 0; i < voters; i++ ) {                   // Loop through each voter
+        if ( hasBeenWrittenTo[i] ) {                                // if data is current
+            int nonSpaceValues = 0;                                 // store spaces used up in print
             Voter::States currentState = printBuffer[i].mainState;
-            nonSpaceValues++;
+            nonSpaceValues++;                                       // state always take one space
 
             cout << currentState;
-            string toPrint;
+            string toPrint;                                         // store string to print
             switch ( currentState ) {
                 case Voter::Vote:
                     toPrint = " " + to_string(printBuffer[i].vote.picture) + "," +
@@ -38,28 +38,28 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Complete:
-                    cout << " " << printBuffer[i].tour.tourkind;
-                    toPrint = " b";
-                    cout << toPrint;
+                    cout << " " << printBuffer[i].tour.tourkind;       // Due to weirdness with char, print directly
+                    toPrint = " b";                                    // Set to print after the fact
                     break;
 
                 case Voter::Going:
-                    cout << " " << printBuffer[i].tour.tourkind;
+                    cout << " " << printBuffer[i].tour.tourkind;       // Same weirdness with tourkind
                     toPrint = " " + to_string(printBuffer[i].tour.groupno);
                     cout << toPrint;
-                    toPrint = " +";
+                    toPrint += " +";                                   // toPrint should include 2 chars already print
                     break;
 
                 default:
                     break;
             }
-            nonSpaceValues += toPrint.length();
 
-            cout << string( 8-nonSpaceValues, ' ' );
+            nonSpaceValues += toPrint.length();                        // Add length of printed values
+
+            cout << string( 8-nonSpaceValues, ' ' );                   // Print space till we reach 8
 
 
         } else {
-            cout << "\t";
+            cout << "\t";                                              // print 8 spaces
         }
     }
 
@@ -75,8 +75,8 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
 
     for ( unsigned int i = 0; i < voters; i++ ) {
-        hasBeenWrittenTo[i] = false;
-        cout << "V" << i;
+        hasBeenWrittenTo[i] = false;                                    // Each users buffer hasnt been written too
+        cout << "V" << i;                                               // Print user tags at top
 
         if ( i != voters-1 ) {
             if ( i < 10 ) { cout << "      "; }
@@ -87,7 +87,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
     cout << endl;
 
     for ( unsigned int i = 0; i < voters; i++ ) {
-        cout << "*******";
+        cout << "*******";                                             // Print "*" under user
         if ( i != voters-1 ) { cout << " "; }
     }
 
@@ -133,6 +133,6 @@ Printer::~Printer() {
     delete printBuffer;
     delete hasBeenWrittenTo;
 
-    cout << "*****************" << endl;
+    cout << "*****************" << endl;                                         // Printed at the very end
     cout << "All tours ended" << endl;
 }
