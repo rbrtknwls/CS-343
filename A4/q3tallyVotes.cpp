@@ -8,7 +8,6 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
     votes[1] = 0;
     votes[2] = 0;
 
-    votingGroupInProgress = false;
     currentGroupNumber = 0;
 }
 

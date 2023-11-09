@@ -11,7 +11,8 @@ class TallyVotes {
     uCondLock votingGroupLock;
     uCondLock bargingLock;
 
-    bool votingGroupInProgress;
+    bool votingGroupInProgress = false;
+    bool dead = false;
     BCHECK_DECL;
 
 #elif defined( SEM )				// semaphore solution
