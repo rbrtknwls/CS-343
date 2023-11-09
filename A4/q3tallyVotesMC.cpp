@@ -10,7 +10,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         if ( votingGroupInProgress ) {
             numberOfBarging++;
 
-            if ( numberOfBarging + currentNumberOfGroupMembers == voters ) { bargingLock.signal(); }
+            // if ( numberOfBarging + currentNumberOfGroupMembers >= voters ) { bargingLock.signal(); }
             printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
 
             bargingLock.wait( tallyVotesLock );
@@ -41,9 +41,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         } else {
             printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-            if ( !bargingLock.empty() ) {
-                bargingLock.signal();
-            }
+            if ( !bargingLock.empty() ) { bargingLock.signal(); }
+            else { votingGroupInProgress = false; }
 
             votingGroupLock.wait( tallyVotesLock );
 
