@@ -35,12 +35,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         } else {
             printer->print( id, Voter::Block, currentNumberOfGroupMembers );
             votingGroupLock.wait( tallyVotesLock );
-            printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
-        }
 
-        if ( voters < maxGroupSize && !votingGroupInProgress ) {
-            votingGroupLock.signal();
-            _Throw Failed();
+            if ( voters < maxGroupSize && !votingGroupInProgress ) { _Throw Failed(); }
+
+            printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
         }
 
         if ( --currentNumberOfGroupMembers == 0) {
