@@ -46,7 +46,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     if ( !votingGroup.empty() ) { votingGroup.V(); } else { barging.V(); }
     VOTER_LEAVE( maxGroupSize );
     tallyVotes.V();
-    
+
     if ( voters < maxGroupSize ) { _Throw Failed(); }
     return currentTour;
 
