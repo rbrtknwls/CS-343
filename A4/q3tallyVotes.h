@@ -26,10 +26,11 @@ class TallyVotes {
 
     BCHECK_DECL;
 #elif defined( BAR )				// barrier solution
+#include <uBarrier.h>
 // includes for this kind of vote-tallier
 _Cormonitor TallyVotes : public uBarrier {
 	// private declarations for this kind of vote-tallier
-
+    uBarrier tallyBar;
 #else
     #error unsupported voter type
 #endif
