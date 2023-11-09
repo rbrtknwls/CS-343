@@ -3,7 +3,7 @@
 #include "q3printer.h"
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    tallyVotes.P();
+    //tallyVotes.P();
 
     VOTER_ENTER( maxGroupSize );
 
@@ -30,7 +30,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        votingGroup.P();
+        //votingGroup.P();
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
@@ -40,5 +40,5 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     return currentTour;
 
-    tallyVotes.V();
+    //tallyVotes.V();
 }
