@@ -10,7 +10,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         if ( votingGroupInProgress ) {
             numberOfBarging++;
 
-            //if ( numberOfBarging + currentNumberOfGroupMembers >= voters ) { bargingLock.signal(); }
+            if ( numberOfBarging + currentNumberOfGroupMembers == voters ) { bargingLock.signal(); }
             printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
 
             bargingLock.wait( tallyVotesLock );
