@@ -38,13 +38,16 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Complete:
-                    toPrint = " " + (char*)printBuffer[i].tour.tourkind;
+                    cout << " " << printBuffer[i].tour.tourkind
+                    toPrint = " b"
                     cout << toPrint;
                     break;
 
                 case Voter::Going:
-                    toPrint = " "  + (char*)printBuffer[i].tour.tourkind + " " + to_string(printBuffer[i].tour.groupno);
+                    cout << " " << printBuffer[i].tour.tourkind
+                    toPrint = " " + to_string(printBuffer[i].tour.groupno);
                     cout << toPrint;
+                    toPrint = " +"
                     break;
 
                 default:
