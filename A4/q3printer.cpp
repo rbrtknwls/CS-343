@@ -38,7 +38,7 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Complete:
-                    cout << " " << printBuffer[i].tour.tourkind;
+                    cout << " " << printBuffer[i].tour.tourkind;g
                     toPrint = " b";
                     cout << toPrint;
                     break;
@@ -132,4 +132,7 @@ void Printer::print( unsigned int id, Voter::States state, unsigned int numBlock
 Printer::~Printer() {
     delete printBuffer;
     delete hasBeenWrittenTo;
+
+    cout << "*****************" << endl;
+    cout << "All tours ended" << endl;
 }
