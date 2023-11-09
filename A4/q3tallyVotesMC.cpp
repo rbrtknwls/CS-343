@@ -66,7 +66,6 @@ void TallyVotes::done( unsigned id ) {
 
     if ( voters < maxGroupSize && !votingGroupInProgress ) {
         votingGroupLock.signal();
-        _Throw Failed();
     }
 
     if ( voters == 0 ) { printer->print(id, Voter::Terminated ); }
