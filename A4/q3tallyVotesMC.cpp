@@ -80,8 +80,6 @@ void TallyVotes::done( unsigned id ) {
 
         if ( bargingLock.empty() ) { votingGroupInProgress = false; }
 
-        if (voters == 0) { printer->print(id, Voter::Terminated); }
-
     } _Finally {
             tallyVotesLock.release();
     }
