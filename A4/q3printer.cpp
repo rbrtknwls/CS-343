@@ -23,12 +23,12 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Block:
-                    toPrint = " " + printBuffer[i].numBlocked;
+                    toPrint = " " + to_string(printBuffer[i].numBlocked);
                     cout << toPrint;
                     break;
 
                 case Voter::Unblock:
-                    toPrint = " " + printBuffer[i].numBlocked;
+                    toPrint = " " + to_string(printBuffer[i].numBlocked);
                     cout << toPrint;
                     break;
 
