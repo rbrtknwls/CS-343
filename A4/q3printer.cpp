@@ -31,8 +31,9 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Barging:
-                    cout << " " << printBuffer[i].numBlocked << " " << printBuffer[i].group;
-                    nonSpaceValues += 4;
+                    String toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
+                    cout << toPrint;
+                    nonSpaceValues += 4
                     break;
 
                 case Voter::Complete:
