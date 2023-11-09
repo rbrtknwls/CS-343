@@ -38,7 +38,7 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Complete:
-                    cout << " " << printBuffer[i].tour.tourkind;g
+                    cout << " " << printBuffer[i].tour.tourkind;
                     toPrint = " b";
                     cout << toPrint;
                     break;
