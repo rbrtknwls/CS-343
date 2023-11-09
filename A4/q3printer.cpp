@@ -1,5 +1,5 @@
 #include "q3printer.h"
-#include <string.h>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -32,7 +32,7 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Barging:
-                    String toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
+                    string toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
                     cout << toPrint;
                     nonSpaceValues += 4;
                     break;
