@@ -12,7 +12,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             bargingLock.wait( tallyVotesLock );
         }
 
-        if ( dead ) { _Throw Failed(); }
+        if ( voters < maxGroupSize ) { _Throw Failed(); }
 
         printer->print( id, Voter::Vote, ballot );
 
@@ -36,13 +36,13 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         } else {
             printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-
             if ( votingGroupInProgress ) {
                 bargingLock.signal();
             }
+
             votingGroupLock.wait( tallyVotesLock );
 
-            if ( dead ) { _Throw Failed(); }
+            if ( !votingGroupInProgress && voters < maxGroupSize ) { _Throw Failed(); }
 
             printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
         }
@@ -73,7 +73,6 @@ void TallyVotes::done( unsigned id ) {
         voters--;
 
         if ( voters < maxGroupSize ) {
-            dead = true;
             bargingLock.broadcast();
             votingGroupLock.broadcast();
         }
