@@ -16,25 +16,25 @@ void Printer::flushBuffer () {
             string toPrint;
             switch ( currentState ) {
                 case Voter::Vote:
-                    cout << " " << printBuffer[i].vote.picture << "," << printBuffer[i].vote.statue;
-                    cout << "," << printBuffer[i].vote.giftshop;
-                    nonSpaceValues += 6;
+                    toPrint = " " + to_string(printBuffer[i].vote.picture) + "," +
+                                    to_string(printBuffer[i].vote.statue) + "," +
+                                    to_string(printBuffer[i].vote.giftshop);
+                    cout << toPrint;
                     break;
 
                 case Voter::Block:
-                    cout << " " << printBuffer[i].numBlocked;
-                    nonSpaceValues += 2;
+                    toPrint = " " + printBuffer[i].numBlocked;
+                    cout << toPrint;
                     break;
 
                 case Voter::Unblock:
-                    cout << " " << printBuffer[i].numBlocked;
-                    nonSpaceValues += 2;
+                    toPrint = " " + printBuffer[i].numBlocked;
+                    cout << toPrint;
                     break;
 
                 case Voter::Barging:
                     toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
                     cout << toPrint;
-                    nonSpaceValues += toPrint.length();
                     break;
 
                 case Voter::Complete:
@@ -49,6 +49,8 @@ void Printer::flushBuffer () {
                 default:
                     break;
             }
+            nonSpaceValues += toPrint.length();
+
             cout << string( 8-nonSpaceValues, ' ' );
 
 
