@@ -36,6 +36,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
+    currentNumberOfGroupMembers--;
 
     if ( votingGroup.TryP() ) {
         votingGroup.V();
