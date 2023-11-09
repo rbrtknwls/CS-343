@@ -4,10 +4,7 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
-    if ( !votingGroup.empty() ) {
-        barging.P();
-    }
-
+    barging.P();
     tallyVotes.P();
 
     VOTER_ENTER( maxGroupSize );
@@ -34,7 +31,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        if ( !barging.empty() ) { barging.V(); }
+        barging.V();
         tallyVotes.V();
         votingGroup.P();
         tallyVotes.P();
