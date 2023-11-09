@@ -130,12 +130,11 @@ void Printer::print( unsigned int id, Voter::States state, unsigned int numBlock
 }
 
 Printer::~Printer() {
+    // At this point the buffer still has some more values so we will flush it one more time!
+    Printer::flushBuffer();
 
     cout << "*****************" << endl;                                         // Printed at the very end
     cout << "All tours ended" << endl;
-
-    // At this point the buffer still has some more values so we will flush it one more time!
-    Printer::flushBuffer();
 
     delete printBuffer;
     delete hasBeenWrittenTo;
