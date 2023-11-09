@@ -38,7 +38,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
         }
 
-        if ( voters < maxGroupSize ) {
+        if ( voters < maxGroupSize && !votingGroupInProgress ) {
             votingGroupLock.signal();
             _Throw Failed();
         }
@@ -63,6 +63,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done( unsigned id ) {
     printer->print(id, Voter::Terminated );
     voters--;
+
+    if ( voters < maxGroupSize && !votingGroupInProgress ) {
+        votingGroupLock.signal();
+        _Throw Failed();
+    }
 
     if ( voters == 0 ) { printer->print(id, Voter::Terminated ); }
 
