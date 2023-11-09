@@ -37,6 +37,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
 
+    if ( votingGroup.TryP ) {
+        votingGroup.V();
+    }
+
     VOTER_LEAVE( maxGroupSize );
     tallyVotes.V();
     return currentTour;
