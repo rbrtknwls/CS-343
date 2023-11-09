@@ -30,7 +30,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        //votingGroup.P();
+        tallyVotes.V();
+        votingGroup.P();
+        tallyVotes.P();
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
