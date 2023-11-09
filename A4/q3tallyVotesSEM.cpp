@@ -38,7 +38,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     }
     currentNumberOfGroupMembers--;
 
-    if ( votingGroup.TryP() ) {
+    if ( !votingGroup.empty() ) {
         votingGroup.V();
     }
 
@@ -46,4 +46,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     tallyVotes.V();
     return currentTour;
 
+}
+
+void TallyVotes::done () {
+    voters--;
 }

@@ -28,10 +28,13 @@ void Voter::main() {
         printer->print(id, Failed);                         // On failure print failure
     }
 
+
+    // Print done if finished voting
+    voteTallier->done(
 #if defined( MC ) || defined( BAR )
-    voteTallier->done(id);                                  // Print done if finished voting
-#else
-    printer->print(id, Voter::Terminated);
+            id
 #endif
+    );
+
 
 }
