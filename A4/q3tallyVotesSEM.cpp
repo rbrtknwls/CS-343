@@ -9,7 +9,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     VOTER_ENTER( maxGroupSize );
 
-    if ( voters < maxGroupSize ) { _Throw Failed(); }
+    if ( voters < maxGroupSize ) {
+        barging.V();
+        _Throw Failed();
+    }
 
     printer->print( id, Voter::Vote, ballot );
 
@@ -36,6 +39,15 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votingGroup.P();
         tallyVotes.P();
 
+        if ( voters < maxGroupSize ) {
+            if ( !votingGroup.empty() ) {
+                votingGroup.V();
+            } else {
+                barging.V();
+            }
+            _Throw Failed();
+        }
+
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
     currentNumberOfGroupMembers--;
@@ -54,4 +66,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 void TallyVotes::done () {
     voters--;
+    if ( voters < maxGroupSize ) {
+        if (!votingGroup.empty()) {
+            votingGroup.V();
+        } else {
+            barging.V();
+        }
+    }
 }
