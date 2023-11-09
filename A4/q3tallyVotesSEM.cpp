@@ -30,10 +30,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-
         votingGroup.P();
-
-        if ( !votingGroupInProgress && voters < maxGroupSize ) { _Throw Failed(); }
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
@@ -44,17 +41,4 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     return currentTour;
 
     tallyVotes.V();
-}
-
-void TallyVotes::done( unsigned id ) {
-    tallyVotes.P();
-    try {
-        printer->print(id, Voter::Terminated);
-        voters--;
-
-        if (voters == 0) { printer->print(id, Voter::Terminated); }
-
-    } _Finally {
-            tallyVotesLock.V();
-    }
 }

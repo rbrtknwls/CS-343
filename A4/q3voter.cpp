@@ -33,5 +33,5 @@ void Voter::main() {
 #else
     printer->print(id, Voter::Terminated);
 #endif
-    
+
 }
