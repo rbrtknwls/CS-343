@@ -9,6 +9,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
         if ( votingGroupInProgress ) {
             printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
+            if ( votingGroupLock.empty() ) {
+                bargingLock.signal();
+            }
             bargingLock.wait( tallyVotesLock );
         }
 
