@@ -8,6 +8,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         VOTER_ENTER( maxGroupSize );
 
         if ( votingGroupInProgress ) {
+            printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
             //bargingLock.wait( tallyVotesLock );
         }
 
@@ -68,6 +69,7 @@ void TallyVotes::done( unsigned id ) {
         }
 
         if (voters == 0) { printer->print(id, Voter::Terminated); }
+
     } _Finally {
             tallyVotesLock.release();
     }
