@@ -51,8 +51,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         }
 
 
-
-
         if ( --currentNumberOfGroupMembers == 0 ) {
             if ( bargingLock.empty() ) { votingGroupInProgress = false; }
             else { bargingLock.signal(); }

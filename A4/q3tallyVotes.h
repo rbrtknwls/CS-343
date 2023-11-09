@@ -16,10 +16,15 @@ class TallyVotes {
 
 #elif defined( SEM )				// semaphore solution
 #include "BargingCheckVote.h"
+#include <uSemaphore.h>
 // includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
+    uSemaphore tallyVotes;
+    uSemaphore votingGroup;
+    uSemaphore barging;
 
+    BCHECK_DECL;
 #elif defined( BAR )				// barrier solution
 // includes for this kind of vote-tallier
 _Cormonitor TallyVotes : public uBarrier {
