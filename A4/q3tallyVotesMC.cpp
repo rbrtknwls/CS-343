@@ -61,13 +61,17 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 }
 
 void TallyVotes::done( unsigned id ) {
-    printer->print(id, Voter::Terminated );
-    voters--;
+    tallyVotesLock.acquire();
+    try {
+        printer->print(id, Voter::Terminated);
+        voters--;
 
-    if ( voters < maxGroupSize && !votingGroupInProgress ) {
-        votingGroupLock.signal();
+        if (voters < maxGroupSize && !votingGroupInProgress) {
+            votingGroupLock.broadcast();
+        }
+
+        if (voters == 0) { printer->print(id, Voter::Terminated); }
+    } _Finally {
+            tallyVotesLock.release();
     }
-
-    if ( voters == 0 ) { printer->print(id, Voter::Terminated ); }
-
 }
