@@ -42,5 +42,5 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done( unsigned id ) {
     printer->print(id, Voter::Terminated);
     voters--;
-    if ( voters < maxGroupSize ) { reset(); }
+    if ( voters < maxGroupSize ) { reset( voters ); }
 }
