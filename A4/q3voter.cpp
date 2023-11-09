@@ -37,7 +37,7 @@ void Voter::main() {
     );
 
 #if defined(SEM)
-    printer->print(id, Terminate);
+    printer->print(id, Terminated);
 #endif
 
 
