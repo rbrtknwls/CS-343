@@ -2,18 +2,17 @@
 #include "q3voter.h"
 #include "q3printer.h"
 
+/*
+ * Lock implimentation
+ */
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     tallyVotesLock.acquire();
     try {
         VOTER_ENTER( maxGroupSize );
 
         if ( votingGroupInProgress || !bargingLock.empty() ) {
-            numberOfBarging++;
-
             printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
-
             bargingLock.wait( tallyVotesLock );
-            numberOfBarging--;
         }
 
         if ( voters < maxGroupSize ) { _Throw Failed(); }

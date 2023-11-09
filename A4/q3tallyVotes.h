@@ -34,8 +34,7 @@ _Cormonitor TallyVotes : public uBarrier {
     #error unsupported voter type
 #endif
     Printer * printer;
-    unsigned int maxGroupSize;
-    unsigned int numberOfBarging;
+    unsigned int maxGroupSize;                        // Stores the size of the voting group
     unsigned int currentGroupNumber;
     unsigned int voters;
     unsigned int votes[3];
