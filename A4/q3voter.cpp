@@ -27,5 +27,11 @@ void Voter::main() {
     } catch ( TallyVotes::Failed &failed ) {
         printer->print(id, Failed);                         // On failure print failure
     }
+
+#if defined( MC ) || defined( BAR )
     voteTallier->done(id);                                  // Print done if finished voting
+#else
+    printer->print(id, Voter::Terminated);
+#endif
+    
 }
