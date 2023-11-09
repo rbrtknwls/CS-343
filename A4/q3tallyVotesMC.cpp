@@ -43,13 +43,12 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             _Throw Failed();
         }
 
-        if ( currentNumberOfGroupMembers == 0) {
+        if ( --currentNumberOfGroupMembers == 0) {
             votingGroupInProgress = false;
             //bargingLock.broadcast();
         } else {
             votingGroupLock.signal();
         }
-        currentNumberOfGroupMembers--;
 
         VOTER_LEAVE( maxGroupSize );
 
