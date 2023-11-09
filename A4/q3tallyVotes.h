@@ -30,6 +30,7 @@ _Cormonitor TallyVotes : public uBarrier {
 #endif
     Printer * printer;
     unsigned int maxGroupSize;
+    unsigned int numberOfBarging;
     unsigned int currentGroupNumber;
     unsigned int voters;
     unsigned int votes[3];
