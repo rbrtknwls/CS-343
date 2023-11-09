@@ -4,7 +4,6 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
-    tallyBar.block();
     if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     printer->print( id, Voter::Vote, ballot );
@@ -21,12 +20,12 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[0] = 0;
         votes[1] = 0;
         votes[2] = 0;
-
+        block();
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
-
+        block();
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
     currentNumberOfGroupMembers--;
