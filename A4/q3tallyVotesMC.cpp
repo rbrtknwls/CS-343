@@ -62,6 +62,10 @@ void TallyVotes::done( unsigned id ) {
         printer->print(id, Voter::Terminated);
         voters--;
 
+        if ( voters < maxGroupSize && !votingGroupInProgress ) {
+            bargingLock.broadcast();
+        }
+
         if (voters == 0) { printer->print(id, Voter::Terminated); }
 
     } _Finally {
