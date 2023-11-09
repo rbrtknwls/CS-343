@@ -11,12 +11,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             numberOfBarging++;
 
             if ( numberOfBarging + currentNumberOfGroupMembers >= voters ) { bargingLock.signal(); }
-            } else {
-                printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
+            printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
 
-                bargingLock.wait( tallyVotesLock );
-                numberOfBarging--;
-            }
+            bargingLock.wait( tallyVotesLock );
+            numberOfBarging--;
         }
 
         if ( voters < maxGroupSize ) { _Throw Failed(); }
