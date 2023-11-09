@@ -43,6 +43,6 @@ void TallyVotes::done( unsigned id ) {
     printer->print(id, Voter::Terminated);
     voters--;
     if ( voters < maxGroupSize ) {
-        flush();
+        last();
     }
 }
