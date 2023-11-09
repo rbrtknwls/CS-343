@@ -6,6 +6,7 @@ using namespace std;
 
 // ================== Private Methods ==================== //
 void Printer::flushBuffer () {
+#ifndef NOOUTPUT
     for ( unsigned int i = 0; i < voters; i++ ) {                   // Loop through each voter
         if ( hasBeenWrittenTo[i] ) {                                // if data is current
             int nonSpaceValues = 0;                                 // store spaces used up in print
@@ -64,6 +65,7 @@ void Printer::flushBuffer () {
     }
 
     cout << endl;
+#endif
     for ( unsigned int i = 0; i < voters; i++ ) { hasBeenWrittenTo[i] = false; }
 }
 
@@ -76,14 +78,16 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
 
     for ( unsigned int i = 0; i < voters; i++ ) {
         hasBeenWrittenTo[i] = false;                                    // Each users buffer hasnt been written too
+#ifndef NOOUTPUT
         cout << "V" << i;                                               // Print user tags at top
 
         if ( i != voters-1 ) {
             if ( i < 10 ) { cout << "      "; }
             else { cout << "     "; }
         }
+#endif
     }
-
+#ifndef NOOUTPUT
     cout << endl;
 
     for ( unsigned int i = 0; i < voters; i++ ) {
@@ -92,6 +96,7 @@ Printer::Printer( unsigned int voters ) : voters(voters) {
     }
 
     cout << endl;
+#endif
 }
 
 void Printer::print( unsigned int id, Voter::States state ) {
@@ -133,8 +138,10 @@ Printer::~Printer() {
     // At this point the buffer still has some more values so we will flush it one more time!
     Printer::flushBuffer();
 
+#ifndef NOOUTPUT
     cout << "*****************" << endl;                                         // Printed at the very end
     cout << "All tours ended" << endl;
+#endif
 
     delete printBuffer;
     delete hasBeenWrittenTo;
