@@ -7,7 +7,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     try {
         VOTER_ENTER( maxGroupSize );
 
-        if ( votingGroupInProgress ) {
+        if ( votingGroupInProgress || !bargingLock.empty() ) {
             numberOfBarging++;
 
             printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
