@@ -80,10 +80,7 @@ void TallyVotes::done( unsigned id ) {
         if ( voters < maxGroupSize ) {
             if ( !votingGroupLock.empty() ) { votingGroupLock.signal(); }
             else { bargingLock.broadcast(); }
-
         }
-
-        if ( bargingLock.empty() ) { votingGroupInProgress = false; }
 
     } _Finally {
             tallyVotesLock.release();
