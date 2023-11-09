@@ -20,8 +20,8 @@ class TallyVotes {
 // includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
-    uSemaphore tallyVotes;
-    uSemaphore votingGroup;
+    uSemaphore tallyVotes(1);
+    uSemaphore votingGroup(0);
     uSemaphore barging;
 
     BCHECK_DECL;
