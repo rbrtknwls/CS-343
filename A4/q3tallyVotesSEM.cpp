@@ -34,6 +34,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
+        if ( !barging.empty() ) { barging.V(); }
         tallyVotes.V();
         votingGroup.P();
         tallyVotes.P();
