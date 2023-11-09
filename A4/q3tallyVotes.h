@@ -35,10 +35,10 @@ _Cormonitor TallyVotes : public uBarrier {
 #endif
     Printer * printer;
     unsigned int maxGroupSize;                        // Stores the size of the voting group
-    unsigned int currentGroupNumber;
-    unsigned int voters;
-    unsigned int votes[3];
-    unsigned int currentNumberOfGroupMembers;
+    unsigned int currentGroupNumber;                  // Stores the current group number
+    unsigned int voters;                              // Stores the number of voters
+    unsigned int votes[3];                            // Holds the sum of votes for voters
+    unsigned int currentNumberOfGroupMembers;         // Stores the number of voters in current group
 
   public:							// common interface
     _Event Failed {};
