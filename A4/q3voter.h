@@ -7,11 +7,12 @@ extern PRNG mainPRNG;
 
 _Monitor Printer;
 
+// Header class for the voter
 _Task Voter {
     unsigned int id;
     unsigned int nvotes;
-    TallyVotes *voteTallier;
-    Printer *printer;
+    TallyVotes *voteTallier;                            // Store reference to voteTallier
+    Printer *printer;                                   // Store reference to printer
 
     TallyVotes::Ballot cast() __attribute__(( warn_unused_result )) {  // cast 3-way vote
         // O(1) random selection of 3 items without replacement using divide and conquer.

@@ -7,11 +7,11 @@ _Monitor Printer;
 #include "BargingCheckVote.h"
 // includes for this kind of vote-tallier
 class TallyVotes {
-    uOwnerLock tallyVotesLock;
-    uCondLock votingGroupLock;
-    uCondLock bargingLock;
+    uOwnerLock tallyVotesLock;         // Owner Lock
+    uCondLock votingGroupLock;         // Voting Group Lock
+    uCondLock bargingLock;             // Barging Lock
 
-    bool votingGroupInProgress = false;
+    bool votingGroupInProgress = false;// Signal
     BCHECK_DECL;
 
 #elif defined( SEM )				// semaphore solution
