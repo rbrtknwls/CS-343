@@ -39,27 +39,15 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votingGroup.P();
         tallyVotes.P();
 
-        if ( voters < maxGroupSize ) {
-            if ( !votingGroup.empty() ) {
-                votingGroup.V();
-            } else {
-                barging.V();
-            }
-            _Throw Failed();
-        }
-
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
     currentNumberOfGroupMembers--;
 
-    if ( !votingGroup.empty() ) {
-        votingGroup.V();
-    } else {
-        barging.V();
-    }
-
+    if ( !votingGroup.empty() ) { votingGroup.V(); } else { barging.V(); }
     VOTER_LEAVE( maxGroupSize );
     tallyVotes.V();
+    
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
     return currentTour;
 
 }
