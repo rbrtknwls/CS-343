@@ -20,9 +20,9 @@ class TallyVotes {
 // includes for this kind of vote-tallier
 class TallyVotes {
 	// private declarations for this kind of vote-tallier
-    uSemaphore tallyVotes;
-    uSemaphore votingGroup = uSemaphore( 0 );
-    uSemaphore barging;
+    uSemaphore tallyVotes;                           // Set to open at start
+    uSemaphore votingGroup = uSemaphore( 0 );        // Set to locked at start
+    uSemaphore barging = uSemaphore( 0 );            // Set to locked at start
 
     BCHECK_DECL;
 #elif defined( BAR )				// barrier solution

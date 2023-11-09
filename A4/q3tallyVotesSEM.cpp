@@ -3,6 +3,11 @@
 #include "q3printer.h"
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
+
+    if ( !votingGroup.empty() ) {
+        barging.P();
+    }
+
     tallyVotes.P();
 
     VOTER_ENTER( maxGroupSize );
@@ -14,10 +19,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     votes[0] += ballot.picture;
     votes[1] += ballot.statue;
     votes[2] += ballot.giftshop;
+
     currentNumberOfGroupMembers++;
-
     if (currentNumberOfGroupMembers == maxGroupSize) {
-
         currentTour.tourkind = determineWinner();
         currentTour.groupno = ++currentGroupNumber;
 
@@ -40,6 +44,8 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     if ( !votingGroup.empty() ) {
         votingGroup.V();
+    } else {
+        barging.V();
     }
 
     VOTER_LEAVE( maxGroupSize );
