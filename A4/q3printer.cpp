@@ -13,7 +13,7 @@ void Printer::flushBuffer () {
             nonSpaceValues++;
 
             cout << currentState;
-
+            string toPrint;
             switch ( currentState ) {
                 case Voter::Vote:
                     cout << " " << printBuffer[i].vote.picture << "," << printBuffer[i].vote.statue;
@@ -32,7 +32,7 @@ void Printer::flushBuffer () {
                     break;
 
                 case Voter::Barging:
-                    string toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
+                    toPrint = " " + to_string(printBuffer[i].numBlocked) + " " + to_string(printBuffer[i].group);
                     cout << toPrint;
                     nonSpaceValues += 4;
                     break;
