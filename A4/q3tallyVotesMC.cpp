@@ -47,6 +47,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
             if ( !votingGroupInProgress && voters < maxGroupSize ) {
                 if ( votingGroupLock.empty() ) { bargingLock.broadcast(); }
+                else { votingGroupLock.signal(); }
                 _Throw Failed();
             }
 
@@ -77,7 +78,7 @@ void TallyVotes::done( unsigned id ) {
         voters--;
 
         if ( voters < maxGroupSize ) {
-            if ( !votingGroupLock.empty() ) { votingGroupLock.broadcast(); }
+            if ( !votingGroupLock.empty() ) { votingGroupLock.signal(); }
             else { bargingLock.broadcast(); }
 
         }
