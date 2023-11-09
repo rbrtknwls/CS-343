@@ -46,7 +46,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
             votingGroupLock.wait( tallyVotesLock );
 
             if ( !votingGroupInProgress && voters < maxGroupSize ) {
-                if ( votingLock.empty() ) { bargingLock.broadcast(); }
+                if ( votingGroupLock.empty() ) { bargingLock.broadcast(); }
                 _Throw Failed();
             }
 
