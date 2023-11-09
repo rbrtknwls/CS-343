@@ -44,7 +44,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         }
 
         if ( currentNumberOfGroupMembers == 0) {
-            //votingGroupInProgress = false;
+            votingGroupInProgress = false;
             //bargingLock.broadcast();
         } else {
             votingGroupLock.signal();
