@@ -1,0 +1,4 @@
+The angels are in a live lock, as the angels all locking at each other stops them from moving. There is no shared
+resource which one has that the others dont have, instead each one is looking at one (or more angels) and thus those
+other angels cant move either. This will continue indefinably as in order for the state to change one of the angels
+needs to move, but in order to move the angel needs to not be looked at (state to change).
