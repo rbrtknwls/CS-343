@@ -3,8 +3,9 @@
 #include <uPRNG.h>
 
 #include "q2tallyVotes.h"
-#include "q3voter.h"
-#include "q3printer.h"
+#include "q2voter.h"
+#include "q2printer.h"
+
 /*
  * Main runner for the tour group voting problem, this file will handle the input from the user and will set the
  * states for the printer, voters and tally system.

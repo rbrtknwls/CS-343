@@ -2,7 +2,7 @@
 #include <uPRNG.h>
 
 #include "q2voter.h"
-#include "q3printer.h"
+#include "q2printer.h"
 
 
 // Constructor for the voter
