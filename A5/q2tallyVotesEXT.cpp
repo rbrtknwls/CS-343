@@ -3,7 +3,7 @@
 #include "q2printer.h"
 
 
-TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
+TallyVotes::Tour TallyVotes::vote( unsigned int id, Ballot ballot ) {
 
     printer->print( id, Voter::Vote, ballot );
 
