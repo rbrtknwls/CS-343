@@ -3,7 +3,7 @@
 #include "q2printer.h"
 
 
-TallyVotes::Tour TallyVotes::vote( unsigned int id, Ballot ballot ) {
+TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     printer->print( id, Voter::Vote, ballot );
 
@@ -16,7 +16,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned int id, Ballot ballot ) {
 }
 
 void TallyVotes::done( ) {
-    printer->print(id, Voter::Terminated);
     voters--;
 
     if ( voters < maxGroupSize ) {
