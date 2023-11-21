@@ -3,34 +3,9 @@
 
 _Monitor Printer;
 
-#if defined( MC )					// mutex/condition solution
-#include "BargingCheckVote.h"
+#if defined( EXT ) // external scheduling monitor solution
 // includes for this kind of vote-tallier
-class TallyVotes {
-    uOwnerLock tallyVotesLock;         // Owner Lock
-    uCondLock votingGroupLock;         // Voting Group Lock
-    uCondLock bargingLock;             // Barging Lock
-
-    bool votingGroupInProgress = false;// Signal
-    BCHECK_DECL;
-
-#elif defined( SEM )				// semaphore solution
-#include "BargingCheckVote.h"
-#include <uSemaphore.h>
-// includes for this kind of vote-tallier
-class TallyVotes {
-	// private declarations for this kind of vote-tallier
-    uSemaphore tallyVotes;                           // Set to open at start
-    uSemaphore votingGroup = uSemaphore( 0 );        // Set to locked at start
-    uSemaphore barging;                              // Set to open at start
-
-    BCHECK_DECL;
-#elif defined( BAR )				// barrier solution
-#include <uBarrier.h>
-// includes for this kind of vote-tallier
-_Cormonitor TallyVotes : public uBarrier {
-	// private declarations for this kind of vote-tallier
-#else
+_Monitor TallyVotes {
     #error unsupported voter type
 #endif
     Printer * printer;
@@ -49,7 +24,7 @@ _Cormonitor TallyVotes : public uBarrier {
     TallyVotes( unsigned int voters, unsigned int group, Printer & printer );
     Tour vote( unsigned int id, Ballot ballot );
     void done(
-#if defined( MC ) || defined( BAR )
+#if defined( TASK )
         unsigned int id
 #endif
     );

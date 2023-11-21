@@ -31,14 +31,11 @@ void Voter::main() {
 
     // Print done if finished voting
     voteTallier->done(
-#if defined( MC ) || defined( BAR )
+#if defined(TASK )
             id
 #endif
     );
 
-#if defined(SEM)
-    printer->print(id, Terminated);
-#endif
 
 
 }

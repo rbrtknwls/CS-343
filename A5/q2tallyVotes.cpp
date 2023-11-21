@@ -4,9 +4,6 @@
 // This is the implementation of generic methods for tally Votes
 
 TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & printer ) :
-#if defined( BAR )
-        uBarrier(group),
-#endif
         printer(&printer), maxGroupSize(group), voters(voters) {
 
     // Set all the votes to 0
