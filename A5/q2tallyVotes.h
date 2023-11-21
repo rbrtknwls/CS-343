@@ -6,6 +6,7 @@ _Monitor Printer;
 #if defined( EXT ) // external scheduling monitor solution
 // includes for this kind of vote-tallier
 _Monitor TallyVotes {
+#else
     #error unsupported voter type
 #endif
     Printer * printer;
