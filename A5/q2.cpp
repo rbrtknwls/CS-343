@@ -54,7 +54,6 @@ int main( int argc, char * argv[] ) {
     uProcessor p[processors - 1] __attribute__(( unused ));               // Set the number of processors
 
     Printer printer = Printer( voters );                                  // Set up our printer
-    /*
     TallyVotes voteTallier = TallyVotes( voters, group, printer );        // Set up the vote tallier
     vector< Voter* > listOfVoters;                                        // Set up a list of voters
 
@@ -68,5 +67,5 @@ int main( int argc, char * argv[] ) {
     }
 
     listOfVoters.clear();                                                 // Clear the list
-     */
+
 }
