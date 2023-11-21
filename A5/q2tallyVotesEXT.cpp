@@ -15,7 +15,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 }
 
-void TallyVotes::done( unsigned id ) {
+void TallyVotes::done( ) {
     printer->print(id, Voter::Terminated);
     voters--;
 
