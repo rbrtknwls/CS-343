@@ -8,17 +8,9 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
-    VOTER_ENTER( maxGroupSize );
 
-    if ( voters < maxGroupSize ) {
-        _Throw Failed();
-    }
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
 
-    unsigned int currentVoterNumber = newVoterNumber++;
-
-    while ( currentVoterNumber > lastVoterInCurrentGroup ) {
-        wait();
-    }
 
     printer->print( id, Voter::Vote, ballot );
 
@@ -37,25 +29,18 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
-        signalAll();
-        lastVoterInCurrentGroup += maxGroupSize;
-
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        wait();
+
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
         if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     }
     currentNumberOfGroupMembers--;
-
-    if ( currentNumberOfGroupMembers == 0 ) {
-        signalAll();
-    }
 
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
