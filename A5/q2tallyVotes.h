@@ -22,6 +22,9 @@ _Monitor TallyVotes {
     unsigned int newVoterNumber = 0;
     unsigned int lastVoterInCurrentGroup = 0;
 
+#elif defined( AUTO )
+_Monitor TallyVotes {
+
 #else
     #error unsupported voter type
 #endif
