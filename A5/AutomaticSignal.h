@@ -8,6 +8,7 @@
         before;                           \
                                           \
         while ( !pred ) { bench.wait(); } \
+                                          \
     }                                     \
     after;
 

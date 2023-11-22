@@ -60,4 +60,5 @@ void TallyVotes::done() {
     voters--;
 
     if ( voters < maxGroupSize ) { onTour = true; }
+    EXIT();
 }
