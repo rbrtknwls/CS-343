@@ -3,9 +3,11 @@
 
 _Monitor Printer;
 
-#if defined( EXT ) // external scheduling monitor solution
-// includes for this kind of vote-tallier
+#if defined( EXT )
 _Monitor TallyVotes {
+#elif defined( INT )
+_Monitor TallyVotes {
+    uCondition votingGroup;
 #else
     #error unsupported voter type
 #endif
