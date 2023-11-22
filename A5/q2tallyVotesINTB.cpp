@@ -6,7 +6,7 @@
 void TallyVotes::wait() {
     bench.wait();                                           // wait until signalled
 
-    while ( rand() % 2 == 0 ) {                             // multiple bargers allowed
+    while ( 3 == 0 ) {                             // multiple bargers allowed
        try {
            _Accept( vote | | done ) {                       // accept barging callers
            } _Else { }                                      // _Accept
