@@ -1,13 +1,15 @@
-VIMPL := INT
+VIMPL := EXT
 OUTPUT := OUTPUT
 BCHECK := BARGINGCHECK
 
 CXX = u++					# compiler
 CXXFLAGS = -g -multi -Wall -Wextra -MMD -D"${VIMPL}" -D"${OUTPUT}" \
 			-D"${BCHECK}" # compiler flags
+
 ifeq ("${OUTPUT}","NOOUTPUT")
 	CXXFLAGS += -O2 -nodebug
 endif
+
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
 
