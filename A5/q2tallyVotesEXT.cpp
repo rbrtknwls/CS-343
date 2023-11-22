@@ -35,10 +35,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
         try {
             for ( ;; ) {
-                _Accept( TallyVotes::vote ) { break; }
-                or _Accept( TallyVotes::done ) { }
+                _Accept( TallyVotes::vote ) {
+                    break;
+                } or _Accept( TallyVotes::done ) { }
             }
-            
+
         } catch ( uMutexFailure::RendezvousFailure& ) {
             printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
 
