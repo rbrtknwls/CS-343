@@ -6,6 +6,7 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     VOTER_ENTER( maxGroupSize );
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
     printer->print( id, Voter::Vote, ballot );
 
     votes[0] += ballot.picture;
