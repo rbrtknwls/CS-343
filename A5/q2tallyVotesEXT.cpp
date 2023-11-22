@@ -42,9 +42,16 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
               break;
 
-                } or _Accept( TallyVotes::done ) {
-                    if ( voters < maxGroupSize ) { _Throw Failed(); }
+                } or _Accept( TallyVotes::done )
+
+                    if ( voters < maxGroupSize ) {
+                        printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
+                        _Throw Failed();
+                    } else {
+                        printer->print( id, Voter::Done);
+                    }
                 }
+            
             }
 
         } catch ( uMutexFailure::RendezvousFailure & ) {
