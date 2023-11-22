@@ -69,8 +69,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         signalAll();
     }
 
+
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
 
+    VOTER_LEAVE( maxGroupSize );
+    
     return currentTour;
 
 }
