@@ -4,19 +4,19 @@
 #include <stdlib.h>
 
 void TallyVotes::wait() {
-    bench.wait();                                           // wait until signalled
+    bench.wait();                                               // wait until signalled
 
-    while ( 3 == 0 ) {                             // multiple bargers allowed
+    while ( rand() % 2 == 0 ) {                                 // multiple bargers allowed
        try {
-           _Accept( vote | | done ) {                       // accept barging callers
-           } _Else { }                                      // _Accept
+           _Accept( TallyVotes::vote | | TallyVotes::done ) {   // accept barging callers
+           } _Else { }                                          // _Accept
        } catch( uMutexFailure::RendezvousFailure & ) {}
-    }                                                       // while
+    }                                                           // while
 
 }
 
-void TallyVotes::signalAll() {                              // also useful
-    while ( ! bench.empty() ) bench.signal();               // drain the condition
+void TallyVotes::signalAll() {                                  // also useful
+    while ( ! bench.empty() ) bench.signal();                   // drain the condition
 }
 
 
