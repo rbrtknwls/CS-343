@@ -14,7 +14,7 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
     currentGroupNumber = 0;
 
 #if defined( INTB )
-    lastTicketedVoter = maxGroupSize;
+    lastVoterInCurrentGroup = maxGroupSize;
 #endif
 }
 

@@ -37,7 +37,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     currentNumberOfGroupMembers++;
 
-    if (currentNumberOfGroupMembers == maxGroupSize) { // Only apply for the last member
+    if ( currentNumberOfGroupMembers == maxGroupSize ) {
         currentTour.tourkind = determineWinner();
         currentTour.groupno = ++currentGroupNumber;
 
