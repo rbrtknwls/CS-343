@@ -12,7 +12,7 @@ Voter::Voter( unsigned int id, unsigned int nvotes, TallyVotes & voteTallier, Pr
 void Voter::main() {
     yield ( prng( 19 ) );                                  // Yield upto 19 times before starting
     try {
-        _Enable{
+        _Enable {
                 for ( unsigned int tourNum = 0; tourNum < nvotes; tourNum++ ) {
                     printer->print(id, Start);             // Print start
                     yield(prng(4));                        // Yield up to 4 times
@@ -26,6 +26,8 @@ void Voter::main() {
         }
     } catch ( TallyVotes::Failed &failed ) {
         printer->print(id, Failed);                         // On failure print failure
+    } catch( ... ) {
+        printer->print(id, Failed);
     }
 
     printer->print(id, Terminated);
