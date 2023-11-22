@@ -5,9 +5,17 @@ _Monitor Printer;
 
 #if defined( EXT )
 _Monitor TallyVotes {
+
 #elif defined( INT )
 _Monitor TallyVotes {
     uCondition votingGroup;
+
+#elif defined( INTB )
+_Monitor TallyVotes {
+    uCondition bench;
+    void wait();
+    void signalAll();
+
 #else
     #error unsupported voter type
 #endif
@@ -17,7 +25,7 @@ _Monitor TallyVotes {
     unsigned int voters;                              // Stores the number of voters
     unsigned int votes[3];                            // Holds the sum of votes for voters
     unsigned int currentNumberOfGroupMembers;         // Stores the number of voters in current group
-
+    BCHECK_DECL;
   public:							// common interface
     _Event Failed {};
     struct Ballot { unsigned int picture, statue, giftshop; };

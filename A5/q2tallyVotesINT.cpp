@@ -4,6 +4,8 @@
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
+    VOTER_ENTER( maxGroupSize );
+
     printer->print( id, Voter::Vote, ballot );
 
     votes[0] += ballot.picture;
@@ -37,6 +39,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     votingGroup.signal();
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
+
+    VOTER_LEAVE( tour-group-size );
+
     return currentTour;
 
 }

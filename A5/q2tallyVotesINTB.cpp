@@ -2,15 +2,10 @@
 #include "q2voter.h"
 #include "q2printer.h"
 
-/*
- * Semaphore implementation of tally voters, this contains both the vote method and the done method. All the other
- *  methods that are needed for tally votes are implemented in the generic tallyVotes.cpp
- */
+
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-
     VOTER_ENTER( maxGroupSize );
-
     printer->print( id, Voter::Vote, ballot );
 
     votes[0] += ballot.picture;
@@ -28,42 +23,32 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
+
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        try {
-
-            for ( ;; ) {
-                _Accept( TallyVotes::vote ) {
-
-              break;
-
-                } or _Accept( TallyVotes::done ) {
-                    if ( voters < maxGroupSize ) { _Throw Failed(); }
-                }
-            }
-
-        } catch ( uMutexFailure::RendezvousFailure & ) {
-            printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
-
-            _Throw Failed();
-        }
+        votingGroup.wait();
+        if ( voters < maxGroupSize ) { _Throw Failed(); }
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
     currentNumberOfGroupMembers--;
 
+    votingGroup.signal();
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
-
-    VOTER_LEAVE( tour-group-size );
-
     return currentTour;
 
 }
 
 void TallyVotes::done() {
     voters--;
+
+    if ( voters < maxGroupSize ) {
+        while ( !votingGroup.empty() ) {
+            votingGroup.signal();
+        }
+    }
 }
