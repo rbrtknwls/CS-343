@@ -34,17 +34,18 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
         try {
+
             for ( ;; ) {
                 _Accept( TallyVotes::vote ) {
                     break;
                 } or _Accept( TallyVotes::done ) { }
             }
 
-        } catch ( uMutexFailure::RendezvousFailure& ) {
+        } /*catch ( uMutexFailure::RendezvousFailure & ) {
             printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
 
             _Throw Failed();
-        }
+        }*/
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
