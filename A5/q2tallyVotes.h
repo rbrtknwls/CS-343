@@ -24,7 +24,7 @@ _Monitor TallyVotes {
 
 #elif defined( AUTO )
 _Monitor TallyVotes {
-
+    bool onTour = false;
 #else
     #error unsupported voter type
 #endif

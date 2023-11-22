@@ -10,7 +10,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     VOTER_ENTER( maxGroupSize );
 
-    if ( voters < maxGroupSize ) { _Throw Failed(); }
+    if ( voters < maxGroupSize ) {
+        EXIT();
+        _Throw Failed();
+    }
 
 
     printer->print( id, Voter::Vote, ballot );
@@ -30,20 +33,21 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
+        onTour = true;
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-
+        WAITUNTIL(onTour, ,);
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
-        if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     }
     currentNumberOfGroupMembers--;
 
-
+    if ( currentNumberOfGroupMembers == 0 ) { onTour = false; }
+    EXIT();
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
 
     VOTER_LEAVE( maxGroupSize );
@@ -55,7 +59,5 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done() {
     voters--;
 
-    if ( voters < maxGroupSize ) {
-
-    }
+    if ( voters < maxGroupSize ) { onTour = true; }
 }
