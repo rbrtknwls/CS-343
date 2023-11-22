@@ -35,7 +35,7 @@ else						# implementation type has changed => rebuilt
 .PHONY : ${EXEC}
 ${EXEC} :
 	rm -f VoteImpl
-	touch q3tallyVotes.h
+	touch q2tallyVotes.h
 	${MAKE} ${EXEC} VIMPL="${VIMPL}" OUTPUT="${OUTPUT}" BCHECK="${BCHECK}"
 endif
 
