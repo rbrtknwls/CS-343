@@ -1,6 +1,7 @@
 #ifndef CS_343_Q3TALLYVOTES
 #define CS_343_Q3TALLYVOTES
 
+#include "AutomaticSignal.h"
 #include "BargingCheckVote.h"
 
 _Monitor Printer;
