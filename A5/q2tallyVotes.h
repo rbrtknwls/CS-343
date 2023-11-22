@@ -15,6 +15,7 @@ _Monitor TallyVotes {
 #elif defined( INTB )
 _Monitor TallyVotes {
     uCondition bench;
+
     void wait();
     void signalAll();
 

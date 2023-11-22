@@ -4,11 +4,10 @@
 
 void TallyVotes::wait() {
     bench.wait();                                           // wait until signalled
-
     while ( rand() % 2 == 0 ) {                             // multiple bargers allowed
         try {
             _Accept( vote | | done ) {                      // accept barging callers
-            } _Else { }                                     // _Accept
+            } _Else { }                                               // _Accept
         } catch( uMutexFailure::RendezvousFailure & ) {}
     }                                                       // while
 }
@@ -19,7 +18,7 @@ void TallyVotes::signalAll() {                              // also useful
 
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-
+    /*
     VOTER_ENTER( maxGroupSize );
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }
@@ -68,7 +67,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     }
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
-
+    */
     return currentTour;
 
 }
