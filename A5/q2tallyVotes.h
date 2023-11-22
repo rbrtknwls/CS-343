@@ -1,6 +1,8 @@
 #ifndef CS_343_Q3TALLYVOTES
 #define CS_343_Q3TALLYVOTES
 
+#include "BargingCheckVote.h"
+
 _Monitor Printer;
 
 #if defined( EXT )
