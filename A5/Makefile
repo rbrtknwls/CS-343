@@ -27,6 +27,8 @@ all : ${EXEC}					# build all executables
 
 -include VoteImpl
 
+rm -f *.d ${OBJECTS} ${EXEC} VoteImpl
+
 ifeq (${shell if [ "${LOCKVIMPL}" = "${VIMPL}" -a "${OUTPUTTYPE}" = "${OUTPUT}" -a \
 			"${BCHECKIMPL}" = "${BCHECK}" ] ; then echo true ; fi },true)
 ${EXEC} : ${OBJECTS}
