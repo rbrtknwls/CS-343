@@ -32,9 +32,10 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
         votingGroup.wait();
+        
+        if ( voters < maxGroupSize ) { _Throw Failed(); }
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
-        if ( voters < maxGroupSize ) { _Throw Failed(); }
     }
     currentNumberOfGroupMembers--;
 

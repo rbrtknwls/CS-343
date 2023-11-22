@@ -49,6 +49,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
                         _Throw Failed();
                     } else {
+
                         printer->print(id, Voter::Done);
                     }
 
