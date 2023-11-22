@@ -9,7 +9,7 @@
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     VOTER_ENTER( maxGroupSize );
-    
+
     if ( voters < maxGroupSize ) { _Throw Failed(); }
 
 
