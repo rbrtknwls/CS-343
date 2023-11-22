@@ -38,11 +38,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         try {
 
             for ( ;; ) {
-                _Accept(TallyVotes::vote) {
+                _Accept( TallyVotes::vote ) {
 
               break;
 
-                } or _Accept(TallyVotes::done) {
+                } or _Accept( TallyVotes::done ) {
 
                     if (voters < maxGroupSize) {
                         printer->print(id, Voter::Unblock, currentNumberOfGroupMembers - 1);
@@ -51,7 +51,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
                     } else {
                         printer->print(id, Voter::Done);
                     }
-                    
+
                 }
             }
 
