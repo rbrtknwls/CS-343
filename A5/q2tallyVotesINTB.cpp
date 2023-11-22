@@ -12,11 +12,11 @@ void TallyVotes::wait() {
         } catch( uMutexFailure::RendezvousFailure & ) {}
     }                                                       // while
 }
-
+*/
 void TallyVotes::signalAll() {                              // also useful
     while ( ! bench.empty() ) bench.signal();               // drain the condition
 }
-*/
+
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
