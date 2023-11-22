@@ -2,6 +2,7 @@
 #include "q2voter.h"
 #include "q2printer.h"
 
+/*
 void TallyVotes::wait() {
     bench.wait();                                           // wait until signalled
     while ( rand() % 2 == 0 ) {                             // multiple bargers allowed
@@ -15,10 +16,10 @@ void TallyVotes::wait() {
 void TallyVotes::signalAll() {                              // also useful
     while ( ! bench.empty() ) bench.signal();               // drain the condition
 }
-
+*/
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    /*
+
     VOTER_ENTER( maxGroupSize );
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }
@@ -67,7 +68,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     }
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
-    */
+
     return currentTour;
 
 }
