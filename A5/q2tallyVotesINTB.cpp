@@ -24,7 +24,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     VOTER_ENTER( maxGroupSize );
 
-    if ( voters < maxGroupSize ) { _Throw Failed(); }
+    if ( voters < maxGroupSize ) {
+        _Throw Failed();
+    }
 
     unsigned int currentVoterNumber = newVoterNumber++;
 
@@ -50,7 +52,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[2] = 0;
 
         signalAll();
-
+        lastVoterInCurrentGroup += maxGroupSize;
 
         printer->print( id, Voter::Complete, currentTour );
 
@@ -65,7 +67,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentNumberOfGroupMembers--;
 
     if ( currentNumberOfGroupMembers == 0 ) {
-        lastVoterInCurrentGroup += maxGroupSize;
         signalAll();
     }
 
@@ -73,7 +74,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
 
     VOTER_LEAVE( maxGroupSize );
-    
+
     return currentTour;
 
 }
@@ -81,7 +82,5 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done() {
     voters--;
 
-    if ( voters < maxGroupSize ) {
-        signalAll();
-    }
+    if ( voters < maxGroupSize ) { signalAll(); }
 }
