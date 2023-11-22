@@ -1,4 +1,4 @@
-VIMPL := EXT
+VIMPL := INT
 OUTPUT := OUTPUT
 BCHECK := BARGINGCHECK
 
@@ -26,8 +26,6 @@ DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
 all : ${EXEC}					# build all executables
 
 -include VoteImpl
-
-rm -f *.d ${OBJECTS} ${EXEC} VoteImpl
 
 ifeq (${shell if [ "${LOCKVIMPL}" = "${VIMPL}" -a "${OUTPUTTYPE}" = "${OUTPUT}" -a \
 			"${BCHECKIMPL}" = "${BCHECK}" ] ; then echo true ; fi },true)
