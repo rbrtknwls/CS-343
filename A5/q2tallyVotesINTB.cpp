@@ -77,8 +77,6 @@ void TallyVotes::done() {
     voters--;
 
     if ( voters < maxGroupSize ) {
-        while ( !votingGroup.empty() ) {
-            votingGroup.signal();
-        }
+        signalAll();
     }
 }
