@@ -12,6 +12,10 @@ TallyVotes::TallyVotes( unsigned int voters, unsigned int group, Printer & print
     votes[2] = 0;
 
     currentGroupNumber = 0;
+
+#if defined( INTB )
+    lastTicketedVoter = maxGroupSize;
+#endif
 }
 
 // Method for determining winner, biases included!

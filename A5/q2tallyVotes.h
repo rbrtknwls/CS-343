@@ -18,6 +18,9 @@ _Monitor TallyVotes {
     void wait();
     void signalAll();
 
+    unsigned int newVoterNumber = 0;
+    unsigned int lastVoterInCurrentGroup = 0;
+
 #else
     #error unsupported voter type
 #endif

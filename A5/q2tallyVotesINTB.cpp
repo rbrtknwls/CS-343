@@ -2,13 +2,32 @@
 #include "q2voter.h"
 #include "q2printer.h"
 
+void TallyVotes::wait() {
+    bench.wait();                                           // wait until signalled
+    while ( rand() % 2 == 0 ) {                             // multiple bargers allowed
+        try {
+            _Accept( vote | | done ) {                      // accept barging callers
+            } _Else {                                       // do not wait if no callers
+            }                                               // _Accept
+        } catch( uMutexFailure::RendezvousFailure & ) {}
+    }                                                       // while
+}
+
+void TallyVotes::signalAll() {                              // also useful
+    while ( ! bench.empty() ) bench.signal();               // drain the condition
+}
 
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     VOTER_ENTER( maxGroupSize );
-
     if ( voters < maxGroupSize ) { _Throw Failed(); }
+
+    unsigned int currentVoterNumber = newVoterNumber++;
+
+    while ( currentVoterNumber > lastVoterInCurrentGroup ) {
+        wait();
+    }
 
     printer->print( id, Voter::Vote, ballot );
 
@@ -27,22 +46,28 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
+        signalAll();
+
 
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
 
-        votingGroup.wait();
+        wait();
         if ( voters < maxGroupSize ) { _Throw Failed(); }
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
     currentNumberOfGroupMembers--;
 
-    votingGroup.signal();
+    if ( currentNumberOfGroupMembers == 0 ) {
+        lastVoterInCurrentGroup += maxGroupSize;
+        signalAll();
+    }
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
+
     return currentTour;
 
 }
