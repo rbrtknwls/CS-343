@@ -21,9 +21,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
-        while ( !votingGroup.empty() ) {
-            votingGroup.signal();
-        }
 
         printer->print( id, Voter::Complete, currentTour );
 
@@ -37,6 +34,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     }
     currentNumberOfGroupMembers--;
 
+    votingGroup.signal();
 
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
     return currentTour;
@@ -47,6 +45,8 @@ void TallyVotes::done() {
     voters--;
 
     if ( voters < maxGroupSize ) {
-
+        while ( !votingGroup.empty() ) {
+            votingGroup.signal();
+        }
     }
 }
