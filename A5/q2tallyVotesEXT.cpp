@@ -38,20 +38,21 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         try {
 
             for ( ;; ) {
-                _Accept( TallyVotes::vote ) {
+                _Accept(TallyVotes::vote) {
 
               break;
 
-                } or _Accept( TallyVotes::done )
+                } or _Accept(TallyVotes::done) {
 
-                    if ( voters < maxGroupSize ) {
-                        printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
+                    if (voters < maxGroupSize) {
+                        printer->print(id, Voter::Unblock, currentNumberOfGroupMembers - 1);
+
                         _Throw Failed();
                     } else {
-                        printer->print( id, Voter::Done);
+                        printer->print(id, Voter::Done);
                     }
+                    
                 }
-            
             }
 
         } catch ( uMutexFailure::RendezvousFailure & ) {
