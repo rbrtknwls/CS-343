@@ -2,8 +2,9 @@
 #include "q2voter.h"
 #include "q2printer.h"
 
-/*
+
 void TallyVotes::wait() {
+    /*
     bench.wait();                                           // wait until signalled
     while ( rand() % 2 == 0 ) {                             // multiple bargers allowed
         try {
@@ -11,8 +12,9 @@ void TallyVotes::wait() {
             } _Else { }                                               // _Accept
         } catch( uMutexFailure::RendezvousFailure & ) {}
     }                                                       // while
+     */
 }
-*/
+
 void TallyVotes::signalAll() {                              // also useful
     while ( ! bench.empty() ) bench.signal();               // drain the condition
 }
