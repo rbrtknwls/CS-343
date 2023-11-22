@@ -8,7 +8,7 @@ void TallyVotes::wait() {
 
     while ( rand() % 2 == 0 ) {                                 // multiple bargers allowed
        try {
-           _Accept( TallyVotes::vote | | TallyVotes::done ) {   // accept barging callers
+           _Accept( TallyVotes::vote || TallyVotes::done ) {   // accept barging callers
            } _Else { }                                          // _Accept
        } catch( uMutexFailure::RendezvousFailure & ) {}
     }                                                           // while
