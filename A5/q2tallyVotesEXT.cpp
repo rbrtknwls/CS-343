@@ -7,6 +7,8 @@
  *  methods that are needed for tally votes are implemented in the generic tallyVotes.cpp
  */
 
+void
+
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     printer->print( id, Voter::Vote, ballot );
@@ -30,9 +32,17 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
+        
+        try {
 
-        _Accept ( TallyVotes::vote )
-        if ( voters < maxGroupSize ) { _Throw Failed(); }
+            _Accept(TallyVotes::vote || TallyVotes::done())
+            if (voters < maxGroupSize) { _Throw Failed(); }
+
+        } catch ( uMutexFailure::RendezvousFailure& ) {
+            printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
+
+            _Throw Failed();
+        }
 
         printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
     }
@@ -48,6 +58,6 @@ void TallyVotes::done() {
     voters--;
 
     if ( voters < maxGroupSize ) {
-
+        _Throw Failed();
     }
 }
