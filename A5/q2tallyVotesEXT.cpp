@@ -35,8 +35,12 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
             for ( ;; ) {
                 _Accept( TallyVotes::vote ) {
-                    break;
-                } or _Accept( TallyVotes::done ) { }
+
+              break;
+              
+                } or _Accept( TallyVotes::done ) {
+                    if ( voters < maxGroupSize ) { _Throw Failed(); }
+                }
             }
 
         } catch ( uMutexFailure::RendezvousFailure & ) {
@@ -57,8 +61,4 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 void TallyVotes::done() {
     voters--;
-
-    if ( voters < maxGroupSize ) {
-        _Throw Failed();
-    }
 }

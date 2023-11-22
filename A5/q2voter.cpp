@@ -26,8 +26,6 @@ void Voter::main() {
         }
     } catch ( TallyVotes::Failed &failed ) {
         printer->print(id, Failed);                         // On failure print failure
-    } catch( ... ) {
-        printer->print(id, Failed);
     }
 
     printer->print(id, Terminated);
