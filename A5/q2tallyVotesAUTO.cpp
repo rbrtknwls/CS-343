@@ -54,5 +54,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done() {
     voters--;
 
-    if ( voters < maxGroupSize ) { signalAll(); }
+    if ( voters < maxGroupSize ) {
+        
+    }
 }
