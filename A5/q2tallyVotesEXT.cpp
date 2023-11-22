@@ -32,12 +32,13 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     } else {
         printer->print( id, Voter::Block, currentNumberOfGroupMembers );
-        
+
         try {
-
-            _Accept(TallyVotes::vote || TallyVotes::done())
-            if (voters < maxGroupSize) { _Throw Failed(); }
-
+            for ( ;; ) {
+                _Accept( TallyVotes::vote ) { break; }
+                or _Accept( TallyVotes::done ) { }
+            }
+            
         } catch ( uMutexFailure::RendezvousFailure& ) {
             printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
 
