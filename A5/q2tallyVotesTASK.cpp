@@ -5,12 +5,51 @@
 #include <stdlib.h>
 
 void TallyVotes::main() {
+
     for ( ;; ) {
         try {
+
             _Accept( TallyVotes::vote ) {
-                bench.signalBlock();
-            } or _Accept( TallyVotes::done ) {
+
+                if ( voters < maxGroupSize ) { _Throw Failed(); }
+
                 printer->print( currentId, Voter::Vote, currentBallot );
+
+                votes[0] += currentBallot.picture;
+                votes[1] += currentBallot.statue;
+                votes[2] += currentBallot.giftshop;
+
+                currentNumberOfGroupMembers++;
+
+                if ( currentNumberOfGroupMembers == maxGroupSize ) {
+                    currentTour.tourkind = determineWinner();
+                    currentTour.groupno = ++currentGroupNumber;
+
+                    // Reset the number of votes
+                    votes[0] = 0;
+                    votes[1] = 0;
+                    votes[2] = 0;
+
+                    printer->print( id, Voter::Complete, currentTour );
+
+                    bench.signalBlock();
+
+                } else {
+                    printer->print( id, Voter::Block, currentNumberOfGroupMembers );
+/*
+                    wait();
+
+                    printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
+*/
+                }
+                /*
+                currentNumberOfGroupMembers--;
+
+                if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
+                */
+
+            } or _Accept( TallyVotes::done ) {
+
                 bench.signalBlock();
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
@@ -20,16 +59,22 @@ void TallyVotes::main() {
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
+
     currentBallot = ballot;
     currentId = id;
 
     bench.wait();
+
+    currentNumberOfGroupMembers--;
+
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     return currentTour;
 
 }
 
 void TallyVotes::done( unsigned int id ) {
+
     currentId = id;
     voters--;
 }
