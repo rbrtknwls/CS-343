@@ -36,7 +36,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         numberOfBargers++;
 
         while ( currentVoterNumber >= lastVoterInCurrentGroup ) {
-            printer->print(id, Voter::Barging, numberOfBargers );
+            printer->print( id, Voter::Barging, currentGroupNumber, currentNumberOfGroupMembers );
             wait();
         } // while
 
@@ -77,7 +77,9 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentNumberOfGroupMembers--;
 
     if ( currentNumberOfGroupMembers == 0 ) {                   // Release all the barging Tasks
+
         lastVoterInCurrentGroup += maxGroupSize;                // Update the id of the last voter in group
+
         signalAll();
     } // if
 
