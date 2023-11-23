@@ -60,6 +60,7 @@ _Task TallyVotes {
     Tour currentTour;
 #if defined( TASK )
     Ballot currentBallot;
+    unsigned int currentId;
 #endif
 };
 
