@@ -58,6 +58,7 @@ _Task TallyVotes {
   private:
     TourKind determineWinner();
     Tour currentTour;
+
 #if defined( TASK )
     Ballot currentBallot;
     unsigned int currentId;
