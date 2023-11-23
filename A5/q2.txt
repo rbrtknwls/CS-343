@@ -1,0 +1,20 @@
+1b) After running the experiment across all 5 implimentations, we get:
+
+[ (INT) ./vote 100 10 100000 1003 ]    [ (EXT) ./vote 100 10 100000 1003 ]    [ (INTB) ./vote 100 10 100000 1003 ]
+6.59u 0.00s 0:06.59r 6260kb            6.55u 0.01s 0:06.56r 6096kb            4.73u 0.02s 0:04.74r 6728kb
+
+[ (TASK) ./vote 100 10 100000 1003 ]    [ (AUTO) ./vote 100 10 100000 1003 ]
+8.67u 0.01s 0:08.68r 6204kb             6.46u 0.00s 0:06.46r 6156kb
+
+Using 2 processors, and reducing the number of votes by 10 fold we get:
+[ (MC) ./vote 100 10 10000 1003 ]    [ (SEM) ./vote 100 10 10000 1003 ]    [ (BAR) ./vote 100 10 0000 1003 ]
+19.81u 0.07s 0:09.94r 6552kb          14.33u 0.03s 0:07.17r 6524kb           17.32u 0.05s 0:08.67r 6628kb
+
+1c) Across all implementations, regardless of the number of processors we see that semaphores preform the best followed
+by barriers followed lastly by locks. In the case of one processor the difference between semaphores and barrirers is
+0.3 seconds and the difference between barriers and locks is 0.7 seconds. In the case of 2 processosrs the difference
+between each is roughly 2-3 seconds.
+
+1d) The performance difference increases exponentially, this is most likely due to the increase in amount of blocking
+and context switching which slows everything down. Since the vast majority of our code needs to run sequentially the
+increasing number of threads actually hamper running time.

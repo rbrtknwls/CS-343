@@ -32,9 +32,17 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
     unsigned int currentVoterNumber = newVoterNumber++;          // Keep track of current voter Id
 
-    while ( currentVoterNumber > lastVoterInCurrentGroup ) {     // Stop any bargers (id > last in group)
-        wait();
-    } // while
+    if ( currentVoterNumber >= lastVoterInCurrentGroup ) {       // Stop any bargers (id > last in group)
+        numberOfBargers++;
+
+        while ( currentVoterNumber >= lastVoterInCurrentGroup ) {
+            printer->print(id, Voter::Barging, numberOfBargers )
+            wait();
+        } // while
+
+        numberOfBargers--;
+
+    }
 
     printer->print( id, Voter::Vote, ballot );
 

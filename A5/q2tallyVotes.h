@@ -22,6 +22,7 @@ _Monitor TallyVotes {
 
     unsigned int newVoterNumber = 0;
     unsigned int lastVoterInCurrentGroup = 0;
+    unsigned int numberOfBargers = 0;
 
 #elif defined( AUTO )
 _Monitor TallyVotes {
