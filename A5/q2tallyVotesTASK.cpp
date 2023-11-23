@@ -63,7 +63,7 @@ void TallyVotes::main() {
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-
+    printer->print( 0, Voter::Terminated );
     currentBallot = ballot;
     currentId = id;
 
