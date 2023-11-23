@@ -36,12 +36,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         numberOfBargers++;
 
         while ( currentVoterNumber >= lastVoterInCurrentGroup ) {
-            printer->print(id, Voter::Barging, numberOfBargers )
+            printer->print(id, Voter::Barging, numberOfBargers );
             wait();
         } // while
 
         numberOfBargers--;
-
     }
 
     printer->print( id, Voter::Vote, ballot );
