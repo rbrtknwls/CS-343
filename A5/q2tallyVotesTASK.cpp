@@ -36,6 +36,8 @@ void TallyVotes::main() {
                     printer->print( currentId, Voter::Complete, currentTour );
 
                     bench.signal();
+                    printer->print( 0, Voter::Terminated );
+                    printer->print( 0, Voter::Terminated );
 
                 } else {
                     printer->print( currentId, Voter::Block, currentNumberOfGroupMembers );
