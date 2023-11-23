@@ -11,7 +11,8 @@ void TallyVotes::main() {
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    TallyVotes::currentVoterBallot = ballot;
+    TallyVotes::currentBallot = ballot;
+    TallyVotes::currentId = id;
 
     bench.wait();
 
