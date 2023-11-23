@@ -6,15 +6,15 @@
 
 void TallyVotes::main() {
     for ( ;; ) {
-        printer->print( 1, Voter::Vote, currentBallot );
+        printer->print( currendId, Voter::Vote, currentBallot );
     }
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    TallyVotes::currentBallot = ballot;
-    TallyVotes::currentId = id;
+    currentBallot = ballot;
+    currentId = id;
 
-    bench.wait();
+    //bench.wait();
 
     return currentTour;
 
