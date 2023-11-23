@@ -6,7 +6,7 @@
 
 void TallyVotes::main() {
     for ( ;; ) {
-        printer->print( 1, Voter::Vote, ballot );
+        printer->print( 1, Voter::Vote, currentBallot );
     }
 }
 
