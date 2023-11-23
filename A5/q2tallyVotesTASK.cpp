@@ -60,7 +60,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 }
 
-void TallyVotes::done() {
+void TallyVotes::done( unsigned int id ) {
     voters--;
 
     if ( voters < maxGroupSize ) { onTour = true; }

@@ -30,7 +30,11 @@ void Voter::main() {
 
     printer->print(id, Terminated);
 
-    voteTallier->done();
+    voteTallier->done(
+#if defined( INTB )
+            id
+#endif
+            );
 
 
 
