@@ -62,7 +62,8 @@ void TallyVotes::main() {
                 }
                 bench.signalBlock();
                 printer->print( currentId, Voter::Terminated );
-
+                
+                if ( voters < maxGroupSize ) { _Throw Failed(); }
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
             while ( !bench.empty() ) {
@@ -70,6 +71,7 @@ void TallyVotes::main() {
                 printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
                 bench.signalBlock();
             }
+
         }
     }
 }
