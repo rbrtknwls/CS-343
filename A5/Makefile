@@ -1,5 +1,5 @@
 VIMPL := TASK
-OUTPUT := OUTPUT
+OUTPUT := NOOUTPUT
 BCHECK := BARGINGCHECK
 
 CXX = u++					# compiler
