@@ -58,8 +58,9 @@ void TallyVotes::main() {
                 } else {
                     printer->print( currentId, Voter::Done);
                 }
-                bench.signalBlock();
+
                 printer->print( currentId, Voter::Terminated );
+                bench.signal();
 
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
@@ -75,8 +76,6 @@ void TallyVotes::main() {
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
-    if ( voters < maxGroupSize ) { _Throw Failed(); }
-    
     currentBallot = ballot;
     currentId = id;
 
