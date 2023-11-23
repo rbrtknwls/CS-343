@@ -72,7 +72,6 @@ void TallyVotes::main() {
             }
 
             _Throw Failed();
-            
         }
     }
 }
@@ -82,11 +81,11 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentBallot = ballot;
     currentId = id;
 
+    if (voters < group ) _Throw Failed();
     bench.wait( id );
-
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
     currentNumberOfGroupMembers--;
 
-    if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     return currentTour;
 
@@ -95,5 +94,4 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 void TallyVotes::done( unsigned int id ) {
     currentId = id;
     voters--;
-
 }
