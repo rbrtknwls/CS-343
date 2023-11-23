@@ -45,8 +45,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     }
     currentNumberOfGroupMembers--;
 
-    if ( currentNumberOfGroupMembers == 0 ) { onTour = false; }
-
     if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
 
     VOTER_LEAVE( maxGroupSize );
