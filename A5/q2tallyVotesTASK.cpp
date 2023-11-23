@@ -36,25 +36,16 @@ void TallyVotes::main() {
                     printer->print( currentId, Voter::Complete, currentTour );
 
                     while ( !bench.empty() ) {
+                        printer.print(bench.front(), Voter::States::Unblock, currentNumberOfGroupMembers - 1);
                         bench.signalBlock();
                     }
-                    printer->print( 0, Voter::Terminated );
-                    printer->print( 0, Voter::Terminated );
+
 
                 } else {
                     printer->print( currentId, Voter::Block, currentNumberOfGroupMembers );
 
-/*
-                    wait();
-
-                    printer->print( id, Voter::Unblock, currentNumberOfGroupMembers - 1);
-*/
                 }
-                /*
-                currentNumberOfGroupMembers--;
 
-                if ( voters < maxGroupSize ) { _Throw Failed(); }   // Quorum Failure
-                */
 
             } or _Accept( TallyVotes::done ) {
 
