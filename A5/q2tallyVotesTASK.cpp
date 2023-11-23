@@ -15,8 +15,6 @@ void TallyVotes::main() {
 
             } or _Accept( TallyVotes::vote ) {
 
-                if ( voters < maxGroupSize ) { _Throw Failed(); }
-
                 printer->print( currentId, Voter::Vote, currentBallot );
 
                 votes[0] += currentBallot.picture;
@@ -62,8 +60,7 @@ void TallyVotes::main() {
                 }
                 bench.signalBlock();
                 printer->print( currentId, Voter::Terminated );
-                
-                if ( voters < maxGroupSize ) { _Throw Failed(); }
+
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
             while ( !bench.empty() ) {
@@ -78,6 +75,8 @@ void TallyVotes::main() {
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
+    if ( voters < maxGroupSize ) { _Throw Failed(); }
+    
     currentBallot = ballot;
     currentId = id;
 
