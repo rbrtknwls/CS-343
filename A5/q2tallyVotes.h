@@ -30,6 +30,9 @@ _Monitor TallyVotes {
 #elif defined( TASK )
 _Task TallyVotes {
     void main();
+
+    uCondition bench;
+    Ballot currentVoterBallot;
 #else
     #error unsupported voter type
 #endif
