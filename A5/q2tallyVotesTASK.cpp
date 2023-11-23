@@ -58,10 +58,10 @@ void TallyVotes::main() {
                         bench.signalBlock();
                     }
                 } else {
-                    printer->print( currentId, Voter::Done, currentNumberOfGroupMembers );
+                    printer->print( currentId, Voter::Done);
                 }
                 bench.signalBlock();
-                printer->print( currentId, Voter::Terminate, currentNumberOfGroupMembers );
+                printer->print( currentId, Voter::Terminate);
 
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
