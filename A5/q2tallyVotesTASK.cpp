@@ -34,7 +34,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
         votes[1] = 0;
         votes[2] = 0;
 
-        onTour = true;
         printer->print( id, Voter::Complete, currentTour );
 
     } else {
@@ -58,6 +57,4 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 void TallyVotes::done( unsigned int id ) {
     voters--;
-
-    if ( voters < maxGroupSize ) { onTour = true; }
 }
