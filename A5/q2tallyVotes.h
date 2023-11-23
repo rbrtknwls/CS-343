@@ -27,6 +27,9 @@ _Monitor TallyVotes {
 _Monitor TallyVotes {
     bool onTour = false;
     AUTOMATIC_SIGNAL;
+#elif defined( TASK )
+_Task TallyVotes {
+
 #else
     #error unsupported voter type
 #endif
