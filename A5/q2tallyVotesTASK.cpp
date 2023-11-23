@@ -70,8 +70,6 @@ void TallyVotes::main() {
                 printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
                 bench.signalBlock();
             }
-
-            _Throw Failed();
         }
     }
 }
@@ -81,7 +79,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentBallot = ballot;
     currentId = id;
 
-    if (voters < group ) _Throw Failed();
+    if (voters < maxGroupSize ) _Throw Failed();
     bench.wait( id );
     if ( voters < maxGroupSize ) { _Throw Failed(); }
     currentNumberOfGroupMembers--;
