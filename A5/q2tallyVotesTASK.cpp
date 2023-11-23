@@ -51,10 +51,6 @@ void TallyVotes::main() {
 
             } or _Accept( TallyVotes::done ) {
 
-
-
-                bench.signalBlock();
-
                 if ( voters < maxGroupSize ) {
                     while ( !bench.empty() ) {
                         unsigned int voterToWake = bench.front();
@@ -64,7 +60,9 @@ void TallyVotes::main() {
                 } else {
                     printer->print( currentId, Voter::Done, currentNumberOfGroupMembers );
                 }
+                bench.signalBlock();
                 printer->print( currentId, Voter::Terminate, currentNumberOfGroupMembers );
+
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
             while ( !bench.empty() ) {
