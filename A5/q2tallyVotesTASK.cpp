@@ -8,8 +8,11 @@ void TallyVotes::main() {
 
     for ( ;; ) {
         try {
+            _Accept ( ~TallyVotes ) {
 
-            _Accept( TallyVotes::vote ) {
+                break;
+                
+            } or _Accept( TallyVotes::vote ) {
 
                 if ( voters < maxGroupSize ) { _Throw Failed(); }
 
