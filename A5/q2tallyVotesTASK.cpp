@@ -71,6 +71,8 @@ void TallyVotes::main() {
                 bench.signalBlock();
             }
 
+            _Throw Failed();
+            
         }
     }
 }
