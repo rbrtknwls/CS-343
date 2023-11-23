@@ -50,6 +50,8 @@ void TallyVotes::main() {
 
             } or _Accept( TallyVotes::done ) {
 
+                printer->print( currentId, Voter::Terminated );
+
                 if ( voters < maxGroupSize ) {
                     while ( !bench.empty() ) {
                         unsigned int voterToWake = bench.front();
@@ -62,8 +64,6 @@ void TallyVotes::main() {
                         printer->print( voterThatIsBlocked, Voter::Done);
                     }
                 }
-
-                printer->print( currentId, Voter::Terminated );
 
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
