@@ -30,12 +30,12 @@ void TallyVotes::main() {
                     votes[1] = 0;
                     votes[2] = 0;
 
-                    printer->print( id, Voter::Complete, currentTour );
+                    printer->print( currentId, Voter::Complete, currentTour );
 
                     bench.signalBlock();
 
                 } else {
-                    printer->print( id, Voter::Block, currentNumberOfGroupMembers );
+                    printer->print( currentId, Voter::Block, currentNumberOfGroupMembers );
 /*
                     wait();
 
@@ -66,7 +66,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     bench.wait();
 
     currentNumberOfGroupMembers--;
-
     if ( voters < maxGroupSize ) { _Throw Failed(); }
 
     return currentTour;
