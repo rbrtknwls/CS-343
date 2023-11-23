@@ -7,7 +7,6 @@
 void TallyVotes::main() {
 
     for ( ;; ) {
-
         try {
             _Accept ( ~TallyVotes ) {
 
@@ -58,18 +57,23 @@ void TallyVotes::main() {
                         bench.signalBlock();
                     }
                 } else {
-                    printer->print( currentId, Voter::Done);
+                    if ( !bench.empty() ) {
+                        unsigned int voterThatIsBlocked = bench.front();
+                        printer->print( voterThatIsBlocked, Voter::Done);
+                    }
                 }
 
                 printer->print( currentId, Voter::Terminated );
 
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
+
             while ( !bench.empty() ) {
                 unsigned int voterToWake = bench.front();
                 printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
                 bench.signalBlock();
             }
+
         }
     }
 }
