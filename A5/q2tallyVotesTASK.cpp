@@ -35,7 +35,9 @@ void TallyVotes::main() {
 
                     printer->print( currentId, Voter::Complete, currentTour );
 
-                    bench.signal();
+                    while ( !bench.empty() ) {
+                        bench.signalBlock();
+                    }
                     printer->print( 0, Voter::Terminated );
                     printer->print( 0, Voter::Terminated );
 
