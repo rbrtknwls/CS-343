@@ -32,7 +32,6 @@ _Task TallyVotes {
     void main();
 
     uCondition bench;
-    Ballot currentVoterBallot;
 #else
     #error unsupported voter type
 #endif
@@ -59,6 +58,9 @@ _Task TallyVotes {
   private:
     TourKind determineWinner();
     Tour currentTour;
+#if defined( TASK )
+    Ballot currentBallot;
+#endif
 };
 
 #endif
