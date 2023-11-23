@@ -61,7 +61,7 @@ void TallyVotes::main() {
                     printer->print( currentId, Voter::Done);
                 }
                 bench.signalBlock();
-                printer->print( currentId, Voter::Terminate);
+                printer->print( currentId, Voter::Terminated );
 
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
