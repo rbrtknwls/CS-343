@@ -1,20 +1,27 @@
-1b) After running the experiment across all 5 implimentations, we get:
+1a) After running the experiment across all 5 implimentations, we get:
 
 [ (INT) ./vote 100 10 100000 1003 ]    [ (EXT) ./vote 100 10 100000 1003 ]    [ (INTB) ./vote 100 10 100000 1003 ]
-6.59u 0.00s 0:06.59r 6260kb            6.55u 0.01s 0:06.56r 6096kb            4.73u 0.02s 0:04.74r 6728kb
+6.59u 0.00s 0:06.59r 6260kb            6.55u 0.01s 0:06.56r 6096kb            37.05u 0.04s 0:37.09r 6192kb
 
 [ (TASK) ./vote 100 10 100000 1003 ]    [ (AUTO) ./vote 100 10 100000 1003 ]
 8.67u 0.01s 0:08.68r 6204kb             6.46u 0.00s 0:06.46r 6156kb
 
-Using 2 processors, and reducing the number of votes by 10 fold we get:
-[ (MC) ./vote 100 10 10000 1003 ]    [ (SEM) ./vote 100 10 10000 1003 ]    [ (BAR) ./vote 100 10 0000 1003 ]
-19.81u 0.07s 0:09.94r 6552kb          14.33u 0.03s 0:07.17r 6524kb           17.32u 0.05s 0:08.67r 6628kb
+1b) Using 2 processors, and reducing the number of votes by 10 fold we get:
+[ (INT) ./vote 100 10 10000 1003 ]    [ (EXT) ./vote 100 10 10000 1003 ]    [ (INTB) ./vote 100 10 10000 1003 ]
+24.59u 0.05s 0:12.32r 6124kb          17.31u 0.04s 0:08.67r 6296kb          96.70u 0.10s 0:58.38r 6268kb
 
-1c) Across all implementations, regardless of the number of processors we see that semaphores preform the best followed
-by barriers followed lastly by locks. In the case of one processor the difference between semaphores and barrirers is
-0.3 seconds and the difference between barriers and locks is 0.7 seconds. In the case of 2 processosrs the difference
-between each is roughly 2-3 seconds.
+[ (TASK) ./vote 100 10 10000 1003 ]    [ (AUTO) ./vote 100 10 10000 1003 ]
+29.03u 0.03s 0:14.52r 6240kb           19.08u 0.04s 0:09.56r 6308kb
 
-1d) The performance difference increases exponentially, this is most likely due to the increase in amount of blocking
-and context switching which slows everything down. Since the vast majority of our code needs to run sequentially the
-increasing number of threads actually hamper running time.
+1c) What we see is that auto scheduling is the fastest, but internal scheduling and external scheduling are simpler.
+This is likely do to the lightweight nature of these implementations, each voter doing equal amounts of work. Task
+is a bit slower, as the less work each voters does, the less parallelism we will have and the longer the runtime.
+Lastly, the java monitor implementation is the slowest as barging wastes a lot of processing time, which corresponds to
+the highest runtime.
+
+1d) When we increase the number of processors some we notice that the runtime actually decreases, this is because we
+have to deal with context switching and so more cases where we need to wait. We notice that external scheduling is the
+fastest; it makes sense that this is faster than internal scheduling as we dont need to accept the voter into the
+monitor in order to schedule them. The auto scheduler is faster than the internal monitor, and we see that task slows
+down quite a bit too. The java monitor scheduling slows down the most, as this is likely to do to the increase in the
+amount of barging caused by having multiple processors.
