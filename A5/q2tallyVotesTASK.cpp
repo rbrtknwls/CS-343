@@ -89,7 +89,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 }
 
-void TallyVotes::done( unsigned int id )
+void TallyVotes::done( unsigned int id ) {
     currentId = id;
     voters--;
 
