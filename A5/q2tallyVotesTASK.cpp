@@ -36,7 +36,8 @@ void TallyVotes::main() {
                     printer->print( currentId, Voter::Complete, currentTour );
 
                     while ( !bench.empty() ) {
-                        printer->print( bench.front(), Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
+                        unsigned int voterToWake = bench.front();
+                        printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
                         bench.signalBlock();
                     }
 
@@ -62,7 +63,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentBallot = ballot;
     currentId = id;
 
-    bench.wait();
+    bench.wait( id );
 
     currentNumberOfGroupMembers--;
 
