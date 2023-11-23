@@ -15,6 +15,8 @@ void TallyVotes::main() {
 
             } or _Accept( TallyVotes::vote ) {
 
+                if ( voters < maxGroupSize ) { _Throw Failed(); }
+
                 printer->print( currentId, Voter::Vote, currentBallot );
 
                 votes[0] += currentBallot.picture;
