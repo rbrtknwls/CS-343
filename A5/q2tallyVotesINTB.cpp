@@ -63,7 +63,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 
 
         signalAll();                                            // Wake up all the waiting voters
-        lastVoterInCurrentGroup += maxGroupSize;                // Update the id of the last voter in group
 
         printer->print( id, Voter::Complete, currentTour );
 
@@ -78,6 +77,7 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
     currentNumberOfGroupMembers--;
 
     if ( currentNumberOfGroupMembers == 0 ) {                   // Release all the barging Tasks
+        lastVoterInCurrentGroup += maxGroupSize;                // Update the id of the last voter in group
         signalAll();
     } // if
 
