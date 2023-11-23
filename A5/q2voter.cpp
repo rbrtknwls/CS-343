@@ -28,13 +28,12 @@ void Voter::main() {
         printer->print(id, Failed);                         // On failure print failure
     }
 
-    printer->print(id, Terminated);
-
-    voteTallier->done(
 #if defined( TASK )
-            id
+    voteTallier->done( id );
+#else
+    printer->print( id, Terminated );
+    voteTallier->done();
 #endif
-            );
 
 
 

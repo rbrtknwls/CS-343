@@ -49,17 +49,29 @@ void TallyVotes::main() {
 
 
             } or _Accept( TallyVotes::done ) {
-
+                printer->print( currentId, Voter::Done, currentNumberOfGroupMembers );
                 bench.signalBlock();
+
+                if ( voters < maxGroupSize ) {
+                    while ( !bench.empty() ) {
+                        unsigned int voterToWake = bench.front();
+                        printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
+                        bench.signalBlock();
+                    }
+                }
             }
         } catch ( uMutexFailure::RendezvousFailure& ) {
-
+            while ( !bench.empty() ) {
+                unsigned int voterToWake = bench.front();
+                printer->print( voterToWake, Voter::States::Unblock, currentNumberOfGroupMembers - 1 );
+                bench.signalBlock();
+            }
         }
     }
 }
 
 TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
-    printer->print( 0, Voter::Terminated );
+
     currentBallot = ballot;
     currentId = id;
 
@@ -74,7 +86,6 @@ TallyVotes::Tour TallyVotes::vote( unsigned id, Ballot ballot ) {
 }
 
 void TallyVotes::done( unsigned int id ) {
-
-    currentId = id;
     voters--;
+
 }
