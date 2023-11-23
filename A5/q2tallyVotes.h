@@ -29,7 +29,7 @@ _Monitor TallyVotes {
     AUTOMATIC_SIGNAL;
 #elif defined( TASK )
 _Task TallyVotes {
-
+    void main();
 #else
     #error unsupported voter type
 #endif
