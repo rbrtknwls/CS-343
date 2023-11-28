@@ -17,8 +17,6 @@ all : ${EXEC}					# build all executables
 
 .PHONY : ${EXEC}
 ${EXEC} :
-	rm -f VoteImpl
-	touch q2tallyVotes.h
 	${MAKE} ${EXEC}
 
 #############################################################
