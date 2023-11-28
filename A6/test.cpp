@@ -8,11 +8,10 @@ PRNG mainPRNG;
 
 int main( int argc, char * argv[] ) {
 
-    char * configFile = "soda.config";
+    char * configFile = (char*) "soda.config";
     int processors = 0;
 
     struct cmd_error { };
-
     try {
         switch ( argc ) {
             case 4:
