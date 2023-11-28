@@ -2,6 +2,7 @@
 #define CS_343_PARENT_H
 
 _Monitor Printer;
+_Monitor Bank;
 
 _Task Parent {
     void main();
