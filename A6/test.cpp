@@ -9,7 +9,7 @@ PRNG mainPRNG;
 int main( int argc, char * argv[] ) {
 
     char * configFile;
-    int processors
+    int processors = 0;
 
     struct cmd_error { };
 
