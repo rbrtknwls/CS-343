@@ -2,6 +2,7 @@
 #include <vector>
 #include <uPRNG.h>
 
+#include "config.h"
 using namespace std;
 
 PRNG mainPRNG;
