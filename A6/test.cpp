@@ -41,5 +41,7 @@ int main( int argc, char * argv[] ) {
 
     processConfigFile( configFile, GlobalParameters );
 
+    cout << GlobalParameters.parentalDelay << endl;
+
 
 }
