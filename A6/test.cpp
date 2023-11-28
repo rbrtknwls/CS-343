@@ -6,6 +6,7 @@
 using namespace std;
 
 PRNG mainPRNG;
+ConfigParms GlobalParameters;
 
 int main( int argc, char * argv[] ) {
 
@@ -38,7 +39,7 @@ int main( int argc, char * argv[] ) {
 
     uProcessor p[processors - 1] __attribute__(( unused ));
 
-    cout << configFile;
+    processConfigFile( configFile, &GlobalParameters );
 
 
 }
