@@ -8,7 +8,7 @@ PRNG mainPRNG;
 
 int main( int argc, char * argv[] ) {
 
-    char * configFile;
+    char * configFile = "soda.config";
     int processors = 0;
 
     struct cmd_error { };
@@ -24,7 +24,7 @@ int main( int argc, char * argv[] ) {
                     mainPRNG.set_seed(seed);
                 }
             case 2:
-                if ( *argv[1] != 'd' ) { configFile = stoi(argv[1]); }
+                if ( *argv[1] != 'd' ) { configFile = argv[1]; }
             default:
                 if ( processors <= 0 ) { throw cmd_error(); }
                 break;
@@ -37,6 +37,8 @@ int main( int argc, char * argv[] ) {
     }
 
     uProcessor p[processors - 1] __attribute__(( unused ));
+
+    cout << configFile;
 
 
 }
