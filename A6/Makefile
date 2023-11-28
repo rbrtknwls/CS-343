@@ -15,23 +15,11 @@ DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
 
 all : ${EXEC}					# build all executables
 
--include VoteImpl
-
-ifeq (${shell if [ "${LOCKVIMPL}" = "${VIMPL}" -a "${OUTPUTTYPE}" = "${OUTPUT}" -a \
-			"${BCHECKIMPL}" = "${BCHECK}" ] ; then echo true ; fi },true)
-${EXEC} : ${OBJECTS}
-	${CXX} ${CXXFLAGS} $^ -o $@
-else						# implementation type has changed => rebuilt
 .PHONY : ${EXEC}
 ${EXEC} :
 	rm -f VoteImpl
 	touch q2tallyVotes.h
-	${MAKE} ${EXEC} VIMPL="${VIMPL}" OUTPUT="${OUTPUT}" BCHECK="${BCHECK}"
-endif
-
-VoteImpl :
-	echo "LOCKVIMPL=${VIMPL}\nOUTPUTTYPE=${OUTPUT}\nBCHECKIMPL=${BCHECK}" > VoteImpl
-	sleep 1
+	${MAKE} ${EXEC}
 
 #############################################################
 

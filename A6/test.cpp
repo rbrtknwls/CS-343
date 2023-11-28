@@ -10,6 +10,7 @@ int main( int argc, char * argv[] ) {
 
     char * configFile;
     int processors
+
     struct cmd_error { };
 
     try {
@@ -23,7 +24,7 @@ int main( int argc, char * argv[] ) {
                     mainPRNG.set_seed(seed);
                 }
             case 2:
-                if ( *argv[1] != 'd' ) { processors = stoi(argv[1]); }
+                if ( *argv[1] != 'd' ) { configFile = stoi(argv[1]); }
             default:
                 if ( processors <= 0 ) { throw cmd_error(); }
                 break;
