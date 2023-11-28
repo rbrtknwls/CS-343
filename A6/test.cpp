@@ -6,7 +6,6 @@
 using namespace std;
 
 PRNG mainPRNG;
-ConfigParms GlobalParameters;
 
 int main( int argc, char * argv[] ) {
 
@@ -36,12 +35,11 @@ int main( int argc, char * argv[] ) {
              << " [ config-file | ’d’ [ seed (> 0) | ’d’ [ processors (> 0) | ’d’ ] ] ]"  << endl;
         exit(EXIT_FAILURE);
     }
-
     uProcessor p[processors - 1] __attribute__(( unused ));
 
-    processConfigFile( configFile, GlobalParameters );
+    ConfigParms parameters;
+    processConfigFile( configFile, parameters );
 
-    cout << GlobalParameters.parentalDelay << endl;
 
 
 }
