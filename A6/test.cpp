@@ -39,7 +39,7 @@ int main( int argc, char * argv[] ) {
 
     uProcessor p[processors - 1] __attribute__(( unused ));
 
-    processConfigFile( configFile, &GlobalParameters );
+    processConfigFile( configFile, GlobalParameters );
 
 
 }
