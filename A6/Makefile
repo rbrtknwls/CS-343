@@ -15,9 +15,8 @@ DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
 
 all : ${EXEC}					# build all executables
 
-.PHONY : ${EXEC}
-${EXEC} :
-	${MAKE} ${EXEC}
+${EXEC} : ${OBJECTS}
+	${CXX} ${CXXFLAGS} $^ -o $@
 
 #############################################################
 
