@@ -9,7 +9,7 @@ PRNG mainPRNG;
 int main( int argc, char * argv[] ) {
 
     char * configFile = (char*) "soda.config";
-    int processors = 0;
+    int processors = 1;
 
     struct cmd_error { };
     try {
