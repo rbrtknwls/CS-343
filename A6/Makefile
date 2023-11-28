@@ -3,7 +3,7 @@ CXXFLAGS = -g -multi -Wall -Wextra -MMD \
 
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS = config.o parent.o printer.o test.o # list of object files for question 3 prefixed with "q3"
+OBJECTS = config.o printer.o parent.o test.o # list of object files for question 3 prefixed with "q3"
 EXEC = soda
 
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"

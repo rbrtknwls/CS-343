@@ -1,7 +1,8 @@
 #ifndef CS_343_PARENT_H
 #define CS_343_PARENT_H
 
-_Monitor Printer;
+#include "printer.h"
+
 _Monitor Bank;
 
 _Task Parent {
