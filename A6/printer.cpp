@@ -9,7 +9,7 @@ using namespace std;
 int Printer::kindToID ( Kind kind ) {
     switch ( kind ) {
         case Kind::Parent:
-            return IDS::PARENT
+            return IDS::PARENT;
         default:
             return 0;
     }
