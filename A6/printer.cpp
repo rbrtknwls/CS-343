@@ -14,7 +14,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS];
 
 
-    for ( unsigned int id = 0; id < NUMBEROFSTATICACTORS; id++ ) {
+    for ( unsigned int id = 0; id < numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS; id++ ) {
 
         hasBeenWrittenTo[id] = false;
         string toPrint;
@@ -37,6 +37,18 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
             case PLANT:
                 toPrint = "Plant";
                 break;
+            default:
+                if ( id <= NUMBEROFSTATICACTORS + numStudents ) {
+                    toPrint = "Stud" + std::to_string(id - NUMBEROFSTATICACTORS);
+                    break;
+                }
+                else if (id <= NUMBEROFSTATICACTORS + numStudents + numVendingMachines) {
+                    toPrint = "Mach" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents);
+                    break;
+                } else {
+                    toPrint = " Cour" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - numVendingMachines);
+                    break;
+                }
         }
 
         cout << toPrint;
