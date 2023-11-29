@@ -6,7 +6,7 @@ void Parent::main() {
 
     for ( ;; ) {
 
-        _Accept( ~Printer ) { break; }
+        _Accept( ~Parent ) { break; }
         _Else {
 
         }
