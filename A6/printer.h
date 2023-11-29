@@ -16,7 +16,7 @@ _Monitor Printer {
         WATOFF = 2,
         NAMES = 3,
         TRUCK = 4,
-        PLANT = 5
+        PLANT = 5;
     };
 
     unsigned int numStudents;
