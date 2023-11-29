@@ -15,8 +15,8 @@ _Monitor Printer {
         GROPOFF = 1,
         WATOFF = 2,
         NAMES = 3,
-        TRUCKID = 4,
-        PLANTID = 5
+        TRUCK = 4,
+        PLANT = 5
     };
 
     unsigned int numStudents;

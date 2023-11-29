@@ -30,6 +30,9 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                 toPrint = "WATOff";
                 break;
             case NAMES:
+                toPrint = "Names";
+                break;
+            case TRUCK:
                 toPrint = "Truck";
                 break;
             case PLANT:
@@ -37,8 +40,8 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                 break;
         }
 
-        std << toPrint;
-        std << string(8 - toPrint.length(), ' ');
+        cout << toPrint;
+        cout << string(8 - toPrint.length(), ' ');
     }
     cout << endl;
 
