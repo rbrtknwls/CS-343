@@ -9,28 +9,30 @@ using namespace std;
 Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ) :
         numStudents(numStudents), numVendingMachines(numVendingMachines), numCouriers(numCouriers) {
 
-    hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + NUMBEROFOTHERACTORS];
-    printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + NUMBEROFOTHERACTORS];
+    int numberOfStaticActors = Enum.GetNames(typeof(IDS)).Length;
+
+    hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
+    printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
 
 
-    for ( unsigned int id = 0; id < NUMBEROFOTHERACTORS; id++ ) {
+    for ( unsigned int id = 0; id < numberOfStaticActors; id++ ) {
 
         hasBeenWrittenTo[id] = false;
         string toPrint;
         switch ( id ) {
-            case PARENTID:
+            case PARENT:
                 toPrint = "Parent";
                 break;
-            case GROPOFFID:
+            case GROPOFF:
                 toPrint = "Gropoff";
                 break;
-            case WATOFFID:
+            case WATOFF:
                 toPrint = "WATOff";
                 break;
-            case NAMESID:
+            case NAMES:
                 toPrint = "Truck";
                 break;
-            case PLANTID:
+            case PLANT:
                 toPrint = "Plant";
                 break;
         }
