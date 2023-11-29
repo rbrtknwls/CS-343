@@ -69,7 +69,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                     toPrint = "Mach" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - 1);
                     break;
                 } else {
-                    toPrint = "Cour" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - numVendingMachines -1);
+                    toPrint = "Cour" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - numVendingMachines);
                     break;
                 }
         }
