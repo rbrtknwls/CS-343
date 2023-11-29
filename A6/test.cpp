@@ -40,6 +40,8 @@ int main( int argc, char * argv[] ) {
     ConfigParms parameters;
     processConfigFile( configFile, parameters );
 
+    Printer printer = Printer( parameters.numStudents, parameters.numVendingMachines, parameters.numCouriers );
+
 
 
 }
