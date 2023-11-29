@@ -4,17 +4,40 @@
 
 using namespace std;
 
-// ================== Public Methods ==================== //
+// ================== Private Method(s) ==================== //
+
+void Printer::flushBuffer () {
+    for (unsigned int id = 0; id < totalNumberOfActors; id++ ) {
+        if ( hasBeenWrittenTo[i] ) {
+
+            string toPrint = "";
+            switch ( printBuffer[id].numTerms ) {
+                case ( 3 ):
+                    toPrint = "," + to_string(printBuffer[id].value2);
+                case ( 2 ):
+                    toPrint = to_string(printBuffer[id].value1) + toPrint;
+                default:
+                    toPrint = mainState + toPrint;
+            }
+
+            cout << toPrint;
+            cout << string(8 - toPrint.length(), ' ');
+
+        }
+    }
+
+    for ( unsigned int i = 0; i < voters; i++ ) { hasBeenWrittenTo[i] = false; }
+}
+// ================== Constructor / Destructor ==================== //
 
 Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ) :
         numStudents(numStudents), numVendingMachines(numVendingMachines), numCouriers(numCouriers) {
 
+    totalNumberOfActors = numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS;
+    hasBeenWrittenTo = new bool[totalNumberOfActors];
+    printBuffer = new PrinterState[totalNumberOfActors];
 
-    hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS];
-    printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS];
-
-
-    for ( unsigned int id = 0; id < numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS; id++ ) {
+    for ( unsigned int id = 0; id < totalNumberOfActors; id++ ) {
 
         hasBeenWrittenTo[id] = false;
         string toPrint;
@@ -56,9 +79,9 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     }
     cout << endl;
 
-    for ( unsigned int i = 0; i < numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS; i++ ) {
+    for ( unsigned int i = 0; i < totalNumberOfActors; i++ ) {
         cout << "*******";
-        if ( i != numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS-1 ) { cout << " "; }
+        if ( i != totalNumberOfActors-1 ) { cout << " "; }
     }
 
     cout << endl;
@@ -72,3 +95,4 @@ Printer::~Printer() {
     delete printBuffer;
     delete hasBeenWrittenTo;
 }
+
