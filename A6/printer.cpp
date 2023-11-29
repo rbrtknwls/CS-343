@@ -62,11 +62,11 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                 break;
             default:
                 if ( id < NUMBEROFSTATICACTORS + numStudents ) {
-                    toPrint = "Stud" + std::to_string(id - NUMBEROFSTATICACTORS - 1);
+                    toPrint = "Stud" + std::to_string(id - NUMBEROFSTATICACTORS);
                     break;
                 }
                 else if (id < NUMBEROFSTATICACTORS + numStudents + numVendingMachines) {
-                    toPrint = "Mach" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - 1);
+                    toPrint = "Mach" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents);
                     break;
                 } else {
                     toPrint = "Cour" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents - numVendingMachines);
