@@ -6,7 +6,17 @@ using namespace std;
 
 // ================== Private Method(s) ==================== //
 
+int kindToId ( Kind kind ) {
+    switch ( kind ) {
+        case Kind::Parent:
+            return IDS::PARENT
+        default:
+            return 0;
+    }
+}
+
 void Printer::flushBuffer () {
+
     for (unsigned int id = 0; id < totalNumberOfActors; id++ ) {
         if ( hasBeenWrittenTo[id] ) {
 
@@ -28,6 +38,7 @@ void Printer::flushBuffer () {
 
     for ( unsigned int i = 0; i < totalNumberOfActors; i++ ) { hasBeenWrittenTo[i] = false; }
 }
+
 // ================== Constructor / Destructor ==================== //
 
 Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ) :
@@ -61,11 +72,11 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                 toPrint = "Plant";
                 break;
             default:
+
                 if ( id < NUMBEROFSTATICACTORS + numStudents ) {
                     toPrint = "Stud" + std::to_string(id - NUMBEROFSTATICACTORS);
                     break;
-                }
-                else if (id < NUMBEROFSTATICACTORS + numStudents + numVendingMachines) {
+                } else if (id < NUMBEROFSTATICACTORS + numStudents + numVendingMachines) {
                     toPrint = "Mach" + std::to_string(id - NUMBEROFSTATICACTORS - numStudents);
                     break;
                 } else {
@@ -96,3 +107,4 @@ Printer::~Printer() {
     delete hasBeenWrittenTo;
 }
 
+// ================== Public Member(s) ==================== //

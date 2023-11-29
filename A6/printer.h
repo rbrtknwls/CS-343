@@ -22,6 +22,7 @@ _Monitor Printer {
     bool *hasBeenWrittenTo;
 
     void flushBuffer();
+    int kindToID( Kind kind );
   public:
 
     enum Kind { Parent, Groupoff, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
