@@ -125,7 +125,7 @@ Printer::~Printer() {
 // ================== Public Member(s) ==================== //
 
 void Printer::print( Kind kind, char state ) {
-    int id = kindToId( kind );
+    int id = kindToID( kind );
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
@@ -135,7 +135,7 @@ void Printer::print( Kind kind, char state ) {
 }
 
 void Printer::print( Kind kind, char state, unsigned int value1 ) {
-    int id = kindToId( kind );
+    int id = kindToID( kind );
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
