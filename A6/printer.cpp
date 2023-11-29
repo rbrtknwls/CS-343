@@ -63,3 +63,12 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 
     cout << endl;
 }
+
+Printer::~Printer() {
+    //Printer::flushBuffer();
+
+    cout << "***********************" << endl;
+
+    delete printBuffer;
+    delete hasBeenWrittenTo;
+}
