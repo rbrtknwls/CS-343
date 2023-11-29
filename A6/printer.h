@@ -9,7 +9,7 @@ _Monitor Printer {
         unsigned int value1, value2, lid, numTerms;
     };
 
-    enum IDS { PARENT = 0, GROPOFF = 1, WATOFF = 2, NAMES = 3, TRUCK = 4, PLANT = 5 };
+    enum IDS { PARENT = 0, GROUPOFF = 1, WATOFF = 2, NAMES = 3, TRUCK = 4, PLANT = 5 };
 
     const unsigned int NUMBEROFSTATICACTORS = 6;
 

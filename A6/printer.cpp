@@ -10,8 +10,22 @@ int Printer::kindToID ( Kind kind ) {
     switch ( kind ) {
         case Kind::Parent:
             return IDS::PARENT;
+        case Kind::Groupoff:
+            return IDS::GROUPOFF;
+        case Kind::WATCardOffice:
+            return IDS::WATOFF;
+        case Kind::NameServer:
+            return IDS::NAMES;
+        case Kind::Truck:
+            return IDS::TRUCK;
+        case Kind::BottlingPlant:
+            return IDS::PLANT;
+        case Kind::Student:
+            return NUMBEROFSTATICACTORS;
+        case Kind::Vending:
+            return NUMBEROFSTATICACTORS + numStudents;
         default:
-            return 0;
+            return NUMBEROFSTATICACTORS + numStudents + numVendingMachines;
     }
 }
 
@@ -56,7 +70,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
             case PARENT:
                 toPrint = "Parent";
                 break;
-            case GROPOFF:
+            case GROUPOFF:
                 toPrint = "Gropoff";
                 break;
             case WATOFF:
@@ -108,3 +122,12 @@ Printer::~Printer() {
 }
 
 // ================== Public Member(s) ==================== //
+
+void Printer::print( Kind kind, char state ) {
+    int ID = kindToId(kind);
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].numTerms = 1;
+    hasBeenWrittenTo[ID] = True;
+}
