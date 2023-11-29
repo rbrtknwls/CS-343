@@ -9,7 +9,7 @@ using namespace std;
 Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ) :
         numStudents(numStudents), numVendingMachines(numVendingMachines), numCouriers(numCouriers) {
 
-    int numberOfStaticActors = Enum.GetNames(typeof(IDS)).Length;
+    int numberOfStaticActors = IDS.GetNames(typeof(IDS)).Length;
 
     hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
     printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
@@ -45,9 +45,9 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     }
     cout << endl;
 
-    for ( unsigned int i = 0; i < numStudents + numVendingMachines + numCouriers + NUMBEROFOTHERACTORS; i++ ) {
+    for ( unsigned int i = 0; i < numStudents + numVendingMachines + numCouriers + numberOfStaticActors; i++ ) {
         cout << "*******";
-        if ( i != numStudents + numVendingMachines + numCouriers + NUMBEROFOTHERACTORS-1 ) { cout << " "; }
+        if ( i != numStudents + numVendingMachines + numCouriers + numberOfStaticActors-1 ) { cout << " "; }
     }
 
     cout << endl;
