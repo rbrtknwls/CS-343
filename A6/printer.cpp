@@ -47,5 +47,4 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     }
 
     cout << endl;
-#endif
 }

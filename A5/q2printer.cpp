@@ -5,6 +5,7 @@
 using namespace std;
 
 // ================== Private Methods ==================== //
+
 void Printer::flushBuffer () {
 #ifndef NOOUTPUT
     for ( unsigned int i = 0; i < voters; i++ ) {                   // Loop through each voter
