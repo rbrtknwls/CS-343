@@ -2,19 +2,22 @@
 
 // ================== Private Member(s) ==================== //
 
-void Printer::main() {
+void Parent::main() {
 
     for ( ;; ) {
-        int x = 1;
+
+        _Accept( ~Printer ) { break; }
+        _Else {
+
+        }
+
     }
 
 }
 
 // ================== Constructor / Destructor ==================== //
 
-Parent::Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned int parentalDelay ) {
-
-}
-
+Parent::Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned int parentalDelay ) :
+    Printer(prt), Bank(bank), numStudents(numStudents), parentalDelay(parentalDelay) {}
 
 
