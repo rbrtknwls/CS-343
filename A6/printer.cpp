@@ -17,7 +17,7 @@ void Printer::flushBuffer () {
                 case ( 2 ):
                     toPrint = to_string(printBuffer[id].value1) + toPrint;
                 default:
-                    toPrint = mainState + toPrint;
+                    toPrint = printBuffer[id].mainState + toPrint;
             }
 
             cout << toPrint;
@@ -26,7 +26,7 @@ void Printer::flushBuffer () {
         }
     }
 
-    for ( unsigned int i = 0; i < voters; i++ ) { hasBeenWrittenTo[i] = false; }
+    for ( unsigned int i = 0; i < totalNumberOfActors; i++ ) { hasBeenWrittenTo[i] = false; }
 }
 // ================== Constructor / Destructor ==================== //
 
