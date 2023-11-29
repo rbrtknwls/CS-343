@@ -20,6 +20,8 @@ _Monitor Printer {
 
     PrinterState *printBuffer;
     bool *hasBeenWrittenTo;
+
+    void flushBuffer();
   public:
 
     enum Kind { Parent, Groupoff, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
