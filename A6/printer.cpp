@@ -124,61 +124,62 @@ Printer::~Printer() {
 // ================== Public Member(s) ==================== //
 
 void Printer::print( Kind kind, char state ) {
-    int ID = kindToId(kind);
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToId( kind );
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].numTerms = 1;
-    hasBeenWrittenTo[ID] = True;
+    hasBeenWrittenTo[id] = True;
 }
 
 void Printer::print( Kind kind, char state, unsigned int value1 ) {
-    int ID = kindToId(kind);
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToId( kind );
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].value1 = value1
     printBuffer[id].numTerms = 2;
-    hasBeenWrittenTo[ID] = True;
+    hasBeenWrittenTo[id] = True;
 }
 
 void Printer::print( Kind kind, char state, unsigned int value1, unsigned int value2 ) {
-    int ID = kindToId(kind);
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToID( kind );
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].value1 = value1
     printBuffer[id].value2 = value2
     printBuffer[id].numTerms = 3;
-    hasBeenWrittenTo[ID] = True;
+
+    hasBeenWrittenTo[id] = True;
 }
 
 void Printer::print( Kind kind, unsigned int lid, char state ) {
-    int ID = kindToId(kind) + lid;
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToID( kind ) + lid;
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].numTerms = 1;
-    hasBeenWrittenTo[ID] = True;
+    hasBeenWrittenTo[id] = True;
 }
 
 void Printer::print( Kind kind, unsigned int lid, char state, unsigned int value1 ) {
-    int ID = kindToId(kind) + lid;
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToID( kind ) + lid;
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].value1 = value1
     printBuffer[id].numTerms = 2;
-    hasBeenWrittenTo[ID] = True;
+    hasBeenWrittenTo[id] = True;
 }
 
 void Printer::print( Kind kind, unsigned int lid, char state, unsigned int value1, unsigned int value2 ) {
-    int ID = kindToId(kind) + lid;
-    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+    int id = kindToID( kind ) + lid;
+    if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
     printBuffer[id].value1 = value1
     printBuffer[id].value2 = value2
     printBuffer[id].numTerms = 3;
-    hasBeenWrittenTo[ID] = True;
+    hasBeenWrittenTo[id] = True;
 }
