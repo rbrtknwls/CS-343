@@ -35,7 +35,7 @@ _Monitor Printer {
     ~Printer();
 
   private:
-    int kindToID( Kind kind )
+    int kindToID( Kind kind );
 };
 
 
