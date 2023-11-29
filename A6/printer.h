@@ -22,7 +22,6 @@ _Monitor Printer {
     bool *hasBeenWrittenTo;
 
     void flushBuffer();
-    int kindToID( Kind kind );
   public:
 
     enum Kind { Parent, Groupoff, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
@@ -33,7 +32,10 @@ _Monitor Printer {
     void print( Kind kind, unsigned int lid, char state );
     void print( Kind kind, unsigned int lid, char state, unsigned int value1 );
     void print( Kind kind, unsigned int lid, char state, unsigned int value1, unsigned int value2 );
-    ~Printer();
+    ~Printer()
+    
+  private:
+    int kindToID( Kind kind );
 };
 
 
