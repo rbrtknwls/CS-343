@@ -8,7 +8,7 @@ using namespace std;
 
 void Printer::flushBuffer () {
     for (unsigned int id = 0; id < totalNumberOfActors; id++ ) {
-        if ( hasBeenWrittenTo[i] ) {
+        if ( hasBeenWrittenTo[id] ) {
 
             string toPrint = "";
             switch ( printBuffer[id].numTerms ) {
