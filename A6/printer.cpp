@@ -6,7 +6,7 @@ using namespace std;
 
 // ================== Private Method(s) ==================== //
 
-int Printer::kindToId ( Kind kind ) {
+int Printer::kindToID ( Kind kind ) {
     switch ( kind ) {
         case Kind::Parent:
             return IDS::PARENT
