@@ -9,13 +9,12 @@ using namespace std;
 Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ) :
         numStudents(numStudents), numVendingMachines(numVendingMachines), numCouriers(numCouriers) {
 
-    unsigned int numberOfStaticActors = IDS.GetNames(typeof(IDS)).Length;
 
-    hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
-    printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + numberOfStaticActors];
+    hasBeenWrittenTo = new bool[numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS];
+    printBuffer = new PrinterState[numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS];
 
 
-    for ( unsigned int id = 0; id < numberOfStaticActors; id++ ) {
+    for ( unsigned int id = 0; id < NUMBEROFSTATICACTORS; id++ ) {
 
         hasBeenWrittenTo[id] = false;
         string toPrint;
@@ -45,9 +44,9 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     }
     cout << endl;
 
-    for ( unsigned int i = 0; i < numStudents + numVendingMachines + numCouriers + numberOfStaticActors; i++ ) {
+    for ( unsigned int i = 0; i < numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS; i++ ) {
         cout << "*******";
-        if ( i != numStudents + numVendingMachines + numCouriers + numberOfStaticActors-1 ) { cout << " "; }
+        if ( i != numStudents + numVendingMachines + numCouriers + NUMBEROFSTATICACTORS-1 ) { cout << " "; }
     }
 
     cout << endl;
