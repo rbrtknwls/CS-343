@@ -66,6 +66,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 
         hasBeenWrittenTo[id] = false;
         string toPrint;
+
         switch ( id ) {
             case PARENT:
                 toPrint = "Parent";
@@ -100,7 +101,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
         }
 
         cout << toPrint;
-        cout << string(8 - toPrint.length(), ' ');
+        cout << string( 8 - toPrint.length(), ' ' );
     }
     cout << endl;
 
@@ -138,7 +139,7 @@ void Printer::print( Kind kind, char state, unsigned int value1 ) {
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
-    printBuffer[id].value1 = value1
+    printBuffer[id].value1 = value1;
     printBuffer[id].numTerms = 2;
 
     hasBeenWrittenTo[id] = true;
@@ -149,8 +150,8 @@ void Printer::print( Kind kind, char state, unsigned int value1, unsigned int va
     if ( hasBeenWrittenTo[id] ) { flushBuffer(); }
 
     printBuffer[id].mainState = state;
-    printBuffer[id].value1 = value1
-    printBuffer[id].value2 = value2
+    printBuffer[id].value1 = value1;
+    printBuffer[id].value2 = value2;
     printBuffer[id].numTerms = 3;
 
     hasBeenWrittenTo[id] = true;
