@@ -14,8 +14,8 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 
 
     for ( unsigned int id = 0; id < NUMBEROFOTHERACTORS; id++ ) {
-        hasBeenWrittenTo[i] = false;
 
+        hasBeenWrittenTo[id] = false;
         string toPrint;
         switch ( id ) {
             case PARENTID:
