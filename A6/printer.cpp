@@ -34,10 +34,9 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
                 toPrint = "Plant";
                 break;
         }
-        nonSpaceValues += toPrint.length();
 
         std << toPrint;
-        std << string(8 - nonSpaceValues, ' ');
+        std << string(8 - toPrint.length(), ' ');
     }
     cout << endl;
 
