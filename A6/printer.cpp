@@ -131,3 +131,54 @@ void Printer::print( Kind kind, char state ) {
     printBuffer[id].numTerms = 1;
     hasBeenWrittenTo[ID] = True;
 }
+
+void Printer::print( Kind kind, char state, unsigned int value1 ) {
+    int ID = kindToId(kind);
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].value1 = value1
+    printBuffer[id].numTerms = 2;
+    hasBeenWrittenTo[ID] = True;
+}
+
+void Printer::print( Kind kind, char state, unsigned int value1, unsigned int value2 ) {
+    int ID = kindToId(kind);
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].value1 = value1
+    printBuffer[id].value2 = value2
+    printBuffer[id].numTerms = 3;
+    hasBeenWrittenTo[ID] = True;
+}
+
+void Printer::print( Kind kind, unsigned int lid, char state ) {
+    int ID = kindToId(kind) + lid;
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].numTerms = 1;
+    hasBeenWrittenTo[ID] = True;
+}
+
+void Printer::print( Kind kind, unsigned int lid, char state, unsigned int value1 ) {
+    int ID = kindToId(kind) + lid;
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].value1 = value1
+    printBuffer[id].numTerms = 2;
+    hasBeenWrittenTo[ID] = True;
+}
+
+void Printer::print( Kind kind, unsigned int lid, char state, unsigned int value1, unsigned int value2 ) {
+    int ID = kindToId(kind) + lid;
+    if ( hasBeenWrittenTo[ID] ) { flushBuffer(); }
+
+    printBuffer[id].mainState = state;
+    printBuffer[id].value1 = value1
+    printBuffer[id].value2 = value2
+    printBuffer[id].numTerms = 3;
+    hasBeenWrittenTo[ID] = True;
+}
