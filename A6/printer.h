@@ -32,10 +32,10 @@ _Monitor Printer {
     void print( Kind kind, unsigned int lid, char state );
     void print( Kind kind, unsigned int lid, char state, unsigned int value1 );
     void print( Kind kind, unsigned int lid, char state, unsigned int value1, unsigned int value2 );
-    ~Printer()
-    
+    ~Printer();
+
   private:
-    int kindToID( Kind kind );
+    int kindToID( Kind kind )
 };
 
 
