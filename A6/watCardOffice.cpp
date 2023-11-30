@@ -9,7 +9,7 @@ void WATCardOffice::Courier::main() {
     for ( ;; ) {
         _Accept ( WATCardOffice::Courier::~Courier ) { break; }
         _Else {
-            WATCardOffice::Job* job =  WATCardOffice::requestWork();
+            WATCardOffice::Job* job = requestWork();
         };
     }
 
