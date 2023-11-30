@@ -44,7 +44,9 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
     while ( workToDo.empty() ) { _Accept ( WATCardOffice::create || WATCardOffice::transfer ); }
-    return workToDo.pop();
+    Job* jobToDo = workToDo.front();
+    workToDo.pop();
+    return jobToDo
 }
 
 // ================== Constructor / Destructor ==================== //
