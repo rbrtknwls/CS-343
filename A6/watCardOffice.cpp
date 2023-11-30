@@ -86,8 +86,8 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
-WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice &watCardOffice ) :
-    localID( localID ), watCardOffice( &watCardOffice ) {}
+WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice ) :
+    localID( localID ), watCardOffice( watCardOffice ) {}
 
 WATCardOffice::Courier::~Courier() {
 
