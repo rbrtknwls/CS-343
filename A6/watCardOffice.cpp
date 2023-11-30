@@ -75,7 +75,7 @@ WATCardOffice::~WATCardOffice() {
     for ( unsigned int courierID ; courierID < numCouriers ; courierID++ ) {
         delete courierPool[courierID];
     }
-    
+
     courierPool.clear();
 }
 
@@ -85,7 +85,7 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
-WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ), printer( printer ) {}
+WATCardOffice::Courier::Courier( unsigned int localID, Printer* printer ) : localID( localID ), printer( printer ) {}
 
 WATCardOffice::Courier::~Courier() {
 
