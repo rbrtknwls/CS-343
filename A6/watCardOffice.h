@@ -27,7 +27,7 @@ _Task WATCardOffice {
         unsigned int localID;
         WATCardOffice* watCardOffice;
       public:
-        Courier( unsigned int localID, WATCardOffice &watCardOffice );
+        Courier( unsigned int localID, WATCardOffice *watCardOffice );
         ~Courier();
     };
 
