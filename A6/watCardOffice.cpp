@@ -58,7 +58,7 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 }
 
 
-WATCardOffice::Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
+WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
     studentID( studentID ), amount( amount ), card ( card ) {}
 
-WATCardOffice::~Job() { Printer::WATCardOffice, 'W' ); }
+WATCardOffice::Job::~Job() { Printer::WATCardOffice, 'W' ); }
