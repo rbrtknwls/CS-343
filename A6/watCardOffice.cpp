@@ -19,7 +19,6 @@ void WATCardOffice::main() {
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
         } or _Accept ( WATCardOffice::requestWork ) {}
-        or _Accept ( WATCardOffice::jobDone ) {}
         _Else { break; }
     }
 
