@@ -6,6 +6,7 @@
 #include "printer.h"
 #include "bank.h"
 #include "parent.h"
+#include "watCardOffice.h"
 
 using namespace std;
 
