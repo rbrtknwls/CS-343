@@ -9,14 +9,9 @@
 #include "printer.h"
 
 _Task WATCardOffice {
-
     Printer *printer;
     Bank *bank;
-
     unsigned int numCouriers;
-    Vector< Courier* > CourierPool;
-
-    Queue< Job* > workToDo;
 
     struct Job {
         unsigned int studentID, amount;
@@ -27,16 +22,18 @@ _Task WATCardOffice {
             studentID( studentID ), amount( amount ), card ( card ) {};
         ~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
     };
+    Queue< Job* > workToDo;
 
     _Task Courier {
         void main();
         unsigned int localID;
         bool working;
       public:
-        Courier( localID ) { working = false };
+        Courier( unsigned int localID ) : localID( localID ) { working = false };
         bool isWorking() { return working; }
         ~Courier();
     };
+    Vector< Courier* > CourierPool;
 
     void main();
 
