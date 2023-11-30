@@ -23,7 +23,7 @@ _Task WATCardOffice {
         ~Job();
     };
     Queue< Job* > workToDo;
-
+    */
     _Task Courier {
         void main();
         unsigned int localID;
@@ -34,7 +34,7 @@ _Task WATCardOffice {
     Vector< Courier* > CourierPool;
 
     void main();
-    */
+
   public:
     _Event Lost {};
     WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers );
