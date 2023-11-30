@@ -7,7 +7,7 @@ using namespace std;
 void WATCardOffice::Courier::main() {
 
     for ( ;; ) {
-        _Accept ( WATCardOffice::Courier::~Courier ) { break; }
+        _Accept ( ~Courier ) { break; }
         _Else {
             WATCardOffice::Job* job = watCardOffice->requestWork();
         };
