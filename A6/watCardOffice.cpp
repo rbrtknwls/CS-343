@@ -72,7 +72,7 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 WATCardOffice::~WATCardOffice() {
 
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
-        printer->print( Printer::Courier, courierID, 'S' );
+        printer->print( Printer::Courier, courierID, 'F' );
         delete courierPool[courierID];
     }
 
