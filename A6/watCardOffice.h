@@ -9,7 +9,6 @@
 #include "printer.h"
 
 _Task WATCardOffice {
-    /*
     Printer *printer;
     Bank *bank;
     unsigned int numCouriers;
@@ -23,7 +22,7 @@ _Task WATCardOffice {
         ~Job();
     };
     Queue< Job* > workToDo;
-    */
+    /*
     _Task Courier {
         void main();
         unsigned int localID;
@@ -32,7 +31,7 @@ _Task WATCardOffice {
         ~Courier();
     };
     Vector< Courier* > CourierPool;
-
+    */
     void main();
 
   public:

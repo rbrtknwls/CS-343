@@ -56,7 +56,7 @@ Job * WATCardOffice::requestWork() {
 WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers ) :
     printer( &prt ), bank( &bank ), numCouriers( numCouriers ) {
 
-    for ( int courier ; courier < numCouriers ; courier++ ) {
+    for ( unsigned int courier ; courier < numCouriers ; courier++ ) {
         CourierPool.append( new Courier( courier ) );
     }
 }
