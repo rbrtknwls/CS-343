@@ -30,7 +30,7 @@ void WATCardOffice::main() {
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
         } or _Accept ( WATCardOffice::requestWork ) {}
-        _Else { }
+        _Else { break; }
     }
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
