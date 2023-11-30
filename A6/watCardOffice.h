@@ -17,7 +17,6 @@ _Task WATCardOffice {
     struct Job {
         unsigned int studentID, amount;
         WATCard * card;
-
         WATCard::FWATCard result;
         Job( unsigned int studentID, unsigned int amount, WATCard *card  );
         ~Job();

@@ -2,12 +2,6 @@
 
 // ================== Private Member(s) ==================== //
 
-void WATCardOffice::Courier::main() {
-    for ( ;; ) {
-
-    }
-}
-
 void WATCardOffice::main() {
 
     printer->print( Printer::WATCardOffice, 'S' );
