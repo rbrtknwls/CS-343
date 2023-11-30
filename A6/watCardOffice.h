@@ -23,6 +23,14 @@ _Task WATCardOffice {
         ~Job();
     };
 
+    _Task Courier {
+        void main();
+        unsigned int localID;
+        public:
+        Courier( unsigned int localID );
+        ~Courier();
+    };
+
     std::queue< Job* > workToDo;
     std::vector< Courier* > CourierPool;
     void main();

@@ -64,3 +64,17 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
     studentID( studentID ), amount( amount ), card ( card ), printer( printer ) {}
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
+
+void WATCardOffice::Courier::main() {
+    for ( ;; ) {
+
+    }
+}
+
+// ================== Constructor / Destructor ==================== //
+
+WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ) {}
+
+WATCardOffice::Courier::~Courier() {
+
+}
