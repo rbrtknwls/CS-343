@@ -14,8 +14,6 @@ void WATCardOffice::Courier::main() {
 
 void WATCardOffice::main() {
 
-    printer->print( Printer::WATCardOffice, 'S' );
-
     for ( ;; ) {
         _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
@@ -31,8 +29,6 @@ void WATCardOffice::main() {
     }
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
-
-    printer->print( Printer::WATCardOffice, 'F' );
 
 }
 
@@ -62,6 +58,7 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
 WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers ) :
     printer( &prt ), bank( &bank ), numCouriers( numCouriers ) {
 
+    printer->print( Printer::WATCardOffice, 'S' );
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
 
         printer->print( Printer::Courier, courierID, 'S' );
@@ -75,8 +72,9 @@ WATCardOffice::~WATCardOffice() {
         printer->print( Printer::Courier, courierID, 'F' );
         delete courierPool[courierID];
     }
-
     courierPool.clear();
+    
+    printer->print( Printer::WATCardOffice, 'F' );
 }
 
 
