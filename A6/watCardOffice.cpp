@@ -65,7 +65,7 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
 
         printer->print( Printer::Courier, courierID, 'S' );
-        courierPool.push_back( new Courier( courierID ) );
+        courierPool.push_back( new Courier( courierID, this ) );
     }
 }
 
