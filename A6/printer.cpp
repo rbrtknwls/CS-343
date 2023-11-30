@@ -51,6 +51,7 @@ void Printer::flushBuffer () {
             cout << "\t";
         }
     }
+    cout << endl;
 
     for ( unsigned int i = 0; i < totalNumberOfActors; i++ ) { hasBeenWrittenTo[i] = false; }
 }
