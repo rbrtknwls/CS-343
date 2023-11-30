@@ -1,6 +1,8 @@
 #ifndef CS_343_PARENT_H
 #define CS_343_PARENT_H
 
+#include <uPRNG.h>
+
 #include "printer.h"
 #include "bank.h"
 
@@ -14,7 +16,7 @@ _Task Parent {
     void main();
   public:
     Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned int parentalDelay );
-    ~Printer();
+    ~Parent();
 };
 
 

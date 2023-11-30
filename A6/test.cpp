@@ -4,6 +4,7 @@
 
 #include "config.h"
 #include "printer.h"
+
 using namespace std;
 
 PRNG mainPRNG;
