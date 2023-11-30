@@ -9,6 +9,7 @@
 #include "printer.h"
 
 _Task WATCardOffice {
+    /*
     Printer *printer;
     Bank *bank;
     unsigned int numCouriers;
@@ -33,7 +34,7 @@ _Task WATCardOffice {
     Vector< Courier* > CourierPool;
 
     void main();
-
+    */
   public:
     _Event Lost {};
     WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers );
