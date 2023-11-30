@@ -7,7 +7,12 @@ using namespace std;
 void WATCardOffice::Courier::main() {
 
     for ( ;; ) {
+        _Accept ( ~WATCardOffice::Courier::~Courier ) { break; }
+        _Else {
 
+            WATCardOffice::Job* job =  WATCardOffice::requestWork();
+
+        };
     }
 
 }
@@ -69,11 +74,11 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 WATCardOffice::~WATCardOffice() {
 
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
-        printer->print( Printer::Courier, courierID, 'F' );
         delete courierPool[courierID];
+        printer->print( Printer::Courier, courierID, 'F' );
     }
     courierPool.clear();
-    
+
     printer->print( Printer::WATCardOffice, 'F' );
 }
 
