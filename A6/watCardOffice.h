@@ -32,7 +32,7 @@ _Task WATCardOffice {
     };
     Vector< Courier* > CourierPool;
     */
-    void main();
+    //void main();
 
   public:
     _Event Lost {};
