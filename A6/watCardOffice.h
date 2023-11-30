@@ -25,7 +25,7 @@ _Task WATCardOffice {
     std::queue< Job* > workToDo;
     std::vector< Courier* > CourierPool;
     void main();
-    static void jobDone() { printer->print(Printer::WATCardOffice, 'W'); };
+    void jobDone() { printer->print(Printer::WATCardOffice, 'W'); };
 
   public:
     _Event Lost {};

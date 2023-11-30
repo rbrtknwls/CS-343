@@ -61,4 +61,4 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
     studentID( studentID ), amount( amount ), card ( card ) {}
 
-WATCardOffice::Job::~Job() { jobDone(); }
+WATCardOffice::Job::~Job() { this->jobDone(); }
