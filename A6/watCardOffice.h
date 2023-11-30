@@ -9,8 +9,6 @@
 #include "printer.h"
 #include "courier.h"
 
-using namespace std;
-
 _Task WATCardOffice {
     Printer *printer;
     Bank *bank;
@@ -24,8 +22,8 @@ _Task WATCardOffice {
         ~Job();
     };
 
-    Queue< Job* > workToDo;
-    Vector< Courier* > CourierPool;
+    std::queue< Job* > workToDo;
+    std::vector< Courier* > CourierPool;
     void main();
 
   public:
