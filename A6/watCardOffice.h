@@ -1,6 +1,7 @@
 #ifndef CS_343_WATCARDOFFICE_H
 #define CS_343_WATCARDOFFICE_H
 
+#include "watCard.h"
 
 _Task WATCardOffice {
     struct Job {
