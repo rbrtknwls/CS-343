@@ -31,8 +31,8 @@ void WATCardOffice::main() {
 // ================== Public Member(s) ==================== //
 
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
-    Job* job = new Job( sid, amount, WATCard() );
-    workToDo.push_back( job );
+    Job* job = new Job( sid, amount, new WATCard() );
+    workToDo.push( job );
     return job->result;
 }
 
