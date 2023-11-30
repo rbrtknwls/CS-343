@@ -29,8 +29,8 @@ _Task WATCardOffice {
         unsigned int localID;
         bool working;
       public:
-        Courier( unsigned int localID ) : localID( localID ) { working = false };
-        bool isWorking() { return working; }
+        Courier( unsigned int localID ) : localID( localID ) { working = false; };
+        bool isWorking() { return working; };
         ~Courier();
     };
     Vector< Courier* > CourierPool;

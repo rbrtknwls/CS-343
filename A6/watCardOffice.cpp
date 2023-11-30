@@ -3,7 +3,7 @@
 // ================== Private Member(s) ==================== //
 
 
-WATCardOffice::main() {
+void WATCardOffice::main() {
 
     printer->print( Printer::WATCardOffice, 'S' );
 
@@ -30,15 +30,15 @@ WATCardOffice::main() {
 // ================== Public Member(s) ==================== //
 
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
-    Job job = new Job( sid, amount, WATCard() );
+    Job job* = new Job( sid, amount, WATCard() );
     workToDo.push_back( job );
-    return job.result;
+    return job->result;
 }
 
 WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
-    Job job = new Job( sid, amount, card );
+    Job job* = new Job( sid, amount, card );
     workToDo.push( job );
-    return job.result;
+    return job->result;
 }
 
 Job * WATCardOffice::requestWork() { return workToDo.pop(); }
