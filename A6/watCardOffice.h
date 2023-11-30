@@ -18,14 +18,14 @@ _Task WATCardOffice {
         unsigned int studentID, amount;
         WATCard * card;
         WATCard::FWATCard result;
-        Job( unsigned int studentID, unsigned int amount, WATCard *card  );
+        Printer *printer;
+        Job( unsigned int studentID, unsigned int amount, WATCard *card, Printer * prt  );
         ~Job();
     };
 
     std::queue< Job* > workToDo;
     std::vector< Courier* > CourierPool;
     void main();
-    void jobDone() { printer->print(Printer::WATCardOffice, 'W'); };
 
   public:
     _Event Lost {};
