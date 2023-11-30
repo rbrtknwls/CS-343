@@ -19,6 +19,7 @@ void WATCardOffice::main() {
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
         } or _Accept ( WATCardOffice::requestWork ) {}
+        or _Accept ( WATCardOffice::jobDone ) {}
         _Else { break; }
     }
 
@@ -30,9 +31,11 @@ void WATCardOffice::main() {
 
 // ================== Public Member(s) ==================== //
 
+void WATCardOffice::jobDone() { printer->print(Printer::WATCardOffice, 'W') }
+
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
     Job* job = new Job( sid, amount, new WATCard() );
-    workToDo.push( job );
+    workToDo.push_back( job );
     return job->result;
 }
 
@@ -61,4 +64,4 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
     studentID( studentID ), amount( amount ), card ( card ) {}
 
-WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
+WATCardOffice::Job::~Job() { jobDone(); }

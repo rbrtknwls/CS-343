@@ -25,6 +25,7 @@ _Task WATCardOffice {
     std::queue< Job* > workToDo;
     std::vector< Courier* > CourierPool;
     void main();
+    void jobDone();
 
   public:
     _Event Lost {};
