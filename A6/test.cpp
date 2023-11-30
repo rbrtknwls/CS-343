@@ -46,8 +46,11 @@ int main( int argc, char * argv[] ) {
 
     // Setup
     Printer printer = Printer( parameters.numStudents, parameters.numVendingMachines, parameters.numCouriers );
+
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
+
+    WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
 
 }
