@@ -32,7 +32,7 @@ _Task WATCardOffice {
     };
 
     std::queue< Job* > workToDo;
-    std::vector< Courier* > CourierPool;
+    std::vector< Courier* > courierPool;
     void main();
 
   public:
@@ -41,6 +41,7 @@ _Task WATCardOffice {
     WATCard::FWATCard create( unsigned int sid, unsigned int amount ) __attribute__(( warn_unused_result ));
     WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard * card ) __attribute__(( warn_unused_result ));
     Job * requestWork() __attribute__(( warn_unused_result ));
+    ~WATCardOffice();
 };
 
 #endif

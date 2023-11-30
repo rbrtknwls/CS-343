@@ -65,9 +65,18 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
 WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers ) :
     printer( &prt ), bank( &bank ), numCouriers( numCouriers ) {
 
-    for ( unsigned int courier ; courier < numCouriers ; courier++ ) {
-        CourierPool.push_back( new Courier( courier ) );
+    for ( unsigned int courierID ; courierID < numCouriers ; courierID++ ) {
+        courierPool.push_back( new Courier( courierID, printer ) );
     }
+}
+
+WATCardOffice::~WATCardOffice() {
+
+    for ( unsigned int courierID ; courierID < numCouriers ; courierID++ ) {
+        delete courierPool[courierID];
+    }
+    
+    courierPool.clear();
 }
 
 
@@ -75,7 +84,6 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
     studentID( studentID ), amount( amount ), card ( card ), printer( printer ) {}
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
-
 
 WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ), printer( printer ) {}
 
