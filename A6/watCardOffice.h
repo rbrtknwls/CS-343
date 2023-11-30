@@ -10,7 +10,7 @@
 #include "courier.h"
 
 _Task WATCardOffice {
-    static Printer *printer;
+    Printer *printer;
     Bank *bank;
     unsigned int numCouriers;
 
