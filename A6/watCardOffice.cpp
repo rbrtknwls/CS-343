@@ -4,7 +4,7 @@
 
 void WATCardOffice::Courier::main() {
     for ( ;; ) {
-        
+
     }
 }
 
@@ -63,3 +63,14 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
         CourierPool.append( new Courier( courier ) );
     }
 }
+
+
+WATCardOffice::Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
+    studentID( studentID ), amount( amount ), card ( card ) {}
+
+WATCardOffice::~Job() { Printer::WATCardOffice, 'W' ); }
+
+
+WATCardOffice::Courier( unsigned int localID ) : localID( localID ) { }
+
+WATCardOffice::~Courier()

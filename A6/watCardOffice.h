@@ -18,9 +18,8 @@ _Task WATCardOffice {
         WATCard * card;
 
         WATCard::FWATCard result;
-        Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
-            studentID( studentID ), amount( amount ), card ( card ) {};
-        ~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
+        Job( unsigned int studentID, unsigned int amount, WATCard *card  );
+        ~Job();
     };
     Queue< Job* > workToDo;
 
@@ -28,7 +27,7 @@ _Task WATCardOffice {
         void main();
         unsigned int localID;
       public:
-        Courier( unsigned int localID ) : localID( localID ) { };
+        Courier( unsigned int localID );
         ~Courier();
     };
     Vector< Courier* > CourierPool;
