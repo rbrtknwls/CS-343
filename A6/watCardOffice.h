@@ -9,6 +9,8 @@
 #include "printer.h"
 #include "courier.h"
 
+using namespace std;
+
 _Task WATCardOffice {
     Printer *printer;
     Bank *bank;

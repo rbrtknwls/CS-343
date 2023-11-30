@@ -11,6 +11,6 @@ void Courier::main() {
 
 // ================== Constructor / Destructor ==================== //
 
-WATCardOffice::Courier( unsigned int localID ) : localID( localID ) { }
+Courier::Courier( unsigned int localID ) : localID( localID ) { }
 
-WATCardOffice::~Courier()
+Courier::~Courier()
