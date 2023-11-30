@@ -21,6 +21,6 @@ void Parent::main() {
 // ================== Constructor / Destructor ==================== //
 
 Parent::Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned int parentalDelay ) :
-    Printer(prt), Bank(bank), numStudents(numStudents), parentalDelay(parentalDelay) {}
+    printer(prt), bank(bank), numStudents(numStudents), parentalDelay(parentalDelay) {}
 
 
