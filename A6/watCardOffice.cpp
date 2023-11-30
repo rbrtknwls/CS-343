@@ -2,6 +2,11 @@
 
 // ================== Private Member(s) ==================== //
 
+void WATCardOffice::Courier::main() {
+    for ( ;; ) {
+        
+    }
+}
 
 void WATCardOffice::main() {
 
@@ -41,7 +46,13 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
     return job->result;
 }
 
-Job * WATCardOffice::requestWork() { return workToDo.pop(); }
+Job * WATCardOffice::requestWork() {
+    while ( workToDo.empty() ) {
+        _Accept ( WATCardOffice::create || WATCardOffice::transfer )
+    }
+
+    return workToDo.pop();
+}
 
 // ================== Constructor / Destructor ==================== //
 
