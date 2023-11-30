@@ -2,6 +2,8 @@
 
 // ================== Private Member(s) ==================== //
 
+using namespace std;
+
 void WATCardOffice::main() {
 
     printer->print( Printer::WATCardOffice, 'S' );

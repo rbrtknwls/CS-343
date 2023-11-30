@@ -11,6 +11,8 @@ void Courier::main() {
 
 // ================== Constructor / Destructor ==================== //
 
-Courier::Courier( unsigned int localID ) : localID( localID ) { }
+Courier::Courier( unsigned int localID ) : localID( localID ) {}
 
-Courier::~Courier()
+Courier::~Courier() {
+
+}
