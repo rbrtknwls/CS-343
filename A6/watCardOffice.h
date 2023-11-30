@@ -25,7 +25,7 @@ _Task WATCardOffice {
     std::queue< Job* > workToDo;
     std::vector< Courier* > CourierPool;
     void main();
-    _Nomutex void jobDone();
+    static void jobDone() { printer->print(Printer::WATCardOffice, 'W'); };
 
   public:
     _Event Lost {};

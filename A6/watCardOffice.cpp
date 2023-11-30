@@ -30,8 +30,6 @@ void WATCardOffice::main() {
 
 // ================== Public Member(s) ==================== //
 
-void WATCardOffice::jobDone() { printer->print(Printer::WATCardOffice, 'W') }
-
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
     Job* job = new Job( sid, amount, new WATCard() );
     workToDo.push_back( job );
