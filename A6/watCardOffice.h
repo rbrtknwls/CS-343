@@ -17,8 +17,7 @@ _Task WATCardOffice {
         unsigned int studentID, amount;
         WATCard * card;
         WATCard::FWATCard result;
-        Printer *printer;
-        Job( unsigned int studentID, unsigned int amount, WATCard *card, Printer * prt  );
+        Job( unsigned int studentID, unsigned int amount, WATCard *card );
         ~Job();
     };
 

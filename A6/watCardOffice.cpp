@@ -6,13 +6,10 @@ using namespace std;
 
 void WATCardOffice::Courier::main() {
 
-    printer->print( Printer::WATCardOffice, localID, 'S' );
-
     for ( ;; ) {
 
     }
 
-    printer->print( Printer::WATCardOffice, localID, 'F' );
 }
 
 void WATCardOffice::main() {
@@ -65,14 +62,17 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
 WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers ) :
     printer( &prt ), bank( &bank ), numCouriers( numCouriers ) {
 
-    for ( unsigned int courierID ; courierID < numCouriers ; courierID++ ) {
+    for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
+
+        printer->print( Printer::Courier, courierID, 'S' );
         courierPool.push_back( new Courier( courierID, printer ) );
     }
 }
 
 WATCardOffice::~WATCardOffice() {
 
-    for ( unsigned int courierID ; courierID < numCouriers ; courierID++ ) {
+    for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
+        printer->print( Printer::Courier, courierID, 'S' );
         delete courierPool[courierID];
     }
 
