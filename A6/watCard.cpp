@@ -8,4 +8,4 @@ unsigned int WATCard::getBalance() { return balance; }
 
 // ================== Constructor / Destructor ==================== //
 
-void WATCard::WATCard() { balance = 0; }
+WATCard::WATCard() { balance = 0; }

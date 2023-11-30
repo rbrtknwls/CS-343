@@ -1,6 +1,8 @@
 #ifndef CS_343_WATCARD_H
 #define CS_343_WATCARD_H
 
+#include <uFuture.h>
+
 class WATCard {
     WATCard( const WATCard & ) = delete;
     WATCard( const WATCard && ) = delete;
