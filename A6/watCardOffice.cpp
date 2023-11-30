@@ -5,9 +5,14 @@
 using namespace std;
 
 void WATCardOffice::Courier::main() {
+
+    printer->print( Printer::WATCardOffice, localID, 'S' );
+
     for ( ;; ) {
 
     }
+
+    printer->print( Printer::WATCardOffice, localID, 'F' );
 }
 
 void WATCardOffice::main() {
@@ -72,7 +77,7 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
 
-WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ) {}
+WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ), printer( printer ) {}
 
 WATCardOffice::Courier::~Courier() {
 
