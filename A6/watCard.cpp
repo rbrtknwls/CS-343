@@ -1,6 +1,6 @@
 #include "watCard.h"
 
-// ================== Private Member(s) ==================== //
+// ================== Public Member(s) ==================== //
 
 void WATCard::deposit( unsigned int amount ) { balance -= amount; }
 void WATCard::withdraw( unsigned int amount ) { balance += amount; }
