@@ -10,13 +10,22 @@
 
 _Task WATCardOffice {
 
+    Printer *printer;
+    Bank *bank;
+
+    unsigned int numCouriers;
+    Vector< Courier* > CourierPool;
+
+    Queue< Job* > workToDo;
+
     struct Job {
         unsigned int studentID, amount;
         WATCard * card;
 
         WATCard::FWATCard result;
         Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
-            studentID( studentID ), amount( amount ), card ( card ) {}
+            studentID( studentID ), amount( amount ), card ( card ) {};
+        ~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
     };
 
     _Task Courier {
@@ -30,14 +39,6 @@ _Task WATCardOffice {
     };
 
     void main();
-
-    Printer *printer;
-    Bank *bank;
-
-    unsigned int numCouriers;
-    Vector< Courier* > CourierPool;
-
-    Queue< Job* > workToDo;
 
   public:
     _Event Lost {};

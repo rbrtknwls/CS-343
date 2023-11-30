@@ -17,10 +17,11 @@ WATCardOffice::main() {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
-        } or _Accept ( WATCardOffice::requestWork ) {
-            printer->print( Printer::WATCardOffice, 'W' );
-        } _Else { break; }
+        } or _Accept ( WATCardOffice::requestWork ) {}
+        _Else { break; }
     }
+
+    while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
 
     printer->print( Printer::WATCardOffice, 'F' );
 
@@ -36,13 +37,11 @@ WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount )
 
 WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
     Job job = new Job( sid, amount, card );
-    workToDo.push_back( job );
+    workToDo.push( job );
     return job.result;
 }
 
-Job * WATCardOffice::requestWork() {
-    
-}
+Job * WATCardOffice::requestWork() { return workToDo.pop(); }
 
 // ================== Constructor / Destructor ==================== //
 
