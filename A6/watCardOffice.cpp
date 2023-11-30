@@ -42,7 +42,7 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
     return job->result;
 }
 
-Job* WATCardOffice::requestWork() {
+WATCardOffice::Job* WATCardOffice::requestWork() {
     while ( workToDo.empty() ) { _Accept ( WATCardOffice::create || WATCardOffice::transfer ); }
     return workToDo.pop();
 }
