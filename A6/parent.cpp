@@ -4,7 +4,7 @@
 
 void Parent::main() {
 
-    printer->print(Printer::Parent, 'S')
+    printer->print( Printer::Parent, 'S' );
 
     for ( ;; ) {
 
@@ -14,12 +14,13 @@ void Parent::main() {
             int idOfStudent = prng( numStudents );
             int moneyToDeposit = prng( 3 ) + 1;
             bank->deposit( idOfStudent, moneyToDeposit );
-            printer->print(Printer::Parent, 'D', idOfStudent, moneyToDeposit);
+            printer->print( Printer::Parent, 'D', idOfStudent, moneyToDeposit );
         }
 
     }
 
-    printer->print(Printer::Parent, 'F')
+    printer->print( Printer::Parent, 'F' );
+    
 }
 
 // ================== Constructor / Destructor ==================== //
