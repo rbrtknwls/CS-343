@@ -19,8 +19,6 @@ void Parent::main() {
 
     }
 
-    printer->print( Printer::Parent, 'F' );
-
 }
 
 // ================== Constructor / Destructor ==================== //
@@ -28,7 +26,4 @@ void Parent::main() {
 Parent::Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned int parentalDelay ) :
     printer( &prt ), bank( &bank ), numStudents( numStudents ), parentalDelay( parentalDelay ) {}
 
-Parent::~Parent() {
-    delete printer;
-    delete bank;
-}
+Parent::~Parent() { printer->print( Printer::Parent, 'F' ); }
