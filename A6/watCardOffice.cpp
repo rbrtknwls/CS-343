@@ -46,7 +46,7 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
     while ( workToDo.empty() ) { _Accept ( WATCardOffice::create || WATCardOffice::transfer ); }
     Job* jobToDo = workToDo.front();
     workToDo.pop();
-    return jobToDo
+    return jobToDo;
 }
 
 // ================== Constructor / Destructor ==================== //
