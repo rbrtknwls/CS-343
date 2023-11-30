@@ -17,16 +17,16 @@ _Task WATCardOffice {
         unsigned int studentID, amount;
         WATCard * card;
         WATCard::FWATCard result;
-        Job( unsigned int studentID, unsigned int amount, WATCard *card );
+        Printer *printer;
+        Job( unsigned int studentID, unsigned int amount, WATCard *card, Printer *printer  );
         ~Job();
     };
 
     _Task Courier {
         void main();
         unsigned int localID;
-        Printer *printer;
       public:
-        Courier( unsigned int localID, Printer *printer );
+        Courier( unsigned int localID );
         ~Courier();
     };
 
