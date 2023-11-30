@@ -31,18 +31,18 @@ void WATCardOffice::main() {
 // ================== Public Member(s) ==================== //
 
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
-    Job* job = new Job( sid, amount, new WATCard() );
-    workToDo.push_back( job );
-    return job->result;
-}
-
-WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
-    Job* job = new Job( sid, amount, card );
+    Job* job = new Job( sid, amount, new WATCard(), printer );
     workToDo.push( job );
     return job->result;
 }
 
-Job * WATCardOffice::requestWork() {
+WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
+    Job* job = new Job( sid, amount, card, printer );
+    workToDo.push( job );
+    return job->result;
+}
+
+Job* WATCardOffice::requestWork() {
     while ( workToDo.empty() ) { _Accept ( WATCardOffice::create || WATCardOffice::transfer ); }
     return workToDo.pop();
 }
