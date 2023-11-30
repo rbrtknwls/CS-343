@@ -7,12 +7,13 @@
 #include "watCard.h"
 #include "bank.h"
 #include "printer.h"
+#include "courier.h"
 
 _Task WATCardOffice {
     Printer *printer;
     Bank *bank;
     unsigned int numCouriers;
-    /*
+
     struct Job {
         unsigned int studentID, amount;
         WATCard * card;
@@ -21,16 +22,9 @@ _Task WATCardOffice {
         Job( unsigned int studentID, unsigned int amount, WATCard *card  );
         ~Job();
     };
-    Queue< Job* > workToDo;
 
-    _Task Courier {
-        void main();
-        unsigned int localID;
-      public:
-        Courier( unsigned int localID );
-        ~Courier();
-    };
-    Vector< Courier* > CourierPool;*/
+    Queue< Job* > workToDo;
+    Vector< Courier* > CourierPool;
     void main();
 
   public:

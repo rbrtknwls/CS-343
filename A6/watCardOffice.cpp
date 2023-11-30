@@ -66,8 +66,3 @@ WATCardOffice::Job( unsigned int studentID, unsigned int amount, WATCard *card  
     studentID( studentID ), amount( amount ), card ( card ) {}
 
 WATCardOffice::~Job() { Printer::WATCardOffice, 'W' ); }
-
-
-WATCardOffice::Courier( unsigned int localID ) : localID( localID ) { }
-
-WATCardOffice::~Courier()
