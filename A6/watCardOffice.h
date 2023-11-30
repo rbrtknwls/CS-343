@@ -2,31 +2,43 @@
 #define CS_343_WATCARDOFFICE_H
 
 #include <vector>
+#include <queue>
 
 #include "watCard.h"
 #include "bank.h"
 #include "printer.h"
 
 _Task WATCardOffice {
+
     struct Job {
-        unsigned int studentID;
+        unsigned int studentID, amount;
+        WATCard * card;
+
         WATCard::FWATCard result;
-        Job( unsigned int studentID ) : studentID( studentID ) {}
+        Job( unsigned int studentID, unsigned int amount, WATCard *card  ) :
+            studentID( studentID ), amount( amount ), card ( card ) {}
     };
 
     _Task Courier {
         void main();
         unsigned int localID;
+        bool working;
       public:
-        Courier( localID );
+        Courier( localID ) { working = false };
+        bool isWorking() { return working; }
+        ~Courier();
     };
+
     void main();
 
     Printer *printer;
     Bank *bank;
-    unsigned int numCouriers;
 
-    Vector<Courier*> CourierPool;
+    unsigned int numCouriers;
+    Vector< Courier* > CourierPool;
+
+    Queue< Job* > workToDo;
+
   public:
     _Event Lost {};
     WATCardOffice( Printer & prt, Bank & bank, unsigned int numCouriers );
