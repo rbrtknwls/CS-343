@@ -4,6 +4,8 @@
 
 #include "config.h"
 #include "printer.h"
+#include "bank.h"
+#include "parent.h"
 
 using namespace std;
 

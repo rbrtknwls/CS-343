@@ -20,7 +20,7 @@ void Parent::main() {
     }
 
     printer->print( Printer::Parent, 'F' );
-    
+
 }
 
 // ================== Constructor / Destructor ==================== //
