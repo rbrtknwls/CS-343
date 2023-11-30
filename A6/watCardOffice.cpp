@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void WATCardOffice::Courier::main() {
+    for ( ;; ) {
+
+    }
+}
+
 void WATCardOffice::main() {
 
     printer->print( Printer::WATCardOffice, 'S' );
@@ -65,13 +71,6 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
-void WATCardOffice::Courier::main() {
-    for ( ;; ) {
-
-    }
-}
-
-// ================== Constructor / Destructor ==================== //
 
 WATCardOffice::Courier::Courier( unsigned int localID ) : localID( localID ) {}
 
