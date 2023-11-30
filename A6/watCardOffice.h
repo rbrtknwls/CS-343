@@ -12,7 +12,7 @@ _Task WATCardOffice {
     Printer *printer;
     Bank *bank;
     unsigned int numCouriers;
-
+    /*
     struct Job {
         unsigned int studentID, amount;
         WATCard * card;
@@ -30,7 +30,7 @@ _Task WATCardOffice {
         Courier( unsigned int localID );
         ~Courier();
     };
-    Vector< Courier* > CourierPool;
+    Vector< Courier* > CourierPool;*/
     void main();
 
   public:
