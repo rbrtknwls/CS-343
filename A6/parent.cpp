@@ -8,7 +8,10 @@ void Parent::main() {
 
         _Accept( ~Parent ) { break; }
         _Else {
-
+            yield( parentalDelay );
+            int idOfStudent = prng( numStudents );
+            int moneyToDeposit = prng( 3 ) + 1;
+            bank->deposit( idOfStudent, moneyToDeposit );
         }
 
     }
