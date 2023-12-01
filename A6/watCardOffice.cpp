@@ -12,7 +12,7 @@ void WATCardOffice::Courier::main() {
                 WATCardOffice::Job* job = watCardOffice->requestWork();
             }
         }
-    } catch ( WATCardOffice::StopWork &stopWork ) { }
+    } catch ( ... ) { }
 
 }
 
