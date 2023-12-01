@@ -27,7 +27,9 @@ void WATCardOffice::Courier::main() {
 void WATCardOffice::main() {
 
     for ( ;; ) {
-        _Accept ( WATCardOffice::create ) {
+        _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
+
+        } or  _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'C', id, amount );
@@ -39,9 +41,6 @@ void WATCardOffice::main() {
 
         } or _Accept ( WATCardOffice::~WATCardOffice ) {
             break;
-        } or _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
-            printer->print( Printer::WATCardOffice, 'W' );
-            workToDo.pop();
         }
     }
 
