@@ -55,9 +55,9 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
     printer->print( Printer::WATCardOffice, 'T' );
     while ( workToDo.empty() ) {
         _Accept ( WATCardOffice::create || WATCardOffice::transfer ) {}
-        _or _Accept (WATCardOffice::~WATCardOffice ) { _Throw StopWork(); }
+        or _Accept (WATCardOffice::~WATCardOffice ) { _Throw StopWork(); }
     }
-    
+
     Job* jobToDo = workToDo.front();
     workToDo.pop();
     return jobToDo;
