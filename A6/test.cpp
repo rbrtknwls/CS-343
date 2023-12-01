@@ -7,7 +7,7 @@
 #include "bank.h"
 #include "parent.h"
 #include "watCardOffice.h"
-
+#include "watCard.h"
 using namespace std;
 
 PRNG mainPRNG;
@@ -51,7 +51,7 @@ int main( int argc, char * argv[] ) {
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
 
-    WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
+    WATCard watcard = WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
     watCardOffice.create(0, 5);
 
