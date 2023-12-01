@@ -34,7 +34,7 @@ void WATCardOffice::main() {
         _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
             printer->print( Printer::WATCardOffice, 'W' );
 
-            Job* finishedJob = &workToDo.front();
+            Job* finishedJob = workToDo.front();
             workToDo.pop();
             delete finishedJob;
         } or  _Accept ( WATCardOffice::create ) {
