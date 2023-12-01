@@ -32,6 +32,7 @@ void WATCardOffice::main() {
     for ( ;; ) {
         _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
             printer->print( Printer::WATCardOffice, 'W' );
+            workToDo.pop();
         } or  _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
