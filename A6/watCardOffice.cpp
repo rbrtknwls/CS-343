@@ -10,7 +10,7 @@ void WATCardOffice::Courier::main() {
 
         WATCardOffice::Job * job = watCardOffice->requestWork();
       if ( job == nullptr ) { break; }
-        //printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
+        printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
 
         watCardOffice->bank->withdraw( job->studentID, job->amount );
 
@@ -18,7 +18,8 @@ void WATCardOffice::Courier::main() {
             printer->print( Printer::Courier, localID, 'L', job->studentID );
         } else {
             printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
-            job->card.deposit( amount );
+
+            job->card->deposit( job->amount );
             job->result.delivery( &card );
         }
 
