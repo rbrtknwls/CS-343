@@ -8,6 +8,8 @@
 #include "parent.h"
 #include "watCardOffice.h"
 #include "watCard.h"
+#include "groupoff.h"
+
 using namespace std;
 
 PRNG mainPRNG;
@@ -53,6 +55,9 @@ int main( int argc, char * argv[] ) {
 
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
+
     WATCard::FWATCard watcard = watCardOffice.create(0, 5);
     delete watcard();
+
+    Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay);
 }

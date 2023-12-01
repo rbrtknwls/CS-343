@@ -26,7 +26,6 @@ void WATCardOffice::Courier::main() {
         }
 
         delete job;
-
     }
 
 }
@@ -107,6 +106,7 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
     studentID( studentID ), amount( amount ), card ( card ) {}
 
 WATCardOffice::Job::~Job() {}
+
 
 WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer ) :
     localID( localID ), watCardOffice( watCardOffice ), printer( printer ) {
