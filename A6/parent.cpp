@@ -4,8 +4,6 @@
 
 void Parent::main() {
 
-    printer->print( Printer::Parent, 'S' );
-
     for ( ;; ) {
 
         _Accept( ~Parent ) { break; }
