@@ -7,7 +7,7 @@ using namespace std;
 void WATCardOffice::Courier::main() {
 
     for ( ;; ) {
-        _Accept ( WATCardOffice::Courier::~Courier ) { break; }
+        _Accept ( ~Courier ) { break; }
         _Else{
             WATCardOffice::Job * job = watCardOffice->requestWork();
         }
@@ -73,9 +73,6 @@ WATCardOffice::~WATCardOffice() {
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
 
-    printer->print( Printer::WATCardOffice, 'F' );
-    printer->print( Printer::WATCardOffice, 'F' );
-    
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         delete courierPool[courierID];
         printer->print( Printer::Courier, courierID, 'F' );
