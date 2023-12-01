@@ -51,8 +51,8 @@ int main( int argc, char * argv[] ) {
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
 
-    WATCard watcard = WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
+    WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
-    watCardOffice.create(0, 5);
+    WATCard watcard = watCardOffice.create(0, 5);
 
 }
