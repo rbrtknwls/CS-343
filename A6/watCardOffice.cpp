@@ -24,6 +24,8 @@ void WATCardOffice::Courier::main() {
             job->result.delivery( job->card );
         }
 
+        delete job;
+
     }
 
 }
@@ -31,12 +33,11 @@ void WATCardOffice::Courier::main() {
 void WATCardOffice::main() {
 
     for ( ;; ) {
+
         _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
             printer->print( Printer::WATCardOffice, 'W' );
 
-            Job* finishedJob = workToDo.front();
             workToDo.pop();
-            delete finishedJob;
         } or  _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
@@ -50,6 +51,7 @@ void WATCardOffice::main() {
         } or _Accept ( WATCardOffice::~WATCardOffice ) {
             break;
         }
+
     }
 
 }
