@@ -20,7 +20,7 @@ void WATCardOffice::Courier::main() {
             printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
 
             job->card->deposit( job->amount );
-            job->result.delivery( &card );
+            job->result.delivery( &job->card );
         }
 
     }
