@@ -32,9 +32,9 @@ void WATCardOffice::main() {
         _Else { break; }
     }
 
+    printer->print( Printer::WATCardOffice, 'F' );
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
     workDone = true;
-    printer->print( Printer::WATCardOffice, 'F' );
 }
 
 // ================== Public Member(s) ==================== //
