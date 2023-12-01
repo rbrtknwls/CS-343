@@ -29,12 +29,13 @@ void WATCardOffice::main() {
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
 
-        } or _Accept ( WATCardOffice::requestWork ) {}
-        _Else { break; }
+        } or _Accept ( WATCardOffice::~WATCardOffice ) {
+            break;
+        } or _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
+            workToDo.pop();
+        }
     }
 
-    while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
-    workDone = true;
 }
 
 // ================== Public Member(s) ==================== //
@@ -59,7 +60,6 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
     }*/
 
     Job* jobToDo = workToDo.front();
-    workToDo.pop();
     return jobToDo;
 }
 
@@ -78,7 +78,15 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 
 WATCardOffice::~WATCardOffice() {
 
+    while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
+
+    workDone = true;
+
+
+
+
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
+        _Accept ( WATCardOffice::requestWork )
         delete courierPool[courierID];
         printer->print( Printer::Courier, courierID, 'F' );
     }
