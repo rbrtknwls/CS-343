@@ -53,7 +53,7 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
-  if ( workDone ) { _Throw StopWork(); }
+  if ( workDone ) { _Resume StopWork(); }
 
     Job* jobToDo = workToDo.front();
     return jobToDo;
