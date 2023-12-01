@@ -73,6 +73,9 @@ WATCardOffice::~WATCardOffice() {
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
 
+    printer->print( Printer::WATCardOffice, 'F' );
+    printer->print( Printer::WATCardOffice, 'F' );
+    
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         delete courierPool[courierID];
         printer->print( Printer::Courier, courierID, 'F' );
