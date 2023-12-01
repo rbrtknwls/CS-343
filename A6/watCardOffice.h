@@ -8,6 +8,8 @@
 #include "bank.h"
 #include "printer.h"
 
+extern PRNG mainPRNG;
+
 _Task WATCardOffice {
     Printer *printer;
     Bank *bank;
