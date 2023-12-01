@@ -10,14 +10,14 @@ void WATCardOffice::Courier::main() {
 
         WATCardOffice::Job * job = watCardOffice->requestWork();
       if ( job == nullptr ) { break; }
-        printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
+        //printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
 
         watCardOffice->bank->withdraw( job->studentID, job->amount );
 
         if ( prng(6) == 0 ) {
-            printer->print( Printer::Courier, localID, 'L', job->studentID );
+            //printer->print( Printer::Courier, localID, 'L', job->studentID );
         } else {
-            printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
+            //printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
         }
 
     }
