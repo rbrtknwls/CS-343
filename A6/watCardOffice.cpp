@@ -5,7 +5,7 @@
 using namespace std;
 
 void WATCardOffice::Courier::main() {
-
+/*
     try {
         _Enable {
             for ( ;; ) {
@@ -13,7 +13,7 @@ void WATCardOffice::Courier::main() {
             }
         }
     } catch ( WATCardOffice::StopWork &stopWork ) { }
-
+*/
 }
 
 void WATCardOffice::main() {
@@ -28,10 +28,9 @@ void WATCardOffice::main() {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
-            
+
         } or _Accept ( WATCardOffice::requestWork ) {}
         _Else { break; }
-        printer->print( Printer::WATCardOffice, 'F' );
     }
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
