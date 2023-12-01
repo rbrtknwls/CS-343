@@ -10,7 +10,7 @@ void WATCardOffice::Courier::main() {
 
         WATCardOffice::Job * job = watCardOffice->requestWork();
       if ( job == nullptr ) { break; }
-
+        printer->print( Printer::Courier, courierID, 't', job->studentID, job->amount );
     }
 
 }
@@ -66,8 +66,6 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 
     printer->print( Printer::WATCardOffice, 'S' );
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
-
-        printer->print( Printer::Courier, courierID, 'S' );
         courierPool.push_back( new Courier( courierID, this ) );
     }
 }
@@ -78,9 +76,7 @@ WATCardOffice::~WATCardOffice() {
 
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         _Accept ( WATCardOffice::requestWork )
-
         delete courierPool[courierID];
-        printer->print( Printer::Courier, courierID, 'F' );
     }
     courierPool.clear();
 
@@ -93,9 +89,11 @@ WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *c
 
 WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
-WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice ) :
-    localID( localID ), watCardOffice( watCardOffice ) {}
+WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer ) :
+    localID( localID ), watCardOffice( watCardOffice ), printer( printer ) {
+    printer->print( Printer::Courier, courierID, 'S' );
+}
 
 WATCardOffice::Courier::~Courier() {
-
+    printer->print( Printer::Courier, courierID, 'F' );
 }

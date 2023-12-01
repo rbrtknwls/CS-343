@@ -26,8 +26,9 @@ _Task WATCardOffice {
         void main();
         unsigned int localID;
         WATCardOffice* watCardOffice;
+        Printer *printer;
       public:
-        Courier( unsigned int localID, WATCardOffice *watCardOffice );
+        Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer );
         ~Courier();
     };
 
