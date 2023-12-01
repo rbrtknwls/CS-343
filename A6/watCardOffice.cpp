@@ -17,9 +17,9 @@ void WATCardOffice::Courier::main() {
 
         if ( prng(6) == 0 ) {
             printer->print( Printer::Courier, localID, 'L', job->studentID );
+
         } else {
             printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
-
             job->result.delivery( job->card );
         }
 
@@ -31,7 +31,7 @@ void WATCardOffice::main() {
 
     for ( ;; ) {
         _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
-
+            printer->print( Printer::WATCardOffice, 'W' );
         } or  _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
             unsigned int amount = workToDo.back()->studentID;
