@@ -14,10 +14,10 @@ void Bank::withdraw( unsigned int id, unsigned int amount ) {
 Bank::Bank( unsigned int numStudents ) {
     studentBalances = new unsigned int[numStudents];
 
-    for (int studentID = 0; studentID < numStudents; studentID++ ) {
+    for ( unsigned int studentID = 0; studentID < numStudents; studentID++ ) {
         studentBalances[studentID] = 0;
     }
-    
+
 }
 
 Bank::~Bank() { delete studentBalances; }
