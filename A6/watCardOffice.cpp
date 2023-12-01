@@ -19,6 +19,8 @@ void WATCardOffice::Courier::main() {
         if ( prng(6) == 0 ) {
             printer->print( Printer::Courier, localID, 'L', job->studentID );
 
+            delete job->card;
+            job->result.delivery( new WATCardOffice::Lost );
         } else {
             printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
             job->result.delivery( job->card );
