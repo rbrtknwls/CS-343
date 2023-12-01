@@ -53,6 +53,6 @@ int main( int argc, char * argv[] ) {
 
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
-    WATCard watcard = watCardOffice.create(0, 5);
+    WATCard::FWATCard watcard = watCardOffice.create(0, 5);
 
 }
