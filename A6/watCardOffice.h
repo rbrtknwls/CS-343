@@ -43,8 +43,6 @@ _Task WATCardOffice {
     WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard * card ) __attribute__(( warn_unused_result ));
     Job * requestWork() __attribute__(( warn_unused_result ));
     ~WATCardOffice();
-  protected:
-    _Event StopWork {};
 };
 
 #endif
