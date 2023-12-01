@@ -32,6 +32,7 @@ void WATCardOffice::main() {
             break;
         } or _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
             workToDo.pop();
+            printer->print( Printer::WATCardOffice, 'W' );
         }
     }
 
@@ -40,13 +41,13 @@ void WATCardOffice::main() {
 // ================== Public Member(s) ==================== //
 
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
-    Job* job = new Job( sid, amount, new WATCard(), printer );
+    Job* job = new Job( sid, amount, new WATCard() );
     workToDo.push( job );
     return job->result;
 }
 
 WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
-    Job* job = new Job( sid, amount, card, printer );
+    Job* job = new Job( sid, amount, card );
     workToDo.push( job );
     return job->result;
 }
@@ -84,10 +85,10 @@ WATCardOffice::~WATCardOffice() {
 }
 
 
-WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card, Printer *printer  ) :
-    studentID( studentID ), amount( amount ), card ( card ), printer( printer ) {}
+WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card ) :
+    studentID( studentID ), amount( amount ), card ( card ) {}
 
-WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
+WATCardOffice::Job::~Job() {}
 
 WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer ) :
     localID( localID ), watCardOffice( watCardOffice ), printer( printer ) {
