@@ -10,7 +10,7 @@ void WATCardOffice::Courier::main() {
 
         WATCardOffice::Job * job = watCardOffice->requestWork();
       if ( job == nullptr ) { break; }
-        printer->print( Printer::Courier, courierID, 't', job->studentID, job->amount );
+        printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
     }
 
 }
@@ -91,9 +91,9 @@ WATCardOffice::Job::~Job() { printer->print( Printer::WATCardOffice, 'W' ); }
 
 WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer ) :
     localID( localID ), watCardOffice( watCardOffice ), printer( printer ) {
-    printer->print( Printer::Courier, courierID, 'S' );
+    printer->print( Printer::Courier, localID, 'S' );
 }
 
 WATCardOffice::Courier::~Courier() {
-    printer->print( Printer::Courier, courierID, 'F' );
+    printer->print( Printer::Courier, localID, 'F' );
 }
