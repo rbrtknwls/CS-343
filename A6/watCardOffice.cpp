@@ -10,14 +10,14 @@ void WATCardOffice::Courier::main() {
 
         WATCardOffice::Job * job = watCardOffice->requestWork();
       if ( job == nullptr ) { break; }
-        //printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
+        printer->print( Printer::Courier, localID, 't', job->studentID, job->amount );
 
         watCardOffice->bank->withdraw( job->studentID, job->amount );
 
         if ( prng(6) == 0 ) {
             printer->print( Printer::Courier, localID, 'L', job->studentID );
         } else {
-        //    printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
+            printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
         }
 
     }
@@ -40,8 +40,8 @@ void WATCardOffice::main() {
         } or _Accept ( WATCardOffice::~WATCardOffice ) {
             break;
         } or _When( !workToDo.empty() ) _Accept ( WATCardOffice::requestWork ) {
-            workToDo.pop();
             printer->print( Printer::WATCardOffice, 'W' );
+            workToDo.pop();
         }
     }
 
@@ -62,7 +62,6 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
-
   if ( workDone ) { return nullptr; }
 
     Job* jobToDo = workToDo.front();
