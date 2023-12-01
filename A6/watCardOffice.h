@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <queue>
+#include <uPRNG.h>
 
 #include "watCard.h"
 #include "bank.h"
