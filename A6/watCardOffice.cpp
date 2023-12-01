@@ -6,12 +6,13 @@ using namespace std;
 
 void WATCardOffice::Courier::main() {
 
-    for ( ;; ) {
-        _Accept ( ~Courier ) { break; }
-        _Else {
-            WATCardOffice::Job* job = watCardOffice->requestWork();
-        };
-    }
+    try {
+        _Enable {
+            for ( ;; ) {
+                WATCardOffice::Job* job = watCardOffice->requestWork();
+            }
+        }
+    } catch ( WATCardOffice::StopWork ) { }
 
 }
 
@@ -32,7 +33,7 @@ void WATCardOffice::main() {
     }
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
-
+    workDone = true;
 }
 
 // ================== Public Member(s) ==================== //
@@ -51,6 +52,7 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
     while ( workToDo.empty() ) { _Accept ( WATCardOffice::create || WATCardOffice::transfer ); }
+    if ( workDone ) { _Throw StopWork; }
     Job* jobToDo = workToDo.front();
     workToDo.pop();
     return jobToDo;
