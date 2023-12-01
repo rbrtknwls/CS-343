@@ -15,7 +15,6 @@ void WATCardOffice::Courier::main() {
         watCardOffice->bank->withdraw( job->studentID, job->amount );
         job->card->deposit( job->amount );
 
-
         if ( prng(6) == 0 ) {
             printer->print( Printer::Courier, localID, 'L', job->studentID );
 
@@ -42,12 +41,12 @@ void WATCardOffice::main() {
             workToDo.pop();
         } or  _Accept ( WATCardOffice::create ) {
             unsigned int id = workToDo.back()->studentID;
-            unsigned int amount = workToDo.back()->studentID;
+            unsigned int amount = workToDo.back()->amount;
             printer->print( Printer::WATCardOffice, 'C', id, amount );
 
         } or _Accept ( WATCardOffice::transfer ) {
             unsigned int id = workToDo.back()->studentID;
-            unsigned int amount = workToDo.back()->studentID;
+            unsigned int amount = workToDo.back()->amount;
             printer->print( Printer::WATCardOffice, 'T', id, amount );
 
         } or _Accept ( WATCardOffice::~WATCardOffice ) {
