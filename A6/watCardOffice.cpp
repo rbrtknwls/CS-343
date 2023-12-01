@@ -6,13 +6,13 @@ using namespace std;
 
 void WATCardOffice::Courier::main() {
 
-    try {
-        _Enable {
-            for ( ;; ) {
-                WATCardOffice::Job* job = watCardOffice->requestWork();
-            }
-        }
-    } catch ( ... ) { }
+
+    for ( ;; ) {
+        try {
+            _Enable {}
+        } catch ( ... ) { break; }
+        WATCardOffice::Job* job = watCardOffice->requestWork();
+    }
 
 }
 
@@ -53,8 +53,6 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
-  if ( workDone ) { _Throw StopWork(); }
-
     Job* jobToDo = workToDo.front();
     return jobToDo;
 }
@@ -75,11 +73,10 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 WATCardOffice::~WATCardOffice() {
 
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
-    workDone = true;
-
 
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
-        _Accept ( WATCardOffice::requestWork )
+        _Throw StopWork() _At courierPool[courierID];
+
         delete courierPool[courierID];
         printer->print( Printer::Courier, courierID, 'F' );
     }
