@@ -52,6 +52,7 @@ WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork() {
+    printer->print( Printer::WATCardOffice, 'T', id, amount );
     while ( workToDo.empty() ) {
         _Accept ( WATCardOffice::create || WATCardOffice::transfer || WATCardOffice::~WATCardOffice );
     }
