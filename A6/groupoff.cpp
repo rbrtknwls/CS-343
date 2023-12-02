@@ -1,5 +1,12 @@
 #include "groupoff.h"
 
+
+// ================== Public Member(s) ==================== //
+
+WATCard::FWATCard Groupoff::giftCard() {
+    return giftCards[currentStudent];
+}
+
 // ================== Private Member(s) ==================== //
 
 void Groupoff::main() {
@@ -12,12 +19,6 @@ void Groupoff::main() {
 
     }
 
-}
-
-// ================== Public Member(s) ==================== //
-
-WATCard::FWATCard Groupoff::giftCard() {
-    return giftCards[currentStudent];
 }
 
 // ================== Constructor / Destructor ==================== //
