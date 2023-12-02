@@ -5,6 +5,7 @@
 
 #include "groupoff.h"
 #include "printer.h"
+#include "watCard.h"
 
 extern PRNG mainPRNG;
 
