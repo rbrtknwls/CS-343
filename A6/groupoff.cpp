@@ -33,7 +33,7 @@ Groupoff::Groupoff( Printer & prt, unsigned int numStudents, unsigned int sodaCo
 Groupoff::~Groupoff() {
 
     for ( int student = 0; student < numStudents; student++ ) {
-        if ( giftCards[student].available ) {
+        if ( giftCards[student].available() ) {
             delete giftCards[student]();
         }
     }
