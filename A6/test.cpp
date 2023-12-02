@@ -55,7 +55,11 @@ int main( int argc, char * argv[] ) {
 
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay);
 
-    WATCard::FWATCard watcard = watCardOffice.create(0, 5);
-    delete watcard();
+
+    WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
+    WATCard::FWATCard watcard2 = watCardOffice.create(0, 5);
+
+    delete watcard1();
+    delete watcard2();
 
 }
