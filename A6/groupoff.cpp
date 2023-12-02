@@ -1,24 +1,23 @@
 #include "groupoff.h"
 
-
-// ================== Public Member(s) ==================== //
-
-WATCard::FWATCard Groupoff::giftCard() {
-    return giftCards[currentStudent];
-}
-
 // ================== Private Member(s) ==================== //
 
 void Groupoff::main() {
 
     for ( currentStudent ; currentStudent < numStudents ; currentStudent++ ) {
-        _Accept( Groupoff::giftCard );
+        //_Accept( giftCard );
     }
 
     for ( currentStudent ; currentStudent >= 0 ; currentStudent-- ) {
 
     }
 
+}
+
+// ================== Public Member(s) ==================== //
+
+WATCard::FWATCard Groupoff::giftCard() {
+    return giftCards[currentStudent];
 }
 
 // ================== Constructor / Destructor ==================== //
