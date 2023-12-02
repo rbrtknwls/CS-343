@@ -23,7 +23,7 @@ WATCard::FWATCard Groupoff::giftCard() {
 // ================== Constructor / Destructor ==================== //
 
 Groupoff::Groupoff( Printer & prt, unsigned int numStudents, unsigned int sodaCost, unsigned int groupoffDelay ) :
-    printer( &prt ), numStudents( numStudents ), sodaCost( sodaCost ), groupoffDelay(groupoffDelay) {
+    printer( &prt ), numStudents( (int) numStudents ), sodaCost( sodaCost ), groupoffDelay(groupoffDelay) {
 
     currentStudent = 0;
     giftCards = new WATCard::FWATCard[numStudents];

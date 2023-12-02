@@ -11,7 +11,7 @@ extern PRNG mainPRNG;
 
 _Task Groupoff {
     Printer *printer;
-    unsigned int numStudents;
+    int numStudents;
     unsigned int sodaCost;
     unsigned int groupoffDelay;
     int currentStudent;
