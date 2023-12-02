@@ -4,11 +4,11 @@
 
 void Groupoff::main() {
 
-    for ( currentStudent ; currentStudent < numStudents ; currentStudent++ ) {
+    for ( ; currentStudent < numStudents ; currentStudent++ ) {
         //_Accept( giftCard );
     }
 
-    for ( currentStudent ; currentStudent >= 0 ; currentStudent-- ) {
+    for ( ; currentStudent >= 0 ; currentStudent-- ) {
 
     }
 
