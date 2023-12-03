@@ -53,21 +53,21 @@ int main( int argc, char * argv[] ) {
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
-    Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
+    //Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
 
     WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
     WATCard::FWATCard watcard2 = watCardOffice.create(0, 5);
 
-    WATCard::FWATCard giftcard1 = groupoffer.giftCard();
-    WATCard::FWATCard giftcard2 = groupoffer.giftCard();
+    //WATCard::FWATCard giftcard1 = groupoffer.giftCard();
+    //WATCard::FWATCard giftcard2 = groupoffer.giftCard();
 
 
     delete watcard1();
     delete watcard2();
 
-    giftcard1();
-    giftcard2();
+    //giftcard1();
+    //giftcard2();
 
 
 }
