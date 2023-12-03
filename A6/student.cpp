@@ -2,13 +2,13 @@
 
 void Student::main() {
 
-    for ( unsigned int currentPurchase; currentPurchase < maxPurchases; currentPurchase ) {
+    for ( unsigned int currentPurchase; currentPurchase < numberOfPurchases; currentPurchase ) {
         yield( prng( 10 ) + 1 );
 
         _Select( giftcard ) {
 
         } or  _Select( watcard ) {
-            
+
         }
     }
 
