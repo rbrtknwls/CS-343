@@ -1,5 +1,6 @@
 #include "groupoff.h"
 
+#include <iostream>
 using namespace std;
 
 // ================== Private Member(s) ==================== //
@@ -10,11 +11,11 @@ void Groupoff::main() {
         _Accept( giftCard );
     }
 
-    currentStudent--;
-
     for ( ; currentStudent >= 0 ; currentStudent-- ) {
         _Accept ( ~Groupoff );
         _Else{
+
+            std::cout << "HI" << currentStudent;
 
             yield(groupoffDelay);
 
