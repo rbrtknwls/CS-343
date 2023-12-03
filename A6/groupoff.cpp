@@ -1,5 +1,7 @@
 #include "groupoff.h"
 
+using namespace std;
+
 // ================== Private Member(s) ==================== //
 
 void Groupoff::main() {
@@ -11,18 +13,20 @@ void Groupoff::main() {
     for ( ; currentStudent >= 0 ; currentStudent-- ) {
         _Accept ( ~Groupoff );
         _Else{
+
             yield(groupoffDelay);
 
             printer->print( Printer::Groupoff, 'D', sodaCost );
             unsigned int studentToPick = prng( currentStudent + 1 );
 
             WATCard * giftCard = new WATCard();
-            giftCard.deposit( sodaCost );
-            giftCards[studentToPick].delivery( giftCard );
+            giftCard->deposit( sodaCost );
+            giftCards[studentToPick]->delivery( giftCard );
 
             swap( giftCards[studentToPick], giftCards[currentStudent + 1] );
+
         }
-    }g
+    }
 }
 
 // ================== Public Member(s) ==================== //
