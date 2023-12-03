@@ -26,7 +26,7 @@ void Groupoff::main() {
             giftCards[studentToPick].delivery( giftCard );
 
 
-            swap( giftCards[0], giftCards[0] );
+            swap( giftCards[studentToPick], giftCards[currentStudent-1] );
 
 
         }
