@@ -1,5 +1,8 @@
 #include "student.h"
 
+void Student::main() {
+
+}
 Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,
     unsigned int id, unsigned int maxPurchases ) :
     printer( &prt ), watCardOffice ( &cardOffice ), groupoff( &groupoff ), localID( id ) {
