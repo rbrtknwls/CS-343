@@ -2,7 +2,7 @@
 
 void Student::main() {
 
-    for ( unsigned int currentPurchase; currentPurchase < numberOfPurchases; currentPurchase ) {
+    for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
         yield( prng( 10 ) + 1 );
 
         _Select( giftcard ) {
