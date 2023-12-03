@@ -57,7 +57,7 @@ int main( int argc, char * argv[] ) {
     vector< Student* > students;
 
     for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
-        students.append(
+        students.push_back(
                 new Student(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases)
         );
     }
