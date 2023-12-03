@@ -26,7 +26,13 @@ void Groupoff::main() {
             giftCards[studentToPick].delivery( giftCard );
 
 
-            swap( &giftCards[studentToPick], &giftCards[currentStudent] );
+
+            WATCard::FWATCard *cardToUpdate = &giftCards[studentToPick];
+            WATCard::FWATCard *emptyWatCard = &giftCards[currentStudent];
+            WATCard::FWATCard *tempWatCard = &giftCards[currentStudent];
+
+            emptyWatCard = cardToUpdate;
+            cardToUpdate = tempWatCard;
 
 
         }
