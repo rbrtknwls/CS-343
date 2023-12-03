@@ -45,10 +45,10 @@ void Printer::flushBuffer () {
             }
 
             cout << toPrint;
-            cout << string(8 - toPrint.length(), 'a');
+            cout << string(8 - toPrint.length(), ' ');
 
         } else {
-            cout << "\t";
+            cout << "--------";
         }
     }
     cout << endl;
