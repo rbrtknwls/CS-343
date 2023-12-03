@@ -10,7 +10,7 @@ extern PRNG mainPRNG;
 _Task Student {
     Printer *printer;
     WATCardOffice *watCardOffice;
-    Groupoff *groupoff;
+    Groupoff *groupoffer;
 
     unsigned int localID;
     unsigned int numberOfPurchases;

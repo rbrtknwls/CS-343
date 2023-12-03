@@ -7,7 +7,7 @@ void Student::main() {
 
 Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,
     unsigned int id, unsigned int maxPurchases ) :
-    printer( &prt ), watCardOffice ( &cardOffice ), groupoff( &groupoff ), localID( id ) {
+    printer( &prt ), watCardOffice ( &cardOffice ), groupoffer( &groupoff ), localID( id ) {
 
     printer->print( Printer::WATCardOffice,  localID, 'S' );
 
@@ -15,7 +15,7 @@ Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff
     favouriteFlavour = prng( 4 );
 
     watcard = watCardOffice->create(0, 5);
-    giftcard = groupoff->giftCard();
+    giftcard = groupoffer->giftCard();
 
 }
 
