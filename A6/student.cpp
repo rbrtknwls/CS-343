@@ -4,13 +4,15 @@ void Student::main() {
 
     bool madeAPurchase = true;
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
+
         if ( madeAPurchase ) { yield( prng( 10 ) + 1 ); }
 
         madeAPurchase = true;
 
         WATCard *payment;
         _Select( giftcard ) {
-
+            printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
+            giftcard.reset();
         } or  _Select( watcard ) {
 
             try {
@@ -24,6 +26,7 @@ void Student::main() {
             }
 
         }
+
     }
 
 }
