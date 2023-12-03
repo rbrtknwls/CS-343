@@ -14,13 +14,15 @@ void Groupoff::main() {
     for ( ; currentStudent > 0 ; currentStudent-- ) {
         _Accept ( ~Groupoff );
         _Else{
-            
+
             yield(groupoffDelay);
 
             printer->print( Printer::Groupoff, 'D', sodaCost );
             unsigned int studentToPick = prng( currentStudent );
+            std::cout << "HI" << studentToPick << "|" << currentStudent << endl;
+
             swap( giftCards[studentToPick], giftCards[currentStudent] );
-            std::cout << "HI" << studentToPick << endl;
+
 
             WATCard * giftCard = new WATCard();
             giftCard->deposit( sodaCost );
