@@ -84,7 +84,7 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
 
     printer->print( Printer::WATCardOffice, 'S' );
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
-        courierPool[courierID].ctor( courierID, this, printer );
+        courierPool.push_back( new Courier( courierID, this, printer ) );
     }
 }
 
@@ -94,7 +94,9 @@ WATCardOffice::~WATCardOffice() {
 
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         _Accept ( WATCardOffice::requestWork ) {}
+        delete courierPool[courierID];
     }
+    courierPool.clear();
 
     printer->print( Printer::WATCardOffice, 'F' );
 }

@@ -1,6 +1,7 @@
 #ifndef CS_343_WATCARDOFFICE_H
 #define CS_343_WATCARDOFFICE_H
 
+#include <vector>
 #include <queue>
 #include <uPRNG.h>
 
@@ -36,7 +37,7 @@ _Task WATCardOffice {
     };
 
     std::queue< Job* > workToDo;
-    uNoCtor< Courier > courierPool;
+    std::vector< Courier* > courierPool;
     void main();
 
     bool workDone = false;
