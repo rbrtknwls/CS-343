@@ -54,7 +54,7 @@ int main( int argc, char * argv[] ) {
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
-    vector< *Student > students;
+    vector< Student* > students;
 
     for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
         students.append(
