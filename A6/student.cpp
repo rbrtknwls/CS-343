@@ -31,6 +31,6 @@ Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff
 
 Student::~Student() {
     printer->print( Printer::Student, localID, 'F' );
-    delete watcard();
+    try { delete watcard(); } catch ( WATCardOffice::Lost ) {}
 
 }
