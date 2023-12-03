@@ -21,15 +21,19 @@ void Groupoff::main() {
             unsigned int studentToPick = prng( currentStudent );
             std::cout << "HI" << studentToPick << "|" << currentStudent << endl;
 
-            swap( giftCards[studentToPick], giftCards[currentStudent] );
-
-
             WATCard * giftCard = new WATCard();
             giftCard->deposit( sodaCost );
             giftCards[studentToPick].delivery( giftCard );
 
 
+            WATCard::FWATCard cardToUpdate = giftCards[studentToPick];
+            WATCard::FWATCard emptyWatCard = giftCards[currentStudent];
+            WATCard::FWATCard tempWatCard = giftCards[currentStudent];
 
+            emptyWatCard = cardToUpdate;
+            cardToUpdate = tempWatCard;
+
+            
         }
     }
 }
