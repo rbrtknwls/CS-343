@@ -29,10 +29,10 @@ void Groupoff::main() {
 
             WATCard::FWATCard *cardToUpdate = &giftCards[studentToPick];
             WATCard::FWATCard *emptyWatCard = &giftCards[currentStudent];
-            WATCard::FWATCard *tempWatCard = &giftCards[currentStudent];
 
-            emptyWatCard = cardToUpdate;
-            cardToUpdate = tempWatCard;
+
+            giftCards[currentStudent] = *cardToUpdate;
+            giftCards[studentToPick] = *emptyWatCard;
 
 
         }
