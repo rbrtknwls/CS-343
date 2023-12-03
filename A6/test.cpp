@@ -59,8 +59,8 @@ int main( int argc, char * argv[] ) {
     WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
     WATCard::FWATCard watcard2 = watCardOffice.create(0, 5);
 
-    WATCard::FWATCard giftcard1 = Groupoff.giftCard();
-    WATCard::FWATCard giftcard2 = Groupoff.giftCard();
+    WATCard::FWATCard giftcard1 = groupoffer.giftCard();
+    WATCard::FWATCard giftcard2 = groupoffer.giftCard();
 
 
     delete watcard1();
