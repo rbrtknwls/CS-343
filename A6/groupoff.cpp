@@ -5,7 +5,7 @@
 void Groupoff::main() {
 
     for ( ; currentStudent < numStudents ; currentStudent++ ) {
-        //_Accept( giftCard );
+        _Accept( giftCard );
     }
 
     for ( ; currentStudent >= 0 ; currentStudent-- ) {

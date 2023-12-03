@@ -53,7 +53,7 @@ int main( int argc, char * argv[] ) {
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
 
-    Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay);
+    Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
 
     WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
