@@ -31,7 +31,7 @@ int Printer::kindToID ( Kind kind ) {
 
 void Printer::flushBuffer () {
 
-    for (unsigned int id = 0; id < totalNumberOfActors; id++ ) {
+    for ( unsigned int id = 0; id < totalNumberOfActors; id++ ) {
         if ( hasBeenWrittenTo[id] ) {
 
             string toPrint = "";
