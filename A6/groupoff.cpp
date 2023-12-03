@@ -21,7 +21,7 @@ void Groupoff::main() {
 
             WATCard * giftCard = new WATCard();
             giftCard->deposit( sodaCost );
-            giftCards[studentToPick]->delivery( giftCard );
+            giftCards[studentToPick].delivery( giftCard );
 
             swap( giftCards[studentToPick], giftCards[currentStudent + 1] );
 
