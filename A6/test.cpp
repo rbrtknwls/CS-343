@@ -9,6 +9,7 @@
 #include "watCardOffice.h"
 #include "watCard.h"
 #include "groupoff.h"
+#include "student.h"
 
 using namespace std;
 
