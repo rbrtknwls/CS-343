@@ -32,7 +32,7 @@ void Groupoff::main() {
 
 
             //giftCards[currentStudent] = *cardToUpdate;
-            giftCards[studentToPick] = *emptyWatCard;
+            giftCards[studentToPick].link = *emptyWatCard;
 
 
         }
