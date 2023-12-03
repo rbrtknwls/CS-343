@@ -12,7 +12,7 @@ _Task Student {
     WATCardOffice *watCardOffice;
     Groupoff *groupoff;
 
-    unsigned int localId;
+    unsigned int localID;
     unsigned int numberOfPurchases;
     unsigned int favouriteFlavour;
 
