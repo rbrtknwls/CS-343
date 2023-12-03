@@ -12,6 +12,7 @@ void Student::main() {
         WATCard *payment;
         _Select( giftcard ) {
             printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
+            delete payment;
             giftcard.reset();
         } or  _Select( watcard ) {
 
