@@ -9,7 +9,7 @@ Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff
     unsigned int id, unsigned int maxPurchases ) :
     printer( &prt ), watCardOffice ( &cardOffice ), groupoffer( &groupoff ), localID( id ) {
 
-    printer->print( Printer::STUDENT,  localID, 'S' );
+    printer->print( Printer::Student,  localID, 'S' );
 
     numberOfPurchases = prng( maxPurchases ) + 1;
     favouriteFlavour = prng( 4 );
@@ -23,5 +23,5 @@ Student::~Student() {
 
     delete watcard();
 
-    printer->print( Printer::STUDENT,  localID, 'F' );
+    printer->print( Printer::Student,  localID, 'F' );
 }
