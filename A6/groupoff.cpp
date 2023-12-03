@@ -12,7 +12,7 @@ void Groupoff::main() {
     }
 
     for ( ; currentStudent > 0 ; currentStudent-- ) {
-        _Accept ( ~Groupoff );
+        _Accept ( ~Groupoff ) { break; }
         _Else{
 
             yield(groupoffDelay);
@@ -31,7 +31,7 @@ void Groupoff::main() {
             WATCard::FWATCard *emptyWatCard = &giftCards[currentStudent];
 
 
-            giftCards[currentStudent] = *cardToUpdate;
+            //giftCards[currentStudent] = *cardToUpdate;
             giftCards[studentToPick] = *emptyWatCard;
 
 
