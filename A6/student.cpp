@@ -2,13 +2,25 @@
 
 void Student::main() {
 
+    bool madeAPurchase = true;
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
-        yield( prng( 10 ) + 1 );
+        if ( madeAPurchase ) { yield( prng( 10 ) + 1 ); }
+        madeAPurchase = true;
 
+        WATCard *payment;
         _Select( giftcard ) {
 
         } or  _Select( watcard ) {
 
+            try {
+                payment = watcard();
+            } catch ( WATCardOffice::Lost &lost ) {
+                watcard = watCardOffice->create( 0, 5 );
+                currentPurchase--;
+                madeAPurchase = false;
+                continue;
+            }
+            
         }
     }
 
