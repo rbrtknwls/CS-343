@@ -16,7 +16,7 @@ void Groupoff::main() {
 
             yield(groupoffDelay);
 
-            printer->print( Printer::Groupoff, 'D', sodaCost );
+            //printer->print( Printer::Groupoff, 'D', sodaCost );
             unsigned int studentToPick = prng( currentStudent );
 
             WATCard * giftCard = new WATCard();
