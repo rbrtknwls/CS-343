@@ -19,7 +19,6 @@ void Groupoff::main() {
 
             printer->print( Printer::Groupoff, 'D', sodaCost );
             unsigned int studentToPick = prng( currentStudent );
-            std::cout << "HI" << studentToPick << "|" << currentStudent << endl;
 
             WATCard * giftCard = new WATCard();
             giftCard->deposit( sodaCost );
