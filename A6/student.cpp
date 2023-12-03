@@ -14,13 +14,13 @@ Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff
     numberOfPurchases = prng( maxPurchases ) + 1;
     favouriteFlavour = prng( 4 );
 
-    watcard = watCardOffice.create(0, 5);
-    giftcard = groupoffer.giftCard();
+    watcard = watCardOffice->create(0, 5);
+    giftcard = groupoff->giftCard();
 
 }
 
 Student::~Student() {
-    
+
     delete watcard();
 
     printer->print( Printer::WATCardOffice,  localID, 'F' );
