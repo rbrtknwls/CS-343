@@ -16,6 +16,9 @@ _Task Student {
     unsigned int numberOfPurchases;
     unsigned int favouriteFlavour;
 
+    WATCard::FWATCard watcard;
+    WATCard::FWATCard giftcard;
+
     void main();
 
   public:
