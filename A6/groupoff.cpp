@@ -25,7 +25,7 @@ void Groupoff::main() {
             giftCard->deposit( sodaCost );
             giftCards[studentToPick].delivery( giftCard );
 
-            //swap( giftCards[studentToPick], giftCards[currentStudent + 1] );
+            swap( giftCards[studentToPick], giftCards[currentStudent + 1] );
 
         }
     }
