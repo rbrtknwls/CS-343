@@ -10,6 +10,8 @@ void Groupoff::main() {
         _Accept( giftCard );
     }
 
+    currentStudent--;
+
     for ( ; currentStudent >= 0 ; currentStudent-- ) {
         _Accept ( ~Groupoff );
         _Else{
