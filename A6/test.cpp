@@ -66,4 +66,8 @@ int main( int argc, char * argv[] ) {
     delete watcard1();
     delete watcard2();
 
+    delete giftcard1();
+    delete giftcard2();
+
+
 }
