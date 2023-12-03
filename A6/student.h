@@ -21,7 +21,7 @@ _Task Student {
   public:
     Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,
         unsigned int id, unsigned int maxPurchases );
-
+    ~Student();
 };
 
 #endif //CS_343_STUDENT_H
