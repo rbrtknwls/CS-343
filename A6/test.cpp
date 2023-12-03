@@ -47,14 +47,19 @@ int main( int argc, char * argv[] ) {
     ConfigParms parameters;
     processConfigFile( configFile, parameters );
 
-    // Setup
     Printer printer = Printer( parameters.numStudents, parameters.numVendingMachines, parameters.numCouriers );
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
-
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
+    vector< *Student > students;
+
+    for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
+        students.append(
+                new Student(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases)
+        );
+    }
 
     WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
     WATCard::FWATCard watcard2 = watCardOffice.create(0, 5);
