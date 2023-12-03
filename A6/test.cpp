@@ -54,12 +54,10 @@ int main( int argc, char * argv[] ) {
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
-    vector< Student* > students;
+    uNoCtor< Student* > students;
 
     for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
-        students.push_back(
-                new Student(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases)
-        );
+        students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
 
     WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
