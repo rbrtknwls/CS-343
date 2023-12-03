@@ -60,18 +60,5 @@ int main( int argc, char * argv[] ) {
         students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
 
-    WATCard::FWATCard watcard1 = watCardOffice.create(0, 5);
-    WATCard::FWATCard watcard2 = watCardOffice.create(0, 5);
-
-    WATCard::FWATCard giftcard1 = groupoffer.giftCard();
-    WATCard::FWATCard giftcard2 = groupoffer.giftCard();
-
-
-    delete watcard1();
-    delete watcard2();
-
-    giftcard1();
-    giftcard2();
-
 
 }
