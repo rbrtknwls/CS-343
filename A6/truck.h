@@ -3,9 +3,7 @@
 
 #include "printer.h"
 #include "nameserver.h"
-
-_Task BottlingPlant;  // forward declaration
-
+#include "bottlingplant.h"
 
 _Task Truck {
 	void main();

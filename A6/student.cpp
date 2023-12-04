@@ -1,5 +1,7 @@
 #include "student.h"
 
+// ================== Private Method(s) ==================== //
+
 void Student::main() {
 
     bool madeAPurchase = true;
@@ -31,6 +33,9 @@ void Student::main() {
     }
 
 }
+
+
+// ================== Constructor / Destructor ==================== //
 
 
 Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,

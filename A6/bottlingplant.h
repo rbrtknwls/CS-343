@@ -5,9 +5,6 @@
 #include "truck.h"
 #include "nameserver.h"
 
-
-
-
 _Task BottlingPlant {
     void main();
     Printer & printer;

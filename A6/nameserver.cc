@@ -4,33 +4,33 @@
 
 using namespace std;
 
-NameServer::NameServer( Printer & prt, unsigned int numVendingMachines, unsigned int numStudents ) : 
-    printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents), numMachines(0) {
-    machines = new VendingMachine*[numVendingMachines];
-    machineAssignments = new unsigned int[numStudents];
-    for (unsigned int i = 0; i < numStudents; i++) {
-        machineAssignments[i] = i % numVendingMachines;
-    } // for
-} // NameServer::NameServer
+
+// ================== Private Method(s) ==================== //
 
 
 void NameServer::main() {
-    printer.print(Printer::Kind::NameServer, 'S');
+
     for (;;) {
+
         _Accept(~NameServer) {
             printer.print(Printer::Kind::NameServer, 'F');
             break;
-        } or _When(numMachines == numVendingMachines) _Accept(getMachine) {
+        } or _When( numMachines == numVendingMachines ) _Accept(getMachine) {
             printer.print(Printer::Kind::NameServer, 'N', currStudentIdx, currMachineIdx);
-            machineAssignments[currStudentIdx] = (currMachineIdx + 1) % numVendingMachines;
-        } or _When(numMachines == numVendingMachines) _Accept(getMachineList) {
+            machineAssignments[currStudentIdx] = ( currMachineIdx + 1 ) % numVendingMachines;
+        } or _When( numMachines == numVendingMachines ) _Accept( getMachineList ) {
 
-        } or _When(numMachines < numVendingMachines) _Accept(VMregister) {
+        } or _When( numMachines < numVendingMachines ) _Accept( VMregister ) {
             printer.print(Printer::Kind::NameServer, 'R', currMachineIdx);
             numMachines++;
         } // _Accept
+
     }
 } // NameServer::main
+
+
+// ================== Public Member(s) ==================== //
+
 
 void NameServer::VMregister( VendingMachine * vendingmachine ) {
     currMachineIdx = vendingmachine->getId();
@@ -48,7 +48,25 @@ VendingMachine ** NameServer::getMachineList() {
 } // NameServer::getMachineList
 
 
+// ================== Constructor / Destructor ==================== //
+
+
+NameServer::NameServer( Printer & prt, unsigned int numVendingMachines, unsigned int numStudents ) :
+printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents), numMachines(0) {
+
+    printer.print(Printer::Kind::NameServer, 'S');
+
+    machines = new VendingMachine*[numVendingMachines];
+    machineAssignments = new unsigned int[numStudents];
+    for (unsigned int i = 0; i < numStudents; i++) {
+        machineAssignments[i] = i % numVendingMachines;
+    } // for
+
+} // NameServer::NameServer
+
 NameServer::~NameServer() {
     delete[] machines;
     delete[] machineAssignments;
+
+    printer.print(Printer::Kind::NameServer, 'F');
 } // NameServer::~NameServer

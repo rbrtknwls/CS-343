@@ -6,11 +6,9 @@
 
 using namespace std;
 
-Truck::Truck( Printer & prt, NameServer & nameServer, BottlingPlant & plant,
-           unsigned int numVendingMachines, unsigned int maxStockPerFlavour ) : printer(prt), nameServer(nameServer),
-           numVendingMachines(numVendingMachines), maxStockPerFlavour(maxStockPerFlavour), bottlingPlant(plant) {
-    printer.print(Printer::Kind::Truck, 'S');
-} // Truck::Truck
+
+// ================== Private Method(s) ==================== //
+
 
 void Truck::main() {
 
@@ -76,6 +74,16 @@ void Truck::calcUsed(unsigned int* stock, unsigned int* sodas, unsigned int& tot
         totalLacking += maxStockPerFlavour - stock[i];
     } // for
 } // Truck::calcUsed
+
+
+// ================== Constructor / Destructor ==================== //
+
+
+Truck::Truck( Printer & prt, NameServer & nameServer, BottlingPlant & plant,
+              unsigned int numVendingMachines, unsigned int maxStockPerFlavour ) : printer(prt), nameServer(nameServer),
+numVendingMachines(numVendingMachines), maxStockPerFlavour(maxStockPerFlavour), bottlingPlant(plant) {
+    printer.print(Printer::Kind::Truck, 'S');
+} // Truck::Truck
 
 Truck::~Truck() {
     printer.print(Printer::Kind::Truck, 'F');
