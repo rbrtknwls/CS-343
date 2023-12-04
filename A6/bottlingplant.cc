@@ -22,7 +22,7 @@ void BottlingPlant::main() {
 
         _Accept( ~BottlingPlant ) {
 
-            _Throw Shutdown() _At Truck;
+            _Resume Shutdown() _At Truck;
             break;
 
         } or _Accept( getShipment ) {
