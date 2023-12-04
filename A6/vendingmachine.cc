@@ -2,11 +2,10 @@
 #include "printer.h"
 #include "nameserver.h"
 #include "watCard.h"
-#include "bottlingplant.h"
 
-VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost,
-                                unsigned int maxStockPerFlavour ) : printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost),
-                                maxStockPerFlavour(maxStockPerFlavour) {
+
+VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ): 
+        printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost) {
 } // VendingMachine::VendingMachine
 
 void VendingMachine::main() {
@@ -17,10 +16,10 @@ void VendingMachine::main() {
             _Accept(~VendingMachine) {
                 break;
             } or _Accept(buy) {
-                currCard->withdraw(sodaCost);
+                VMCard->withdraw(sodaCost);
                 stock[currFlavour]--;
                 printer.print(Printer::Kind::Vending, id, 'B', currFlavour, stock[currFlavour]);
-                wait.singalBlock();
+                wait.signalBlock();
             } or _Accept(inventory) {
                 printer.print(Printer::Kind::Vending, id, 'r');
                 _Accept(restocked) {
@@ -35,13 +34,13 @@ void VendingMachine::main() {
                     break;
                 case VendingMachine::State::funds:
                     break;
-                case VendingMachine::State::stock:
+                case VendingMachine::State::stocks:
                     _Accept(inventory) {
                         printer.print(Printer::Kind::Vending, id, 'r');
                         _Accept(restocked) {
                             printer.print(Printer::Kind::Vending, id, 'R');
                         } // _Accept
-                    } or Accept(~VendingMachine) {
+                    } or _Accept(~VendingMachine) {
                         break LOOP;
                     } // _Accept
                     break;
@@ -55,17 +54,18 @@ void VendingMachine::main() {
 } // VendingMachine::main
 
 
-void VendingMachine::buy( Flavours flavour, WATCard & card ) {
+void VendingMachine::buy( BottlingPlant::Flavours flavour, WATCard & card ) {
     if (stock[flavour] == 0) {
-        state = VendingMachine::State::stock;
+        state = VendingMachine::State::stocks;
         _Throw VendingMachine::Stock{};
     } // if
+
     if (card.getBalance() < sodaCost) {
         state = VendingMachine::State::funds;
         _Throw VendingMachine::Funds{};
     } // if
 
-    currCard = &card;
+    VMCard = &card;
     currFlavour = flavour;
     if (prng() % 4 == 0) {
         state = VendingMachine::State::free;

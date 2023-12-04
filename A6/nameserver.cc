@@ -5,11 +5,11 @@
 using namespace std;
 
 NameServer::NameServer( Printer & prt, unsigned int numVendingMachines, unsigned int numStudents ) : 
-    printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents). numMachines(0) {
+    printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents), numMachines(0) {
     machines = new VendingMachine*[numVendingMachines];
     machineAssignments = new unsigned int[numStudents];
     for (unsigned int i = 0; i < numStudents; i++) {
-        students[i] = i % numVendingMachines;
+        machineAssignments[i] = i % numVendingMachines;
     } // for
 } // NameServer::NameServer
 

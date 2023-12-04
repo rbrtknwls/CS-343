@@ -2,7 +2,7 @@
 #include <uPRNG.h>
 #include <algorithm>
 #include "bottlingplant.h"
-#include "vendingMachine.h"
+#include "vendingmachine.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ void Truck::main() {
                 totalSodas += sodas[i];
             } // for
             printer.print(Printer::Kind::Truck, 'P', totalSodas);
-            unsigned int loop_count = numVendingMachines
+            unsigned int loop_count = numVendingMachines;
             for (; loop_count > 0; currMachine++) {
                 if (totalSodas == 0) {
                     break;
@@ -46,7 +46,7 @@ void Truck::main() {
                 machine->restocked();
 
                 if (prng()%100 == 0) { // if flat tire
-                    printer.print(Printer::Kind::Truck, "W");
+                    printer.print(Printer::Kind::Truck, 'W');
                     yield(10);
                 } // if
 
@@ -58,7 +58,7 @@ void Truck::main() {
     } // for
 } // Truck::main
 
-void Truck::calcUsed(unsinged int* stock, unsigned int* sodas, unsigned int& totalLacking, unsigned int& totalSodas) {
+void Truck::calcUsed(unsigned int* stock, unsigned int* sodas, unsigned int& totalLacking, unsigned int& totalSodas) {
     for (unsigned int i = 0; i < 4; i++) {
         unsigned int sodas_got = min(sodas[i], maxStockPerFlavour - stock[i]);
         totalSodas -= sodas_got;

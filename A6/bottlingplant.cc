@@ -1,8 +1,6 @@
 #include "bottlingplant.h"
 #include <uPRNG.h>
 
-#ifndef
-
 BottlingPlant::BottlingPlant( Printer & prt, NameServer & nameServer, unsigned int numVendingMachines,
                              unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour,
                              unsigned int timeBetweenShipments ) : printer(prt), nameServer(nameServer), numVendingMachines(numVendingMachines),
@@ -25,7 +23,7 @@ void BottlingPlant::main() {
             printer.print(Printer::Kind::BottlingPlant, 'G', totalBottles);
 
             _Accept(~BottlingPlant) {
-                shutdown = true
+                shutdown = true;
                 _Accept(getShipment);
             } or _Accept(getShipment) {
                 printer.print(Printer::Kind::BottlingPlant, 'P');

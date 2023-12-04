@@ -10,13 +10,13 @@ _Task BottlingPlant;  // forward declaration
 _Task Truck {
 	void main();
     Printer & printer;
-    NAmeServer & nameServer;
+    NameServer & nameServer;
     unsigned int numVendingMachines;
     unsigned int maxStockPerFlavour;
     BottlingPlant & bottlingPlant;
 
     unsigned int sodas[4] = {0};
-    void calcUsed(unsinged int* stock, unsigned int* sodas, unsigned int& totalLacking, unsigned int& totalSodas);
+    void calcUsed(unsigned int* stock, unsigned int* sodas, unsigned int& totalLacking, unsigned int& totalSodas);
   public:
 	Truck( Printer & prt, NameServer & nameServer, BottlingPlant & plant,
 		   unsigned int numVendingMachines, unsigned int maxStockPerFlavour );

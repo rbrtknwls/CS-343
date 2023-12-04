@@ -1,6 +1,8 @@
 #ifndef VENDINGMACHINE_H
 #define VENDINGMACHINE_H
 
+#include "bottlingplant.h"
+
 // Forward declarations
 _Task NameServer;
 _Monitor Printer;
@@ -15,9 +17,9 @@ _Task VendingMachine {
     unsigned int sodaCost;
     unsigned int stock[4] = {0};
     uCondition wait;
-    WATCard *card;
+    WATCard* VMCard;
     BottlingPlant::Flavours currFlavour;
-    enum State{stock, free, funds};
+    enum State{stocks, free, funds};
     State state;
   public:
 	_Event Free {};						// free, advertisement
