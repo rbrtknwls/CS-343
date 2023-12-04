@@ -53,8 +53,8 @@ int main( int argc, char * argv[] ) {
     processConfigFile( configFile, parameters );
 
     Printer printer = Printer( parameters.numStudents, parameters.numVendingMachines, parameters.numCouriers );
-    NameServer nameServer = NameServer( printer, parameters.numVendingMachines, parameters.numStudents )
-            
+    NameServer nameServer = NameServer( printer, parameters.numVendingMachines, parameters.numStudents );
+
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
 
@@ -63,7 +63,7 @@ int main( int argc, char * argv[] ) {
 
     BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
                                                  parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                 parameters.timeBetweenShipments )
+                                                 parameters.timeBetweenShipments );
 
 
     uNoCtor< Student > students[parameters.numStudents];
