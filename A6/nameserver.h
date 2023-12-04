@@ -1,8 +1,10 @@
 #ifndef NAMESERVER_H
 #define NAMESERVER_H
 
-#include "printer.h"
-#include "vendingmachine.h"
+// Forward Declarations
+_Task VendingMachine;
+_Monitor Printer;
+
 
 _Task NameServer {
 	void main();
