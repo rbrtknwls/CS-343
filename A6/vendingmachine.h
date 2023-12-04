@@ -2,10 +2,9 @@
 #define VENDINGMACHINE_H
 
 #include "bottlingplant.h"
+#include "nameserver.h"
+#include "printer.h"
 
-// Forward declarations
-_Task NameServer;
-_Monitor Printer;
 class WATCard;
 
 

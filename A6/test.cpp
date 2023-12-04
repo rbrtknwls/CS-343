@@ -49,8 +49,10 @@ int main( int argc, char * argv[] ) {
     processConfigFile( configFile, parameters );
 
     Printer printer = Printer( parameters.numStudents, parameters.numVendingMachines, parameters.numCouriers );
+
     Bank bank = Bank( parameters.numStudents );
     Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
+
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
