@@ -10,6 +10,10 @@
 #include "watCard.h"
 #include "groupoff.h"
 #include "student.h"
+#include "bottlingplant.h"
+#include "truck.h"
+#include "vendingmachine.h"
+#include "nameserver.h"
 
 using namespace std;
 
@@ -56,11 +60,16 @@ int main( int argc, char * argv[] ) {
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
+    NameServer nameServer = NameServer( printer, parameters.numVendingMachines, parameters.numStudents )
+    BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
+                                                 parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
+                                                 parameters.timeBetweenShipments )
+
+
     uNoCtor< Student > students[parameters.numStudents];
 
     for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
         students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
-
 
 }
