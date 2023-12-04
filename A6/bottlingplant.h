@@ -2,8 +2,9 @@
 #define BOTTLINGPLANT_H
 
 #include "printer.h"
-#include "truck.h"
 #include "nameserver.h"
+
+_Task Truck;
 
 _Task BottlingPlant {
     void main();
