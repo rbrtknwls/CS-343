@@ -26,8 +26,9 @@ void BottlingPlant::main() {
 
         } or  _Accept( ~BottlingPlant ) {
 
-            _Resume Shutdown() _At truck;
-            _Accept( getShipment );
+            _Accept( getShipment ) {
+                _Resume Shutdown() _At truck;
+            }
 
             break;
 
