@@ -33,7 +33,7 @@ int main( int argc, char * argv[] ) {
                 if ( *argv[2] != 'd' ) {
                     int seed = stoi(argv[2]);
                   if (seed <= 0) { throw cmd_error(); }
-                    mainPRNG.set_seed(seed);
+                    set_seed(seed);
                 }
             case 2:
                 if ( *argv[1] != 'd' ) { configFile = argv[1]; }
