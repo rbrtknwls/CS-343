@@ -67,7 +67,7 @@ int main( int argc, char * argv[] ) {
 
 
 
-    vector< *VendingMachine > vendingMachines;
+    vector< VendingMachine* > vendingMachines;
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         vendingMachines.append( new VendingMachine( printer, nameServer, 0, parameters.sodaCost ) );
