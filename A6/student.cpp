@@ -25,7 +25,9 @@ void Student::main() {
 
                 payment = giftcard();
                 machine->buy(flavour, *payment);
+
                 printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
+                
                 giftcard.reset();
                 delete payment;
 
@@ -52,7 +54,7 @@ void Student::main() {
                  payment = watcard();
                  machine->buy( flavour, *payment );
 
-                 printer->print(Printer::Kind::Student, localID, 'B', flavour, 0);
+                 //printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
                  break;
 
              } catch ( WATCardOffice::Lost &lost ) {
@@ -63,7 +65,7 @@ void Student::main() {
                  continue;
 
              } catch(VendingMachine:: Free &) {
-                 printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
+                 //printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
 
                  if (prng(2) == 1) {
                      yield(4);
