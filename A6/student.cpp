@@ -14,32 +14,31 @@ void Student::main() {
     WATCard *payment = nullptr;
 
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
-        /*
+
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
 
         madeAPurchase = true;
-        // _Select( giftcard ) {
 
-        //     printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
-        //     delete giftcard();
-        //     giftcard.reset();
+         _Select( giftcard ) {
 
-        // } or  _Select( watcard ) {
+             printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
+             delete giftcard();
+             giftcard.reset();
 
-        //     try {
-        //         payment = watcard();
-        //     } catch ( WATCardOffice::Lost &lost ) {
-        //         watcard = watCardOffice->create( localID, 5 );
-        //         currentPurchase--;
-        //         madeAPurchase = false;
-        //         printer->print( Printer::Student, localID, 'L' );
-        //         continue;
-        //     }
-        // }
+         } or _Select( watcard ) {
 
+             try {
+                 payment = watcard();
+             } catch ( WATCardOffice::Lost &lost ) {
+                 watcard = watCardOffice->create( localID, 5 );
+                 currentPurchase--;
+                 madeAPurchase = false;
+                 printer->print( Printer::Student, localID, 'L' );
+                 continue;
+             }
+         }
 
-        bool useGC = false;
-
+        /*
         for ( ;; ) {
 
             try {
@@ -58,8 +57,10 @@ void Student::main() {
                     break;
                 } // _Select
             } catch (WATCardOffice::Lost &lost) {
+
                 printer->print(Printer::Kind::Student, localID, 'L');
                 watcard = watCardOffice->create( localID, 5 );
+
             } catch(VendingMachine:: Free &) {
                 if (useGC) {
                     printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
@@ -81,7 +82,7 @@ void Student::main() {
                 printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
 
             } // try
-        }*/
+        } */
 
     }
 
