@@ -79,6 +79,7 @@ int main( int argc, char * argv[] ) {
         students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
 
+
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         delete vendingMachines[vendingID];
     }
