@@ -20,13 +20,15 @@ void BottlingPlant::main() {
 
         printer.print(Printer::Kind::BottlingPlant, 'G', totalBottles);
 
-        _Accept( ~BottlingPlant ) {
+        _Accept( getShipment ) {
+
+            printer.print(Printer::Kind::BottlingPlant, 'P');
+
+        } or  _Accept( ~BottlingPlant ) {
+
             _Resume Shutdown() _At truck;
             break;
 
-        } or _Accept( getShipment ) {
-
-            printer.print(Printer::Kind::BottlingPlant, 'P');
         } // _Accept
     } // for
 
