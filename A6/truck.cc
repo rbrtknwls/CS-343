@@ -28,6 +28,7 @@ void Truck::main() {
         try {
             _Enable {
                     printer.print(Printer::Kind::BottlingPlant, 'F');
+                    printer.print(Printer::Kind::BottlingPlant, 'F');
                 bottlingPlant.getShipment(sodas);
                     printer.print(Printer::Kind::BottlingPlant, 'F');
             }
