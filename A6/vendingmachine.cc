@@ -4,13 +4,8 @@
 #include "watCard.h"
 
 
-VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
-        printer(&prt), nameServer(&nameServer), id(id), sodaCost(sodaCost) {
-} // VendingMachine::VendingMachine
-
 void VendingMachine::main() {
-    printer->print( Printer::Kind::Vending, id, 'S', sodaCost );
-    nameServer->VMregister(this);
+
     LOOP: for(;;) {
         try {
             _Accept(~VendingMachine) {
@@ -93,3 +88,11 @@ _Nomutex unsigned int VendingMachine::cost() const {
 _Nomutex unsigned int VendingMachine::getId() const {
     return id;
 } // VendingMachine::getId
+
+// ================== Constructor / Destructor ==================== //
+
+VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
+printer(&prt), nameServer(&nameServer), id(id), sodaCost(sodaCost) {
+    printer->print( Printer::Kind::Vending, id, 'S', sodaCost );
+    nameServer->VMregister(this);
+} // VendingMachine::VendingMachine
