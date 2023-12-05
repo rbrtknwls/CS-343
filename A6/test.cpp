@@ -69,10 +69,9 @@ int main( int argc, char * argv[] ) {
     }
 
     {
-        /*
         BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
                                                      parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                     parameters.timeBetweenShipments );*/
+                                                     parameters.timeBetweenShipments );
 
         uNoCtor <Student> students[parameters.numStudents];
 
