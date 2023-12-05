@@ -108,7 +108,7 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
     giftcard = groupoffer->giftCard();
 
     printer->print( Printer::Student, localID, 'S', favouriteFlavour, numberOfPurchases );
-    BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
+    BottlingPlant::Flavours flavour = new static_cast<BottlingPlant::Flavours>( favouriteFlavour );
 
 }
 
@@ -116,6 +116,7 @@ Student::~Student() {
     try {
         delete watcard();
     } catch ( WATCardOffice::Lost & ) { }
+    delete flavour;
     printer->print( Printer::Student, localID, 'F' );
     // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
 }

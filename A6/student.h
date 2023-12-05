@@ -17,7 +17,8 @@ _Task Student {
 
     unsigned int localID;
     unsigned int numberOfPurchases;
-    BottlingPlant::Flavours flavour;
+
+    BottlingPlant::Flavours *flavour;
 
     WATCard::FWATCard watcard;
     WATCard::FWATCard giftcard;
