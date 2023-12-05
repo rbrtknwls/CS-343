@@ -30,8 +30,8 @@ void Student::main() {
                 delete payment;
 
             } catch( VendingMachine::Free & ) {
-                /*
-                printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
+
+                printer->print(Printer::Kind::Student, localID, 'a', flavour, 0);
 
                 if (prng(2) == 1) {
                     yield(4);
@@ -39,7 +39,7 @@ void Student::main() {
                     printer->print(Printer::Kind::Student, localID, 'X');
                 }
                 madeAPurchase = false;
-                */
+
             } catch ( VendingMachine::Stock & ) {
                 /*
                 machine = nameServer.getMachine( localID );
