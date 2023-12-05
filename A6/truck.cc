@@ -22,10 +22,14 @@ void Truck::main() {
     unsigned int totalLacking = 0;
 
     for ( ;; ) {
+
         yield( prng( 10 ) );
+
         try {
             _Enable {
+                    printer.print(Printer::Kind::BottlingPlant, 'F');
                 bottlingPlant.getShipment(sodas);
+                    printer.print(Printer::Kind::BottlingPlant, 'F');
             }
         } catch ( BottlingPlant::Shutdown & ) {
             printer.print(Printer::Kind::BottlingPlant, 'F');
