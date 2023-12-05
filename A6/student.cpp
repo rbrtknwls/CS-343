@@ -27,13 +27,13 @@ void Student::main() {
                 machine->buy(flavour, *payment);
 
                 printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
-                
+
                 giftcard.reset();
                 delete payment;
 
             } catch( VendingMachine::Free & ) {
 
-                printer->print(Printer::Kind::Student, localID, 'a', flavour, 0);
+                printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
 
                 if (prng(2) == 1) {
                     yield(4);
