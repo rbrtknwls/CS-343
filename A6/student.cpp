@@ -52,8 +52,6 @@ void Student::main() {
                  payment = watcard();
                  machine->buy( flavour, *payment );
 
-                 prin
-
                  printer->print(Printer::Kind::Student, localID, 'B', flavour, 0);
                  break;
 
