@@ -72,7 +72,7 @@ int main( int argc, char * argv[] ) {
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
     }*/
-    VendingMachine* vend = new VendingMachine( printer, nameServer, vendingID, parameters.sodaCost );
+    VendingMachine* vend = new VendingMachine( printer, nameServer, 0, parameters.sodaCost );
 
     uNoCtor< Student > students[parameters.numStudents];
 
