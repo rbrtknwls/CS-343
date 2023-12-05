@@ -22,7 +22,7 @@ void Student::main() {
         _Select( giftcard ) {
 
             try {
-                
+
                 payment = giftcard();
                 machine->buy(flavour, *payment);
                 printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
@@ -39,9 +39,10 @@ void Student::main() {
                     printer->print(Printer::Kind::Student, localID, 'X');
                 }
                 madeAPurchase = false;
+
             } catch ( VendingMachine::Stock & ) {
 
-                machine = nameServer.getMachine(localID);
+                //machine = nameServer.getMachine( localID );
                 printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
                 madeAPurchase = false;
             }
