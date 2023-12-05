@@ -6,8 +6,6 @@
 #include "printer.h"
 #include "bank.h"
 
-extern PRNG mainPRNG;
-
 _Task Parent {
     Printer *printer;
     Bank *bank;

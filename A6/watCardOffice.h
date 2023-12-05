@@ -9,8 +9,6 @@
 #include "bank.h"
 #include "printer.h"
 
-extern PRNG mainPRNG;
-
 using namespace std;
 
 _Task WATCardOffice {

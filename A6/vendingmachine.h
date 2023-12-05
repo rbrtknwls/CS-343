@@ -7,7 +7,6 @@
 
 class WATCard;
 
-
 _Task VendingMachine {
 	void main();
     Printer & printer;

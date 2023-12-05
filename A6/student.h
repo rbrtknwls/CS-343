@@ -5,8 +5,6 @@
 #include "watCardOffice.h"
 #include "groupoff.h"
 
-extern PRNG mainPRNG;
-
 _Task Student {
     Printer *printer;
     WATCardOffice *watCardOffice;

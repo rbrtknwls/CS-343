@@ -10,10 +10,9 @@ using namespace std;
 
 void NameServer::main() {
 
-    for (;;) {
+    for ( ;; ) {
 
-        _Accept(~NameServer) {
-            printer.print(Printer::Kind::NameServer, 'F');
+        _Accept( ~NameServer ) {
             break;
         } or _When( numMachines == numVendingMachines ) _Accept(getMachine) {
             printer.print(Printer::Kind::NameServer, 'N', currStudentIdx, currMachineIdx);

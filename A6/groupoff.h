@@ -7,8 +7,6 @@
 #include "printer.h"
 #include "watCard.h"
 
-extern PRNG mainPRNG;
-
 _Task Groupoff {
     Printer *printer;
     int numStudents;
