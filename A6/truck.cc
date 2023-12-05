@@ -21,50 +21,50 @@ void Truck::main() {
     unsigned int *stock;
     unsigned int totalLacking = 0;
 
+    try {
+        _Enable{
+            for (;; ) {
 
-    for ( ;; ) {
+                yield(prng(10));
 
-        yield( prng( 10 ) );
-
-        try {
-            _Enable {
                 bottlingPlant.getShipment(sodas);
-            }
-        } catch ( BottlingPlant::Shutdown & ) {
-            break;
-        } // try
 
-        for (unsigned int i = 0; i < 4; i++) {
-            totalSodas += sodas[i];
-        } // for
 
-        printer.print(Printer::Kind::Truck, 'P', totalSodas);
+                for (unsigned int i = 0; i < 4; i++) {
+                    totalSodas += sodas[i];
+                } // for
 
-        for ( loop_count = numVendingMachines ; loop_count > 0; loop_count--) {
-            if ( totalSodas == 0 ) { break; }
-            if ( currMachine == numVendingMachines ) { currMachine = 0; }
+                printer.print(Printer::Kind::Truck, 'P', totalSodas);
 
-            machine = machines[currMachine];
-            stock = machine->inventory();
-            totalLacking = 0;
+                for (loop_count = numVendingMachines; loop_count > 0; loop_count--) {
+                    if (totalSodas == 0) { break; }
+                    if (currMachine == numVendingMachines) { currMachine = 0; }
 
-            printer.print(Printer::Kind::Truck, 'd', currMachine, totalSodas);
-            calcUsed(stock, sodas, totalLacking, totalSodas);
+                    machine = machines[currMachine];
+                    stock = machine->inventory();
+                    totalLacking = 0;
 
-            if ( totalLacking > 0 ) { printer.print(Printer::Kind::Truck, 'U', currMachine, totalLacking); }
+                    printer.print(Printer::Kind::Truck, 'd', currMachine, totalSodas);
+                    calcUsed(stock, sodas, totalLacking, totalSodas);
 
-            printer.print(Printer::Kind::Truck, 'D', currMachine, totalSodas);
-            machine->restocked();
+                    if (totalLacking > 0) { printer.print(Printer::Kind::Truck, 'U', currMachine, totalLacking); }
 
-            if (prng()%100 == 0) { // if flat tire
-                printer.print(Printer::Kind::Truck, 'W');
-                yield(10);
-            } // if
+                    printer.print(Printer::Kind::Truck, 'D', currMachine, totalSodas);
+                    machine->restocked();
 
-            currMachine++;
-        } // for
+                    if (prng() % 100 == 0) { // if flat tire
+                        printer.print(Printer::Kind::Truck, 'W');
+                        yield(10);
+                    } // if
 
-    } // for
+                    currMachine++;
+                } // for
+
+            } // for
+        }
+    } catch ( BottlingPlant::Shutdown & ) {
+        break;
+    } // try
 
 } // Truck::main
 
