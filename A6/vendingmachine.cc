@@ -10,9 +10,13 @@ void VendingMachine::main() {
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+
     LOOP: for( ;; ) {
         try {
             _Accept( ~VendingMachine ) {
+                printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
+                printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
+                printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
                 break;
 
             } or _Accept( buy ) {
