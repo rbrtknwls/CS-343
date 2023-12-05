@@ -9,8 +9,8 @@ VendingMachine::VendingMachine( Printer * prt, NameServer * nameServer, unsigned
 } // VendingMachine::VendingMachine
 
 void VendingMachine::main() {
-    printer.print( Printer::Kind::Vending, id, 'S', sodaCost );
-    nameServer.VMregister(this);
+    printer->print( Printer::Kind::Vending, id, 'S', sodaCost );
+    nameServer->VMregister(this);
     LOOP: for(;;) {
         try {
             _Accept(~VendingMachine) {
@@ -18,27 +18,27 @@ void VendingMachine::main() {
             } or _Accept(buy) {
                 VMCard->withdraw(sodaCost);
                 stock[currFlavour]--;
-                printer.print(Printer::Kind::Vending, id, 'B', currFlavour, stock[currFlavour]);
+                printer->print(Printer::Kind::Vending, id, 'B', currFlavour, stock[currFlavour]);
                 wait.signalBlock();
             } or _Accept(inventory) {
-                printer.print(Printer::Kind::Vending, id, 'r');
+                printer->print(Printer::Kind::Vending, id, 'r');
                 _Accept(restocked) {
-                    printer.print(Printer::Kind::Vending, id, 'R');
+                    printer->print(Printer::Kind::Vending, id, 'R');
                 } // _Accept
             } // _Accept
         } catch (uMutexFailure::RendezvousFailure &) {
             switch(state) {
                 case VendingMachine::State::free:
-                    printer.print(Printer::Kind::Vending, id, 'A');
+                    printer->print(Printer::Kind::Vending, id, 'A');
                     stock[currFlavour]--;
                     break;
                 case VendingMachine::State::funds:
                     break;
                 case VendingMachine::State::stocks:
                     _Accept(inventory) {
-                        printer.print(Printer::Kind::Vending, id, 'r');
+                        printer->print(Printer::Kind::Vending, id, 'r');
                         _Accept(restocked) {
-                            printer.print(Printer::Kind::Vending, id, 'R');
+                            printer->print(Printer::Kind::Vending, id, 'R');
                         } // _Accept
 
                     } or _Accept(~VendingMachine) {
