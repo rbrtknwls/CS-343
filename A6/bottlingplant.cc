@@ -21,7 +21,7 @@ void BottlingPlant::main() {
         printer.print(Printer::Kind::BottlingPlant, 'G', totalBottles);
 
         _Accept( ~BottlingPlant ) {
-            _Throw Shutdown() _At *truck;
+            _Resume Shutdown() _At *truck;
             _Accept ( getShipment )
             break;
 
