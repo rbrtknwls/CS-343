@@ -8,7 +8,6 @@
 class WATCard;
 
 _Task VendingMachine {
-	void main();
     Printer * printer;
     NameServer * nameServer;
     unsigned int id;
@@ -19,6 +18,8 @@ _Task VendingMachine {
     BottlingPlant::Flavours currFlavour;
     enum State{stocks, free, funds};
     State state;
+
+    void main();
   public:
 	_Event Free {};						// free, advertisement
 	_Event Funds {};					// insufficient funds
