@@ -59,5 +59,6 @@ unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour, unsigned int
 } // BottlingPlant::BottlingPlant
 
 BottlingPlant::~BottlingPlant() {
+    delete truck;
     printer.print(Printer::Kind::BottlingPlant, 'F');
 } // BottlingPlant::~BottlingPlant
