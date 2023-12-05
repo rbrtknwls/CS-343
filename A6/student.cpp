@@ -3,7 +3,10 @@
 #include "bottlingplant.h"
 
 #include <iostream>
+
+
 // ================== Private Method(s) ==================== //
+
 
 void Student::main() {
 
@@ -83,52 +86,6 @@ void Student::main() {
 
              }
         }
-
-        /*
-        for ( ;; ) {
-
-            try {
-                _Select( giftcard ) {
-                    payment = giftcard();
-                    machine->buy( flavour, *payment );
-                    giftcard.reset();
-                    useGC = true;
-                    printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
-                    delete payment;
-                    break;
-                } or _Select( watcard ) {
-                    payment = watcard();
-                    machine->buy( flavour, *payment );
-                    printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
-                    break;
-                } // _Select
-            } catch (WATCardOffice::Lost &lost) {
-
-                printer->print(Printer::Kind::Student, localID, 'L');
-                watcard = watCardOffice->create( localID, 5 );
-
-            } catch(VendingMachine:: Free &) {
-                if (useGC) {
-                    printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
-                } else {
-                    printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
-                } // if
-
-                if (prng(2) == 1) {
-                    yield(4);
-                } else {
-                    printer->print(Printer::Kind::Student, localID, 'X');
-                }
-            } catch( VendingMachine::Funds & ) {
-
-                watcard = watCardOffice->transfer(localID, machine->cost() + 5, payment);
-            } catch( VendingMachine::Stock & ) {
-
-                machine = nameServer.getMachine(localID);
-                printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
-
-            } // try
-        } */
 
     }
 
