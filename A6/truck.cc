@@ -21,8 +21,8 @@ void Truck::main() {
     unsigned int *stock;
     unsigned int totalLacking = 0;
 
-    printer.print(Printer::Kind::Truck, 'F');
-    printer.print(Printer::Kind::Truck, 'F');
+    printer.print(Printer::Kind::Truck, 'S');
+    printer.print(Printer::Kind::Truck, 'S');
 
     for ( ;; ) {
 
@@ -87,8 +87,6 @@ void Truck::calcUsed(unsigned int* stock, unsigned int* sodas, unsigned int& tot
 Truck::Truck( Printer & prt, NameServer & nameServer, BottlingPlant & plant,
               unsigned int numVendingMachines, unsigned int maxStockPerFlavour ) : printer(prt), nameServer(nameServer),
 numVendingMachines(numVendingMachines), maxStockPerFlavour(maxStockPerFlavour), bottlingPlant(plant) {
-    printer.print(Printer::Kind::Truck, 'S');
-    printer.print(Printer::Kind::Truck, 'S');
     printer.print(Printer::Kind::Truck, 'S');
 } // Truck::Truck
 
