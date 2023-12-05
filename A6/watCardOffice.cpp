@@ -20,7 +20,7 @@ void WATCardOffice::Courier::main() {
         watCardOffice->bank->withdraw( job->studentID, job->amount ); // Get money out of the bank (blocking)
         job->card->deposit( job->amount );                            // Deposit into the watchword
 
-        if ( prng(6) == 0 ) {                                         // 20% of the time we lose the watcard
+        if ( prng(6) == 0 ) {                                         // 1/6 of the time we lose the watcard
             printer->print( Printer::Courier, localID, 'L', job->studentID );
 
             delete job->card;                                         // Delete "lost" card
