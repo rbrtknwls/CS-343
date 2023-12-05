@@ -3,40 +3,42 @@
 #include "nameserver.h"
 #include "watCard.h"
 
+
+VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ): 
+        printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost) {
+} // VendingMachine::VendingMachine
+
 void VendingMachine::main() {
-    nameServer->VMregister( this );
-
-    LOOP: for( ;; ) {
+    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+    nameServer.VMregister(this);
+    LOOP: for(;;) {
         try {
-            _Accept( ~VendingMachine ) {
+            _Accept(~VendingMachine) {
                 break;
-
-            } or _Accept( buy ) {
-                VMCard->withdraw( sodaCost );
+            } or _Accept(buy) {
+                VMCard->withdraw(sodaCost);
                 stock[currFlavour]--;
-                printer->print( Printer::Kind::Vending, id, 'B', currFlavour, stock[currFlavour] );
+                printer.print(Printer::Kind::Vending, id, 'B', currFlavour, stock[currFlavour]);
                 wait.signalBlock();
-            } or _Accept( inventory ) {
-                printer->print(Printer::Kind::Vending, id, 'r');
-                _Accept( restocked ) {
-                    printer->print(Printer::Kind::Vending, id, 'R');
+            } or _Accept(inventory) {
+                printer.print(Printer::Kind::Vending, id, 'r');
+                _Accept(restocked) {
+                    printer.print(Printer::Kind::Vending, id, 'R');
                 } // _Accept
             } // _Accept
-        } catch ( uMutexFailure::RendezvousFailure & ) {
-            switch( state ) {
+        } catch (uMutexFailure::RendezvousFailure &) {
+            switch(state) {
                 case VendingMachine::State::free:
-                    printer->print(Printer::Kind::Vending, id, 'A');
-
+                    printer.print(Printer::Kind::Vending, id, 'A');
                     stock[currFlavour]--;
                     break;
                 case VendingMachine::State::funds:
                     break;
                 case VendingMachine::State::stocks:
-                    _Accept( inventory ) {
-
-                        printer->print(Printer::Kind::Vending, id, 'r');
-                        _Accept( restocked ) {
-                            printer->print(Printer::Kind::Vending, id, 'R');
+                    _Accept(inventory) {
+                        printer.print(Printer::Kind::Vending, id, 'r');
+                        _Accept(restocked) {
+                            printer.print(Printer::Kind::Vending, id, 'R');
                         } // _Accept
 
                     } or _Accept(~VendingMachine) {
@@ -49,6 +51,7 @@ void VendingMachine::main() {
         } // try
     } // for
 
+    printer.print(Printer::Kind::Vending, id, 'F');
 } // VendingMachine::main
 
 
@@ -76,24 +79,17 @@ void VendingMachine::buy( BottlingPlant::Flavours flavour, WATCard & card ) {
 
 
 
-unsigned int * VendingMachine::inventory() { return stock; } // VendingMachine::inventory
+unsigned int * VendingMachine::inventory() {
+    return stock;
+} // VendingMachine::inventory
 
-void VendingMachine::restocked() { } // VendingMachine::restocked
+void VendingMachine::restocked() {
+} // VendingMachine::restocked
 
-_Nomutex unsigned int VendingMachine::cost() const { return sodaCost; } // VendingMachine::cost
+_Nomutex unsigned int VendingMachine::cost() const {
+    return sodaCost;
+} // VendingMachine::cost
 
-_Nomutex unsigned int VendingMachine::getId() const { return id; } // VendingMachine::getId
-
-// ================== Constructor / Destructor ==================== //
-
-VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
-    printer( &prt ), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
-
-    printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
-
-} // VendingMachine::VendingMachine
-
-VendingMachine::~VendingMachine() {
-
-    printer->print(Printer::Kind::Vending, id, 'F');
-}
+_Nomutex unsigned int VendingMachine::getId() const {
+    return id;
+} // VendingMachine::getId

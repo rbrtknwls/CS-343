@@ -1,37 +1,88 @@
 #include "student.h"
+#include "vendingmachine.h"
+#include "bottlingplant.h"
 
 // ================== Private Method(s) ==================== //
 
 void Student::main() {
 
+    VendingMachine *machine = nameServer.getMachine( localID );
+    BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
+    printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
     bool madeAPurchase = true;
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
-        if ( madeAPurchase ) { yield( prng( 10 ) + 1 ); }
+        if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
 
         madeAPurchase = true;
 
-        WATCard *payment;
-        _Select( giftcard ) {
+        WATCard *payment = nullptr;
+        // _Select( giftcard ) {
 
-            printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
-            delete giftcard();
-            giftcard.reset();
+        //     printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
+        //     delete giftcard();
+        //     giftcard.reset();
 
-        } or  _Select( watcard ) {
+        // } or  _Select( watcard ) {
 
+        //     try {
+        //         payment = watcard();
+        //     } catch ( WATCardOffice::Lost &lost ) {
+        //         watcard = watCardOffice->create( localID, 5 );
+        //         currentPurchase--;
+        //         madeAPurchase = false;
+        //         printer->print( Printer::Student, localID, 'L' );
+        //         continue;
+        //     }
+        // }
+
+        
+
+        for (;;) {
+            bool useGC = false;
             try {
-                payment = watcard();
-            } catch ( WATCardOffice::Lost &lost ) {
-                watcard = watCardOffice->create( 0, 5 );
-                currentPurchase--;
-                madeAPurchase = false;
-                printer->print( Printer::Student, localID, 'L' );
-                continue;
-            }
+                _Select(giftcard) {
+                    payment = giftcard();
+                    machine->buy( flavour, *payment );
+                    giftcard.reset();
+                    useGC = true;
+                    printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
+                    delete payment;
+                    break;
+                } or _Select(watcard) {
+                    payment = watcard();
+                    machine->buy( flavour, *payment );
+                    printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
+                    break;
+                } // _Select
+            } catch (WATCardOffice::Lost &lost) {
+                printer->print(Printer::Kind::Student, localID, 'L');
+                watcard = watCardOffice->create( localID, 5 );
+            } catch(VendingMachine:: Free &) {
+                if (useGC) {
+                    printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
+                } else {
+                    printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
+                } // if
+
+                if (prng(2) == 1) {
+                    yield(4);
+                } else {
+                    printer->print(Printer::Kind::Student, localID, 'X');
+                }
+            } catch(VendingMachine::Funds &) {
+                watcard = watCardOffice->transfer(localID, machine->cost() + 5, payment);
+            } catch(VendingMachine::Stock &) {
+                machine = nameServer.getMachine(localID);
+                printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+            } // try
+        }
+        try {
+            payment = watcard();
+            delete payment;
+        } catch (WATCardOffice::Lost &lost) {
 
         }
-
     }
 
 }
@@ -40,15 +91,15 @@ void Student::main() {
 // ================== Constructor / Destructor ==================== //
 
 
-Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,
+Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOffice, Groupoff & groupoff,
     unsigned int id, unsigned int maxPurchases ) :
-    printer( &prt ), watCardOffice ( &cardOffice ), groupoffer( &groupoff ), localID( id ) {
+    printer( &prt ), nameServer(nameServer), watCardOffice ( &cardOffice ), groupoffer( &groupoff ), localID( id ) {
 
 
-    numberOfPurchases = prng( maxPurchases ) + 1;
+    numberOfPurchases = prng( 1, maxPurchases );
     favouriteFlavour = prng( 4 );
 
-    watcard = watCardOffice->create( 0, 5 );
+    watcard = watCardOffice->create( localID, 5 );
     giftcard = groupoffer->giftCard();
 
     printer->print( Printer::Student, localID, 'S', favouriteFlavour, numberOfPurchases );
@@ -57,6 +108,5 @@ Student::Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff
 
 Student::~Student() {
     printer->print( Printer::Student, localID, 'F' );
-    try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
-
+    // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
 }

@@ -21,7 +21,7 @@ _Task BottlingPlant {
 
 
     public:
-    enum Flavours {Lemon, Cola, Bacon, Pork};	// flavours of soda (YOU DEFINE)
+    enum Flavours {BlackCherry, CreamSoda, RootBeer, JazzLime, NUM_OF_FLAVOURS = 4};	// flavours of soda (YOU DEFINE)
 	_Event Shutdown {};					// shutdown plant
 	BottlingPlant( Printer & prt, NameServer & nameServer, unsigned int numVendingMachines,
 				 unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour,

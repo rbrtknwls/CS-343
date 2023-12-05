@@ -64,32 +64,34 @@ int main( int argc, char * argv[] ) {
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
     NameServer nameServer = NameServer( printer, parameters.numVendingMachines, parameters.numStudents );
-    vector< VendingMachine* > vendingMachines;
+    VendingMachine * vendingMachines[parameters.numVendingMachines];
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
-        vendingMachines.push_back( new VendingMachine( printer, nameServer, vendingID, parameters.sodaCost ) );
+        vendingMachines[vendingID] = new VendingMachine( printer, nameServer, vendingID, parameters.sodaCost );
     }
 
-    {
 
-        BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
-                                                     parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                     parameters.timeBetweenShipments );
+    
 
-        uNoCtor <Student> students[parameters.numStudents];
+    BottlingPlant * bottlingPlant = new BottlingPlant( printer, nameServer, parameters.numVendingMachines,
+                                                    parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
+                                                    parameters.timeBetweenShipments );
 
-        for (unsigned int studentID = 0; studentID < parameters.numStudents; studentID++) {
-            students[studentID].ctor(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases);
-        }
+    Student * students[parameters.numStudents];
 
+    for (unsigned int studentID = 0; studentID < parameters.numStudents; studentID++) {
+        students[studentID] = new Student(printer, nameServer, watCardOffice, groupoffer, studentID, parameters.maxPurchases);
     }
 
+    
+
+    for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
+        delete students[studentID];
+    }
+
+    delete bottlingPlant;
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         delete vendingMachines[vendingID];
     }
-    vendingMachines.clear();
-
-
-
 }

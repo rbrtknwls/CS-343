@@ -8,8 +8,8 @@
 class WATCard;
 
 _Task VendingMachine {
-    Printer * printer;
-    NameServer * nameServer;
+    Printer & printer;
+    NameServer & nameServer;
     unsigned int id;
     unsigned int sodaCost;
     unsigned int stock[4] = {0};
@@ -30,7 +30,6 @@ _Task VendingMachine {
 	void restocked();
 	_Nomutex unsigned int cost() const;
 	_Nomutex unsigned int getId() const;
-    ~VendingMachine();
 }; // VendingMachine
 
 

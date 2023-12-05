@@ -4,11 +4,14 @@
 #include "printer.h"
 #include "watCardOffice.h"
 #include "groupoff.h"
+#include "nameserver.h"
 
 _Task Student {
-    Printer *printer;
+    Printer * printer;
+    NameServer & nameServer;
     WATCardOffice *watCardOffice;
     Groupoff *groupoffer;
+    
 
     unsigned int localID;
     unsigned int numberOfPurchases;
@@ -20,7 +23,7 @@ _Task Student {
     void main();
 
   public:
-    Student( Printer & prt, WATCardOffice & cardOffice, Groupoff & groupoff,
+    Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOffice, Groupoff & groupoff,
         unsigned int id, unsigned int maxPurchases );
     ~Student();
 };
