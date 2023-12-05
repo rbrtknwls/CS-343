@@ -7,6 +7,7 @@
 
 void BottlingPlant::main() {
 
+    /*
     for ( ;; ) {
 
         yield( timeBetweenShipments ); // wait for prod
@@ -32,7 +33,7 @@ void BottlingPlant::main() {
 
         } // _Accept
     } // for
-
+    */
 } // BottlingPlant::main
 
 
