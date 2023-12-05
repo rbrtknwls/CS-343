@@ -7,10 +7,14 @@ void VendingMachine::main() {
 
     //nameServer.VMregister( this );
 
+    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
     LOOP: for( ;; ) {
         try {
             _Accept( ~VendingMachine ) {
                 break;
+
             } or _Accept( buy ) {
                 VMCard->withdraw( sodaCost );
                 stock[currFlavour]--;
