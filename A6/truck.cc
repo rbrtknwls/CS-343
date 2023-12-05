@@ -24,11 +24,11 @@ void Truck::main() {
     for ( ;; ) {
         yield( prng( 10 ) );
         try {
-            _Enable{
+            _Enable {
                 bottlingPlant.getShipment(sodas);
             }
-        } catch ( ... ) {
-            printer.print(Printer::Kind::Truck, 'F');
+        } catch ( BottlingPlant::Shutdown & ) {
+            printer.print(Printer::Kind::BottlingPlant, 'F');
             break;
         } // try
 
