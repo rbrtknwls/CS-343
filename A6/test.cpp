@@ -56,7 +56,7 @@ int main( int argc, char * argv[] ) {
     NameServer nameServer = NameServer( printer, parameters.numVendingMachines, parameters.numStudents );
 
     Bank bank = Bank( parameters.numStudents );
-    //Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
+    Parent parent = Parent( printer, bank, parameters.numStudents, parameters.parentalDelay );
 
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
@@ -66,9 +66,11 @@ int main( int argc, char * argv[] ) {
                                                  parameters.timeBetweenShipments );*/
 
 
+
     uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
+        cout << &printer << endl;
         vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
     }
 
