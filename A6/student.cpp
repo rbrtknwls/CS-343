@@ -24,7 +24,6 @@ void Student::main() {
             try {
 
                 payment = giftcard();
-                cout << payment->getBalance() << endl;
                 machine->buy(flavour, payment);
 
                 printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
@@ -34,7 +33,7 @@ void Student::main() {
 
             } catch( VendingMachine::Free & ) {
 
-                cout << payment << endl;
+                cout << payment->getBalance() << endl;
                 printer->print(Printer::Kind::Student, localID, 'a', flavour, 0);
 
                 if (prng(2) == 1) {
