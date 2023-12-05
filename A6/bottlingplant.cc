@@ -26,7 +26,7 @@ void BottlingPlant::main() {
 
         } or  _Accept( ~BottlingPlant ) {
 
-            _Accept( getShipment ) {
+            _Accept( getShipment ) {git pull
                 _Resume Shutdown() _At truck;
             }
 
