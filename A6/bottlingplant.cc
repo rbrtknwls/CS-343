@@ -7,7 +7,6 @@
 
 void BottlingPlant::main() {
 
-    /*
     for ( ;; ) {
 
         yield( timeBetweenShipments ); // wait for prod
@@ -25,6 +24,7 @@ void BottlingPlant::main() {
 
             _Resume Shutdown() _At truck;
             _Accept ( getShipment )
+            delete truck;
             break;
 
         } or _Accept( getShipment ) {
@@ -33,7 +33,7 @@ void BottlingPlant::main() {
 
         } // _Accept
     } // for
-    */
+
 } // BottlingPlant::main
 
 
