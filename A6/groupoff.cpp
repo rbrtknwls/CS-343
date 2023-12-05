@@ -16,7 +16,6 @@ void Groupoff::main() {
         _Accept( giftCard );
     } // for
 
-    // loop
     for ( ; currentStudent > 0 ; currentStudent-- ) {                  // Loop through all students
         _Accept ( ~Groupoff ) { break; }                               // If destructor is called, exit
         _Else{
@@ -34,8 +33,8 @@ void Groupoff::main() {
             swap( giftCards[studentToPick], giftCards[currentStudent-1] );
 
         } // _Accept
-    }
-    printer->print( Printer::Groupoff, 'F' );
+    } // for
+
 }
 
 // ================== Public Member(s) ==================== //
@@ -64,5 +63,7 @@ Groupoff::~Groupoff() {
     }
 
     delete[] giftCards;
+    
+    printer->print( Printer::Groupoff, 'F' );
 
 }

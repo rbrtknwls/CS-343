@@ -46,7 +46,7 @@ void Student::main() {
                     yield(4);
                 } else {                                  // Does not watch the ad
                     printer->print(Printer::Kind::Student, localID, 'X');
-                }
+                } // if
 
             // Catch if the vending machine is out of stuck
             } catch ( VendingMachine::Stock & ) {
@@ -55,7 +55,7 @@ void Student::main() {
                 machine = nameServer.getMachine( localID );
                 printer->print( Printer::Kind::Student, localID, 'V', machine->getId() );
 
-            }
+            } // catch
 
         } or _Select( watcard ) {                          // Try to buy using a watcard
 
@@ -82,7 +82,7 @@ void Student::main() {
                      yield(4);
                  } else {
                      printer->print(Printer::Kind::Student, localID, 'X');
-                 }
+                 } // if
 
              // Catch if the vending machine requires new funds
              } catch( VendingMachine::Funds & ) {
@@ -93,12 +93,13 @@ void Student::main() {
                  machine = nameServer.getMachine(localID);
                  printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
 
-             }
-        }
+             } // catch
 
-    }
+        } // _Accept
 
-}
+    } // for
+
+} // Student::main
 
 
 // ================== Constructor / Destructor ==================== //
