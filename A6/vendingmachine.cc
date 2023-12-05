@@ -4,7 +4,8 @@
 #include "watCard.h"
 
 void VendingMachine::main() {
-
+    printer->print(Printer::Kind::Vending, id, 'F', sodaCost);
+    printer->print(Printer::Kind::Vending, id, 'F', sodaCost);
     //nameServer.VMregister( this );
 
     /*
