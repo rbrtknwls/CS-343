@@ -6,10 +6,7 @@
 void VendingMachine::main() {
 
     //nameServer.VMregister( this );
-
-    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
-    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
-    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+    
     /*
     LOOP: for( ;; ) {
         printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
@@ -98,12 +95,10 @@ _Nomutex unsigned int VendingMachine::getId() const { return id; } // VendingMac
 VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
     printer( &prt ), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
 
-    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
-
+    printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
 } // VendingMachine::VendingMachine
 
 VendingMachine::~VendingMachine() {
 
-    printer.print(Printer::Kind::Vending, id, 'F', sodaCost);
-
+    printer->print(Printer::Kind::Vending, id, 'F', sodaCost);
 }
