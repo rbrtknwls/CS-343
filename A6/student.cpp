@@ -11,13 +11,13 @@ void Student::main() {
     printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
 
     bool madeAPurchase = true;
+    WATCard *payment = nullptr;
+
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
 
         madeAPurchase = true;
-
-        WATCard *payment = nullptr;
         // _Select( giftcard ) {
 
         //     printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
@@ -41,8 +41,9 @@ void Student::main() {
         bool useGC = false;
 
         for ( ;; ) {
+
             try {
-                _Select(giftcard) {
+                _Select( giftcard ) {
                     payment = giftcard();
                     machine->buy( flavour, *payment );
                     giftcard.reset();
@@ -50,7 +51,7 @@ void Student::main() {
                     printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
                     delete payment;
                     break;
-                } or _Select(watcard) {
+                } or _Select( watcard ) {
                     payment = watcard();
                     machine->buy( flavour, *payment );
                     printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
@@ -104,11 +105,8 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
 
 Student::~Student() {
     try {
-        payment = watcard();
-        delete payment;
-        break;
-    } catch ( WATCardOffice::Lost &lost ) { }
-    
+        delete watcard()
+    } catch ( WATCardOffice::Lost & ) { }
     printer->print( Printer::Student, localID, 'F' );
     // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
 }
