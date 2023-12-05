@@ -71,22 +71,17 @@ int main( int argc, char * argv[] ) {
     }
 
 
-    
-
-    BottlingPlant * bottlingPlant = new BottlingPlant( printer, nameServer, parameters.numVendingMachines,
+    {
+        BottlingPlant bottlingPlant = BottlingPlant(printer, nameServer, parameters.numVendingMachines,
                                                     parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                    parameters.timeBetweenShipments );
+                                                    parameters.timeBetweenShipments);
 
-    Student * students[parameters.numStudents];
+        uNoCtor< Student > students[parameters.numStudents];
 
-    for (unsigned int studentID = 0; studentID < parameters.numStudents; studentID++) {
-        students[studentID] = new Student(printer, nameServer, watCardOffice, groupoffer, studentID, parameters.maxPurchases);
-    }
-
-    
-
-    for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
-        delete students[studentID];
+        for (unsigned int studentID = 0; studentID < parameters.numStudents; studentID++) {
+            students[studentID].ctor( printer, nameServer, watCardOffice, groupoffer, studentID,
+                                              parameters.maxPurchases );
+        }
     }
 
     delete bottlingPlant;
