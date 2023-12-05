@@ -12,12 +12,12 @@ void Student::main() {
 
     bool madeAPurchase = true;
     WATCard *payment = nullptr;
-
+    unsigned int amount = 0;
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
-
         madeAPurchase = true;
+        amount = payment->getBalance()
 
         _Select( giftcard ) {
 
@@ -33,7 +33,7 @@ void Student::main() {
 
             } catch( VendingMachine::Free & ) {
 
-                printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
+                printer->print(Printer::Kind::Student, localID, 'a', flavour, amount);
 
                 if (prng(2) == 1) {
                     yield(4);
