@@ -96,7 +96,7 @@ _Nomutex unsigned int VendingMachine::getId() const { return id; } // VendingMac
 // ================== Constructor / Destructor ==================== //
 
 VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
-    printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost) {
+    printer( &prt ), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
 
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
 

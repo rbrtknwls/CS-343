@@ -9,8 +9,8 @@ class WATCard;
 
 _Task VendingMachine {
 	void main();
-    Printer & printer;
-    NameServer & nameServer;
+    Printer * printer;
+    NameServer * nameServer;
     unsigned int id;
     unsigned int sodaCost;
     unsigned int stock[4] = {0};
