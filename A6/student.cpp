@@ -19,13 +19,19 @@ void Student::main() {
 
         madeAPurchase = true;
 
-         _Select( giftcard ) {
 
-             printer->print( Printer::Student, localID, 'G', favouriteFlavour, 0 );
-             delete giftcard();
-             giftcard.reset();
+        _Select( giftcard ) {
 
-         } or _Select( watcard ) {
+            payment = giftcard();
+            machine->buy( flavour, *payment );
+            printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
+            giftcard.reset();
+            delete payment;
+
+            break;
+
+
+        } or _Select( watcard ) {
 
              try {
                  payment = watcard();
@@ -36,7 +42,7 @@ void Student::main() {
                  printer->print( Printer::Student, localID, 'L' );
                  continue;
              }
-         }
+        }
 
         /*
         for ( ;; ) {
