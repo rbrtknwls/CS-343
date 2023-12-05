@@ -24,6 +24,7 @@ void Student::main() {
             try {
 
                 payment = giftcard();
+                cout << payment << endl;
                 machine->buy(flavour, payment);
 
                 printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
