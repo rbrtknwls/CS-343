@@ -12,7 +12,7 @@ void Parent::main() {
             int idOfStudent = prng( numStudents );
             int moneyToDeposit = prng( 3 ) + 1;
             bank->deposit( idOfStudent, moneyToDeposit );
-            printer->print( Printer::Parent, 'D', idOfStudent, moneyToDeposit );
+            //printer->print( Printer::Parent, 'D', idOfStudent, moneyToDeposit );
         }
 
     }
