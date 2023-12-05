@@ -67,11 +67,12 @@ int main( int argc, char * argv[] ) {
 
 
 
-    uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
+    /*uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
-    }
+    }*/
+    VendingMachine* vend = new VendingMachine( printer, nameServer, vendingID, parameters.sodaCost );
 
     uNoCtor< Student > students[parameters.numStudents];
 
@@ -79,6 +80,8 @@ int main( int argc, char * argv[] ) {
         cout << &printer << endl;
         students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
+
+    delete vend;
 
 
 }
