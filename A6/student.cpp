@@ -7,7 +7,10 @@
 
 // ================== Private Method(s) ==================== //
 
-
+/*
+ * This method contains the main processing for student.
+ * It will try to use the two cards it has to make purchases and will loop until it finishes all of its purchases.
+ */
 void Student::main() {
 
     // Get a machine for this student
@@ -18,7 +21,7 @@ void Student::main() {
 
     WATCard *payment = nullptr;                           // Store our method of paying
     yield( prng( 1, 10 ) );                               // Yield on the first purchase
-    for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
+    for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; ) {
 
         _Select( giftcard ) {                             // Buy if giftcard is created
 
@@ -30,7 +33,7 @@ void Student::main() {
 
                 giftcard.reset();                         // Reset the future
                 delete payment;                           // Delete Watcard
-
+                currentPurchase++;
                 yield( prng( 1, 10 ) );                   // Made purchase so yield
 
             // Catch if the vending machine gives us a free drink
@@ -60,15 +63,14 @@ void Student::main() {
                  machine->buy( flavour, payment );         // Try to buy (can throw!)
 
                  printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
+                 currentPurchase++;
                  yield( prng( 1, 10 ) );                   // Made purchase so must yield
 
              // Catch if the watcard was lost in transit
              } catch ( WATCardOffice::Lost &lost ) {
                  // Make a new watCard
                  watcard = watCardOffice->create( localID, 5 );
-                 currentPurchase--;
                  printer->print( Printer::Student, localID, 'L' );
-                 continue;
 
              // Catch if the vending machine gives us a free drink
              } catch( VendingMachine:: Free & ) {
