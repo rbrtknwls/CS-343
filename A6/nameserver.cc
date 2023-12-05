@@ -57,6 +57,7 @@ printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents), 
 
     machines = new VendingMachine*[numVendingMachines];
     machineAssignments = new unsigned int[numStudents];
+
     for (unsigned int i = 0; i < numStudents; i++) {
         machineAssignments[i] = i % numVendingMachines;
     } // for
