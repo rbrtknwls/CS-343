@@ -51,7 +51,7 @@ void VendingMachine::main() {
         } // try
     } // for
 
-    printer.print(Printer::Kind::Vending, id, 'F');
+    printer->print(Printer::Kind::Vending, id, 'F');
 } // VendingMachine::main
 
 
