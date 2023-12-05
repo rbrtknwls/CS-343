@@ -18,12 +18,12 @@ void NameServer::main() {
         _Accept( ~NameServer ) {                      // Accept the destructor for nameserver
             break;
         } or _When( numMachines == numVendingMachines ) _Accept(getMachine) {
-            printer.print(Printer::Kind::NameServer, 'N', currStudentIdx, currMachineIdx);
+            printer->print(Printer::Kind::NameServer, 'N', currStudentIdx, currMachineIdx);
             machineAssignments[currStudentIdx] = ( currMachineIdx + 1 ) % numVendingMachines;
         } or _When( numMachines == numVendingMachines ) _Accept( getMachineList ) {
 
         } or _When( numMachines < numVendingMachines ) _Accept( VMregister ) {
-            printer.print(Printer::Kind::NameServer, 'R', currMachineIdx);
+            printer->print(Printer::Kind::NameServer, 'R', currMachineIdx);
             numMachines++;                            // Update the number of machines
         } // _Accept
 
@@ -58,7 +58,7 @@ VendingMachine ** NameServer::getMachineList() {
 NameServer::NameServer( Printer & prt, unsigned int numVendingMachines, unsigned int numStudents ) :
     printer(&prt), numVendingMachines(numVendingMachines), numStudents(numStudents), numMachines(0) {
 
-    printer.print(Printer::Kind::NameServer, 'S');
+    printer->print(Printer::Kind::NameServer, 'S');
 
     machines = new VendingMachine*[numVendingMachines];         // Create a list of vending machines
     machineAssignments = new unsigned int[numStudents];         // Create a relationship between students and machine
@@ -73,5 +73,5 @@ NameServer::~NameServer() {
     delete[] machines;
     delete[] machineAssignments;
 
-    printer.print(Printer::Kind::NameServer, 'F');
+    printer->print(Printer::Kind::NameServer, 'F');
 } // NameServer::~NameServer
