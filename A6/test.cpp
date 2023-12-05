@@ -46,7 +46,8 @@ int main( int argc, char * argv[] ) {
 
     } catch (...) {
         cerr << "Usage: " << argv[0]
-             << " [ config-file | ’d’ [ seed (> 0) | ’d’ [ processors (> 0) | ’d’ ] ] ]"  << endl;
+             << " [ config-file | 'd' (default file soda.config) [ seed (> 0) | 'd' (default random) ["
+             << " processors (> 0) | 'd' (default 1) ] ] ]"  << endl;
         exit(EXIT_FAILURE);
     }
     uProcessor p[processors - 1] __attribute__(( unused ));
