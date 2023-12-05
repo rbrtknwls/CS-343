@@ -1,0 +1,532 @@
+============================= Sad Path =============================
+Below is the output of some exceptional (in a bad way!) input into our ./soda program.
+
+
+Input 1 (./soda xyz 1 2)
+|- [Description] -> linking a file that does not exit
+|- [Output]:
+Error: could not open input file "xyz"
+|- [Analysis] -> File does not exist, so return the error to the user (same as example)
+
+Input 2 (./soda soda.config 1 2 3)
+|- [Description] -> Pass in an illegal number of arguments
+|- [Output]:
+Usage: ./soda [ config-file | 'd' (default file soda.config) [ seed (> 0) | 'd' (default random) [ processors (> 0) |
+'d' (default 1) ] ] ]
+|- [Analysis] -> Input parameters is wrong, so return to user the correct format
+
+Input 3 (./soda soda.config 1 0)
+|- [Description] -> Pass in correct number of arguments, but one of them is illegal
+|- [Output]:
+Usage: ./soda [ config-file | 'd' (default file soda.config) [ seed (> 0) | 'd' (default random) [ processors (> 0) |
+'d' (default 1) ] ] ]
+|- [Analysis] -> Input parameters is wrong, so return to user the correct format
+
+
+============================ Happy Path ============================
+Below is a list of some of the more standard steps our program takes when running.
+
+
+Input 4 (./soda )
+|- [Description] -> standard running of the program with default values (random seed and 1 processor, soda.config)
+|- [Output]:
+Parent  Gropoff WATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S       S       S       S3,7            S2      S2      S2      S
+                C0,5    R0                                                              t0,5
+D1,3            W       R1              G3              S0,1
+                C1,5    R2                      V0
+                        N0,0                            V1
+D0,2                    N1,1
+D0,2    D2              N0,1                    V1
+                                P3              V2
+                                d0,3
+                                U0,17
+D0,1                    N0,2    D0,0    P                       r                       T0,5
+                W       N0,0            G4      V0              R                       t1,5
+                                                a3,2
+D0,3    D2                                      X               A
+        F                       P4              G3,0            B3,0
+                                d1,4
+                                U1,16
+D0,3                            D1,0    P                               r
+                        N0,1            G4      V1                      R
+D0,1                                                    G0,0            B0,0
+                                P4              B3,3                    B3,0
+                                d2,4
+                                U2,16
+D1,2                            D2,0    P                                       r       T1,5
+D0,3                    N0,2            G5      V2      F                       R
+D0,2                            P5              B3,1                            B3,0
+                                d0,5
+                                U0,14
+                        N0,0    D0,0    P       V0              r
+D0,2                            P8      G8                      R
+                                d1,8
+                                U1,10
+                T0,7            D1,0    P                               r               t0,7
+                W               P5      G5                      B3,0    R               T0,7
+                                d2,5
+                                U2,12
+D1,1                            D2,0    P       B3,6                            r
+                                P2      G2                                      R
+                                d0,2
+                                U0,13
+D1,1                            D0,0    P                       r
+                                        G6      V1              R
+                                                A3,6
+D1,2                    N0,1    P6      P       X                       A
+                                d1,6    G3      B3,4                    B3,0
+                                U1,7
+D1,2                            D1,1                                    r
+                                d2,1
+                                U2,11
+                                D2,0                                    R       r
+D1,3                                            B3,2                    B3,1    R
+                                P3                                      B3,0
+                                d0,3
+                                U0,10
+D0,1                            D0,0    P       B3,0            r
+                                P1      G1                      R
+                                d1,1
+                                U1,8
+D0,3                            D1,0    P                               r
+D0,3                            P4      G4      F                       R
+                                d2,4
+                                U2,8
+                                D2,1    F                                       r
+                                d0,1
+                                U0,9
+D1,1                            D0,0                            r               R
+                                F                               R
+D0,1                                                            F       F       F
+D0,3            F       F                                                               F
+D0,1
+F
+***********************
+|- [Analysis] -> To begin we can see that the parent is correctly giving values to each student, and that the single
+              ->    courier will only extract money when enough is given. We can see that group offer runs and exits
+              ->    once all the students call it. We can see that the truck correctly updates and visits the vending
+              ->    machine and that each student makes a correct number of purchases at each machine. We can also
+              ->    see that the flow of each student is correct when they are needed to watch an add. We finally see
+              ->    that students exit first, followed by the factory and lastly parents exit (as expected).
+
+
+Input 5 (./soda soda.config 5 2)
+|- [Description] -> standard running of the program with seed 5, 2 processors and soda.config
+|- [Output]:
+Parent  Gropoff WATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S                                                                       S
+D0,1                    S       S       S                       S2      S2      S2
+D1,3            C0,5    R0                      S2,7
+                W       R1              G4                                              t0,5
+D1,1            C1,5    R2                      V0      S2,7
+D1,1                    N0,0                            V1
+D0,1    D2              N1,1                    V1
+                        N0,1                    V2
+D1,2                    N0,2    P4              V0
+                                d0,4
+                                U0,16
+                        N0,0    D0,0    P                       r
+D1,1    D2                              G1                      R
+        F                       P1      P                       B2,1
+D1,1                            d1,1            G2,0                    r
+                                U1,19   G2
+D0,3                            D1,0                    V2              R               L0
+                W       N1,2                                                            t1,5
+D0,2            C0,5            P2      P       L                                       L1
+                W               d2,2                                            r       t0,5
+D1,1                            U2,18   G4
+D1,2                            D2,0                                            R
+                                P4      P                                       B2,0
+                                d0,4                    G2,0    r
+D1,2                            U0,13   G4
+D0,1            C1,5            D0,0                    L       R
+                                P4      P
+D1,2                            d1,4                                    r
+                                U1,15   G1
+D0,2                            D1,0                                    R               T0,5
+                W               P1                              B2,2                    t1,5
+D0,3                            d2,1    P       B2,3                            r       T1,5
+                                U2,18   G5
+D0,1                            D2,0                                            R
+                                P5
+                                d0,5
+                                U0,9
+D1,1                    N1,0    D0,0    P               V0      r
+                                P2      G2                      R
+                                d1,2                            B2,3
+D0,3                            U1,13   P               B2,3            r
+D1,3                            D1,0    G2      B2,1            B2,2    R
+                                P2      P
+                                d2,2                                            r
+D0,3                            U2,16   G4                      B2,1
+D0,1            T0,7            D2,0                    B2,1                    R       t0,7
+D0,3            W               P4      P       B2,6    V1      B2,0                    T0,7
+                T1,7    N1,1    d0,4    G7
+                                U0,10                                                   t1,7
+D1,1            W               D0,1                            r                       L1
+                                d1,1                    L       R       r
+D1,3            C1,5    N0,1    U1,12           V1
+                W               D1,0                                                    t1,5
+D1,3                                                                    R               T1,5
+                                P7                                      B2,0
+                                d2,7
+                                U2,9            B2,4
+D0,3                    N1,2    D2,0    P               V2                      r
+D1,2                            P5      G5                                      R
+                                d0,5                                            B2,1
+                                U0,8    P               B2,3    r
+D1,2                            D0,3    G5
+                                d1,3                            R       r       B2,0
+D0,3                            U1,10                   B2,1
+D1,1            T1,7    N1,0    D1,0            V2      V0              R               t1,7
+                W       N0,2    P5      P                                               L1
+D1,2                            d2,5                    L                       r
+                C1,5            U2,7    G6
+D0,2            W               D2,1                                                    t1,5
+                                d0,1                            r               R       L1
+D1,3                            U0,8                    L                       B2,0
+                C1,5            D0,1            B2,2
+D1,3                            d1,1                            R       r               t1,5
+                W               U1,9                                                    T1,5
+D1,1                    N0,0    D1,0            V0      B2,3    B2,0    R
+                                P6
+                                d2,6            V1
+D0,1                    N0,1    U2,5    P                                       r
+                        N0,2    D2,3    G2      V2
+D0,3                            d0,3                            r               R
+                                U0,8                                            B2,0
+                                D0,2            B2,0
+D1,3                            d1,2                            R       r
+                                U1,8                    V1
+D0,3                    N1,1    D1,1                    V2              R
+                        N1,2    P3                      V0
+D0,1                            d2,3
+                        N1,0    U2,6    P                                       r
+D0,3                            D2,3
+                                d0,3    G4                      r               R
+D1,1                            U0,7
+                                D0,2
+                                d1,2
+                                U1,8                            R
+D1,2                    N1,1    D1,2                    V1              r
+                                P6      P                               R
+D1,3                    N1,2    d2,6                    V2                      r
+                                U2,4    G5
+D0,2                            D2,4
+                                d0,4                            r               R
+                                U0,5                                            B2,0
+D0,2                            D0,2                    B2,1
+                                d1,2                            R       r
+D0,1                            U1,8
+                                D1,2
+                                P7
+                                d2,7
+                                U2,3    P                               R
+D0,3                            D2,5    G5              F                       r
+                                d0,5            F               r               R
+D1,1                            U0,5
+                                D0,5
+                                d1,5                            R
+D0,3                            U1,6                                    r
+                                D1,3                                    R
+D0,3                            P8
+                                d2,8    F                                       r
+D1,2                            U2,2
+                                D2,7
+                                d0,7                                            R
+D1,2                            U0,5                            r
+                                D0,7
+                                d1,7
+                                U1,5                            R       r
+D0,2                            D1,6                                    R
+D0,2                            F                               F
+D0,2                                                                    F       F
+D0,2                    F
+D1,1            F                                                                       F
+D0,1
+F
+***********************
+
+|- [Analysis] -> Much of the observations from the previous analysis hold, however in this case we can clearly see
+              ->   the courier lose the watcard of a student multiple times in a row. This is handled and the job is
+              ->   completed by the courier. We can also see that each of the vending machines report that they are
+              ->   restocked as the truck goes by them.
+
+Input 6 (./soda manyStudents.config)
+|- [Description] -> Running of our program with 4 students.
+|- [Output]:
+Parent  Gropoff WATOff  Names   Truck   Plant   Stud0   Stud1   Stud2   Stud3   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S       S       S       S0,4                            S2      S2      S2      S
+                C0,5    R0                                                                              t0,5
+D0,3            W       R1              G3              S1,4
+                C1,5    R2                      V0              S0,3
+                C2,5    N0,0                            V1              S0,2
+D2,1            C3,5    N1,1                                    V2
+                        N2,2                                            V0
+D0,1                    N3,0
+D1,2    D2              N1,2                            V2
+D3,3                    N1,0    P3      P               V0
+                                d0,3                    V1
+                                U0,17
+                        N1,1    D0,0    G4                                      r
+D2,1    D2                      P4                                              R
+                                d1,4
+                                U1,16
+D3,2                            D1,0    P                               G0,0    B0,0    r
+                                        G2                                              R
+D0,1    D2                                              G1,0                            B1,1            L0
+                                P2                                                                      t1,5
+                                d2,2
+                                U2,18
+                W               D2,0    P       L                                               r
+D2,3            C0,5                    G6                                                      R
+                                P6                              G0,0                            B0,0
+                                d0,6
+                                U0,12
+D2,1                            D0,0    P                                       r
+        D2                                                                      R
+        F                       P5      G5                                      B0,1
+                                d1,5
+                                U1,12
+D3,1                            D1,0    P       G0,0                                    r
+                                P3      G3                                              R
+                                d2,3
+                                U2,16
+D0,3                            D2,0    P                                                       r
+                                P5      G5                                                      R
+                                d0,5
+                                U0,8
+D0,2                            D0,0    P                                       r
+D3,1                            P2      G2                                      R
+                                d1,2
+                                U1,10
+                                D1,0    P                                               r
+D0,2                            P3      G3                                              R
+                                d2,3
+                                U2,13
+                                D2,0    P                                                       r
+D3,3                            P4      G4                                                      R
+                                d0,4
+                                U0,5
+                                D0,1    P                                       r
+                                d1,1
+                                U1,9
+D2,1                            D1,0    G7                                      R       r
+                                P7                                                      R
+                                d2,7
+                                U2,6
+D0,3                            D2,0    P                                                       r
+D2,3                            P3      G3                                                      R
+                                d0,3
+                                U0,2
+D3,2                            D0,0    P                                       r
+                                P5      G5                                      R
+                                d1,5
+                                U1,4
+D3,2                            D1,0    P                                               r
+                                P3      G3                                              R
+                                d2,3
+                                U2,3
+D1,2                            D2,0    P                                                       r
+                                P3      G3                                                      R
+                                d0,3
+                                U0,2
+D0,2                            D0,3    P                                       r
+                                d1,3
+                                U1,2
+                                D1,1    G7                                      R       r
+                                d2,1
+                                U2,2
+D3,2                            D2,0                                                    R       r
+                                P7                                                              R
+                                d0,7
+                                D0,5    P                                       r
+                                d1,5
+                                U1,1
+D2,1                            D1,4    G4                                      R       r
+                                d2,4
+                                D2,2                                                    R       r
+D0,1                                                                                            R
+D3,3                            P6
+                                d0,6
+                                D0,6    P                                       r
+                                d1,6
+D0,2                            D1,5    G2                                      R       r
+                                d2,5
+                                D2,5                                                    R       r
+D0,3                            P7                                                              R
+                                d0,7
+D0,1                            D0,7    P                                       r
+                                d1,7
+                                D1,7    G4                                      R       r
+                                d2,7
+D1,3                            D2,7                                                    R       r
+                                P11                                                             R
+                                d0,11
+                                D0,11                                                                   T1,5
+                                                                                                        t2,5
+                W                       P                       A0,5            r       B1,4            T2,5
+                                                                                                        t3,5
+                W                                       B1,3            A0,5    R               A       T3,5
+                                        G5                              X                               t0,5
+D2,3                            d1,11                                           A                       L0
+                W               D1,10           L                       A0,5            r
+                C0,5                                                            A               B0,3    t0,5
+                W               d2,10                           B0,3            B0,2    R               T0,5
+                                U2,2
+D1,2                            D2,10           B0,3                                            r
+D2,2                            P15                     A1,3            B0,3    B0,1    A       R
+D2,2                            d0,15   P       B0,1    B1,1    B0,1            B0,0    B1,3    B0,2
+                                U0,3
+                T1,7            D0,13   G3                      F       F       r
+                                d1,13                                           R
+                                U1,1
+D2,2            W               D1,12                                                   r               t1,7
+                                d2,12
+                                U2,3
+                T0,7            D2,12                                                   R       r
+D0,1                                                                                            R
+D1,1                            P15
+                                d0,15
+                                U0,1
+                                D0,13   P                                       r
+                                d1,13
+D2,1                            D1,12   G3                                      R       r
+                                d2,12
+                                U2,3
+                                D2,12                                                   R       r
+D3,2                            P15                                                             R
+                                d0,15
+                                D0,14   P                                       r
+D0,2                            W       G2                                      R
+D1,2                                                                                                    T1,7
+                                                                                                        t0,7
+D1,3            W               d1,14           B0,6    B1,6                    B0,4    B1,4            T0,7
+                                D1,13                                                   r
+                                d2,13
+                                U2,2
+                                D2,12                                                   R       r
+                                P14
+                                d0,14
+                                U0,1
+D1,2                            D0,14   P                                       r               R
+                                d1,14
+                                D1,14   G3                                      R       r
+                                d2,14
+                                U2,2
+D0,2                            D2,14           F       F                               R       r
+                                P17                                                             R
+                                d0,17
+                                D0,16   F                                       r
+                                d1,16
+D1,1                            D1,16                                           R       r
+                                d2,16
+                                U2,2
+                                D2,16                                                   R       r
+D3,1                                                                                            R
+D0,1                            F
+D0,2                                                                            F       F       F
+D0,2                    F
+D1,3            F                                                                                       F
+D1,3
+F
+***********************
+
+|- [Analysis] -> Here we can see the students are correctly created, reported and registered to their corresponding
+              ->   vending machines. We can also see the courier get backed up as there is so much throughput in
+              ->   request that it is not able to keep up with. We also see that group offer correctly shows each
+              ->   of the 4 students getting their gift card.
+
+Input 6 (./soda manyCouriers.config)
+|- [Description] -> Running of our program with 3 couriers.
+|- [Output]:
+Parent  Gropoff WATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0   Cour1   Cour2
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S       S       S       S3,1            S2      S2      S2      S       S       S
+                C0,5    R0                                                              t0,5
+D0,3            W       R1              G5              S2,5
+                C1,5    R2                      V0                                              t1,5
+                W       N0,0                            V1
+D1,1                    N1,1    P5
+                                d0,5
+                                U0,15
+D1,3                            D0,0    P                       r
+        D2              N1,2    P4      G4              V2      R
+                                d1,4    P
+                                U1,16
+D1,2                    N1,0    D1,0                    V0      B2,1    r
+D0,2    D2                              G3              G2,0            R               T0,5
+D0,2    F                       P3              G3,0            B3,0                            T1,5
+                                d2,3
+                                U2,17
+                                D2,0    P               A2,5    A               r
+D1,3                    N1,1            G8              V1              B2,0    R
+D0,1                            P8                      B2,3
+                                d0,8
+                                U0,10
+                                D0,0    P                       r
+                                        G5              V2      R
+D1,2                    N1,2                            A2,3                    A
+D1,2                    N1,0    P5                      V0      B2,1
+                                d1,5
+                                U1,12
+                                D1,0    P               B2,1            r
+                                P5      G5                              R
+                                d2,5
+                                U2,13
+D0,1                            D2,0    P                                       r
+                                P5      G5                                      R
+                                d0,5
+                                U0,6
+D0,3                            D0,0    P                       r
+                                P5      G5                      R
+                                d1,5
+                                U1,7
+D1,1            T1,7            D1,0    P                               r                               t1,7
+                W               P4      G4              B2,6    B2,2    R                               T1,7
+                                d2,4
+                                U2,9
+D0,2                            D2,0    P                                       r
+D1,1                            P2      G2                                      R
+                                d0,2
+                                U0,6
+                                D0,1    P                       r
+                                d1,1
+                                U1,6
+D1,3                            D1,0    G6                      R       r
+D1,2                            P6                      B2,4    B2,1    R
+                                d2,6
+                                U2,4
+                                D2,1    P                                       r
+                                d0,1
+                                U0,7
+D1,2                            D0,1    G3      F       F       r               R
+                                d1,1
+                                U1,5
+                                D1,0                            R       r
+                                P3                                      R
+                                d2,3
+                                U2,2
+D1,3                            D2,1    F                                       r
+                                d0,1
+                                U0,7
+                                D0,1                            r               R
+                                d1,1
+                                U1,5
+D0,2                            D1,1                            R       r
+D1,1                            F                               F       R
+D1,3                    F                                               F       F
+D0,3                                                                                    F       F
+D1,3            F                                                                                       F
+D0,2
+F
+***********************
+
+|- [Analysis] -> Here we can see that each courier is able to grab a task and finish it correctly. We can also see that
+              ->   while courier 0 is blocked on a task, courier 1 is able to grab and start work (i.e block) on a
+              ->   different task. Both completing only after the parent puts 5 or more dollars into the corresponding
+              ->   students bank account.
