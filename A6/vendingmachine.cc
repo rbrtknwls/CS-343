@@ -5,9 +5,9 @@
 
 void VendingMachine::main() {
 
-    nameServer.VMregister( this );
+    //nameServer.VMregister( this );
 
-    LOOP: for(;;) {
+    LOOP: for( ;; ) {
         try {
             _Accept( ~VendingMachine ) {
                 break;
