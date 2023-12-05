@@ -25,7 +25,7 @@ void BottlingPlant::main() {
             printer.print(Printer::Kind::BottlingPlant, 'P');
 
         } or  _Accept( ~BottlingPlant ) {
-
+            gettingShipment.P();
             _Resume Shutdown() _At truck;
             break;
 
@@ -39,10 +39,12 @@ void BottlingPlant::main() {
 
 
 void BottlingPlant::getShipment( unsigned int cargo[] ) {
-
+    gettingShipment.P();
     for (unsigned int i = 0; i < 4; i++) {
         cargo[i] = prod[i];
     } // for
+    gettingShipment.V();
+
 
 } // BottlingPlant::getShipment
 
