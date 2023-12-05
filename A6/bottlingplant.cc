@@ -21,6 +21,8 @@ void BottlingPlant::main() {
         printer.print(Printer::Kind::BottlingPlant, 'G', totalBottles);
 
         _Accept( ~BottlingPlant ) {
+            printer.print(Printer::Kind::BottlingPlant, 'F');
+            printer.print(Printer::Kind::BottlingPlant, 'F');
 
             _Resume Shutdown() _At truck;
             break;
@@ -61,6 +63,5 @@ unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour, unsigned int
 } // BottlingPlant::BottlingPlant
 
 BottlingPlant::~BottlingPlant() {
-    printer.print(Printer::Kind::BottlingPlant, 'F');
     printer.print(Printer::Kind::BottlingPlant, 'F');
 } // BottlingPlant::~BottlingPlant
