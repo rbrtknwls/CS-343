@@ -17,6 +17,8 @@
 
 using namespace std;
 
+PRNG mainPRNG;
+
 int main( int argc, char * argv[] ) {
 
     char * configFile = (char*) "soda.config";
@@ -31,7 +33,7 @@ int main( int argc, char * argv[] ) {
                 if ( *argv[2] != 'd' ) {
                     int seed = stoi(argv[2]);
                   if (seed <= 0) { throw cmd_error(); }
-                    prng.set_seed(seed);
+                    mainPRNG.set_seed(seed);
                 }
             case 2:
                 if ( *argv[1] != 'd' ) { configFile = argv[1]; }
