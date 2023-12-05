@@ -10,7 +10,7 @@ void VendingMachine::main() {
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
-
+    /*
     LOOP: for( ;; ) {
         printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
         try {
@@ -57,7 +57,7 @@ void VendingMachine::main() {
             } // switch
         } // try
     } // for
-
+    */
 } // VendingMachine::main
 
 
@@ -103,5 +103,7 @@ VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned
 } // VendingMachine::VendingMachine
 
 VendingMachine::~VendingMachine() {
+
     printer.print(Printer::Kind::Vending, id, 'F', sodaCost);
+    
 }
