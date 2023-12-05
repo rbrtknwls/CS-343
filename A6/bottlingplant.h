@@ -1,6 +1,8 @@
 #ifndef BOTTLINGPLANT_H
 #define BOTTLINGPLANT_H
 
+#include <uSemaphore.h>
+
 #include "printer.h"
 #include "truck.h"
 #include "nameserver.h"
