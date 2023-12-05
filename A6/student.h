@@ -5,8 +5,8 @@
 #include "watCardOffice.h"
 #include "groupoff.h"
 #include "nameserver.h"
+#include "bottlingplant.h"
 
-_Task BottlingPlant;
 
 _Task Student {
     Printer * printer;

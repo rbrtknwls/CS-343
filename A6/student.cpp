@@ -1,6 +1,5 @@
 #include "student.h"
 #include "vendingmachine.h"
-#include "bottlingplant.h"
 
 #include <iostream>
 
