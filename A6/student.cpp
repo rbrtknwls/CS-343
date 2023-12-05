@@ -105,7 +105,7 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
 
 Student::~Student() {
     try {
-        delete watcard()
+        delete watcard();
     } catch ( WATCardOffice::Lost & ) { }
     printer->print( Printer::Student, localID, 'F' );
     // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
