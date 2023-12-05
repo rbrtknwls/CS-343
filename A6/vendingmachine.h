@@ -30,6 +30,7 @@ _Task VendingMachine {
 	void restocked();
 	_Nomutex unsigned int cost() const;
 	_Nomutex unsigned int getId() const;
+    ~VendingMachine();
 }; // VendingMachine
 
 

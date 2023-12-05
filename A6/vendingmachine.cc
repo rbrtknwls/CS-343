@@ -6,7 +6,7 @@
 
 void VendingMachine::main() {
 
-    thinameServer->VMregister(this);
+    nameServer->VMregister(this);
 
     LOOP: for(;;) {
         try {
