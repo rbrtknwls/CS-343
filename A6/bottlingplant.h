@@ -13,7 +13,7 @@ _Task BottlingPlant {
     unsigned int maxShippedperFlavour;
     unsigned int maxStockperFlavour;
     unsigned int timeBetweenShipments;
-    Truck truck;
+    Truck *truck;
     bool shutdown = false;
     unsigned int prod[4] = {0};
 
