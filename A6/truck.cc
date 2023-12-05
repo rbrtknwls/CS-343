@@ -25,15 +25,14 @@ void Truck::main() {
 
         yield( prng( 10 ) );
 
+        printer.print(Printer::Kind::Truck, 'F');
+        printer.print(Printer::Kind::Truck, 'F');
+
         try {
             _Enable {
-                    printer.print(Printer::Kind::Truck, 'F');
-                    printer.print(Printer::Kind::Truck, 'F');
                 bottlingPlant.getShipment(sodas);
-                    printer.print(Printer::Kind::Truck, 'F');
             }
         } catch ( BottlingPlant::Shutdown & ) {
-            printer.print(Printer::Kind::Truck, 'F');
             break;
         } // try
 
