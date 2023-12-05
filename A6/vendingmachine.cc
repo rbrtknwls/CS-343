@@ -4,11 +4,8 @@
 #include "watCard.h"
 
 void VendingMachine::main() {
-    printer->print(Printer::Kind::Vending, id, 'F', sodaCost);
-    printer->print(Printer::Kind::Vending, id, 'F', sodaCost);
-    //nameServer.VMregister( this );
+    nameServer.VMregister( this );
 
-    /*
     LOOP: for( ;; ) {
         printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
         try {
@@ -55,7 +52,7 @@ void VendingMachine::main() {
             } // switch
         } // try
     } // for
-    */
+
 } // VendingMachine::main
 
 
@@ -97,7 +94,7 @@ VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned
     printer( &prt ), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
 
     printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
-    printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
+
 } // VendingMachine::VendingMachine
 
 VendingMachine::~VendingMachine() {
