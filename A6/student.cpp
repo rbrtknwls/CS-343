@@ -2,6 +2,7 @@
 #include "vendingmachine.h"
 #include "bottlingplant.h"
 
+#include "<iostream>"
 // ================== Private Method(s) ==================== //
 
 void Student::main() {
@@ -17,7 +18,6 @@ void Student::main() {
 
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
         madeAPurchase = true;
-        amount = payment->getBalance();
 
         _Select( giftcard ) {
 
@@ -33,7 +33,8 @@ void Student::main() {
 
             } catch( VendingMachine::Free & ) {
 
-                printer->print(Printer::Kind::Student, localID, 'a', flavour, amount);
+                cout << payment << endl;
+                printer->print(Printer::Kind::Student, localID, 'a', flavour, 0);
 
                 if (prng(2) == 1) {
                     yield(4);
@@ -43,9 +44,11 @@ void Student::main() {
                 madeAPurchase = false;
 
             } catch ( VendingMachine::Stock & ) {
+
                 machine = nameServer.getMachine( localID );
                 printer->print( Printer::Kind::Student, localID, 'V', machine->getId() );
                 madeAPurchase = false;
+
             }
 
         } or _Select( watcard ) {
