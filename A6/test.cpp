@@ -61,11 +61,6 @@ int main( int argc, char * argv[] ) {
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
-    BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
-                                                 parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                 parameters.timeBetweenShipments );
-
-
 
     vector< VendingMachine* > vendingMachines;
 
@@ -73,17 +68,24 @@ int main( int argc, char * argv[] ) {
         vendingMachines.push_back( new VendingMachine( printer, nameServer, vendingID, parameters.sodaCost ) );
     }
 
-    uNoCtor< Student > students[parameters.numStudents];
+    {
+        BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
+                                                     parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
+                                                     parameters.timeBetweenShipments );
 
-    for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
-        students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
+        uNoCtor <Student> students[parameters.numStudents];
+
+        for (unsigned int studentID = 0; studentID < parameters.numStudents; studentID++) {
+            students[studentID].ctor(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases);
+        }
+
     }
 
 
-    /*for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
+    for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         delete vendingMachines[vendingID];
     }
-    vendingMachines.clear();*/
+    vendingMachines.clear();
 
 
 }
