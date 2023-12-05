@@ -29,7 +29,7 @@ void BottlingPlant::main() {
         } or _Accept( getShipment ) {
 
             printer.print(Printer::Kind::BottlingPlant, 'P');
-
+            printer.print(Printer::Kind::BottlingPlant, 'P');
         } // _Accept
     } // for
 
@@ -63,4 +63,5 @@ unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour, unsigned int
 
 BottlingPlant::~BottlingPlant() {
     printer.print(Printer::Kind::BottlingPlant, 'F');
+    printer.print(Printer::Kind::BottlingPlant, 'P');
 } // BottlingPlant::~BottlingPlant
