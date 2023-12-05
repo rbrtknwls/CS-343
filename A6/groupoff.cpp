@@ -28,6 +28,7 @@ void Groupoff::main() {
 
         }
     }
+    printer->print( Printer::Groupoff, 'F' );
 }
 
 // ================== Public Member(s) ==================== //
@@ -55,6 +56,5 @@ Groupoff::~Groupoff() {
     }
 
     delete[] giftCards;
-    printer->print( Printer::Groupoff, 'F' );
 
 }
