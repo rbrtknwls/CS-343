@@ -79,8 +79,6 @@ int main( int argc, char * argv[] ) {
             students[studentID].ctor(printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases);
         }
 
-        printer.print( Printer::Groupoff, 'T' );
-        printer.print( Printer::Groupoff, 'T' );
     }
     printer.print( Printer::Groupoff, 'E' );
     printer.print( Printer::Groupoff, 'E' );
