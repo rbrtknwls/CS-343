@@ -6,6 +6,8 @@
 
 void VendingMachine::main() {
 
+    thinameServer->VMregister(this);
+
     LOOP: for(;;) {
         try {
             _Accept(~VendingMachine) {
@@ -46,7 +48,6 @@ void VendingMachine::main() {
         } // try
     } // for
 
-    printer->print(Printer::Kind::Vending, id, 'F');
 } // VendingMachine::main
 
 
@@ -92,7 +93,12 @@ _Nomutex unsigned int VendingMachine::getId() const {
 // ================== Constructor / Destructor ==================== //
 
 VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ):
-printer(&prt), nameServer(&nameServer), id(id), sodaCost(sodaCost) {
+printer(&prt), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
     printer->print( Printer::Kind::Vending, id, 'S', sodaCost );
-    nameServer->VMregister(this);
+
 } // VendingMachine::VendingMachine
+
+VendingMachine::~VendingMachine() {
+    printer->print( Printer::Kind::Vending, id, 'F' );
+
+} // VendingMachine::~VendingMachine
