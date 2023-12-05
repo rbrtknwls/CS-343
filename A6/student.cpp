@@ -52,6 +52,8 @@ void Student::main() {
                  payment = watcard();
                  machine->buy( flavour, *payment );
 
+                 prin
+
                  printer->print(Printer::Kind::Student, localID, 'B', flavour, 0);
                  break;
 
@@ -63,7 +65,7 @@ void Student::main() {
                  continue;
 
              } catch(VendingMachine:: Free &) {
-                 printer->print(Printer::Kind::Student, localID, 'A', flavour, 0);
+                 printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
 
                  if (prng(2) == 1) {
                      yield(4);
