@@ -4,12 +4,12 @@
 #include "watCard.h"
 
 
-VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost ): 
+VendingMachine::VendingMachine( Printer * prt, NameServer * nameServer, unsigned int id, unsigned int sodaCost ):
         printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost) {
 } // VendingMachine::VendingMachine
 
 void VendingMachine::main() {
-    printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
+    printer.print( Printer::Kind::Vending, id, 'S', sodaCost );
     nameServer.VMregister(this);
     LOOP: for(;;) {
         try {
@@ -56,18 +56,18 @@ void VendingMachine::main() {
 
 
 
-void VendingMachine::buy( BottlingPlant::Flavours flavour, WATCard & card ) {
+void VendingMachine::buy( BottlingPlant::Flavours flavour, WATCard * card ) {
     if (stock[flavour] == 0) {
         state = VendingMachine::State::stocks;
         _Throw VendingMachine::Stock{};
     } // if
 
-    if (card.getBalance() < sodaCost) {
+    if (card->getBalance() < sodaCost) {
         state = VendingMachine::State::funds;
         _Throw VendingMachine::Funds{};
     } // if
 
-    VMCard = &card;
+    VMCard = card;
     currFlavour = flavour;
     if (prng() % 4 == 0) {
         state = VendingMachine::State::free;

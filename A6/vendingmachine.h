@@ -8,8 +8,8 @@
 class WATCard;
 
 _Task VendingMachine {
-    Printer & printer;
-    NameServer & nameServer;
+    Printer * printer;
+    NameServer * nameServer;
     unsigned int id;
     unsigned int sodaCost;
     unsigned int stock[4] = {0};
@@ -24,8 +24,8 @@ _Task VendingMachine {
 	_Event Free {};						// free, advertisement
 	_Event Funds {};					// insufficient funds
 	_Event Stock {};					// flavour out of stock
-	VendingMachine( Printer & prt, NameServer & nameServer, unsigned int id, unsigned int sodaCost );
-	void buy( BottlingPlant::Flavours flavour, WATCard & card );
+	VendingMachine( Printer * prt, NameServer * nameServer, unsigned int id, unsigned int sodaCost );
+	void buy( BottlingPlant::Flavours flavour, WATCard * card );
 	unsigned int * inventory() __attribute__(( warn_unused_result ));
 	void restocked();
 	_Nomutex unsigned int cost() const;
