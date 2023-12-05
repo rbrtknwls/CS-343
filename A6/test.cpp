@@ -70,7 +70,6 @@ int main( int argc, char * argv[] ) {
     uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
-        cout << &printer << endl;
         vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
     }
 
