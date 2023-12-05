@@ -19,8 +19,6 @@ void Student::main() {
 
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
-        if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }   // Yield IFF we made a purchase
-
         _Select( giftcard ) {
 
             try {
