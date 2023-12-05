@@ -62,8 +62,8 @@ void Truck::main() {
 
             } // for
         }
-    } catch ( BottlingPlant::Shutdown & ) {
-        
+    } catch ( ... ) {
+
     } // try
 
 } // Truck::main
