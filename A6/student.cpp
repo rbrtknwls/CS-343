@@ -21,13 +21,30 @@ void Student::main() {
 
         _Select( giftcard ) {
 
+            try {
+                
+                payment = giftcard();
+                machine->buy(flavour, *payment);
+                printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
+                giftcard.reset();
+                delete payment;
 
+            } catch( VendingMachine::Free & ) {
 
-            payment = giftcard();
-            machine->buy( flavour, *payment );
-            printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
-            giftcard.reset();
-            delete payment;
+                printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
+
+                if (prng(2) == 1) {
+                    yield(4);
+                } else {
+                    printer->print(Printer::Kind::Student, localID, 'X');
+                }
+                madeAPurchase = false;
+            } catch ( VendingMachine::Stock & ) {
+
+                machine = nameServer.getMachine(localID);
+                printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+                madeAPurchase = false;
+            }
 
         } or _Select( watcard ) {
 
