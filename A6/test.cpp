@@ -84,8 +84,6 @@ int main( int argc, char * argv[] ) {
         }
     }
 
-    delete bottlingPlant;
-
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         delete vendingMachines[vendingID];
     }
