@@ -33,7 +33,8 @@ void Student::main() {
 
                 giftcard.reset();                         // Reset the future
                 delete payment;                           // Delete Watcard
-                currentPurchase++;
+
+                currentPurchase++;                        // Update number of purchases
                 yield( prng( 1, 10 ) );                   // Made purchase so yield
 
             // Catch if the vending machine gives us a free drink
@@ -63,7 +64,8 @@ void Student::main() {
                  machine->buy( flavour, payment );         // Try to buy (can throw!)
 
                  printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
-                 currentPurchase++;
+
+                 currentPurchase++;                        // Update number of purchases
                  yield( prng( 1, 10 ) );                   // Made purchase so must yield
 
              // Catch if the watcard was lost in transit
