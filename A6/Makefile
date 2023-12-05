@@ -3,7 +3,7 @@ CXXFLAGS = -g -multi -Wall -Wextra -MMD \
 
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS = config.o printer.o bank.o parent.o watCard.o watCardOffice.o groupoff.o truck.o bottlingplant.o student.o vendingmachine.o nameserver.o  test.o
+OBJECTS = config.o printer.o bank.o parent.o watCard.o watCardOffice.o groupoff.o truck.o bottlingplant.o student.o vendingmachine.o nameserver.o main.o
 EXEC = soda
 
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
