@@ -19,17 +19,15 @@ void Student::main() {
 
         madeAPurchase = true;
 
-
         _Select( giftcard ) {
+
+
 
             payment = giftcard();
             machine->buy( flavour, *payment );
             printer->print(Printer::Kind::Student, localID, 'G', flavour, payment->getBalance());
             giftcard.reset();
             delete payment;
-
-            break;
-
 
         } or _Select( watcard ) {
 
