@@ -21,12 +21,12 @@ void Truck::main() {
     unsigned int *stock;
     unsigned int totalLacking = 0;
 
+    printer.print(Printer::Kind::Truck, 'F');
+    printer.print(Printer::Kind::Truck, 'F');
+    
     for ( ;; ) {
 
         yield( prng( 10 ) );
-
-        printer.print(Printer::Kind::Truck, 'F');
-        printer.print(Printer::Kind::Truck, 'F');
 
         try {
             _Enable {
