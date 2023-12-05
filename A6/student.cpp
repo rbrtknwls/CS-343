@@ -14,7 +14,7 @@ void Student::main() {
     WATCard *payment = nullptr;
 
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
-
+        /*
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
 
         madeAPurchase = true;
@@ -73,12 +73,15 @@ void Student::main() {
                     printer->print(Printer::Kind::Student, localID, 'X');
                 }
             } catch( VendingMachine::Funds & ) {
+
                 watcard = watCardOffice->transfer(localID, machine->cost() + 5, payment);
             } catch( VendingMachine::Stock & ) {
+
                 machine = nameServer.getMachine(localID);
                 printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+
             } // try
-        }
+        }*/
 
     }
 
