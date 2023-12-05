@@ -26,8 +26,11 @@ void BottlingPlant::main() {
 
         } or  _Accept( ~BottlingPlant ) {
 
-            _Accept( getShipment ) { printer.print(Printer::Kind::BottlingPlant, 'P'); }
-            _Resume Shutdown() _At truck;
+            _Accept( getShipment ) {
+                printer.print(Printer::Kind::BottlingPlant, 'P');
+                _Resume Shutdown() _At truck;
+            }
+
             break;
 
         } // _Accept
