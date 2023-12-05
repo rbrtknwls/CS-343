@@ -80,10 +80,10 @@ int main( int argc, char * argv[] ) {
     }
 
 
-    for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
+    /*for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
         delete vendingMachines[vendingID];
     }
-    vendingMachines.clear();
+    vendingMachines.clear();*/
 
 
 }
