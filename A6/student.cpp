@@ -51,7 +51,8 @@ void Student::main() {
              try {
                  payment = watcard();
                  machine->buy( flavour, *payment );
-                 printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
+
+                 //printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
                  break;
 
              } catch ( WATCardOffice::Lost &lost ) {
@@ -60,6 +61,7 @@ void Student::main() {
                  madeAPurchase = false;
                  printer->print( Printer::Student, localID, 'L' );
                  continue;
+
              } catch(VendingMachine:: Free &) {
                  //printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
 
