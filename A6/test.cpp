@@ -86,8 +86,8 @@ int main( int argc, char * argv[] ) {
         delete vendingMachines[vendingID];
     }
     vendingMachines.clear();
-    printer.print( Printer::Groupoff, "T" )
-    printer.print( Printer::Groupoff, "T" )
+    printer.print( Printer::Groupoff, "T" );
+    printer.print( Printer::Groupoff, "T" );
 
 
 }
