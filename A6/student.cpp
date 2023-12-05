@@ -41,11 +41,9 @@ void Student::main() {
                 madeAPurchase = false;
 
             } catch ( VendingMachine::Stock & ) {
-                /*
                 machine = nameServer.getMachine( localID );
-                printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+                printer->print( Printer::Kind::Student, localID, 'V', machine->getId() );
                 madeAPurchase = false;
-                 */
             }
 
         } or _Select( watcard ) {
