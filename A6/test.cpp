@@ -61,9 +61,9 @@ int main( int argc, char * argv[] ) {
     WATCardOffice watCardOffice = WATCardOffice( printer, bank, parameters.numCouriers );
     Groupoff groupoffer = Groupoff( printer, parameters.numStudents, parameters.sodaCost, parameters.groupoffDelay );
 
-    /*BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
+    BottlingPlant bottlingPlant = BottlingPlant( printer, nameServer, parameters.numVendingMachines,
                                                  parameters.maxShippedPerFlavour, parameters.maxStockPerFlavour,
-                                                 parameters.timeBetweenShipments );*/
+                                                 parameters.timeBetweenShipments );
 
 
 
