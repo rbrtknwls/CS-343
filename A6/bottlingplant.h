@@ -19,7 +19,6 @@ _Task BottlingPlant {
     bool shutdown = false;
     unsigned int prod[4] = {0};
 
-    uSemaphore gettingShipment;
 
     public:
     enum Flavours {Lemon, Cola, Bacon, Pork};	// flavours of soda (YOU DEFINE)
