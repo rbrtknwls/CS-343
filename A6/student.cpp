@@ -17,7 +17,7 @@ void Student::main() {
 
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
         madeAPurchase = true;
-        amount = payment->getBalance()
+        amount = payment->getBalance();
 
         _Select( giftcard ) {
 
