@@ -8,7 +8,7 @@ _Monitor Printer;
 
 _Task NameServer {
 	void main();
-    Printer & printer;
+    Printer * printer;
     unsigned int numVendingMachines;
     unsigned int numStudents;
     unsigned int numMachines;

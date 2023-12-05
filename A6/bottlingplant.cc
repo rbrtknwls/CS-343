@@ -4,15 +4,18 @@
 
 // ================== Private Method(s) ==================== //
 
-
+/*
+ * Main method used by the bottling plant.
+ * Will keep running until it gets a destructor, will destroy the truck and then exit
+ */
 void BottlingPlant::main() {
 
-    for ( ;; ) {
+    for ( ;; ) {                                               // Loop until we get a destructor
 
-        yield( timeBetweenShipments ); // wait for prod
+        yield( timeBetweenShipments );                         // Wait for timeBetweenShipments
         unsigned int totalBottles = 0;
 
-        for (unsigned int i = 0; i < 4; i++) {
+        for (unsigned int i = 0; i < 4; i++) {                 // Loop each flavour
             int bottles = prng( maxShippedperFlavour );
             prod[i] = bottles;
             totalBottles += bottles;
@@ -20,17 +23,17 @@ void BottlingPlant::main() {
 
         printer.print(Printer::Kind::BottlingPlant, 'G', totalBottles);
 
-        _Accept( getShipment ) {
+        _Accept( getShipment ) {                                // Accept get shipment
 
             printer.print(Printer::Kind::BottlingPlant, 'P');
 
-        } or  _Accept( ~BottlingPlant ) {
+        } or  _Accept( ~BottlingPlant ) {                       // Accept destructor
 
-            _Accept( getShipment ) {
-                _Resume Shutdown() _At truck;
+            _Accept( getShipment ) {                            // Allow truck to run (remove from calle)
+                _Resume Shutdown() _At truck;                   // Throw exception and will stop truck
             }
 
-            break;
+            break;                                              // Exit
 
         } // _Accept
     } // for
@@ -40,7 +43,7 @@ void BottlingPlant::main() {
 
 // ================== Public Member(s) ==================== //
 
-
+// Method used by truck to get a shipment (Error thrown by main!)
 void BottlingPlant::getShipment( unsigned int cargo[] ) {
     for (unsigned int i = 0; i < 4; i++) {
         cargo[i] = prod[i];
