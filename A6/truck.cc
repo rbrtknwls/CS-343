@@ -15,12 +15,12 @@ using namespace std;
  */
 void Truck::main() {
 
-    VendingMachine **machines = nameServer.getMachineList();
+    VendingMachine **machines = nameServer.getMachineList();         // Get list of all machines
     unsigned int currMachine = 0;
     unsigned int totalSodas = 0;
     unsigned int loop_count = 0;
 
-    VendingMachine *machine;
+    VendingMachine *machine;                                         // Used to store current machine
     unsigned int *stock;
     unsigned int totalLacking = 0;
 
