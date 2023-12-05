@@ -50,12 +50,31 @@ void Student::main() {
 
              try {
                  payment = watcard();
+                 machine->buy( flavour, *payment );
+                 printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
+                 break;
+
              } catch ( WATCardOffice::Lost &lost ) {
                  watcard = watCardOffice->create( localID, 5 );
                  currentPurchase--;
                  madeAPurchase = false;
                  printer->print( Printer::Student, localID, 'L' );
                  continue;
+             } catch(VendingMachine:: Free &) {
+                 printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
+
+                 if (prng(2) == 1) {
+                     yield(4);
+                 } else {
+                     printer->print(Printer::Kind::Student, localID, 'X');
+                 }
+             } catch( VendingMachine::Funds & ) {
+                 //watcard = watCardOffice->transfer(localID, machine->cost() + 5, payment);
+
+             } catch( VendingMachine::Stock & ) {
+                 machine = nameServer.getMachine(localID);
+                 printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+
              }
         }
 
