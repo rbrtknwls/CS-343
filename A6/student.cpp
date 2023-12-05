@@ -9,6 +9,7 @@ void Student::main() {
     VendingMachine *machine = nameServer.getMachine( localID );
     BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
     printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
+
     bool madeAPurchase = true;
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
@@ -36,10 +37,10 @@ void Student::main() {
         //     }
         // }
 
-        
 
-        for (;;) {
-            bool useGC = false;
+        bool useGC = false;
+
+        for ( ;; ) {
             try {
                 _Select(giftcard) {
                     payment = giftcard();
@@ -70,19 +71,14 @@ void Student::main() {
                 } else {
                     printer->print(Printer::Kind::Student, localID, 'X');
                 }
-            } catch(VendingMachine::Funds &) {
+            } catch( VendingMachine::Funds & ) {
                 watcard = watCardOffice->transfer(localID, machine->cost() + 5, payment);
-            } catch(VendingMachine::Stock &) {
+            } catch( VendingMachine::Stock & ) {
                 machine = nameServer.getMachine(localID);
                 printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
             } // try
         }
-        try {
-            payment = watcard();
-            delete payment;
-        } catch (WATCardOffice::Lost &lost) {
 
-        }
     }
 
 }
@@ -107,6 +103,12 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
 }
 
 Student::~Student() {
+    try {
+        payment = watcard();
+        delete payment;
+        break;
+    } catch ( WATCardOffice::Lost &lost ) { }
+    
     printer->print( Printer::Student, localID, 'F' );
     // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
 }
