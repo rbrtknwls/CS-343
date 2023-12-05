@@ -66,17 +66,17 @@ int main( int argc, char * argv[] ) {
                                                  parameters.timeBetweenShipments );*/
 
 
+    uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
+
+    for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
+        vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
+    }
+    
     uNoCtor< Student > students[parameters.numStudents];
 
     for ( unsigned int studentID = 0; studentID < parameters.numStudents; studentID++ ) {
         students[studentID].ctor( printer, watCardOffice, groupoffer, studentID, parameters.maxPurchases );
     }
 
-
-    uNoCtor< VendingMachine > vendingMachines[parameters.numStudents];
-
-    for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
-        vendingMachines[vendingID].ctor( printer, nameServer, vendingID, parameters.sodaCost );
-    }
 
 }

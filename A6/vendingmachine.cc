@@ -6,7 +6,7 @@
 void VendingMachine::main() {
 
     //nameServer.VMregister( this );
-    
+
     /*
     LOOP: for( ;; ) {
         printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
