@@ -96,6 +96,7 @@ VendingMachine::VendingMachine( Printer & prt, NameServer & nameServer, unsigned
     printer( &prt ), nameServer( &nameServer ), id(id), sodaCost(sodaCost) {
 
     printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
+    printer->print(Printer::Kind::Vending, id, 'S', sodaCost);
 } // VendingMachine::VendingMachine
 
 VendingMachine::~VendingMachine() {
