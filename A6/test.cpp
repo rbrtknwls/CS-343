@@ -27,6 +27,8 @@ int main( int argc, char * argv[] ) {
     struct cmd_error { };
     try {
         switch ( argc ) {
+            case 5:
+                throw cmd_error();
             case 4:
                 if ( *argv[3] != 'd' ) { processors = stoi(argv[3]); }
             case 3:
