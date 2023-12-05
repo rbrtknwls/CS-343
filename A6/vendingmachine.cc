@@ -12,6 +12,7 @@ void VendingMachine::main() {
     printer.print(Printer::Kind::Vending, id, 'S', sodaCost);
 
     LOOP: for( ;; ) {
+        printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
         try {
             _Accept( ~VendingMachine ) {
                 printer.print(Printer::Kind::Vending, id, 'L', sodaCost);
