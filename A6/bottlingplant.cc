@@ -62,4 +62,5 @@ unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour, unsigned int
 
 BottlingPlant::~BottlingPlant() {
     printer.print(Printer::Kind::BottlingPlant, 'F');
+    printer.print(Printer::Kind::BottlingPlant, 'F');
 } // BottlingPlant::~BottlingPlant
