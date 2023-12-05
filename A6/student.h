@@ -6,6 +6,8 @@
 #include "groupoff.h"
 #include "nameserver.h"
 
+_Task BottlingPlant;
+
 _Task Student {
     Printer * printer;
     NameServer & nameServer;
@@ -15,7 +17,7 @@ _Task Student {
 
     unsigned int localID;
     unsigned int numberOfPurchases;
-    unsigned int favouriteFlavour;
+    BottlingPlant::Flavours flavour;
 
     WATCard::FWATCard watcard;
     WATCard::FWATCard giftcard;

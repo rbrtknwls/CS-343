@@ -10,13 +10,14 @@
 
 void Student::main() {
 
+    // Get a machine for this student
     VendingMachine *machine = nameServer.getMachine( localID );
-    BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
+
     printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
 
-    bool madeAPurchase = true;
-    WATCard *payment = nullptr;
-    unsigned int amount = 0;
+    bool madeAPurchase = true;                    // Store if we made a purchase
+    WATCard *payment = nullptr;                   // Store our method of paying
+
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
         if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
@@ -101,12 +102,14 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
 
 
     numberOfPurchases = prng( 1, maxPurchases );
-    favouriteFlavour = prng( 4 );
+    unsigned int favouriteFlavour = prng( 4 );
+
 
     watcard = watCardOffice->create( localID, 5 );
     giftcard = groupoffer->giftCard();
 
     printer->print( Printer::Student, localID, 'S', favouriteFlavour, numberOfPurchases );
+    BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
 
 }
 
