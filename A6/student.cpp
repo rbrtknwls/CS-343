@@ -15,14 +15,11 @@ void Student::main() {
     BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
 
     printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
-
-    bool madeAPurchase = true;                    // Store if we made a purchase
-    WATCard *payment = nullptr;                   // Store our method of paying
+    WATCard *payment = nullptr;                           // Store our method of paying
 
     for ( unsigned int currentPurchase = 0; currentPurchase < numberOfPurchases; currentPurchase++ ) {
 
-        if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }
-        madeAPurchase = true;
+        if ( madeAPurchase ) { yield( prng( 1, 10 ) ); }   // Yield IFF we made a purchase
 
         _Select( giftcard ) {
 
@@ -36,6 +33,8 @@ void Student::main() {
                 giftcard.reset();
                 delete payment;
 
+                yield( prng( 1, 10 ) );
+
             } catch( VendingMachine::Free & ) {
 
                 printer->print(Printer::Kind::Student, localID, 'a', flavour, payment->getBalance());
@@ -45,13 +44,11 @@ void Student::main() {
                 } else {
                     printer->print(Printer::Kind::Student, localID, 'X');
                 }
-                madeAPurchase = false;
 
             } catch ( VendingMachine::Stock & ) {
 
                 machine = nameServer.getMachine( localID );
                 printer->print( Printer::Kind::Student, localID, 'V', machine->getId() );
-                madeAPurchase = false;
 
             }
 
@@ -62,12 +59,11 @@ void Student::main() {
                  machine->buy( flavour, payment );
 
                  printer->print(Printer::Kind::Student, localID, 'B', flavour, payment->getBalance());
-                 break;
+                 yield( prng( 1, 10 ) );
 
              } catch ( WATCardOffice::Lost &lost ) {
                  watcard = watCardOffice->create( localID, 5 );
                  currentPurchase--;
-                 madeAPurchase = false;
                  printer->print( Printer::Student, localID, 'L' );
                  continue;
 
