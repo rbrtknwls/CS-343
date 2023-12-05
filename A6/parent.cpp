@@ -17,11 +17,11 @@ void Parent::main() {
             int moneyToDeposit = prng( 3 ) + 1;                    // Deposit [$1,$3] into student account
             bank->deposit( idOfStudent, moneyToDeposit );
             printer->print( Printer::Parent, 'D', idOfStudent, moneyToDeposit );
-        }
+        } // _Accept
 
-    }
+    } // for
 
-}
+} // Parent::main
 
 // ================== Constructor / Destructor ==================== //
 
@@ -30,6 +30,8 @@ Parent::Parent( Printer & prt, Bank & bank, unsigned int numStudents, unsigned i
 
     printer->print( Printer::Parent, 'S' );
 
-}
+} // Parent::Parent
 
-Parent::~Parent() { printer->print( Printer::Parent, 'F' ); }
+Parent::~Parent() {
+    printer->print( Printer::Parent, 'F' );
+} // Parent::~Parent

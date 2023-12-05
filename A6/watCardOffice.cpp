@@ -28,12 +28,12 @@ void WATCardOffice::Courier::main() {
         } else {
             printer->print( Printer::Courier, localID, 'T', job->studentID, job->amount );
             job->result.delivery( job->card );                        // Send the card to the user
-        }
+        } // if
 
         delete job;                                                   // Delete the job (saves future)
-    }
+    } // for
 
-}
+} // WATCardOffice::Courier::main
 
 /*
  * Main method for the WatCardOffice will schedule work for the couriers to do.
@@ -64,11 +64,11 @@ void WATCardOffice::main() {
         // Always accept the destructor for Watcard office
         } or _Accept ( WATCardOffice::~WATCardOffice ) {
             break;
-        }
+        } // _Accept
 
-    }
+    } // for
 
-}
+} // WATCardOffice::main
 
 // ================== Public Member(s) ==================== //
 
@@ -77,14 +77,14 @@ WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount )
     Job* job = new Job( sid, amount, new WATCard() );            // Add job to queue
     workToDo.push( job );
     return job->result;
-}
+} // WATCardOffice::create
 
 // Mutex member to transfer funds from a Watcard
 WATCard::FWATCard WATCardOffice::transfer( unsigned int sid, unsigned int amount, WATCard * card ) {
     Job* job = new Job( sid, amount, card );                     // Add job to queue
     workToDo.push( job );
     return job->result;
-}
+} // WATCardOffice::transfer
 
 // Mutex member to request work (called by couriers)
 WATCardOffice::Job* WATCardOffice::requestWork() {
@@ -92,7 +92,7 @@ WATCardOffice::Job* WATCardOffice::requestWork() {
 
     Job* jobToDo = workToDo.front();
     return jobToDo;
-}
+} // WATCardOffice::requestWork
 
 // ================== Constructor / Destructor ==================== //
 
@@ -104,35 +104,39 @@ WATCardOffice::WATCardOffice( Printer & prt, Bank & bank, unsigned int numCourie
     // Create an array of courier's to do the processing for the watcard office
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         courierPool.push_back( new Courier( courierID, this, printer ) );
-    }
-}
+    } // for
+} // WATCardOffice::WATCardOffice
 
 WATCardOffice::~WATCardOffice() {
     // Wait for all the remaining requested work to finish (students have exited by now)
     while ( !workToDo.empty() ) { _Accept ( WATCardOffice::requestWork ) }
     workDone = true;                                          // Done work
-    
+
     for ( unsigned int courierID = 0 ; courierID < numCouriers ; courierID++ ) {
         _Accept ( WATCardOffice::requestWork ) {}             // Break courier out of main
         delete courierPool[courierID];                        // Delete the courier
-    }
+    } // for
     courierPool.clear();
 
     printer->print( Printer::WATCardOffice, 'F' );
-}
+} // WATCardOffice::~WATCardOffice
 
 
 WATCardOffice::Job::Job( unsigned int studentID, unsigned int amount, WATCard *card ) :
-    studentID( studentID ), amount( amount ), card ( card ) {}
+    studentID( studentID ), amount( amount ), card ( card ) {
 
-WATCardOffice::Job::~Job() {}
+} // WATCardOffice::Job::Job
+
+WATCardOffice::Job::~Job() {
+
+} // WATCardOffice::Job::~Job
 
 
 WATCardOffice::Courier::Courier( unsigned int localID, WATCardOffice *watCardOffice, Printer *printer ) :
     localID( localID ), watCardOffice( watCardOffice ), printer( printer ) {
     printer->print( Printer::Courier, localID, 'S' );
-}
+} // WATCardOffice::Courier::Courier
 
 WATCardOffice::Courier::~Courier() {
     printer->print( Printer::Courier, localID, 'F' );
-}
+} // WATCardOffice::Courier::~Courier
