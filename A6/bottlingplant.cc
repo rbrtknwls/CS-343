@@ -52,10 +52,9 @@ BottlingPlant::BottlingPlant( Printer & prt, NameServer & nameServer, unsigned i
 unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour, unsigned int timeBetweenShipments ) :
     printer(prt), nameServer(nameServer), numVendingMachines(numVendingMachines),
     maxShippedperFlavour(maxShippedPerFlavour), maxStockperFlavour(maxStockPerFlavour),
-    timeBetweenShipments(timeBetweenShipments) {
+    timeBetweenShipments(timeBetweenShipments), truck( printer, nameServer, *this, numVendingMachines, maxStockPerFlavour ) {
 
     printer.print(Printer::Kind::BottlingPlant, 'S');
-    truck = new Truck( printer, nameServer, *this, numVendingMachines, maxStockPerFlavour );
 } // BottlingPlant::BottlingPlant
 
 BottlingPlant::~BottlingPlant() {
