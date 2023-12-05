@@ -61,7 +61,7 @@ void Student::main() {
                  printer->print( Printer::Student, localID, 'L' );
                  continue;
              } catch(VendingMachine:: Free &) {
-                 printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
+                 //printer->print(Printer::Kind::Student, localID, 'A', flavour, payment->getBalance());
 
                  if (prng(2) == 1) {
                      yield(4);
