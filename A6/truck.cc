@@ -26,8 +26,11 @@ void Truck::main() {
             for (;; ) {
 
                 yield(prng(10));
-
+                printer.print(Printer::Kind::Truck, 'E');
+                printer.print(Printer::Kind::Truck, 'E');
                 bottlingPlant.getShipment(sodas);
+                printer.print(Printer::Kind::Truck, 'X');
+                printer.print(Printer::Kind::Truck, 'X');
 
 
                 for (unsigned int i = 0; i < 4; i++) {
@@ -63,7 +66,8 @@ void Truck::main() {
             } // for
         }
     } catch ( ... ) {
-
+        printer.print(Printer::Kind::Truck, 'F');
+        printer.print(Printer::Kind::Truck, 'F');
     } // try
 
 } // Truck::main

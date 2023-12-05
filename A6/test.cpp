@@ -81,8 +81,6 @@ int main( int argc, char * argv[] ) {
         }
 
     }
-    printer.print( Printer::Groupoff, 'E' );
-    printer.print( Printer::Groupoff, 'E' );
 
 
     for ( unsigned int vendingID = 0; vendingID < parameters.numVendingMachines; vendingID++ ) {
