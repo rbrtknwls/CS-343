@@ -11,7 +11,7 @@ using namespace std;
 
 
 void Truck::main() {
-    /*
+
     VendingMachine **machines = nameServer.getMachineList();
     unsigned int currMachine = 0;
     unsigned int totalSodas = 0;
@@ -65,7 +65,6 @@ void Truck::main() {
         } // for
 
     } // for
-    */
 
 } // Truck::main
 
