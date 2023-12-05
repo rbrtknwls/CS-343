@@ -11,7 +11,7 @@ using namespace std;
 
 
 void Truck::main() {
-
+    /*
     VendingMachine **machines = nameServer.getMachineList();
     unsigned int currMachine = 0;
     unsigned int totalSodas = 0;
@@ -21,8 +21,6 @@ void Truck::main() {
     unsigned int *stock;
     unsigned int totalLacking = 0;
 
-    printer.print(Printer::Kind::Truck, 'S');
-    printer.print(Printer::Kind::Truck, 'S');
 
     for ( ;; ) {
 
@@ -67,6 +65,7 @@ void Truck::main() {
         } // for
 
     } // for
+    */
 
 } // Truck::main
 
