@@ -1,5 +1,6 @@
 #include "student.h"
 #include "vendingmachine.h"
+#include "bottlingplant.h"
 
 #include <iostream>
 
@@ -11,6 +12,7 @@ void Student::main() {
 
     // Get a machine for this student
     VendingMachine *machine = nameServer.getMachine( localID );
+    BottlingPlant::Flavours flavour = static_cast<BottlingPlant::Flavours>( favouriteFlavour );
 
     printer->print(Printer::Kind::Student, localID, 'V', machine->getId());
 
@@ -101,14 +103,12 @@ Student::Student( Printer & prt, NameServer & nameServer, WATCardOffice & cardOf
 
 
     numberOfPurchases = prng( 1, maxPurchases );
-    unsigned int favouriteFlavour = prng( 4 );
-
+    favouriteFlavour = prng( 4 );
 
     watcard = watCardOffice->create( localID, 5 );
     giftcard = groupoffer->giftCard();
 
     printer->print( Printer::Student, localID, 'S', favouriteFlavour, numberOfPurchases );
-    BottlingPlant::Flavours flavour = new static_cast<BottlingPlant::Flavours>( favouriteFlavour );
 
 }
 
@@ -116,7 +116,6 @@ Student::~Student() {
     try {
         delete watcard();
     } catch ( WATCardOffice::Lost & ) { }
-    delete flavour;
     printer->print( Printer::Student, localID, 'F' );
     // try { delete watcard(); } catch ( WATCardOffice::Lost &lost ) {}
 }

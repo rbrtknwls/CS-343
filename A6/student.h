@@ -5,8 +5,6 @@
 #include "watCardOffice.h"
 #include "groupoff.h"
 #include "nameserver.h"
-#include "bottlingplant.h"
-
 
 _Task Student {
     Printer * printer;
@@ -17,8 +15,7 @@ _Task Student {
 
     unsigned int localID;
     unsigned int numberOfPurchases;
-
-    BottlingPlant::Flavours *flavour;
+    unsigned int favouriteFlavour;
 
     WATCard::FWATCard watcard;
     WATCard::FWATCard giftcard;
