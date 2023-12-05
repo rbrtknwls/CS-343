@@ -17,7 +17,7 @@ void NameServer::main() {
         } or _When( numMachines == numVendingMachines ) _Accept(getMachine) {
             printer.print(Printer::Kind::NameServer, 'N', currStudentIdx, currMachineIdx);
             machineAssignments[currStudentIdx] = ( currMachineIdx + 1 ) % numVendingMachines;
-        } or _Accept( getMachineList ) {
+        } or _When( numMachines == numVendingMachines ) _Accept( getMachineList ) {
 
         } or _When( numMachines < numVendingMachines ) _Accept( VMregister ) {
             printer.print(Printer::Kind::NameServer, 'R', currMachineIdx);
