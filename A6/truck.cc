@@ -28,6 +28,7 @@ void Truck::main() {
                 bottlingPlant.getShipment(sodas);
             }
         } catch ( BottlingPlant::Shutdown & ) {
+            printer.print(Printer::Kind::Truck, 'F');
             break;
         } // try
 
